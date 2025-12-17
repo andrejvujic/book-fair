@@ -21,6 +21,12 @@ public class Address
 
     public override string ToString()
     {
-        return $"ID:{Id}\tStreet:{Street}\tStreet number:{StreetNumber}\tCity:{City}\tCountry:{Country}";
+        return
+            "[Address]:" +
+            $"\n\tId: {Id}" +
+            $"\n\tStreet: {Street}" +
+            $"\n\tStreetNumber: {StreetNumber}" +
+            $"\n\tCity: {City}" +
+            $"\n\tCountry: {Country}";
     }
 }
