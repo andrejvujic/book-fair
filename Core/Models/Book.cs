@@ -33,16 +33,16 @@ public class Book
     public override string ToString()
     {
         return
-            $"[Book]:\n" +
-            $"ISBN: {Isbn}, " +
-            $"Title: {BookTitle}, " +
-            $"Genre: {Genre}, " +
-            $"ReleaseYear: {ReleaseYear}, " +
-            $"Price: {Price}, " +
-            $"Pages: {NumberOfPages}, " +
-            $"Publisher: {Publisher}, " +
-            $"Authors: {Authors}," +
-            $"Buyers: {Buyers} " +
-            $"Wishlisters: {Wishlisters} ";
+            $"[Book]:" +
+            $"\n\tISBN: {Isbn}" +
+            $"\n\tTitle: {BookTitle}" +
+            $"\n\tGenre: {Genre}" +
+            $"\n\tReleaseYear: {ReleaseYear}" +
+            $"\n\tPrice: {Price}" +
+            $"\n\tPages: {NumberOfPages}" +
+            $"\n\tPublisher: {Publisher}" +
+            $"\n\tAuthors: {Authors}" +
+            $"\n\tBuyers: {Buyers}" +
+            $"\n\tWishlisters: {Wishlisters}";
     }
 }

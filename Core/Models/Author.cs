@@ -14,21 +14,21 @@ public class Author
     public string Email { get; set; }
     public string IdCardNumber { get; set; }
     public int YearsOfExperience { get; set; }
-
-    //missing list of book
+    public List<Book> Books { get; set; }
 
     public Author() { }
-    public Author(int id, string name, string surname, DateOnly dateofbirth, Address address, string phonenumber, string email, string idcardnumber, int yearsofexperience)
+    public Author(int id, string name, string surname, DateOnly dateOfBirth, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
     {
         Id = id;
         Name = name;
         Surname = surname;
-        DateOfBirth = dateofbirth;
+        DateOfBirth = dateOfBirth;
         Address = address;
-        PhoneNumber = phonenumber;
+        PhoneNumber = phoneNumber;
         Email = email;
-        IdCardNumber = idcardnumber;
-        YearsOfExperience = yearsofexperience;
+        IdCardNumber = idCardNumber;
+        YearsOfExperience = yearsOfExperience;
+        Books = books;
     }
 
     public override string ToString()
@@ -43,7 +43,7 @@ public class Author
             $"\n\tPhoneNumber: {PhoneNumber}" +
             $"\n\tEmail: {Email}" +
             $"\n\tIdCardNumber: {IdCardNumber}" +
-            $"\n\tYearsOfExperience: {YearsOfExperience}";
+            $"\n\tYearsOfExperience: {YearsOfExperience}" +
+            $"\n\tBooks: {Books}";
     }
-
 }
