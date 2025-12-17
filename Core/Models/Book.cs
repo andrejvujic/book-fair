@@ -16,7 +16,7 @@ public class Book
 
     public Book() { }
 
-    public Book(string isbn, string bookTitle, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> Wishlisters)
+    public Book(string isbn, string bookTitle, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
     {
         Isbn = isbn;
         BookTitle = bookTitle;
