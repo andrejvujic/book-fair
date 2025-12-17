@@ -2,7 +2,7 @@ using Core.Models;
 
 namespace Core.Models;
 
-enum MemberStatus
+public enum MemberStatus
 {
     R, // Redovan
     V // VIP
@@ -13,7 +13,7 @@ public class Visitor
     public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public Date DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
     public string PhoneNumber { get; set; }
     public string EmailAddress { get; set; }
     public Address Address { get; set; }
@@ -24,7 +24,7 @@ public class Visitor
         int id,
         string firstName,
         string lastName,
-        Date dateOfBirth,
+        DateOnly dateOfBirth,
         Address address,
         string phoneNumber,
         string emailAddress,

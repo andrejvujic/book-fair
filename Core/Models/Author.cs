@@ -8,7 +8,7 @@ public class Author
     public int Id { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
-    public Date DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
     public Address Address { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
@@ -18,7 +18,7 @@ public class Author
     //missing list of book
 
     public Author() { }
-    public Author(int id, string name, string surname, string dateofbirth, Address address, string phonenumber, string email, string idcardnumber, string yearsofexperience)
+    public Author(int id, string name, string surname, DateOnly dateofbirth, Address address, string phonenumber, string email, string idcardnumber, int yearsofexperience)
     {
         Id = id;
         Name = name;
