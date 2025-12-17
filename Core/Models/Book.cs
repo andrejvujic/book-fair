@@ -1,8 +1,9 @@
 using Core.Models;
+using Core.Serialization;
 
 namespace Core.Models;
 
-public class Book
+public class Book : ISerializable
 {
     public string Isbn { get; set; }
     public string BookTitle { get; set; }
