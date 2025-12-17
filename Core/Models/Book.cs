@@ -27,7 +27,7 @@ public class Book
         Authors = authors;
         Publisher = publisher;
         Buyers = buyers;
-        Wishlisters = Wishlisters;
+        Wishlisters = wishlisters;
     }
 
     public override string ToString()
