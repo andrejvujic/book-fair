@@ -6,6 +6,11 @@ public class ManyToManyRelation<T1, T2>
    where T1 : IIdentifiable, IRelational
    where T2 : IIdentifiable, IRelational
 {
+
+    // 'allPairsSet' se koristi za brzo pretrazivanje postojecih relacija
+    // prilikom provjere da li je relacija vec zabiljezena (potrebno
+    // radi sprecavanja dupliciranja podataka).
+    private HashSet<(int, int)> allPairsSet = new HashSet<(int, int)>();
     private List<RelationPair> allPairs = new List<RelationPair>();
     private readonly Storage<RelationPair> storage;
 
@@ -15,12 +20,17 @@ public class ManyToManyRelation<T1, T2>
     }
 
     public void Add(T1 firstEntity, T2 secondEntity, bool updateStorageImmediately = true) {
-        if (Exists(firstEntity, secondEntity)) return;
+
+        // Dodaje relaciju u 'allPairsSet', te istovremeno provjerava
+        // da li je relacija vec zabiljezena. Nova relacija se dodaje samo ukoliko
+        // vec nije dodana.
+        if (!allPairsSet.Add((firstEntity.Id, secondEntity.Id)))
+            return;
 
         allPairs.Add(
             new RelationPair(firstEntity.Id, secondEntity.Id)
         );
-
+        
         if (updateStorageImmediately)
             storage.Save(allPairs);
     }
@@ -65,16 +75,6 @@ public class ManyToManyRelation<T1, T2>
 
         foreach (int id in firstEntityIds)
             addCallback.Invoke(allEntitesDictionary[id]);
-    }
-
-    private bool Exists(T1 firstEntity, T2 secondEntity)
-    {
-        return Exists(firstEntity.Id, secondEntity.Id);
-    }
-
-    private bool Exists(int firstEntityId, int secondEntityId)
-    {
-        return allPairs.Exists(pair => pair.FirstId == firstEntityId && pair.SecondId == secondEntityId);
     }
 }
 
