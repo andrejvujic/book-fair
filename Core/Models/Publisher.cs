@@ -12,19 +12,18 @@ public class Publisher
 
     public Publisher() { }
 
-    public Publisher(int id, string name, string surname, Author boss, List<Author> authors)
+    public Publisher(int id, string name, string surname, Author boss, List<Author> authors, List<Book> books)
     {
         Id = id;
         Name = name;
         Surname = surname;
         Boss = boss;
         Authors = authors;
+        Books = books;
     }
 
-    // TODO:
-    // 1. Dodati spisak knjiga
-    // 2. Ispisati spisak knjiga
-    // 3. Ispisati spisak autora
+    public List<Author> Authors { get; set; }
+    public List<Book> Books { get; set; }
 
     public override string ToString()
     {
@@ -33,7 +32,9 @@ public class Publisher
             $"\n\tId: {Id}" +
             $"\n\tName: {Name}" +
             $"\n\tSurname: {Surname}" +
-            $"\n\tBoss: Name: {Boss.Name} Surname: {Boss.Surname}";
+            $"\n\tBoss: Name: {Boss.Name} Surname: {Boss.Surname}" +
+            $"\n\tAuthors: {Authors}" +
+            $"\n\tBooks: {Books}";
 
     }
 

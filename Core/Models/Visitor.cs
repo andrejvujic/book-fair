@@ -30,7 +30,9 @@ public class Visitor
         string emailAddress,
         string membershipCardNumber,
         int membershipYear,
-        MemberStatus status
+        MemberStatus status,
+        List<Book> purchasedBooks,
+        List<Book> wishlistedBooks
     )
     {
         Id = id;
@@ -43,6 +45,8 @@ public class Visitor
         MembershipCardNumber = membershipCardNumber;
         MembershipYear = membershipYear;
         Status = status;
+        PurchasedBooks = purchasedBooks;
+        WishlistedBooks = wishlistedBooks;
     }
 
     public string MembershipCardNumber { get; set; } // npr. CK-1-2023
@@ -51,9 +55,8 @@ public class Visitor
 
     public double AverageReviewRating { get; set; }
 
-    // TODO:
-    // 1. Dodati listu zelja
-    // 2. Dodati listu kupljenih knjiga
+    public List<Book> PurchasedBooks { get; set; }
+    public List<Book> WishlistedBooks { get; set; }
 
     public override string ToString()
     {
@@ -69,6 +72,8 @@ public class Visitor
             $"\n\tMembership card number: {MembershipCardNumber}" +
             $"\n\tMembership year: {MembershipYear}" +
             $"\n\tStatus: {Status}" +
-            $"\n\tAverage review rating: {AverageReviewRating}";
+            $"\n\tAverage review rating: {AverageReviewRating}" +
+            $"\n\tPurchased books: ${PurchasedBooks}" +
+            $"\n\tWishlisted books: ${WishlistedBooks}";
     }
 }
