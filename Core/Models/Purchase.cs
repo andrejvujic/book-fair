@@ -5,12 +5,12 @@ public class Purchase
 {
     public Visitor Visitor { get; set; }
     public DateOnly Date { get; set; }
-    public int Rating { get; set; }
+    public int Rating { get; set; } // TODO: Rating mora biti [1, 5]
     public string Comment { get; set; }
 
     public Purchase() { }
 
-    public Purchase(Visitor visitor, Date date, int rating, string comment)
+    public Purchase(Visitor visitor, DateOnly date, int rating, string comment)
     {
         Visitor = visitor;
 
