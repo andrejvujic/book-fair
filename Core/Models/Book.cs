@@ -1,4 +1,5 @@
 using Core.Models;
+
 namespace Core.Models;
 
 public class Book
@@ -44,5 +45,30 @@ public class Book
             $"\n\tAuthors: {Authors}" +
             $"\n\tBuyers: {Buyers}" +
             $"\n\tWishlisters: {Wishlisters}";
+    }
+
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Isbn,
+            BookTitle,
+            Genre,
+            ReleaseYear.ToString(),
+            Price.ToString(),
+            NumberOfPages.ToString()
+
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Isbn = values[0];
+        BookTitle = values[1];
+        Genre = values[2];
+        ReleaseYear = int.Parse(values[3]);
+        Price = int.Parse(values[4]);
+        NumberOfPages = int.Parse(values[5]);
     }
 }

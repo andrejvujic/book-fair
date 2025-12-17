@@ -1,6 +1,8 @@
+using Core.Serialization;
 namespace Core.Models;
 
-public class Address
+
+public class Address : ISerializable
 {
     public int Id { get; set; }
     public string Street { get; set; }
@@ -28,5 +30,27 @@ public class Address
             $"\n\tStreetNumber: {StreetNumber}" +
             $"\n\tCity: {City}" +
             $"\n\tCountry: {Country}";
+    }
+
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Id.ToString(),
+            Street,
+            StreetNumber,
+            City,
+            Country
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Id = int.Parse(values[0]);
+        Street = values[1];
+        StreetNumber = values[2];
+        City = values[3];
+        Country = values[4];
     }
 }

@@ -1,8 +1,9 @@
+using Core.Serialization;
 using Core.Models;
 namespace Core.Models;
 
 
-public class Author
+public class Author : ISerializable
 {
 
     public int Id { get; set; }
@@ -45,5 +46,33 @@ public class Author
             $"\n\tIdCardNumber: {IdCardNumber}" +
             $"\n\tYearsOfExperience: {YearsOfExperience}" +
             $"\n\tBooks: {Books}";
+    }
+
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Id.ToString(),
+            Name,
+            Surname,
+            DateOfBirth.ToString(),
+            PhoneNumber,
+            Email,
+            IdCardNumber,
+            YearsOfExperience.ToString()
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Id = int.Parse(values[0]);
+        Name = values[1];
+        Surname = values[2];
+        DateOfBirth = DateOnly.Parse(values[3]);
+        PhoneNumber = values[4];
+        Email = values[5];
+        IdCardNumber = values[6];
+        YearsOfExperience = int.Parse(values[7]);
     }
 }
