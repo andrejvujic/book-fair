@@ -1,4 +1,5 @@
 using Core.Models;
+using Core.Serialization;
 
 namespace Core.Models;
 
@@ -8,7 +9,7 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor
+public class Visitor : ISerializable
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
@@ -75,5 +76,35 @@ public class Visitor
             $"\n\tAverage review rating: {AverageReviewRating}" +
             $"\n\tPurchased books: ${PurchasedBooks}" +
             $"\n\tWishlisted books: ${WishlistedBooks}";
+    }
+
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Id.ToString(),
+            FirstName,
+            LastName,
+            DateOfBirth.ToString(),
+            PhoneNumber,
+            EmailAddress,
+            MembershipCardNumber,
+            MembershipYear.ToString(),
+            Status.ToString(),
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Id = int.Parse(values[0]);
+        FirstName = values[1];
+        LastName = values[2];
+        DateOfBirth = DateOnly.Parse(values[3]);
+        PhoneNumber = values[4];
+        EmailAddress = values[5];
+        MembershipCardNumber = values[6];
+        MembershipYear = int.Parse(values[7]);
+        Status = Enum.Parse<MemberStatus>(values[8]);
     }
 }

@@ -1,8 +1,10 @@
 using Core.Models;
+using Core.Serialization;
 namespace Core.Models;
 
-public class Purchase
+public class Purchase : ISerializable
 {
+    public int Id { get; set; }
     public Visitor Visitor { get; set; }
     public Book Book { get; set; }
     public DateOnly Date { get; set; }
@@ -29,5 +31,25 @@ public class Purchase
             $"\n\tDate: {Date}" +
             $"\n\tRating: {Rating}" +
             $"\n\tComment: {Comment}";
+    }
+
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Id.ToString(),
+            Date.ToString(),
+            Rating.ToString(),
+            Comment,
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Id = int.Parse(values[0]);
+        Date = DateOnly.Parse(values[1]);
+        Rating = int.Parse(values[2]);
+        Comment = values[3];
     }
 }

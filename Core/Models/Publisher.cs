@@ -1,8 +1,7 @@
-using Core.Models;
-
+using Core.Serialization;
 namespace Core.Models;
 
-public class Publisher
+public class Publisher : ISerializable
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -36,4 +35,21 @@ public class Publisher
 
     }
 
+    public string[] ToCSV()
+    {
+        string[] csv =
+        {
+            Id.ToString(),
+            Name,
+            Surname,
+        };
+        return csv;
+    }
+
+    public void FromCSV(string[] values)
+    {
+        Id = int.Parse(values[0]);
+        Name = values[1];
+        Surname = values[2];
+    }
 }
