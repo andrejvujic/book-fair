@@ -1,12 +1,15 @@
 using Core.Serialization;
-using Core.Models;
+using Core.Helpers.Relations;
+using Core.Helpers;
+
 namespace Core.Models;
 
 
-public class Author : ISerializable
+public class Author : ISerializable, IIdentifiable, IRelational
 {
-
+    public int RelationId { get; } = RelationIds.Author;
     public int Id { get; set; }
+
     public string Name { get; set; }
     public string Surname { get; set; }
     public DateOnly DateOfBirth { get; set; }
