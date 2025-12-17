@@ -1,5 +1,4 @@
 using Core.Models;
-using System.Collection.Generic;
 
 namespace Core.Models;
 
