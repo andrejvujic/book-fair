@@ -9,6 +9,7 @@ public class Publisher
     public string Surname { get; set; }
     public Author Boss { get; set; } // TODO: Najmanje 5 godina iskustva
     public List<Author> Authors { get; set; }
+    public List<Book> Books { get; set; }
 
     public Publisher() { }
 
@@ -21,9 +22,6 @@ public class Publisher
         Authors = authors;
         Books = books;
     }
-
-    public List<Author> Authors { get; set; }
-    public List<Book> Books { get; set; }
 
     public override string ToString()
     {
