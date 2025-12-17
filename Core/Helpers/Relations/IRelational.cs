@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Helpers.Relations;
+﻿namespace Core.Helpers.Relations;
 public interface IRelational
 {
     public int RelationId { get; }

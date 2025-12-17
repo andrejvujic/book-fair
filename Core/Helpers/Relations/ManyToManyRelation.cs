@@ -1,34 +1,28 @@
 ﻿using Core.Serialization;
 using Core.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Core.Helpers.Relations;
 public class ManyToManyRelation<T1, T2>
    where T1 : IIdentifiable, IRelational
    where T2 : IIdentifiable, IRelational
 {
-    private List<RelationPair> relationPairs = new List<RelationPair>();
+    private List<RelationPair> allPairs = new List<RelationPair>();
     private readonly Storage<RelationPair> storage;
 
-    ManyToManyRelation(string storagePath) {
+    public ManyToManyRelation(string storagePath) {
         storage = new Storage<RelationPair>(storagePath);
-        relationPairs = storage.Load();
+        allPairs = storage.Load();
     }
 
     public void Add(T1 firstEntity, T2 secondEntity, bool updateStorageImmediately = true) {
         if (Exists(firstEntity, secondEntity)) return;
 
-        relationPairs.Add(
+        allPairs.Add(
             new RelationPair(firstEntity.Id, secondEntity.Id)
         );
 
         if (updateStorageImmediately)
-            storage.Save(relationPairs);
+            storage.Save(allPairs);
     }
 
     public void AddAll(T1 entity, List<T2> entities)
@@ -36,7 +30,7 @@ public class ManyToManyRelation<T1, T2>
         foreach (T2 e in entities)
             Add(entity, e, updateStorageImmediately: false);
 
-        storage.Save(relationPairs);
+        storage.Save(allPairs);
     }
 
     public void AddAll(T2 entity, List<T1> entities)
@@ -44,7 +38,33 @@ public class ManyToManyRelation<T1, T2>
         foreach (T1 e in entities)
             Add(e, entity, updateStorageImmediately: false);
 
-        storage.Save(relationPairs);
+        storage.Save(allPairs);
+    }
+
+    public void Connect(T1 entity, List<T2> allEntities, Action<T2> addCallback)
+    {
+        Dictionary<int, T2> allEntitesDictionary = new Dictionary<int, T2>();
+        foreach (T2 e in allEntities)
+            allEntitesDictionary[e.Id] = e;
+
+        List<RelationPair> connectedPairs = allPairs.Where(pair => pair.FirstId == entity.Id).ToList();
+        List<int> secondEntityIds = connectedPairs.ConvertAll(pair => pair.SecondId);
+
+        foreach (int id in secondEntityIds)
+            addCallback.Invoke(allEntitesDictionary[id]);
+    }
+
+    public void Connect(T2 entity, List<T1> allEntities, Action<T1> addCallback)
+    {
+        Dictionary<int, T1> allEntitesDictionary = new Dictionary<int, T1>();
+        foreach (T1 e in allEntities)
+            allEntitesDictionary[e.Id] = e;
+
+        List<RelationPair> connectedPairs = allPairs.Where(pair => pair.SecondId == entity.Id).ToList();
+        List<int> firstEntityIds = connectedPairs.ConvertAll(pair => pair.FirstId);
+
+        foreach (int id in firstEntityIds)
+            addCallback.Invoke(allEntitesDictionary[id]);
     }
 
     private bool Exists(T1 firstEntity, T2 secondEntity)
@@ -54,7 +74,7 @@ public class ManyToManyRelation<T1, T2>
 
     private bool Exists(int firstEntityId, int secondEntityId)
     {
-        return relationPairs.Exists(pair => pair.FirstId == firstEntityId && pair.SecondId == secondEntityId);
+        return allPairs.Exists(pair => pair.FirstId == firstEntityId && pair.SecondId == secondEntityId);
     }
 }
 
