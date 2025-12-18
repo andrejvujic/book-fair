@@ -23,14 +23,14 @@ public abstract class DAO<T>
         int maxId = _entities.Max(e => e.Id);
         return maxId + 1; 
     }
-    public void Add(T entity)
+    public virtual void Add(T entity)
     {
         entity.Id = GenerateId();
         _entities.Add(entity);
         _storage.Save(_entities);
     }
 
-    public T? Remove(int id)
+    public virtual T? Remove(int id)
     {
         T? entity = _entities.Find(e => e.Id == id);
         if (entity == null) return null;
@@ -51,6 +51,12 @@ public abstract class DAO<T>
     public T? GetById(int id)
     {
         return _entities.Find(e => e.Id == id);
+    }
+
+    public void ForEach(Action<T> callback)
+    {
+        foreach (T entity in _entities)
+            callback.Invoke(entity);
     }
     
 }
