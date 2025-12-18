@@ -186,9 +186,14 @@ Publisher publisher2 = new Publisher(1, "Ana", "Jovic", new Author(), new List<A
 //Publisher publisher1 = new Publisher(0, "Savo", "Oroz", new Author(), GetTestAuthors1(), new List<Book>());
 //Publisher publisher2 = new Publisher(1, "Ana", "Jovic", new Author(), GetTestAuthors2(), new List<Book>());
 
-ManyToManyRelation<Publisher, Author> publisherAuthors = new ManyToManyRelation<Publisher, Author>("PublisherAuthors.txt");
-publisherAuthors.Connect(publisher1, GetAllAuthors(), publisher1.Authors.Add);
-publisherAuthors.Connect(publisher2, GetAllAuthors(), publisher2.Authors.Add);
+List<Publisher> allPublishers = new List<Publisher>();
+allPublishers.Add( publisher1 );
+allPublishers.Add( publisher2 );
+
+ManyToManyRelation<Publisher, Author> publisherAuthors =
+    new ManyToManyRelation<Publisher, Author>("PublisherAuthors.txt", allPublishers, GetAllAuthors());
+publisherAuthors.Connect(publisher1, publisher1.Authors.Add);
+publisherAuthors.Connect(publisher2, publisher2.Authors.Add);
 //publisherAuthors.AddAll(publisher1, publisher1.Authors);
 //publisherAuthors.AddAll(publisher2, publisher2.Authors);
 
