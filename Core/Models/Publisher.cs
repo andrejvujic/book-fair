@@ -36,7 +36,7 @@ public class Publisher : ISerializable, IIdentifiable
             $"\n\tId: {Id}" +
             $"\n\tName: {Name}" +
             $"\n\tSurname: {Surname}" +
-            $"\n\tBoss: Id: {Boss.Id} Name: {Boss.Name} Surname: {Boss.Surname}" +
+            $"\n\tBoss: Id: {Boss.Id} Name: {Boss.FirstName} Surname: {Boss.Surname}" +
             $"\n\tAuthors: {Authors}" +
             $"\n\tBooks: {Books}";
 
