@@ -1,7 +1,8 @@
+using Core.Helpers;
 using Core.Serialization;
 namespace Core.Models;
 
-public class Purchase : ISerializable
+public class Purchase : IIdentifiable, ISerializable
 {
     public int Id { get; set; }
 
