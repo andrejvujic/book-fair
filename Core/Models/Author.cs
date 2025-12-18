@@ -12,6 +12,7 @@ public class Author : ISerializable, IIdentifiable
     public string Surname { get; set; }
     public DateOnly DateOfBirth { get; set; }
     public int AddressId { get; set; }
+    public Address Address { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
     public string IdCardNumber { get; set; }
@@ -19,13 +20,14 @@ public class Author : ISerializable, IIdentifiable
     public List<Book> Books { get; set; }
 
     public Author() { }
-    public Author(int id, string name, string surname, DateOnly dateOfBirth, int addressId, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
+    public Author(int id, string name, string surname, DateOnly dateOfBirth, int addressId, Address address string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
     {
         Id = id;
         Name = name;
         Surname = surname;
         DateOfBirth = dateOfBirth;
         AddressId = addressId;
+        Address = address;
         PhoneNumber = phoneNumber;
         Email = email;
         IdCardNumber = idCardNumber;

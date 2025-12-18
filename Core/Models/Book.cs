@@ -15,12 +15,13 @@ public class Book : ISerializable, IIdentifiable
     public int NumberOfPages { get; set; }
     public List<Author> Authors { get; set; }
     public int PublisherId { get; set; }
+    public Publisher Publisher { get; set; }
     public List<Visitor> Buyers { get; set; }
     public List<Visitor> Wishlisters { get; set; }
 
     public Book() { }
 
-    public Book(int id,string isbn, string bookTitle, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, int publisherId, List<Visitor> buyers, List<Visitor> wishlisters)
+    public Book(int id,string isbn, string bookTitle, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, int publisherId,Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
     {
         Id = id;
         Isbn = isbn;
@@ -31,6 +32,7 @@ public class Book : ISerializable, IIdentifiable
         NumberOfPages = numberOfPages;
         Authors = authors;
         PublisherId = publisherId;
+        Publisher = publisher;
         Buyers = buyers;
         Wishlisters = wishlisters;
     }
