@@ -8,11 +8,10 @@ namespace Core.Models;
 public class Author : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
-
     public string Name { get; set; }
     public string Surname { get; set; }
     public DateOnly DateOfBirth { get; set; }
-    public Address Address { get; set; }
+    public int AddressId { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
     public string IdCardNumber { get; set; }
@@ -20,13 +19,13 @@ public class Author : ISerializable, IIdentifiable
     public List<Book> Books { get; set; }
 
     public Author() { }
-    public Author(int id, string name, string surname, DateOnly dateOfBirth, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
+    public Author(int id, string name, string surname, DateOnly dateOfBirth, int addressId, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
     {
         Id = id;
         Name = name;
         Surname = surname;
         DateOfBirth = dateOfBirth;
-        Address = address;
+        AddressId = addressId;
         PhoneNumber = phoneNumber;
         Email = email;
         IdCardNumber = idCardNumber;
@@ -42,7 +41,7 @@ public class Author : ISerializable, IIdentifiable
             $"\n\tName: {Name}" +
             $"\n\tSurname: {Surname}" +
             $"\n\tDateOfBirth: {DateOfBirth}" +
-            $"\n\tAddress: {Address}" +
+            $"\n\tAddress Id: {AddressId}" +
             $"\n\tPhoneNumber: {PhoneNumber}" +
             $"\n\tEmail: {Email}" +
             $"\n\tIdCardNumber: {IdCardNumber}" +
@@ -58,6 +57,7 @@ public class Author : ISerializable, IIdentifiable
             Name,
             Surname,
             DateOfBirth.ToString(),
+            AddressId.ToString(),
             PhoneNumber,
             Email,
             IdCardNumber,
@@ -72,9 +72,10 @@ public class Author : ISerializable, IIdentifiable
         Name = values[1];
         Surname = values[2];
         DateOfBirth = DateOnly.Parse(values[3]);
-        PhoneNumber = values[4];
-        Email = values[5];
-        IdCardNumber = values[6];
-        YearsOfExperience = int.Parse(values[7]);
+        AddressId = int.Parse(values[4]);
+        PhoneNumber = values[5];
+        Email = values[6];
+        IdCardNumber = values[7];
+        YearsOfExperience = int.Parse(values[8]);
     }
 }
