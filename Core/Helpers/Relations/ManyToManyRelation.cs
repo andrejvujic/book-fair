@@ -14,12 +14,7 @@ public class ManyToManyRelation<T1, T2>
     private List<RelationPair> allPairs = new List<RelationPair>();
     private readonly Storage<RelationPair> storage;
 
-    private List<T1> AllFirstEntities { get; }
-    private List<T2> AllSecondEntities { get; }
-
-    public ManyToManyRelation(string storagePath, List<T1> allFirstEntities, List<T2> allSecondEntities) {
-        AllFirstEntities = allFirstEntities;
-        AllSecondEntities = allSecondEntities;
+    public ManyToManyRelation(string storagePath) {
         storage = new Storage<RelationPair>(storagePath);
         allPairs = storage.Load();
     }
@@ -56,10 +51,35 @@ public class ManyToManyRelation<T1, T2>
         storage.Save(allPairs);
     }
 
-    public void Connect(T1 entity, Action<T2> addCallback)
+    // Uklanja zadani povezani par ukoliko postoji.
+    public void Remove(T1 firstEntity, T2 secondEntity)
+    {
+        RelationPair? pair = allPairs.Find(pair => pair.FirstId == firstEntity.Id && pair.SecondId == secondEntity.Id);
+        if (pair == null) return;
+        allPairs.Remove(pair);
+        storage.Save(allPairs);
+    }
+
+    // Uklanja sve poveznike koje sadrze zadani entitet
+    // na mjestu prvog povezanog eniteta.
+    public void RemoveAll(T1 entity)
+    {
+        allPairs.RemoveAll((pair) => pair.FirstId == entity.Id);
+        storage.Save(allPairs);
+    }
+
+    // Uklanja sve poveznike koje sadrze zadani entitet
+    // na mjestu drugog povezanog eniteta.
+    public void RemoveAll(T2 entity)
+    {
+        allPairs.RemoveAll((pair) => pair.SecondId == entity.Id);
+        storage.Save(allPairs);
+    }
+
+    public void Connect(T1 entity, List<T2> allSecondEntities, Action<T2> addCallback)
     {
         Dictionary<int, T2> allSecondEntitiesDictionary = new Dictionary<int, T2>();
-        foreach (T2 e in AllSecondEntities)
+        foreach (T2 e in allSecondEntities)
             allSecondEntitiesDictionary[e.Id] = e;
 
         List<RelationPair> connectedPairs = allPairs.Where(pair => pair.FirstId == entity.Id).ToList();
@@ -69,10 +89,10 @@ public class ManyToManyRelation<T1, T2>
             addCallback.Invoke(allSecondEntitiesDictionary[id]);
     }
 
-    public void Connect(T2 entity, Action<T1> addCallback)
+    public void Connect(T2 entity, List<T1> allFirstEntities, Action<T1> addCallback)
     {
         Dictionary<int, T1> allFirstEntitiesDictionary = new Dictionary<int, T1>();
-        foreach (T1 e in AllFirstEntities)
+        foreach (T1 e in allFirstEntities)
             allFirstEntitiesDictionary[e.Id] = e;
 
         List<RelationPair> connectedPairs = allPairs.Where(pair => pair.SecondId == entity.Id).ToList();
