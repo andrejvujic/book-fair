@@ -9,7 +9,10 @@ public class Publisher : ISerializable, IIdentifiable
 
     public string Name { get; set; }
     public string Surname { get; set; }
+
+    public int BossId { get; set; }
     public Author Boss { get; set; } // TODO: Najmanje 5 godina iskustva
+
     public List<Author> Authors { get; set; }
     public List<Book> Books { get; set; }
 
@@ -21,6 +24,7 @@ public class Publisher : ISerializable, IIdentifiable
         Name = name;
         Surname = surname;
         Boss = boss;
+        BossId = boss.Id;
         Authors = authors;
         Books = books;
     }
@@ -32,7 +36,7 @@ public class Publisher : ISerializable, IIdentifiable
             $"\n\tId: {Id}" +
             $"\n\tName: {Name}" +
             $"\n\tSurname: {Surname}" +
-            $"\n\tBoss: Name: {Boss.Name} Surname: {Boss.Surname}" +
+            $"\n\tBoss: Id: {Boss.Id} Name: {Boss.Name} Surname: {Boss.Surname}" +
             $"\n\tAuthors: {Authors}" +
             $"\n\tBooks: {Books}";
 
@@ -45,6 +49,7 @@ public class Publisher : ISerializable, IIdentifiable
             Id.ToString(),
             Name,
             Surname,
+            BossId.ToString()
         };
         return csv;
     }
@@ -54,5 +59,6 @@ public class Publisher : ISerializable, IIdentifiable
         Id = int.Parse(values[0]);
         Name = values[1];
         Surname = values[2];
+        BossId = int.Parse(values[3]);
     }
 }

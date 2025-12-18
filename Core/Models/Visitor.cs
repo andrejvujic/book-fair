@@ -17,7 +17,17 @@ public class Visitor : ISerializable, IIdentifiable
     public DateOnly DateOfBirth { get; set; }
     public string PhoneNumber { get; set; }
     public string EmailAddress { get; set; }
+
+    public int AddressId { get; set; }
     public Address Address { get; set; }
+
+    public string MembershipCardNumber { get; set; } // npr. CK-1-2023
+    public int MembershipYear { get; set; }
+    public MemberStatus Status { get; set; }
+
+    public double AverageReviewRating { get; set; }
+    public List<Book> PurchasedBooks { get; set; }
+    public List<Book> WishlistedBooks { get; set; }
 
     public Visitor() { }
 
@@ -41,6 +51,7 @@ public class Visitor : ISerializable, IIdentifiable
         LastName = lastName;
         DateOfBirth = dateOfBirth;
         Address = address;
+        AddressId = address.Id;
         PhoneNumber = phoneNumber;
         EmailAddress = emailAddress;
         MembershipCardNumber = membershipCardNumber;
@@ -49,15 +60,6 @@ public class Visitor : ISerializable, IIdentifiable
         PurchasedBooks = purchasedBooks;
         WishlistedBooks = wishlistedBooks;
     }
-
-    public string MembershipCardNumber { get; set; } // npr. CK-1-2023
-    public int MembershipYear { get; set; }
-    public MemberStatus Status { get; set; }
-
-    public double AverageReviewRating { get; set; }
-
-    public List<Book> PurchasedBooks { get; set; }
-    public List<Book> WishlistedBooks { get; set; }
 
     public override string ToString()
     {
@@ -88,6 +90,7 @@ public class Visitor : ISerializable, IIdentifiable
             DateOfBirth.ToString(),
             PhoneNumber,
             EmailAddress,
+            AddressId.ToString(),
             MembershipCardNumber,
             MembershipYear.ToString(),
             Status.ToString(),
@@ -103,6 +106,7 @@ public class Visitor : ISerializable, IIdentifiable
         DateOfBirth = DateOnly.Parse(values[3]);
         PhoneNumber = values[4];
         EmailAddress = values[5];
+        AddressId = int.Parse(values[6]);
         MembershipCardNumber = values[6];
         MembershipYear = int.Parse(values[7]);
         Status = Enum.Parse<MemberStatus>(values[8]);

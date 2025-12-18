@@ -4,18 +4,25 @@ namespace Core.Models;
 public class Purchase : ISerializable
 {
     public int Id { get; set; }
+
+    public int VisitorId { get; set;  }
     public Visitor Visitor { get; set; }
+
+    public int BookId { get; set; }
     public Book Book { get; set; }
+
     public DateOnly Date { get; set; }
     public int Rating { get; set; } // TODO: Rating mora biti [1, 5]
     public string Comment { get; set; }
 
     public Purchase() { }
 
-    public Purchase(Visitor visitor, DateOnly date, int rating, string comment)
+    public Purchase(Visitor visitor, Book book, DateOnly date, int rating, string comment)
     {
         Visitor = visitor;
-
+        VisitorId = visitor.Id;
+        Book = book;
+        BookId = book.Id;
         Date = date;
         Rating = rating;
         Comment = comment;
@@ -26,7 +33,7 @@ public class Purchase : ISerializable
         return
             "[Purchase]:" +
             $"\n\tVisitor: Id: {Visitor.Id}, Name: {Visitor.FirstName}, Surname: {Visitor.LastName}" +
-            $"\n\tBook: ISBN: {Book.Isbn}, Title: {Book.BookTitle}" +
+            $"\n\tBook: Id: {Book.Id}, Title: {Book.BookTitle}" +
             $"\n\tDate: {Date}" +
             $"\n\tRating: {Rating}" +
             $"\n\tComment: {Comment}";
@@ -37,6 +44,8 @@ public class Purchase : ISerializable
         string[] csv =
         {
             Id.ToString(),
+            VisitorId.ToString(),
+            BookId.ToString(),
             Date.ToString(),
             Rating.ToString(),
             Comment,
@@ -47,8 +56,10 @@ public class Purchase : ISerializable
     public void FromCSV(string[] values)
     {
         Id = int.Parse(values[0]);
-        Date = DateOnly.Parse(values[1]);
-        Rating = int.Parse(values[2]);
-        Comment = values[3];
+        VisitorId = int.Parse(values[1]);
+        BookId = int.Parse(values[2]);
+        Date = DateOnly.Parse(values[3]);
+        Rating = int.Parse(values[4]);
+        Comment = values[5];
     }
 }
