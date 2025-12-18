@@ -1,5 +1,5 @@
-using Core.Models;
 using Core.Serialization;
+using Core.Helpers;
 
 namespace Core.Models;
 
@@ -9,7 +9,7 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor : ISerializable
+public class Visitor : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
