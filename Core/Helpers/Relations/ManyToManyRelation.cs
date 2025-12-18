@@ -3,8 +3,8 @@ using Core.Storage;
 
 namespace Core.Helpers.Relations;
 public class ManyToManyRelation<T1, T2>
-   where T1 : IIdentifiable, IRelational
-   where T2 : IIdentifiable, IRelational
+   where T1 : IIdentifiable
+   where T2 : IIdentifiable
 {
 
     // 'allPairsSet' se koristi za brzo pretrazivanje postojecih relacija

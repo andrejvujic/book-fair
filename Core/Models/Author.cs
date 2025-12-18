@@ -5,9 +5,8 @@ using Core.Helpers;
 namespace Core.Models;
 
 
-public class Author : ISerializable, IIdentifiable, IRelational
+public class Author : ISerializable, IIdentifiable
 {
-    public int RelationId { get; } = RelationIds.Author;
     public int Id { get; set; }
 
     public string Name { get; set; }

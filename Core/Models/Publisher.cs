@@ -3,9 +3,8 @@ using Core.Helpers.Relations;
 using Core.Serialization;
 namespace Core.Models;
 
-public class Publisher : ISerializable, IIdentifiable, IRelational
+public class Publisher : ISerializable, IIdentifiable
 {
-    public int RelationId { get; } = RelationIds.Publisher;
     public int Id { get; set; }
 
     public string Name { get; set; }
