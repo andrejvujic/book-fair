@@ -58,7 +58,7 @@ public class Book : ISerializable, IIdentifiable
     {
         string[] csv =
         {
-            Id,
+            Id.ToString(),
             Isbn,
             BookTitle,
             Genre,

@@ -8,7 +8,7 @@ namespace Core.Models;
 public class Author : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string FirstName { get; set; }
     public string Surname { get; set; }
     public DateOnly DateOfBirth { get; set; }
     public int AddressId { get; set; }
@@ -20,10 +20,10 @@ public class Author : ISerializable, IIdentifiable
     public List<Book> Books { get; set; }
 
     public Author() { }
-    public Author(int id, string name, string surname, DateOnly dateOfBirth, int addressId, Address address string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
+    public Author(int id, string firstname, string surname, DateOnly dateOfBirth, int addressId, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
     {
         Id = id;
-        Name = name;
+        FirstName = firstname;
         Surname = surname;
         DateOfBirth = dateOfBirth;
         AddressId = addressId;
@@ -40,7 +40,7 @@ public class Author : ISerializable, IIdentifiable
         return
             "[Author]:" +
             $"\n\tId: {Id}" +
-            $"\n\tName: {Name}" +
+            $"\n\tName: {FirstName}" +
             $"\n\tSurname: {Surname}" +
             $"\n\tDateOfBirth: {DateOfBirth}" +
             $"\n\tAddress Id: {AddressId}" +
@@ -56,7 +56,7 @@ public class Author : ISerializable, IIdentifiable
         string[] csv =
         {
             Id.ToString(),
-            Name,
+            FirstName,
             Surname,
             DateOfBirth.ToString(),
             AddressId.ToString(),
@@ -71,7 +71,7 @@ public class Author : ISerializable, IIdentifiable
     public void FromCSV(string[] values)
     {
         Id = int.Parse(values[0]);
-        Name = values[1];
+        FirstName = values[1];
         Surname = values[2];
         DateOfBirth = DateOnly.Parse(values[3]);
         AddressId = int.Parse(values[4]);
