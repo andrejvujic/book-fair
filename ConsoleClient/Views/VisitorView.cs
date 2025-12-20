@@ -56,6 +56,7 @@ public class VisitorView
                 AddVisitor();
                 break;
             case UPDATE:
+                UpdateVisitor();
                 break;
             case REMOVE:
                 break;
@@ -85,13 +86,43 @@ public class VisitorView
 
     private void AddVisitor()
     {
-        Console.WriteLine("[Visitor] Adding new visitor:\n");
+        Console.WriteLine("[Visitor] Adding visitor:\n");
 
         Visitor visitor = InputVisitor();
         _visitorDAO.Add(visitor);
 
         Console.Clear();
-        Console.WriteLine("SUCCESS: Visitor added successfully.\n");
+        Console.WriteLine("SUCCESS: Visitor ADDED.\n");
+    }
+
+    private void UpdateVisitor()
+    {
+        Console.WriteLine("[Visitor] Updating visitor:\n");
+        Console.WriteLine("Note: Leave blank field blank to keep previous value.");
+
+        Console.Write("Enter ID: ");
+        int id = -1;
+        if (!int.TryParse(Console.ReadLine(), out id))
+        {
+            Console.Clear();
+            Console.WriteLine("ERROR: Visitor ID invalid.");
+            return;
+        }
+
+        Console.Write("\n");
+
+        Visitor visitor = InputVisitor();
+        visitor.Id = id;
+
+        Console.Clear();
+
+        if (_visitorDAO.Update(visitor) == null)
+        {
+            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        Console.WriteLine("SUCCESS: Visitor UPDATED.\n");
     }
 
     private Visitor InputVisitor()
