@@ -50,6 +50,7 @@ public class VisitorView
         switch(selectedOption)
         {
             case SHOW_ALL:
+                ShowAllVisitors();
                 break;
             case ADD:
                 AddVisitor();
@@ -64,6 +65,22 @@ public class VisitorView
                 Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
                 break;
         }
+    }
+
+    private void ShowAllVisitors()
+    {
+        Console.WriteLine("[Visitor] All visitors:\n");
+
+        string[] tableHeadRow = {
+            "ID", "First name", "Last name", "Date of birth",
+            "Phone number", "Email address", "Address ID",
+            "Membership card number", "Membership year","Status"
+        };
+
+        new TablePrinter<Visitor>(
+            tableHeadRow,
+            _visitorDAO.GetAll()
+        ).Print();
     }
 
     private void AddVisitor()
