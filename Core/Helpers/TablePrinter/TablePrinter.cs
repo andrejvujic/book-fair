@@ -53,13 +53,13 @@ public class TablePrinter<T>
     public void Print()
     {
         PrintTableRow(TableHeadRow);
-        PrintTableRowSperatator();
+        PrintTableRowSeparator();
 
         for (int tableRowIndex = 0; tableRowIndex < TableRowCount; ++tableRowIndex)
         {
             PrintTableRow(Table[tableRowIndex]);
             if (tableRowIndex < TableRowCount - 1)
-                PrintTableRowSperatator();
+                PrintTableRowSeparator();
             else
                 Console.Write("\n");
         }
@@ -80,7 +80,7 @@ public class TablePrinter<T>
         Console.Write("\n");
     }
 
-    private void PrintTableRowSperatator()
+    private void PrintTableRowSeparator()
     {
         for (int index = 0; index < TableColumnCount; ++index)
         {
