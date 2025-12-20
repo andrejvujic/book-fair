@@ -26,13 +26,12 @@ public class Visitor : ISerializable, IIdentifiable
     public MemberStatus Status { get; set; }
 
     public double AverageReviewRating { get; set; }
-    public List<Book> PurchasedBooks { get; set; }
-    public List<Book> WishlistedBooks { get; set; }
+    public List<Book> PurchasedBooks { get; set; } = new List<Book>();
+    public List<Book> WishlistedBooks { get; set; } = new List<Book>();
 
     public Visitor() { }
 
     public Visitor(
-        int id,
         string firstName,
         string lastName,
         DateOnly dateOfBirth,
@@ -46,7 +45,6 @@ public class Visitor : ISerializable, IIdentifiable
         List<Book> wishlistedBooks
     )
     {
-        Id = id;
         FirstName = firstName;
         LastName = lastName;
         DateOfBirth = dateOfBirth;
@@ -107,8 +105,8 @@ public class Visitor : ISerializable, IIdentifiable
         PhoneNumber = values[4];
         EmailAddress = values[5];
         AddressId = int.Parse(values[6]);
-        MembershipCardNumber = values[6];
-        MembershipYear = int.Parse(values[7]);
-        Status = Enum.Parse<MemberStatus>(values[8]);
+        MembershipCardNumber = values[7];
+        MembershipYear = int.Parse(values[8]);
+        Status = Enum.Parse<MemberStatus>(values[9]);
     }
 }
