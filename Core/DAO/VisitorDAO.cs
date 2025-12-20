@@ -9,21 +9,16 @@ public class VisitorDAO : DAO<Visitor>
 
     private static string _fileName = "Visitors.txt";
 
-    private ManyToManyRelation<Visitor, Book> VisitorPurchasedBooks { get; }
     private ManyToManyRelation<Visitor, Book> VisitorWishlistedBooks { get; }
 
     public VisitorDAO(
-        ManyToManyRelation<Visitor, Book> visitorPurchasedBooks,
         ManyToManyRelation<Visitor, Book> visitorWishlistedBooks
     ) : base(_fileName) {
-        VisitorPurchasedBooks = visitorPurchasedBooks;
         VisitorWishlistedBooks = visitorWishlistedBooks;
     }
 
     public override void Add(Visitor visitor) {
         base.Add(visitor);
-
-        VisitorPurchasedBooks.AddAll(visitor, visitor.PurchasedBooks);
         VisitorWishlistedBooks.AddAll(visitor, visitor.WishlistedBooks);
     }
 
@@ -33,9 +28,7 @@ public class VisitorDAO : DAO<Visitor>
 
         if (visitor == null) return null;
 
-        VisitorPurchasedBooks.RemoveAll(visitor);
         VisitorWishlistedBooks.RemoveAll(visitor);
-
         return visitor;
     }
 
@@ -59,10 +52,7 @@ public class VisitorDAO : DAO<Visitor>
         oldEntity.WishlistedBooks = entity.WishlistedBooks;
         oldEntity.PurchasedBooks = entity.PurchasedBooks;
 
-        VisitorPurchasedBooks.RemoveAll(oldEntity);
         VisitorWishlistedBooks.RemoveAll(oldEntity);
-
-        VisitorPurchasedBooks.AddAll(oldEntity, oldEntity.PurchasedBooks);
         VisitorWishlistedBooks.AddAll(oldEntity, oldEntity.WishlistedBooks);
 
         _storage.Save(_entities);
