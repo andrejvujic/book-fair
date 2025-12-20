@@ -17,23 +17,23 @@ public class TablePrinter<T>
     private int[] MaxWidthOfColumns { get; }
 
 
-    public TablePrinter(string[] tableHeadRow, List<T> tableData) {
-        TableColumnCount = tableHeadRow.Length;
+    public TablePrinter(string[] tableColumnNames, List<T> tableData) {
+        TableColumnCount = tableColumnNames.Length;
         TableRowCount = tableData.Count;
 
         Table = new string[TableRowCount][];
-        TableHeadRow = tableHeadRow;
+        TableHeadRow = tableColumnNames;
 
         foreach (var element in tableData.Select((Value, Index) => new { Value, Index }))
         {
-            string[] tableRow = element.Value.ToCSV();
+            string[] currentTableRow = element.Value.ToCSV();
 
             // Broj elementa svake vrste mora biti jednak broju kolona tabele
             // tj. broju kolona u zaglavlju tabele.
-            if (tableRow.Length != tableHeadRow.Length)
-                throw new Exception($"ERROR: Incompatible lengths. Expected number of columns is {tableHeadRow.Length}, got {tableRow.Length}.");
+            if (currentTableRow.Length != TableHeadRow.Length)
+                throw new Exception($"ERROR: Incompatible table row sizes. Expected number of columns is {TableHeadRow.Length}, got {currentTableRow.Length}.");
 
-            Table[element.Index] = tableRow;
+            Table[element.Index] = currentTableRow;
         }
 
         MaxWidthOfColumns = new int[TableColumnCount];
@@ -75,7 +75,7 @@ public class TablePrinter<T>
             );
 
             if (index < TableColumnCount - 1)
-                Console.Write("│");
+                Console.Write(VERTICAL_SEPARATOR);
         }
         Console.Write("\n");
     }
@@ -84,12 +84,16 @@ public class TablePrinter<T>
     {
         for (int index = 0; index < TableColumnCount; ++index)
         {
-            string element = new string('─', MaxWidthOfColumns[index]);
+            string element = new string(HORIZONTAL_SEPARATOR, MaxWidthOfColumns[index]);
             Console.Write(element);
             if (index < TableColumnCount - 1)
-                Console.Write("┼");
+                Console.Write(CROSS_SEPARATOR);
         }
         Console.Write("\n");
     }
+
+    const char VERTICAL_SEPARATOR = '│';
+    const char HORIZONTAL_SEPARATOR = '─';
+    const char CROSS_SEPARATOR = '┼';
 }
 
