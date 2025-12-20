@@ -59,6 +59,7 @@ public class VisitorView
                 UpdateVisitor();
                 break;
             case REMOVE:
+                RemoveVisitor();
                 break;
             case SHOW_WITH_PAGINATION_AND_SORTING:
                  break;
@@ -72,14 +73,14 @@ public class VisitorView
     {
         Console.WriteLine("[Visitor] All visitors:\n");
 
-        string[] tableHeadRow = {
+        string[] visitorProperties = {
             "ID", "First name", "Last name", "Date of birth",
             "Phone number", "Email address", "Address ID",
-            "Membership card number", "Membership year","Status"
+            "Membership card number", "Membership year", "Status"
         };
 
         new TablePrinter<Visitor>(
-            tableHeadRow,
+            visitorProperties,
             _visitorDAO.GetAll()
         ).Print();
     }
@@ -92,20 +93,19 @@ public class VisitorView
         _visitorDAO.Add(visitor);
 
         Console.Clear();
-        Console.WriteLine("SUCCESS: Visitor ADDED.\n");
+        Console.WriteLine("SUCCESS: Action 'ADD' successful.\n");
     }
 
     private void UpdateVisitor()
     {
         Console.WriteLine("[Visitor] Updating visitor:\n");
-        Console.WriteLine("Note: Leave blank field blank to keep previous value.");
 
         Console.Write("Enter ID: ");
         int id = -1;
         if (!int.TryParse(Console.ReadLine(), out id))
         {
             Console.Clear();
-            Console.WriteLine("ERROR: Visitor ID invalid.");
+            Console.WriteLine("ERROR: Visitor ID invalid.\n");
             return;
         }
 
@@ -122,7 +122,31 @@ public class VisitorView
             return;
         }
 
-        Console.WriteLine("SUCCESS: Visitor UPDATED.\n");
+        Console.WriteLine("SUCCESS: Action 'UPDATE' successful.\n");
+    }
+
+    private void RemoveVisitor()
+    {
+        Console.WriteLine("[Visitor] Removing visitor:\n");
+
+        Console.Write("Enter ID: ");
+        int id = -1;
+        if (!int.TryParse(Console.ReadLine(), out id))
+        {
+            Console.Clear();
+            Console.WriteLine("ERROR: Visitor ID invalid.\n");
+            return;
+        }
+
+        Console.Clear();
+
+        if (_visitorDAO.Remove(id) == null)
+        {
+            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        Console.WriteLine("SUCCESS: Action 'REMOVE' successful.\n");
     }
 
     private Visitor InputVisitor()
