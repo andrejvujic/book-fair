@@ -5,9 +5,13 @@ using Core.Serialization;
 
 namespace Core.DAO;
 
+public enum SortingDirection { Ascending, Descending }
+
 public abstract class DAO<T>
         where T : class, ISerializable, IIdentifiable, new()
 {
+    public abstract string Identifier { get; }
+
     protected readonly List<T> _entities;
     protected readonly Storage<T> _storage;
 
@@ -43,6 +47,8 @@ public abstract class DAO<T>
 
     public abstract T? Update(T entity);
 
+    public int Count() => _entities.Count;
+
     public List<T> GetAll()
     {
         return _entities;
@@ -58,5 +64,23 @@ public abstract class DAO<T>
         foreach (T entity in _entities)
             callback.Invoke(entity);
     }
-    
+
+    protected abstract Dictionary<string, IOrderedEnumerable<T>> SortCriteriaMapping { get; }
+
+    public List<T> Get(int page, int pageSize, string sortingCriteria, SortingDirection sortingDirection)
+    {
+        IEnumerable<T> entities = _entities;
+
+        if (SortCriteriaMapping.ContainsKey(sortingCriteria))
+            entities = SortCriteriaMapping[sortingCriteria];
+        else
+            Console.WriteLine($"WARNING: '{Identifier}' can't be sorted by '{sortingCriteria}'.\n");
+
+        if (sortingDirection == SortingDirection.Descending)
+            entities = entities.Reverse();
+
+        entities = entities.Skip((page - 1) * pageSize).Take(pageSize);
+
+        return entities.ToList();
+    }
 }
