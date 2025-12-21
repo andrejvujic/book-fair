@@ -9,7 +9,7 @@ public static class SafeInput
         {
             if (!int.TryParse(Console.ReadLine(), out value))
             {
-                Console.WriteLine($"ERROR: Please enter a valid number.\n");
+                Console.WriteLine("ERROR: Please enter a valid number.\n");
                 Console.Write("Try again: ");
                 continue;
             }
@@ -34,7 +34,7 @@ public static class SafeInput
         {
             string value = Console.ReadLine() ?? string.Empty;
             if (value.Length > 0) return value;
-            Console.WriteLine($"ERROR: Please enter a valid string.\n");
+            Console.WriteLine("ERROR: Please enter a valid string.\n");
             Console.Write("Try again: ");
         }
     }
