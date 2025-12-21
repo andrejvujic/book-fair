@@ -1,4 +1,5 @@
-﻿using Core.DAO;
+﻿using ConsoleClient.Views.Utilities;
+using Core.DAO;
 using Core.Helpers.TablePrinter;
 using Core.Models;
 
@@ -57,31 +58,31 @@ public class VisitorView : View<Visitor>
     protected override Visitor InputEntity()
     {
         Console.Write("Enter first name: ");
-        string firstName = Console.ReadLine();
+        string firstName = SafeInput.ReadStringRequired();
 
         Console.Write("Enter last name: ");
-        string lastName = Console.ReadLine();
+        string lastName = SafeInput.ReadStringRequired();
 
         Console.Write("Enter date of birth (yyyy-MM-dd): ");
-        DateOnly dateOfBirth = DateOnly.Parse(Console.ReadLine());
+        DateOnly dateOfBirth = DateOnly.Parse(SafeInput.ReadStringRequired());
 
         Console.Write("Enter phone number: ");
-        string phoneNumber = Console.ReadLine();
+        string phoneNumber = SafeInput.ReadStringRequired();
 
         Console.Write("Enter email address: ");
-        string emailAddress = Console.ReadLine();
+        string emailAddress = SafeInput.ReadStringRequired();
 
         Console.Write("Enter address ID: ");
-        int addressId = int.Parse(Console.ReadLine());
+        int addressId = SafeInput.ReadIntRequired();
 
         Console.Write("Enter membership card number: ");
-        string membershipCardNumber = Console.ReadLine();
+        string membershipCardNumber = SafeInput.ReadStringRequired();
 
         Console.Write("Enter membership year: ");
-        int membershipYear = int.Parse(Console.ReadLine());
+        int membershipYear = SafeInput.ReadIntRequired();
 
         Console.Write("Enter member status (R = Redovan, V = VIP): ");
-        MemberStatus status = Enum.Parse<MemberStatus>(Console.ReadLine(), true);
+        MemberStatus status = Enum.Parse<MemberStatus>(SafeInput.ReadStringRequired(), true);
 
         Address address = new Address();
         List<Book> purchasedBooks = new List<Book>();

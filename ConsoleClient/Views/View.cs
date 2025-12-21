@@ -1,4 +1,5 @@
-﻿using Core.DAO;
+﻿using ConsoleClient.Views.Utilities;
+using Core.DAO;
 using Core.Helpers;
 using Core.Helpers.TablePrinter;
 using Core.Serialization;
@@ -22,17 +23,11 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         {
             ShowOptions();
 
-            int selectedOption = -1;
 
             Console.Write("> ");
-            if (!int.TryParse(Console.ReadLine(), out selectedOption))
-            {
-                Console.Clear();
-                Console.WriteLine("ERROR: Invalid input! Please select one of the available options.\n");
-                continue;
-            }
-
+            int selectedOption = SafeInput.ReadIntRequired();
             Console.Clear();
+
             if (selectedOption == BACK)
                 break;
 
@@ -58,14 +53,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Action 'REMOVE':\n");
 
         Console.Write("Enter ID: ");
-        int id = -1;
-        if (!int.TryParse(Console.ReadLine(), out id))
-        {
-            Console.Clear();
-            Console.WriteLine($"ERROR: {_dao.Identifier} ID invalid.\n");
-            return;
-        }
-
+        int id = SafeInput.ReadIntRequired();
         Console.Clear();
 
         if (_dao.Remove(id) == null)
@@ -81,15 +69,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Action 'UPDATE':\n");
 
         Console.Write("Enter ID: ");
-
-        int id = -1;
-        if (!int.TryParse(Console.ReadLine(), out id))
-        {
-            Console.Clear();
-            Console.WriteLine($"ERROR: {_dao.Identifier} ID invalid.\n");
-            return;
-        }
-
+        int id = SafeInput.ReadIntRequired();
         Console.Write("\n");
 
         T entity = InputEntity();
@@ -123,12 +103,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Showing with pagination and sorting:\n");
 
         Console.Write("Enter page size: ");
-        int pageSize = -1;
-        if (!int.TryParse(Console.ReadLine(), out pageSize))
-        {
-            Console.WriteLine($"ERROR: Invalid page size.\n");
-            return;
-        }
+        int pageSize = SafeInput.ReadIntRequired();
 
         if (pageSize < 1)
         {
@@ -139,17 +114,12 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         int totalPageCount = (int)Math.Ceiling(_dao.Count() / (double)pageSize);
 
         Console.Write("Enter sorting criteria: ");
-        string sortingCriteria = Console.ReadLine();
+        string sortingCriteria = SafeInput.ReadStringRequired();
 
         Console.Write("Sorting direction:\n0 -> Ascending\n1 -> Descending\n");
         Console.Write("Enter sorting direction: ");
 
-        int sortingDirection = -1;
-        if (!int.TryParse(Console.ReadLine(), out sortingDirection))
-        {
-            Console.WriteLine($"ERROR: Invalid sorting direction.\n");
-            return;
-        }
+        int sortingDirection = SafeInput.ReadIntRequired();
 
         if (sortingDirection != 0 && sortingDirection != 1)
             Console.WriteLine("\nWARNING: Invalid sorting direction. Sorting direction will be set to ASCENDING.");
@@ -186,17 +156,11 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
             Console.WriteLine("2 -> Next page");
             Console.WriteLine("0 -> Back");
 
-            int selectedOption = -1;
 
             Console.Write("> ");
-            if (!int.TryParse(Console.ReadLine(), out selectedOption))
-            {
-                Console.Clear();
-                Console.WriteLine("ERROR: Invalid input! Please select one of the available options.\n");
-                continue;
-            }
-
+            int selectedOption = SafeInput.ReadIntRequired();
             Console.Clear();
+
             if (selectedOption == BACK)
                 break;
 

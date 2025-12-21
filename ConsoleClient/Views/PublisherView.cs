@@ -1,4 +1,5 @@
-﻿using Core.DAO;
+﻿using ConsoleClient.Views.Utilities;
+using Core.DAO;
 using Core.Models;
 
 namespace ConsoleClient.Views;
@@ -58,13 +59,13 @@ public class PublisherView : View<Publisher>
     protected override Publisher InputEntity()
     {
         Console.Write("Enter name: ");
-        string name = Console.ReadLine();
+        string name = SafeInput.ReadStringRequired();
 
         Console.Write("Enter surname: ");
-        string surname = Console.ReadLine();
+        string surname = SafeInput.ReadStringRequired();
 
         Console.Write("Enter boss ID: ");
-        int bossId = int.Parse(Console.ReadLine());
+        int bossId = SafeInput.ReadIntRequired();
         Author boss = new Author();
 
         List<Author> authors = new List<Author>();

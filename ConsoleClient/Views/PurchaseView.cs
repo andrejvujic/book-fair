@@ -1,4 +1,5 @@
-﻿using Core.DAO;
+﻿using ConsoleClient.Views.Utilities;
+using Core.DAO;
 using Core.Models;
 using System;
 
@@ -59,19 +60,19 @@ public class PurchaseView : View<Purchase>
     protected override Purchase InputEntity()
     {
         Console.Write("Enter visitor ID: ");
-        int visitorId = int.Parse(Console.ReadLine());
+        int visitorId = SafeInput.ReadIntRequired();
 
         Console.Write("Enter book ID: ");
-        int bookId = int.Parse(Console.ReadLine());
+        int bookId = SafeInput.ReadIntRequired();
 
         Console.Write("Enter purchase date (yyyy-MM-dd): ");
-        DateOnly date = DateOnly.Parse(Console.ReadLine());
+        DateOnly date = DateOnly.Parse(SafeInput.ReadStringRequired());
 
         Console.Write("Enter rating (1-5): ");
-        int rating = int.Parse(Console.ReadLine());
+        int rating = SafeInput.ReadIntRequired();
 
         Console.Write("Enter comment: ");
-        string comment = Console.ReadLine();
+        string comment = SafeInput.ReadStringRequired();
 
         Visitor visitor = new Visitor();
         visitor.Id = visitorId;
