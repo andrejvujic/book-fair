@@ -3,7 +3,6 @@
 namespace ConsoleClient.Views.Utilities;
 public static class ConsoleUtilities
 {
- 
     public static int ReadIntRequired() {
         int value = -1;
         while (true)
@@ -28,6 +27,47 @@ public static class ConsoleUtilities
         return value;
     }
 
+
+    public static List<int> ReadIntListRequired(int minLength = 1, int? maxLength = null, char separator = ' ')
+    {
+        List<int> values = new List<int>();
+
+        while (true)
+        {
+            string input = Console.ReadLine() ?? string.Empty;
+            string[] rawValues = input.Split(separator);
+            if (ParseIntList(rawValues, out values, minLength, maxLength, separator)) break;
+        }
+
+        return values;
+    }
+
+    private static bool ParseIntList(string[] rawValues, out List<int> values, int minLength = 1, int? maxLength = null, char separator = ' ')
+    {
+        values = new List<int>();
+
+        if (maxLength != null && maxLength < rawValues.Length)
+            return false;
+
+        if (rawValues.Length < minLength) return false;
+
+        for (int index = 0; index < rawValues.Length; index++)
+        {
+            int value;
+
+            if (!int.TryParse(rawValues[index], out value))
+            {
+                values.Clear();
+                Console.WriteLine("ERROR: Please enter a valid list of numbers.\n");
+                Console.Write("Try again: ");
+                return false;
+            }
+
+            values.Add(value);
+        }
+
+        return true;
+    }
 
     public static string ReadStringRequired()
     {
