@@ -18,9 +18,8 @@ public class Publisher : ISerializable, IIdentifiable
 
     public Publisher() { }
 
-    public Publisher(int id, string name, string surname, Author boss, List<Author> authors, List<Book> books)
+    public Publisher(string name, string surname, Author boss, List<Author> authors, List<Book> books)
     {
-        Id = id;
         Name = name;
         Surname = surname;
         Boss = boss;
