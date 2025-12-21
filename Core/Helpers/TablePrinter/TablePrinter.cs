@@ -41,13 +41,13 @@ public class TablePrinter<T>
             MaxWidthOfColumns[tableColumnIndex] = TableHeadRow[tableColumnIndex].Length;
 
         for (int tableRowIndex = 0; tableRowIndex < tableData.Count; ++tableRowIndex)
-        for (int tableColumnIndex = 0; tableColumnIndex < TableColumnCount; ++tableColumnIndex)
-        {
-            int currentElementLength = Table[tableRowIndex][tableColumnIndex].Length;
+            for (int tableColumnIndex = 0; tableColumnIndex < TableColumnCount; ++tableColumnIndex)
+            {
+                int currentElementLength = Table[tableRowIndex][tableColumnIndex].Length;
 
-            if (currentElementLength > MaxWidthOfColumns[tableColumnIndex])
-                MaxWidthOfColumns[tableColumnIndex] = currentElementLength;
-        }
+                if (currentElementLength > MaxWidthOfColumns[tableColumnIndex])
+                    MaxWidthOfColumns[tableColumnIndex] = currentElementLength;
+            }
     }
 
     public void Print()
@@ -58,6 +58,7 @@ public class TablePrinter<T>
         for (int tableRowIndex = 0; tableRowIndex < TableRowCount; ++tableRowIndex)
         {
             PrintTableRow(Table[tableRowIndex]);
+
             if (tableRowIndex < TableRowCount - 1)
                 PrintTableRowSeparator();
             else
@@ -77,6 +78,7 @@ public class TablePrinter<T>
             if (index < TableColumnCount - 1)
                 Console.Write(VERTICAL_SEPARATOR);
         }
+
         Console.Write("\n");
     }
 
@@ -86,12 +88,13 @@ public class TablePrinter<T>
         {
             string element = new string(HORIZONTAL_SEPARATOR, MaxWidthOfColumns[index]);
             Console.Write(element);
+
             if (index < TableColumnCount - 1)
                 Console.Write(CROSS_SEPARATOR);
         }
         Console.Write("\n");
     }
-
+    
     const char VERTICAL_SEPARATOR = '│';
     const char HORIZONTAL_SEPARATOR = '─';
     const char CROSS_SEPARATOR = '┼';
