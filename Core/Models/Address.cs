@@ -13,9 +13,8 @@ public class Address : ISerializable, IIdentifiable
 
     public Address() { }
 
-    public Address(int id, string street, string streetNumber, string city, string country)
+    public Address(string street, string streetNumber, string city, string country)
     {
-        Id = id;
         Street = street;
         StreetNumber = streetNumber;
         City = city;

@@ -20,13 +20,12 @@ public class Author : ISerializable, IIdentifiable
     public List<Book> Books { get; set; }
 
     public Author() { }
-    public Author(int id, string firstname, string lastName, DateOnly dateOfBirth, int addressId, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
+    public Author(string firstname, string lastName, DateOnly dateOfBirth, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
     {
-        Id = id;
         FirstName = firstname;
         LastName = lastName;
         DateOfBirth = dateOfBirth;
-        AddressId = addressId;
+        AddressId = address.Id;
         Address = address;
         PhoneNumber = phoneNumber;
         Email = email;
