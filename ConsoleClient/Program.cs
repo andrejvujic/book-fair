@@ -11,7 +11,7 @@ ManyToManyRelation<Book, Author> booksAuthors = new ManyToManyRelation<Book, Aut
 
 
 ManyToManyRelation<Book, Visitor> buyers = new ManyToManyRelation<Book, Visitor>("Buyers.txt");
-ManyToManyRelation<Book, Visitor> wishers = new ManyToManyRelation<Book, Visitor>("Wishers.txt");
+ManyToManyRelation<Book, Visitor> wishers = new ManyToManyRelation<Book, Visitor>("VisitorWishlistedBooks.txt");
 
 
 PublisherDAO publisherDAO = new PublisherDAO();
