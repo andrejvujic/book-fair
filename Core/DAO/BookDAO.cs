@@ -6,7 +6,7 @@ namespace Core.DAO;
 
 public class BookDAO: DAO<Book>
 {
-	private static string _filename = "Book.txt";
+	private static string _filename = "Books.txt";
     public override string Identifier { get { return "Book"; } }
 
 	private ManyToManyRelation<Book, Author> AuthorsByBooks { get; }
