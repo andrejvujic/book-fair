@@ -1,0 +1,10 @@
+1|Gabriel|Garcia Marquez|1927-03-06|1|+573001234567|gabriel.gm@example.org|GC19270306|60
+2|Stephen|King|1947-09-21|2|+12048001234|stephen.king@example.org|SK19470921|55
+3|Michel|Houellebecq|1956-02-26|3|+33123456789|michel.h@example.org|MH19560226|40
+4|Vladimir|Pistalo|1960-05-08|4|+14163214567|vladimir.p@example.org|VP19600508|35
+5|Miro|Gavran|1961-08-03|5|+38512345678|miro.g@example.org|MG19610803|38
+6|Pseudonymous|Bosch|1967-10-25|6|+13105551234|raphael.s@example.org|PB19671025|30
+7|Isak|Samokovlija|1889-09-03|7|+38761123456|isak.s@example.org|IS18890903|25
+8|JRR|Tolkien|1892-01-03|8|+441234567890|jrr.tolkien@example.org|JT18920103|45
+9|Ernest|Hemingway|1899-07-21|9|+13105559876|ernest.h@example.org|EH18990721|30
+10|Agatha|Christie|1890-09-15|10|+442071234567|agatha.c@example.org|AC18900915|40
