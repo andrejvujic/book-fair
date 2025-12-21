@@ -1,0 +1,10 @@
+0|Nikola|Petrovic|5/14/1998|064/1111-222|nikola.petrovic@gmail.com|1|CK-10-2025|2025|R
+1|Milica|Jovanovic|9/3/2001|062/3333-444|milica.j@gmail.com|2|CK-11-2025|2025|V
+2|Stefan|Ilic|12/22/1995|065/5555-666|stefan.ilic@gmail.com|3|CK-12-2025|2025|R
+3|Ana|Kovacevic|7/8/1999|061/7777-888|ana.kovacevic@gmail.com|4|CK-13-2025|2025|R
+4|Luka|Stojanovic|3/30/2003|060/9999-000|luka.s@gmail.com|5|CK-14-2025|2025|V
+5|Ivana|Milosevic|11/11/1997|064/2222-333|ivana.m@gmail.com|6|CK-15-2025|2025|R
+6|Filip|Nikolic|6/19/1994|062/4444-555|filip.n@gmail.com|7|CK-16-2025|2025|R
+7|Jelena|Pavlovic|1/25/2000|065/6666-777|jelena.p@gmail.com|8|CK-17-2025|2025|V
+8|Ognjen|Radovic|4/6/1996|061/8888-999|ognjen.r@gmail.com|9|CK-18-2025|2025|R
+9|Sara|Veselinovic|8/17/2002|060/1234-999|sara.v@gmail.com|10|CK-19-2025|2025|R
