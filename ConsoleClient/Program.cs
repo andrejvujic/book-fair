@@ -15,6 +15,9 @@ AuthorDAO authorDAO = new AuthorDAO(authorWrittenBooks);
 BookDAO bookDAO = new BookDAO(authorWrittenBooks, visitorWhislistedBooks);
 
 visitorDAO.ForEach(visitor => visitorWhislistedBooks.Connect(visitor, visitor.WishlistedBooks, visitor.WishlistedBooks.Add));
+authorDAO.ForEach(author => authorWrittenBooks.Connect(author, author.Books, author.Books.Add));
+bookDAO.ForEach(book => authorWrittenBooks.Connect(book, book.Authors, book.Authors.Add));
+bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, book.Buyers, book.Buyers.Add));
 
 VisitorView visitorView = new VisitorView(visitorDAO);
 PublisherView publisherView = new PublisherView(publisherDAO);

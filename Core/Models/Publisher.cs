@@ -13,8 +13,8 @@ public class Publisher : ISerializable, IIdentifiable
     public int BossId { get; set; } = 0;
     public Author Boss { get; set; } // TODO: Najmanje 5 godina iskustva
 
-    public List<Author> Authors { get; set; }
-    public List<Book> Books { get; set; }
+    public List<Author> Authors { get; set; } = new List<Author>();
+    public List<Book> Books { get; set; } = new List<Book>();
 
     public Publisher() { }
 

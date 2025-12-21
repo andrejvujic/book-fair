@@ -9,27 +9,23 @@ public class BookDAO: DAO<Book>
 	private static string _filename = "Books.txt";
     public override string Identifier { get { return "Book"; } }
 
-	private ManyToManyRelation<Book, Author> AuthorsByBooks { get; }
-	private ManyToManyRelation<Book, Visitor> Buyers { get; }
-	private ManyToManyRelation<Book, Visitor> Wishers { get; }
+	private ManyToManyRelation<Author, Book> BookAuthors { get; }
+	private ManyToManyRelation<Visitor, Book> BookWishlisters { get; }
 
 	public BookDAO(
-		ManyToManyRelation<Book, Author> authorsbybooks,
-		ManyToManyRelation<Book, Visitor> buyers,
-		ManyToManyRelation<Book, Visitor> wishers
+		ManyToManyRelation<Author, Book> bookAuthors,
+		ManyToManyRelation<Visitor, Book> bookWishlisters
 		) : base(_filename)
 	{
-		AuthorsByBooks = authorsbybooks;
-		Buyers = buyers;
-		Wishers = wishers;
+		BookAuthors = bookAuthors;
+        BookWishlisters = bookWishlisters;
 	}
 
     public override void Add(Book book)
     {
 		base.Add(book);
-		AuthorsByBooks.AddAll(book, book.Authors);
-		Buyers.AddAll(book, book.Buyers);
-		Wishers.AddAll(book, book.Wishlisters);
+		BookAuthors.AddAll(book, book.Authors);
+        BookWishlisters.AddAll(book, book.Wishlisters);
     }
 
     public override Book? Remove(int id)
@@ -38,9 +34,8 @@ public class BookDAO: DAO<Book>
 
 		if (book == null) return null;
 
-		AuthorsByBooks.RemoveAll(book);
-		Buyers.RemoveAll(book);
-		Wishers.RemoveAll(book);
+		BookAuthors.RemoveAll(book);
+        BookWishlisters.RemoveAll(book);
 		return book;
     }
 
@@ -62,13 +57,11 @@ public class BookDAO: DAO<Book>
 		oldEntity.Buyers = entity.Buyers;
 		oldEntity.Wishlisters = entity.Wishlisters;
 
-		AuthorsByBooks.RemoveAll(oldEntity);
-		Buyers.RemoveAll(oldEntity);
-		Wishers.RemoveAll(oldEntity);
+		BookAuthors.RemoveAll(oldEntity);
+        BookWishlisters.RemoveAll(oldEntity);
 
-		AuthorsByBooks.AddAll(oldEntity, oldEntity.Authors);
-		Buyers.AddAll(oldEntity, oldEntity.Buyers);
-		Wishers.AddAll(oldEntity, oldEntity.Wishlisters);
+		BookAuthors.AddAll(oldEntity, oldEntity.Authors);
+        BookWishlisters.AddAll(oldEntity, oldEntity.Wishlisters);
 
 		_storage.Save(_entities);
 		return oldEntity;

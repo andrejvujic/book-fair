@@ -13,11 +13,11 @@ public class Book : ISerializable, IIdentifiable
     public int ReleaseYear { get; set; }
     public int Price { get; set; }
     public int NumberOfPages { get; set; }
-    public List<Author> Authors { get; set; }
+    public List<Author> Authors { get; set; } = new List<Author>();
     public int PublisherId { get; set; }
     public Publisher Publisher { get; set; }
-    public List<Visitor> Buyers { get; set; }
-    public List<Visitor> Wishlisters { get; set; }
+    public List<Visitor> Buyers { get; set; } = new List<Visitor>();
+    public List<Visitor> Wishlisters { get; set; } = new List<Visitor>();
 
     public Book() { }
 
