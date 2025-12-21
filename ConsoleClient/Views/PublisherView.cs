@@ -12,7 +12,7 @@ public class PublisherView : View<Publisher>
         get
         {
             return new string[] {
-                "ID", "Name", "Surname", "Boss ID"
+                "ID", "First name", "Last name", "Boss ID"
             };
         }
     }
