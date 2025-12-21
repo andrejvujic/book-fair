@@ -5,6 +5,9 @@ namespace Core.DAO;
 public class PublisherDAO : DAO<Publisher>
 {
     private static string _fileName = "Publishers.txt";
+
+    public override string Identifier { get { return "Publisher"; } }
+
     public PublisherDAO() : base(_fileName)
     {
     }
@@ -24,6 +27,21 @@ public class PublisherDAO : DAO<Publisher>
 
         _storage.Save(_entities);
         return oldEntity;
+    }
+
+
+    protected override Dictionary<string, IOrderedEnumerable<Publisher>> SortCriteriaMapping
+    {
+        get
+        {
+            return new Dictionary<string, IOrderedEnumerable<Publisher>>
+            {
+                { "Id", _entities.OrderBy(x => x.Id) },
+                { "Name", _entities.OrderBy(x => x.Name) },
+                { "Surname", _entities.OrderBy(x => x.Surname) },
+                { "BossId", _entities.OrderBy(x => x.BossId) }
+            };
+        }
     }
 }
 
