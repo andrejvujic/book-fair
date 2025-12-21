@@ -5,21 +5,14 @@ using Core.DAO;
 using ConsoleClient.Views;
 
 ManyToManyRelation<Visitor, Book> visitorWhislistedBooks = new ManyToManyRelation<Visitor, Book>("VisitorWishlistedBooks.txt");
-
-ManyToManyRelation<Author, Book> authorsBooks = new ManyToManyRelation<Author, Book>("AuthorsBooks.txt");
-ManyToManyRelation<Book, Author> booksAuthors = new ManyToManyRelation<Book, Author>("AuthorsBooks.txt");
-
-
-ManyToManyRelation<Book, Visitor> buyers = new ManyToManyRelation<Book, Visitor>("Buyers.txt");
-ManyToManyRelation<Book, Visitor> wishers = new ManyToManyRelation<Book, Visitor>("VisitorWishlistedBooks.txt");
-
+ManyToManyRelation<Author, Book> authorWrittenBooks = new ManyToManyRelation<Author, Book>("AuthorWrittenBooks.txt");
 
 PublisherDAO publisherDAO = new PublisherDAO();
 VisitorDAO visitorDAO = new VisitorDAO(visitorWhislistedBooks);
 PurchaseDAO purchaseDAO = new PurchaseDAO();
 AddressDAO addressDAO = new AddressDAO();
-AuthorDAO authorDAO = new AuthorDAO(authorsBooks);
-BookDAO bookDAO = new BookDAO(booksAuthors, buyers, wishers);
+AuthorDAO authorDAO = new AuthorDAO(authorWrittenBooks);
+BookDAO bookDAO = new BookDAO(authorWrittenBooks, visitorWhislistedBooks);
 
 visitorDAO.ForEach(visitor => visitorWhislistedBooks.Connect(visitor, visitor.WishlistedBooks, visitor.WishlistedBooks.Add));
 
