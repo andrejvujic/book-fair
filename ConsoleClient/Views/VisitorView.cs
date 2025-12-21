@@ -3,38 +3,21 @@ using Core.Helpers.TablePrinter;
 using Core.Models;
 
 namespace ConsoleClient.Views;
-public class VisitorView
+public class VisitorView : View<Visitor>
 {
-    private readonly VisitorDAO _visitorDAO;
-    public VisitorView(VisitorDAO visitorDAO)
-    {
-        _visitorDAO = visitorDAO;
-    }
+    public VisitorView(VisitorDAO visitorDAO) : base(visitorDAO) { }
 
-    public void Run() {
-        while (true)
-        {
-            ShowMenu();
-
-            int selectedOption = -1;
-
-            Console.Write("> ");
-            if (!int.TryParse(Console.ReadLine(), out selectedOption))
-            {
-                Console.Clear();
-                Console.WriteLine("ERROR: Invalid input! Please select one of the available options.\n");
-                continue;
-            }
-
-            Console.Clear();
-            if (selectedOption == BACK)
-                break;
-
-            HandleAction(selectedOption);
+    protected override string[] EntityProperties {
+        get {
+            return new string[] {
+                "ID", "First name", "Last name", "Date of birth",
+                "Phone number", "Email address", "Address ID",
+                "Membership card number", "Membership year", "Status"
+            };        
         }
     }
 
-    private void ShowMenu() {
+    protected override void ShowOptions() {
         Console.WriteLine("[Visitor] Available options:\n");
 
         Console.WriteLine("1 -> Show all");
@@ -45,7 +28,7 @@ public class VisitorView
         Console.WriteLine("0 -> Back\n");
     }
 
-    private void HandleAction(int selectedOption)
+    protected override void HandleAction(int selectedOption)
     {
         switch(selectedOption)
         {
@@ -74,15 +57,9 @@ public class VisitorView
     {
         Console.WriteLine("[Visitor] All visitors:\n");
 
-        string[] visitorProperties = {
-            "ID", "First name", "Last name", "Date of birth",
-            "Phone number", "Email address", "Address ID",
-            "Membership card number", "Membership year", "Status"
-        };
-
         new TablePrinter<Visitor>(
-            visitorProperties,
-            _visitorDAO.GetAll()
+            EntityProperties,
+            _dao.GetAll()
         ).Print();
     }
 
@@ -91,7 +68,7 @@ public class VisitorView
         Console.WriteLine("[Visitor] Adding visitor:\n");
 
         Visitor visitor = InputVisitor();
-        _visitorDAO.Add(visitor);
+        _dao.Add(visitor);
 
         Console.Clear();
         Console.WriteLine("SUCCESS: Action 'ADD' successful.\n");
@@ -117,7 +94,7 @@ public class VisitorView
 
         Console.Clear();
 
-        if (_visitorDAO.Update(visitor) == null)
+        if (_dao.Update(visitor) == null)
         {
             Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
             return;
@@ -141,107 +118,13 @@ public class VisitorView
 
         Console.Clear();
 
-        if (_visitorDAO.Remove(id) == null)
+        if (_dao.Remove(id) == null)
         {
             Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
             return;
         }
 
         Console.WriteLine("SUCCESS: Action 'REMOVE' successful.\n");
-    }
-
-    private void ShowPaginatedAndSorted()
-    {
-        Console.WriteLine("[Visitor] Showing with pagination and sorting:\n");
-
-        Console.Write("Enter page size: ");
-        int pageSize = -1;
-        if (!int.TryParse(Console.ReadLine(), out pageSize)) {
-            Console.WriteLine($"ERROR: Invalid page size.\n");
-            return;
-        }
-
-        if (pageSize < 1)
-        {
-            Console.WriteLine($"ERROR: Page size must be at least 1.\n");
-            return;
-        }
-
-        int totalPageCount = (int)Math.Ceiling(_visitorDAO.Count() / (double)pageSize);
-
-        Console.Write("Enter sorting criteria: ");
-        string sortingCriteria = Console.ReadLine();
-
-        Console.Write("Sorting direction:\n0 -> Ascending\n1 -> Descending\n");
-        Console.Write("Enter sorting direction: ");
-
-        int sortingDirection = -1;
-        if (!int.TryParse(Console.ReadLine(), out sortingDirection))
-        {
-            Console.WriteLine($"ERROR: Invalid sorting direction.\n");
-            return;
-        }
-
-        if (sortingDirection != 0 && sortingDirection != 1)
-            Console.WriteLine("\nWARNING: Invalid sorting direction. Sorting direction will be set to ASCENDING.");
-
-        Console.Write("\n");
-
-        int pageNumber = 1;
-        while (true)
-        {
-            List<Visitor> currentPageEntities = _visitorDAO.Get(
-                pageNumber,
-                pageSize,
-                sortingCriteria,
-                sortingDirection == 1 ? SortingDirection.Descending : SortingDirection.Ascending
-            );
-
-            Console.WriteLine($"Page: {pageNumber} / {totalPageCount}");
-            Console.WriteLine($"Showing: {currentPageEntities.Count()} / {_visitorDAO.Count()} entities\n");
-
-            new TablePrinter<Visitor>(
-                new string[] {
-                    "ID", "First name", "Last name", "Date of birth",
-                    "Phone number", "Email address", "Address ID",
-                    "Membership card number", "Membership year", "Status"
-                },
-                currentPageEntities
-            ).Print();
-
-            Console.Write("\n");
-
-            Console.WriteLine("1 -> Previous page");
-            Console.WriteLine("2 -> Next page");
-            Console.WriteLine("0 -> Back");
-
-            const int PREVIOUS_PAGE = 1;
-            const int NEXT_PAGE = 2;
-
-            int selectedOption = -1;
-
-            Console.Write("> ");
-            if (!int.TryParse(Console.ReadLine(), out selectedOption))
-            {
-                Console.Clear();
-                Console.WriteLine("ERROR: Invalid input! Please select one of the available options.\n");
-                continue;
-            }
-
-            Console.Clear();
-            if (selectedOption == BACK)
-                break;
-
-            switch(selectedOption) {
-                case PREVIOUS_PAGE:
-                    pageNumber = pageNumber - 1 < 1 ? totalPageCount : pageNumber - 1;
-                    break;
-                case NEXT_PAGE:
-                    pageNumber = pageNumber + 1 > totalPageCount ? 1 : pageNumber + 1;
-                    break;
-            }
-
-        }
     }
 
     private Visitor InputVisitor()
@@ -294,8 +177,6 @@ public class VisitorView
         return visitor;
     }
 
-
-    private const int BACK = 0;
     private const int SHOW_ALL = 1;
     private const int ADD = 2;
     private const int UPDATE = 3;
