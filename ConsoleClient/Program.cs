@@ -14,12 +14,12 @@ AddressDAO addressDAO = new AddressDAO();
 AuthorDAO authorDAO = new AuthorDAO(authorWrittenBooks);
 BookDAO bookDAO = new BookDAO(authorWrittenBooks, visitorWhislistedBooks);
 
-visitorDAO.ForEach(visitor => visitorWhislistedBooks.Connect(visitor, visitor.WishlistedBooks, visitor.WishlistedBooks.Add));
-authorDAO.ForEach(author => authorWrittenBooks.Connect(author, author.Books, author.Books.Add));
-bookDAO.ForEach(book => authorWrittenBooks.Connect(book, book.Authors, book.Authors.Add));
-bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, book.Buyers, book.Buyers.Add));
+visitorDAO.ForEach(visitor => visitorWhislistedBooks.Connect(visitor, bookDAO.GetAll(), visitor.WishlistedBooks.Add));
+authorDAO.ForEach(author => authorWrittenBooks.Connect(author, bookDAO.GetAll(), author.Books.Add));
+bookDAO.ForEach(book => authorWrittenBooks.Connect(book, authorDAO.GetAll(), book.Authors.Add));
+bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Buyers.Add));
 
-VisitorView visitorView = new VisitorView(visitorDAO);
+VisitorView visitorView = new VisitorView(visitorDAO, bookDAO);
 PublisherView publisherView = new PublisherView(publisherDAO);
 PurchaseView purchaseView = new PurchaseView(purchaseDAO);
 AddressView addressView = new AddressView(addressDAO);
