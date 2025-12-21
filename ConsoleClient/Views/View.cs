@@ -43,9 +43,84 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
     protected abstract void ShowOptions();
     protected abstract void HandleAction(int selectedOption);
 
-    protected void ShowPaginatedAndSorted()
+    protected abstract T InputEntity();
+    protected virtual void AddEntityAction() {
+        Console.WriteLine($"[{_dao.Identifier}] Action 'ADD':\n");
+
+        T entity = InputEntity();
+        _dao.Add(entity);
+
+        Console.Clear();
+        Console.WriteLine("SUCCESS: Action 'ADD' successful.\n");
+    }
+
+    protected virtual void RemoveEntityAction() {
+        Console.WriteLine($"[{_dao.Identifier}] Action 'REMOVE':\n");
+
+        Console.Write("Enter ID: ");
+        int id = -1;
+        if (!int.TryParse(Console.ReadLine(), out id))
+        {
+            Console.Clear();
+            Console.WriteLine($"ERROR: {_dao.Identifier} ID invalid.\n");
+            return;
+        }
+
+        Console.Clear();
+
+        if (_dao.Remove(id) == null)
+        {
+            Console.WriteLine($"ERROR: {_dao.Identifier} with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        Console.WriteLine("SUCCESS: Action 'REMOVE' successful.\n");
+    }
+
+    protected virtual void UpdateEntityAction() {
+        Console.WriteLine($"[{_dao.Identifier}] Action 'UPDATE':\n");
+
+        Console.Write("Enter ID: ");
+
+        int id = -1;
+        if (!int.TryParse(Console.ReadLine(), out id))
+        {
+            Console.Clear();
+            Console.WriteLine($"ERROR: {_dao.Identifier} ID invalid.\n");
+            return;
+        }
+
+        Console.Write("\n");
+
+        T entity = InputEntity();
+        entity.Id = id;
+
+        Console.Clear();
+
+        if (_dao.Update(entity) == null)
+        {
+            Console.WriteLine($"ERROR: {_dao.Identifier} with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        Console.WriteLine("SUCCESS: Action 'UPDATE' successful.\n");
+    }
+
+    protected virtual void ShowAllAction()
     {
-        Console.WriteLine("[Visitor] Showing with pagination and sorting:\n");
+        Console.WriteLine($"[{_dao.Identifier}] All entities:\n");
+
+        Console.WriteLine($"Number of entities: {_dao.Count()}\n");
+
+        new TablePrinter<T>(
+            EntityProperties,
+            _dao.GetAll()
+        ).Print();
+    }
+
+    protected void ShowPaginatedAndSortedAction()
+    {
+        Console.WriteLine($"[{_dao.Identifier}] Showing with pagination and sorting:\n");
 
         Console.Write("Enter page size: ");
         int pageSize = -1;
@@ -80,6 +155,12 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
             Console.WriteLine("\nWARNING: Invalid sorting direction. Sorting direction will be set to ASCENDING.");
 
         Console.Write("\n");
+
+        if (totalPageCount == 0)
+        {
+            Console.WriteLine("WARNING: Please add at least 1 entity before trying to show all entities.\n");
+            return;
+        }
 
         int pageNumber = 1;
         while (true)
