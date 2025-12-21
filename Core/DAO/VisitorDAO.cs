@@ -8,6 +8,7 @@ public class VisitorDAO : DAO<Visitor>
 {
 
     private static string _fileName = "Visitors.txt";
+    public override string Identifier { get { return "Visitor"; } }
 
     private ManyToManyRelation<Visitor, Book> VisitorWishlistedBooks { get; }
 
@@ -58,5 +59,22 @@ public class VisitorDAO : DAO<Visitor>
         _storage.Save(_entities);
         return oldEntity;
     }
+
+    protected override Dictionary<string, IOrderedEnumerable<Visitor>> SortCriteriaMapping {
+        get
+        {
+            return new Dictionary<string, IOrderedEnumerable<Visitor>>
+            {
+                { "Id", _entities.OrderBy(x => x.Id) },
+                { "FirstName", _entities.OrderBy(x => x.FirstName) },
+                { "LastName", _entities.OrderBy(x => x.LastName) },
+                { "DateOfBirth", _entities.OrderBy(x => x.DateOfBirth) },
+                { "MembershipCardNumber", _entities.OrderBy(x => x.MembershipCardNumber) },
+                { "MembershipYear", _entities.OrderBy(x => x.MembershipYear) },
+                { "Status", _entities.OrderBy(x => x.Status) },
+            };
+        }
+    }
+
 }
 
