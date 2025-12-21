@@ -33,19 +33,19 @@ public class VisitorView : View<Visitor>
         switch(selectedOption)
         {
             case SHOW_ALL:
-                ShowAllVisitors();
+                ShowAllAction();
                 break;
             case ADD:
-                AddVisitor();
+                AddEntityAction();
                 break;
             case UPDATE:
-                UpdateVisitor();
+                UpdateEntityAction();
                 break;
             case REMOVE:
-                RemoveVisitor();
+                RemoveEntityAction();
                 break;
             case SHOW_WITH_PAGINATION_AND_SORTING:
-                ShowPaginatedAndSorted();
+                ShowPaginatedAndSortedAction();
                 break;
             default:
                 Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
@@ -53,81 +53,8 @@ public class VisitorView : View<Visitor>
         }
     }
 
-    private void ShowAllVisitors()
-    {
-        Console.WriteLine("[Visitor] All visitors:\n");
 
-        new TablePrinter<Visitor>(
-            EntityProperties,
-            _dao.GetAll()
-        ).Print();
-    }
-
-    private void AddVisitor()
-    {
-        Console.WriteLine("[Visitor] Adding visitor:\n");
-
-        Visitor visitor = InputVisitor();
-        _dao.Add(visitor);
-
-        Console.Clear();
-        Console.WriteLine("SUCCESS: Action 'ADD' successful.\n");
-    }
-
-    private void UpdateVisitor()
-    {
-        Console.WriteLine("[Visitor] Updating visitor:\n");
-
-        Console.Write("Enter ID: ");
-        int id = -1;
-        if (!int.TryParse(Console.ReadLine(), out id))
-        {
-            Console.Clear();
-            Console.WriteLine("ERROR: Visitor ID invalid.\n");
-            return;
-        }
-
-        Console.Write("\n");
-
-        Visitor visitor = InputVisitor();
-        visitor.Id = id;
-
-        Console.Clear();
-
-        if (_dao.Update(visitor) == null)
-        {
-            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
-            return;
-        }
-
-        Console.WriteLine("SUCCESS: Action 'UPDATE' successful.\n");
-    }
-
-    private void RemoveVisitor()
-    {
-        Console.WriteLine("[Visitor] Removing visitor:\n");
-
-        Console.Write("Enter ID: ");
-        int id = -1;
-        if (!int.TryParse(Console.ReadLine(), out id))
-        {
-            Console.Clear();
-            Console.WriteLine("ERROR: Visitor ID invalid.\n");
-            return;
-        }
-
-        Console.Clear();
-
-        if (_dao.Remove(id) == null)
-        {
-            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
-            return;
-        }
-
-        Console.WriteLine("SUCCESS: Action 'REMOVE' successful.\n");
-    }
-
-    private Visitor InputVisitor()
+    protected override Visitor InputEntity()
     {
         Console.Write("Enter first name: ");
         string firstName = Console.ReadLine();
