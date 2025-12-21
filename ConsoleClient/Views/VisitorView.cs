@@ -1,12 +1,17 @@
 ﻿using ConsoleClient.Views.Utilities;
 using Core.DAO;
+using Core.Helpers.Relations;
 using Core.Helpers.TablePrinter;
 using Core.Models;
 
 namespace ConsoleClient.Views;
 public class VisitorView : View<Visitor>
 {
-    public VisitorView(VisitorDAO visitorDAO) : base(visitorDAO) { }
+    private readonly BookDAO _bookDAO;
+
+    public VisitorView(VisitorDAO visitorDAO, BookDAO bookDAO) : base(visitorDAO) {
+        _bookDAO = bookDAO;
+    }
 
     protected override string[] EntityProperties {
         get {
@@ -86,8 +91,9 @@ public class VisitorView : View<Visitor>
 
         Address address = new Address();
         List<Book> purchasedBooks = new List<Book>();
-        List<Book> wishlistedBooks = new List<Book>();
 
+        List<Book> wishlistedBooks = InputWishlistedBooks();
+  
         Visitor visitor = new Visitor(
             firstName,
             lastName,
@@ -103,6 +109,41 @@ public class VisitorView : View<Visitor>
         );
 
         return visitor;
+    }
+
+    private List<Book> InputWishlistedBooks()
+    {
+        List<Book> wishlistedBooks;
+
+        while (true)
+        {
+            Console.Write("Enter IDs of wishlisted books: ");
+            List<int> idsOfWishlistedBooks = ConsoleUtilities.ReadIntListRequired();
+
+            if (ParseWishlistedBookIds(idsOfWishlistedBooks, out wishlistedBooks)) break;
+        }
+
+        return wishlistedBooks;
+    }
+
+    private bool ParseWishlistedBookIds(List<int> idsOfWishlistedBooks, out List<Book> wishlistedBooks)
+    {
+        wishlistedBooks = new List<Book>();
+
+        foreach (int id in idsOfWishlistedBooks)
+        {
+            Book? wishlistedBook = _bookDAO.GetById(id);
+            if (wishlistedBook == null)
+            {
+                wishlistedBooks.Clear();
+                Console.WriteLine($"ERROR: Book with ID '{id}' doesn't exist.\n");
+                return false;
+            }
+
+            wishlistedBooks.Add(wishlistedBook);
+        }
+
+        return true;
     }
 
     private const int SHOW_ALL = 1;
