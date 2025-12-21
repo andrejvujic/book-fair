@@ -59,29 +59,29 @@ public class AuthorView : View<Author>
 	protected override Author InputEntity()
 	{
 		Console.Write("Enter name: ");
-		string name = SafeInput.ReadStringRequired();
+		string name = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter surname: ");
-		string surname = SafeInput.ReadStringRequired();
+		string surname = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter date of birth (yyyy-MM-dd): ");
-		DateOnly dateOfBirth = DateOnly.Parse(SafeInput.ReadStringRequired());
+		DateOnly dateOfBirth = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
 
 		Console.Write("Enter address ID: ");
-		int addressId = SafeInput.ReadIntRequired();
+		int addressId = ConsoleUtilities.ReadIntRequired();
 		Address address = new Address();
 
 		Console.Write("Enter phone number: ");
-		string phoneNumber = SafeInput.ReadStringRequired();
+		string phoneNumber = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter email: ");
-		string email = SafeInput.ReadStringRequired();
+		string email = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter ID card number: ");
-		string idCardNumber = SafeInput.ReadStringRequired();
+		string idCardNumber = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter years of experience: ");
-		int yearsOfExperience = SafeInput.ReadIntRequired();
+		int yearsOfExperience = ConsoleUtilities.ReadIntRequired();
 
 		List<Book> books = new List<Book>();
 

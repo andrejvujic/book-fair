@@ -59,13 +59,13 @@ public class PublisherView : View<Publisher>
     protected override Publisher InputEntity()
     {
         Console.Write("Enter name: ");
-        string name = SafeInput.ReadStringRequired();
+        string name = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter surname: ");
-        string surname = SafeInput.ReadStringRequired();
+        string surname = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter boss ID: ");
-        int bossId = SafeInput.ReadIntRequired();
+        int bossId = ConsoleUtilities.ReadIntRequired();
         Author boss = new Author();
 
         List<Author> authors = new List<Author>();

@@ -59,25 +59,25 @@ public class BookView : View<Book>
 	protected override Book InputEntity()
 	{
 		Console.Write("Enter isbn: ");
-		string isbn = SafeInput.ReadStringRequired();
+		string isbn = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter book title: ");
-		string bookTitle = SafeInput.ReadStringRequired();
+		string bookTitle = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter genre: ");
-		string genre = SafeInput.ReadStringRequired();
+		string genre = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter release year: ");
-		int releaseYear = SafeInput.ReadIntRequired();
+		int releaseYear = ConsoleUtilities.ReadIntRequired();
 
 		Console.Write("Enter price: ");
-		int price = SafeInput.ReadIntRequired();
+		int price = ConsoleUtilities.ReadIntRequired();
 
 		Console.Write("Enter number of pages: ");
-		int numberOfPages = SafeInput.ReadIntRequired();
+		int numberOfPages = ConsoleUtilities.ReadIntRequired();
 
 		Console.Write("Enter publisher ID: ");
-		int publisherId = SafeInput.ReadIntRequired();
+		int publisherId = ConsoleUtilities.ReadIntRequired();
 		Publisher publisher = new Publisher();
 
 		List<Author> authors = new List<Author>();

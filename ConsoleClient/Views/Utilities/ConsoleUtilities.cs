@@ -1,8 +1,9 @@
 ﻿using Core.DAO;
 
 namespace ConsoleClient.Views.Utilities;
-public static class SafeInput
+public static class ConsoleUtilities
 {
+ 
     public static int ReadIntRequired() {
         int value = -1;
         while (true)

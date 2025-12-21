@@ -58,31 +58,31 @@ public class VisitorView : View<Visitor>
     protected override Visitor InputEntity()
     {
         Console.Write("Enter first name: ");
-        string firstName = SafeInput.ReadStringRequired();
+        string firstName = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter last name: ");
-        string lastName = SafeInput.ReadStringRequired();
+        string lastName = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter date of birth (yyyy-MM-dd): ");
-        DateOnly dateOfBirth = DateOnly.Parse(SafeInput.ReadStringRequired());
+        DateOnly dateOfBirth = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
 
         Console.Write("Enter phone number: ");
-        string phoneNumber = SafeInput.ReadStringRequired();
+        string phoneNumber = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter email address: ");
-        string emailAddress = SafeInput.ReadStringRequired();
+        string emailAddress = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter address ID: ");
-        int addressId = SafeInput.ReadIntRequired();
+        int addressId = ConsoleUtilities.ReadIntRequired();
 
         Console.Write("Enter membership card number: ");
-        string membershipCardNumber = SafeInput.ReadStringRequired();
+        string membershipCardNumber = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter membership year: ");
-        int membershipYear = SafeInput.ReadIntRequired();
+        int membershipYear = ConsoleUtilities.ReadIntRequired();
 
         Console.Write("Enter member status (R = Redovan, V = VIP): ");
-        MemberStatus status = Enum.Parse<MemberStatus>(SafeInput.ReadStringRequired(), true);
+        MemberStatus status = Enum.Parse<MemberStatus>(ConsoleUtilities.ReadStringRequired(), true);
 
         Address address = new Address();
         List<Book> purchasedBooks = new List<Book>();

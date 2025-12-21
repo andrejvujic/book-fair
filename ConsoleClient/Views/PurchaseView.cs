@@ -60,19 +60,19 @@ public class PurchaseView : View<Purchase>
     protected override Purchase InputEntity()
     {
         Console.Write("Enter visitor ID: ");
-        int visitorId = SafeInput.ReadIntRequired();
+        int visitorId = ConsoleUtilities.ReadIntRequired();
 
         Console.Write("Enter book ID: ");
-        int bookId = SafeInput.ReadIntRequired();
+        int bookId = ConsoleUtilities.ReadIntRequired();
 
         Console.Write("Enter purchase date (yyyy-MM-dd): ");
-        DateOnly date = DateOnly.Parse(SafeInput.ReadStringRequired());
+        DateOnly date = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
 
         Console.Write("Enter rating (1-5): ");
-        int rating = SafeInput.ReadIntRequired();
+        int rating = ConsoleUtilities.ReadIntRequired();
 
         Console.Write("Enter comment: ");
-        string comment = SafeInput.ReadStringRequired();
+        string comment = ConsoleUtilities.ReadStringRequired();
 
         Visitor visitor = new Visitor();
         visitor.Id = visitorId;

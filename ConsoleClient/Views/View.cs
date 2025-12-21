@@ -25,7 +25,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
 
 
             Console.Write("> ");
-            int selectedOption = SafeInput.ReadIntRequired();
+            int selectedOption = ConsoleUtilities.ReadIntRequired();
             Console.Clear();
 
             if (selectedOption == BACK)
@@ -53,7 +53,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Action 'REMOVE':\n");
 
         Console.Write("Enter ID: ");
-        int id = SafeInput.ReadIntRequired();
+        int id = ConsoleUtilities.ReadIntRequired();
         Console.Clear();
 
         if (_dao.Remove(id) == null)
@@ -69,7 +69,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Action 'UPDATE':\n");
 
         Console.Write("Enter ID: ");
-        int id = SafeInput.ReadIntRequired();
+        int id = ConsoleUtilities.ReadIntRequired();
         Console.Write("\n");
 
         T entity = InputEntity();
@@ -103,7 +103,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"[{_dao.Identifier}] Showing with pagination and sorting:\n");
 
         Console.Write("Enter page size: ");
-        int pageSize = SafeInput.ReadIntRequired();
+        int pageSize = ConsoleUtilities.ReadIntRequired();
 
         if (pageSize < 1)
         {
@@ -114,12 +114,12 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         int totalPageCount = (int)Math.Ceiling(_dao.Count() / (double)pageSize);
 
         Console.Write("Enter sorting criteria: ");
-        string sortingCriteria = SafeInput.ReadStringRequired();
+        string sortingCriteria = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Sorting direction:\n0 -> Ascending\n1 -> Descending\n");
         Console.Write("Enter sorting direction: ");
 
-        int sortingDirection = SafeInput.ReadIntRequired();
+        int sortingDirection = ConsoleUtilities.ReadIntRequired();
 
         if (sortingDirection != 0 && sortingDirection != 1)
             Console.WriteLine("\nWARNING: Invalid sorting direction. Sorting direction will be set to ASCENDING.");
@@ -158,7 +158,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
 
 
             Console.Write("> ");
-            int selectedOption = SafeInput.ReadIntRequired();
+            int selectedOption = ConsoleUtilities.ReadIntRequired();
             Console.Clear();
 
             if (selectedOption == BACK)

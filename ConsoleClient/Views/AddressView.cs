@@ -59,16 +59,16 @@ public class AddressView : View<Address>
 	protected override Address InputEntity()
 	{
 		Console.WriteLine("Enter street: ");
-		string street = SafeInput.ReadStringRequired();
+		string street = ConsoleUtilities.ReadStringRequired();
 
 		Console.WriteLine("Enter street number: ");
-		string streetNumber = SafeInput.ReadStringRequired();
+		string streetNumber = ConsoleUtilities.ReadStringRequired();
 
 		Console.WriteLine("Enter city: ");
-		string city = SafeInput.ReadStringRequired();
+		string city = ConsoleUtilities.ReadStringRequired();
 
 		Console.WriteLine("Enter country: ");
-		string country = SafeInput.ReadStringRequired();
+		string country = ConsoleUtilities.ReadStringRequired();
 
 		Address address = new Address(street, streetNumber, city, country);
 	
