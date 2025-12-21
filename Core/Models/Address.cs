@@ -1,8 +1,9 @@
+using Core.Helpers;
 using Core.Serialization;
 namespace Core.Models;
 
 
-public class Address : ISerializable
+public class Address : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
     public string Street { get; set; }
