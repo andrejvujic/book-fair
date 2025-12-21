@@ -61,9 +61,9 @@ public class TablePrinter<T>
 
             if (tableRowIndex < TableRowCount - 1)
                 PrintTableRowSeparator();
-            else
-                Console.Write("\n");
         }
+
+        Console.Write("\n");
     }
 
     private void PrintTableRow(string[] row) {
