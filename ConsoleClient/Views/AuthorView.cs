@@ -64,8 +64,6 @@ public class AuthorView : View<Author>
 		Console.Write("Enter date of birth (yyyy-MM-dd): ");
 		DateOnly dateOfBirth = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
 
-		Console.Write("Enter address ID: ");
-		int addressId = ConsoleUtilities.ReadIntRequired();
 		Address address = new Address();
 		address = InputAddress();
 

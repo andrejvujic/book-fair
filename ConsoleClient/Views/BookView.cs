@@ -72,8 +72,6 @@ public class BookView : View<Book>
 		Console.Write("Enter number of pages: ");
 		int numberOfPages = ConsoleUtilities.ReadIntRequired();
 
-		Console.Write("Enter publisher ID: ");
-		int publisherId = ConsoleUtilities.ReadIntRequired();
 		Publisher publisher = new Publisher();
 		publisher = InputPublisher();
 
