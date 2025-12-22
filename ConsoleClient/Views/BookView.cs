@@ -143,7 +143,7 @@ public class BookView : View<Book>
             new TablePrinter<Visitor>(_visitorDAO.EntityProperties, book.Buyers).Print();
         }
         else
-            Console.WriteLine($"No visitors purchased '{book.BookTitle}'.");
+            Console.WriteLine($"No visitors purchased '{book.BookTitle}'.\n");
 
         if (book.Wishlisters.Count > 0)
         {
@@ -151,7 +151,7 @@ public class BookView : View<Book>
             new TablePrinter<Visitor>(_visitorDAO.EntityProperties, book.Wishlisters).Print();
         }
         else
-            Console.WriteLine($"No visitors wishlisted '{book.BookTitle}'.");
+            Console.WriteLine($"No visitors wishlisted '{book.BookTitle}'.\n");
 
     }
 
