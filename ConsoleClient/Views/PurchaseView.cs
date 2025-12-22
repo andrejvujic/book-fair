@@ -103,9 +103,15 @@ public class PurchaseView : View<Purchase>
         // Prikazuje osnovne podatke o kupovini za koju prikazujemo detalje.
         new TablePrinter<Purchase>(_dao.EntityProperties, new List<Purchase>() { purchase }).Print();
 
-        new TablePrinter<Book>(_bookDAO.EntityProperties, new List<Book>() { purchase.Book }).Print();
+        if (purchase.Book != null)
+            new TablePrinter<Book>(_bookDAO.EntityProperties, new List<Book>() { purchase.Book }).Print();
+        else
+            Console.WriteLine("Book unknown.\n");
 
-        new TablePrinter<Visitor>(_visitorDAO.EntityProperties, new List<Visitor>() { purchase.Visitor }).Print();
+        if (purchase.Visitor != null)
+            new TablePrinter<Visitor>(_visitorDAO.EntityProperties, new List<Visitor>() { purchase.Visitor }).Print();
+        else
+            Console.WriteLine("Visitor unknown.\n");
 
     }
 
