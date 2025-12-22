@@ -128,12 +128,12 @@ public class BookView : View<Book>
 			new TablePrinter<Author>(_authorDAO.EntityProperties, book.Authors).Print();
 		}
 		else
-			Console.WriteLine($"{book.BookTitle} doesn't have any authors");
+			Console.WriteLine($"{book.BookTitle} doesn't have any authors.\n");
 
 		Console.WriteLine($"'{book.BookTitle}' publisher:\n");
 
 		if (book.Publisher == null)
-			Console.WriteLine("Publisher is unknown.\n");
+			Console.WriteLine($"'{book.BookTitle}' doesn't have any publishers.\n");
 		else
 			new TablePrinter<Publisher>(_publisherDAO.EntityProperties, new List<Publisher> { book.Publisher }).Print();
 
@@ -161,7 +161,7 @@ public class BookView : View<Book>
 
 		while (true)
 		{
-			Console.Write("Enter IDs of author`s: ");
+			Console.Write("Enter IDs of author's: ");
 			List<int> idsOfAuthors = ConsoleUtilities.ReadIntListRequired();
 
 			if (ParseAuthorIds(idsOfAuthors, out authors)) break;

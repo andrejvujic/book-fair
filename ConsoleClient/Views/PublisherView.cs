@@ -115,7 +115,7 @@ public class PublisherView : View<Publisher>
             Console.WriteLine($"{publisher.Name} hasn't worked with any authors.\n");
 
         if (publisher.Boss == null)
-            Console.WriteLine($"{publisher.Name} doesn't have a boos.\n");
+            Console.WriteLine($"{publisher.Name} doesn't have a boss.\n");
         else {
             Console.WriteLine($"The boss of {publisher.Name} is:\n");
             new TablePrinter<Author>(_authorDAO.EntityProperties, new List<Author>{ publisher.Boss }).Print();

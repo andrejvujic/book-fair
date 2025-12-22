@@ -26,14 +26,14 @@ public class RelationConnector
     {
         ConnectAuthorsWithAddresses(_authorDAO, _addressDAO);
         ConnectBooksWithPublishers(_bookDAO, _publisherDAO);
-        ConnectPurchaseWithVisitorAndBook(_purchaseDAO, _visitorDAO, _bookDAO);
-        ConnectVisitorWithPurchasedBooks(_purchaseDAO, _visitorDAO); // Ovo se mora pozvati nakon sto se kupovine povezu sa knjigama.
+        ConnectPurchasesWithVisitorsAndBooks(_purchaseDAO, _visitorDAO, _bookDAO);
+        ConnectVisitorsWithPurchasedBooks(_purchaseDAO, _visitorDAO); // Ovo se mora pozvati nakon sto se kupovine povezu sa knjigama.
         ConnectBooksWithBuyers(_bookDAO, _purchaseDAO);
-        ConnectPublisherWithBoss(_publisherDAO, _authorDAO);
-        ConnectPublisherWithAuthorsAndBooks(_publisherDAO, _bookDAO); // Ovo se mora pozvati nakon sto se knjige povezu sa autorima.
-        ConnectVisitorWithAddress(_visitorDAO, _addressDAO);
+        ConnectPublishersWithBosses(_publisherDAO, _authorDAO);
+        ConnectPublishersWithAuthorsAndBooks(_publisherDAO, _bookDAO); // Ovo se mora pozvati nakon sto se knjige povezu sa autorima.
+        ConnectVisitorsWithAddresses(_visitorDAO, _addressDAO);
     }
-    private void ConnectPurchaseWithVisitorAndBook(PurchaseDAO purchaseDAO, VisitorDAO visitorDAO, BookDAO bookDAO)
+    private void ConnectPurchasesWithVisitorsAndBooks(PurchaseDAO purchaseDAO, VisitorDAO visitorDAO, BookDAO bookDAO)
     {
         List<Visitor> allVisitors = visitorDAO.GetAll();
         List<Book> allBooks = bookDAO.GetAll();
@@ -54,7 +54,7 @@ public class RelationConnector
         );
     }
 
-    private void ConnectVisitorWithPurchasedBooks(PurchaseDAO purchaseDAO, VisitorDAO visitorDAO)
+    private void ConnectVisitorsWithPurchasedBooks(PurchaseDAO purchaseDAO, VisitorDAO visitorDAO)
     {
         List<Purchase> allPurchases = purchaseDAO.GetAll();
         visitorDAO.ForEach(visitor =>
@@ -67,7 +67,7 @@ public class RelationConnector
         );
     }
 
-    private void ConnectPublisherWithBoss(PublisherDAO publisherDAO, AuthorDAO authorDAO)
+    private void ConnectPublishersWithBosses(PublisherDAO publisherDAO, AuthorDAO authorDAO)
     {
         List<Author> allAuthors = authorDAO.GetAll();
 
@@ -83,7 +83,7 @@ public class RelationConnector
         );
     }
 
-    private void ConnectPublisherWithAuthorsAndBooks(PublisherDAO publisherDAO, BookDAO bookDAO)
+    private void ConnectPublishersWithAuthorsAndBooks(PublisherDAO publisherDAO, BookDAO bookDAO)
     {
         List<Book> allBooks = bookDAO.GetAll();
 
@@ -103,7 +103,7 @@ public class RelationConnector
         );
     }
 
-    private void ConnectVisitorWithAddress(VisitorDAO visitorDAO, AddressDAO addressDAO)
+    private void ConnectVisitorsWithAddresses(VisitorDAO visitorDAO, AddressDAO addressDAO)
     {
         visitorDAO.ForEach(visitor =>
             {

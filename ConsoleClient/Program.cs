@@ -8,20 +8,19 @@ using ConsoleClient;
 ManyToManyRelation<Visitor, Book> visitorWhislistedBooks = new ManyToManyRelation<Visitor, Book>("VisitorWishlistedBooks.txt");
 ManyToManyRelation<Author, Book> authorWrittenBooks = new ManyToManyRelation<Author, Book>("AuthorWrittenBooks.txt");
 
-PublisherDAO publisherDAO = new PublisherDAO();
-VisitorDAO visitorDAO = new VisitorDAO(visitorWhislistedBooks);
-PurchaseDAO purchaseDAO = new PurchaseDAO();
 AddressDAO addressDAO = new AddressDAO();
 AuthorDAO authorDAO = new AuthorDAO(authorWrittenBooks);
 BookDAO bookDAO = new BookDAO(authorWrittenBooks, visitorWhislistedBooks);
+VisitorDAO visitorDAO = new VisitorDAO(visitorWhislistedBooks);
+PurchaseDAO purchaseDAO = new PurchaseDAO();
+PublisherDAO publisherDAO = new PublisherDAO();
 
-VisitorView visitorView = new VisitorView(visitorDAO, bookDAO, addressDAO);
-PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO);
-PurchaseView purchaseView = new PurchaseView(purchaseDAO, visitorDAO, bookDAO);
 AddressView addressView = new AddressView(addressDAO);
-AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
+AuthorView authorView = new AuthorView(authorDAO, addressDAO, bookDAO);
 BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO, visitorDAO);
-
+VisitorView visitorView = new VisitorView(visitorDAO, bookDAO, addressDAO);
+PurchaseView purchaseView = new PurchaseView(purchaseDAO, visitorDAO, bookDAO);
+PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO);
 
 const int EXIT = 0;
 const int VISITOR_MENU = 1;
