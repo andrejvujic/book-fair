@@ -1,5 +1,6 @@
 ﻿using ConsoleClient.Views.Utilities;
 using Core.DAO;
+using Core.Helpers.TablePrinter;
 using Core.Models;
 
 namespace ConsoleClient.Views;
@@ -23,6 +24,7 @@ public class PublisherView : View<Publisher>
         Console.WriteLine("3 -> Update");
         Console.WriteLine("4 -> Remove");
         Console.WriteLine("5 -> Show (with pagination and sorting)");
+        Console.WriteLine("6 -> Show details");
         Console.WriteLine("0 -> Back\n");
     }
 
@@ -44,6 +46,9 @@ public class PublisherView : View<Publisher>
                 break;
             case SHOW_WITH_PAGINATION_AND_SORTING:
                 ShowPaginatedAndSortedAction();
+                break;
+            case SHOW_DETAILS:
+                ShowDetailsAction();
                 break;
             default:
                 Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
@@ -73,6 +78,45 @@ public class PublisherView : View<Publisher>
         );
 
         return publisher;
+    }
+
+    private void ShowDetailsAction()
+    {
+        Console.WriteLine($"[{_dao.Identifier}] Showing details:\n");
+
+        Console.Write("Enter Publisher ID: ");
+        int id = ConsoleUtilities.ReadIntRequired();
+        Publisher? publisher = _dao.GetById(id);
+
+        Console.Write('\n');
+
+        if (publisher == null)
+        {
+            Console.Clear();
+            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        // Prikazuje osnovne podatke o izdavacu za kojeg prikazujemo detalje.
+        new TablePrinter<Publisher>(_dao.EntityProperties, new List<Publisher>() { publisher }).Print();
+
+        // Prikazuje knjige koje je izdavac izdao.
+        if (publisher.Books.Count > 0)
+        {
+            Console.WriteLine($"{publisher.FirstName} has published {publisher.Books.Count} book(s):\n");
+            new TablePrinter<Book>(_bookDAO.EntityProperties, publisher.Books).Print();
+        }
+        else
+            Console.WriteLine($"{publisher.FirstName} hasn't published any books.\n");
+
+        // Prikazuje autore sa kojima je izdavac saradjivao (autore cije knjige je izdao).
+        if (publisher.Authors.Count > 0)
+        {
+            Console.WriteLine($"{publisher.FirstName} has worked with {publisher.Authors.Count} author(s):\n");
+            new TablePrinter<Author>(_authorDAO.EntityProperties, publisher.Authors).Print();
+        }
+        else
+            Console.WriteLine($"{publisher.FirstName} hasn't worked with any authors.\n");
     }
 
     private Author InputBoss()
