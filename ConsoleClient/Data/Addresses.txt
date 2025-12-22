@@ -1,10 +1,1 @@
-1|Oak Avenue|11|Sydney|Australia
-2|Vojvode Stepe|89|Leskovac|Serbia
-3|Maple Street|56|Toronto|Canada
-4|Rajiceva|45|Pancevo|Serbia
-5|Main Street|90|London|UK
-6|Kralja Petra|12|Beograd|Serbia
-7|Bulevar Oslobodjenja|78|Kragujevac|Serbia
-8|Nemanjina|34|Novi Sad|Serbia
-9|Dositejeva|23|Zrenjanin|Serbia
-10|Elm Street|67|New York|USA
+0|Kornelija Stankovica|36|Novi Sad|Serbia
