@@ -13,16 +13,6 @@ public class VisitorView : View<Visitor>
         _bookDAO = bookDAO;
     }
 
-    protected override string[] EntityProperties {
-        get {
-            return new string[] {
-                "ID", "First name", "Last name", "Date of birth",
-                "Phone number", "Email address", "Address ID",
-                "Membership card number", "Membership year", "Status"
-            };        
-        }
-    }
-
     protected override void ShowOptions() {
         Console.WriteLine("[Visitor] Available options:\n");
 
@@ -31,6 +21,7 @@ public class VisitorView : View<Visitor>
         Console.WriteLine("3 -> Update");
         Console.WriteLine("4 -> Remove");
         Console.WriteLine("5 -> Show (with pagination and sorting)");
+        Console.WriteLine("6 -> Show details");
         Console.WriteLine("0 -> Back\n");
     }
 
@@ -52,6 +43,9 @@ public class VisitorView : View<Visitor>
                 break;
             case SHOW_WITH_PAGINATION_AND_SORTING:
                 ShowPaginatedAndSortedAction();
+                break;
+            case SHOW_DETAILS:
+                ShowDetailsAction();
                 break;
             default:
                 Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
@@ -93,7 +87,7 @@ public class VisitorView : View<Visitor>
         List<Book> purchasedBooks = new List<Book>();
 
         List<Book> wishlistedBooks = InputWishlistedBooks();
-  
+
         Visitor visitor = new Visitor(
             firstName,
             lastName,
@@ -109,6 +103,21 @@ public class VisitorView : View<Visitor>
         );
 
         return visitor;
+    }
+
+    private void ShowDetails() { 
+        int id = ConsoleUtilities.ReadIntRequired();
+        Visitor? visitor = _dao.GetById(id);
+
+        if (visitor == null)
+        {
+            Console.Clear();
+            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        List<Book> wishlistedBooks = visitor.WishlistedBooks;
+
     }
 
     private List<Book> InputWishlistedBooks()
@@ -151,4 +160,5 @@ public class VisitorView : View<Visitor>
     private const int UPDATE = 3;
     private const int REMOVE = 4;
     private const int SHOW_WITH_PAGINATION_AND_SORTING = 5;
+    private const int SHOW_DETAILS = 6;
 }

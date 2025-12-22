@@ -10,8 +10,6 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
 {
     protected readonly DAO<T> _dao;
 
-    protected abstract string[] EntityProperties { get; }
-
     public View(DAO<T> dao)
     {
         _dao = dao; 

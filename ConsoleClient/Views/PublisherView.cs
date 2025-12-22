@@ -8,16 +8,6 @@ public class PublisherView : View<Publisher>
 {
     public PublisherView(PublisherDAO publisherDAO) : base(publisherDAO) { }
 
-    protected override string[] EntityProperties
-    {
-        get
-        {
-            return new string[] {
-                "ID", "First name", "Last name", "Boss ID"
-            };
-        }
-    }
-
     protected override void ShowOptions()
     {
         Console.WriteLine("[Publisher] Available options:\n");

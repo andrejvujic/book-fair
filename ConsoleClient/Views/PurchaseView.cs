@@ -9,16 +9,6 @@ public class PurchaseView : View<Purchase>
 {
     public PurchaseView(PurchaseDAO purchaseDAO): base(purchaseDAO) {}
 
-    protected override string[] EntityProperties
-    {
-        get
-        {
-            return new string[] {
-                "ID", "Visitor ID", "Book ID", "Date", "Rating", "Comment"
-            };
-        }
-    }
-
     protected override void ShowOptions()
     {
         Console.WriteLine("[Purchase] Available options:\n");
