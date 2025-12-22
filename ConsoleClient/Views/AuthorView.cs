@@ -67,6 +67,7 @@ public class AuthorView : View<Author>
 		Console.Write("Enter address ID: ");
 		int addressId = ConsoleUtilities.ReadIntRequired();
 		Address address = new Address();
+		address = InputAddress();
 
 		Console.Write("Enter phone number: ");
 		string phoneNumber = ConsoleUtilities.ReadStringRequired();
@@ -82,7 +83,6 @@ public class AuthorView : View<Author>
 
 		List<Book> books = new List<Book>();
 
-		books = InputBooks();
 
 		Author author = new Author(
 			name,
@@ -112,7 +112,7 @@ public class AuthorView : View<Author>
 		if (author == null)
 		{
 			Console.Clear();
-			Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+			Console.WriteLine($"ERROR: Author with ID '{id}' doesn't exist.\n");
 			return;
 		}
 
@@ -129,39 +129,32 @@ public class AuthorView : View<Author>
 			Console.WriteLine($"{author.FirstName} hasn't written any books.\n");
 
 	}
-
-	private List<Book> InputBooks()
+	private Address InputAddress()
 	{
-		List<Book> books;
+		Address address = new Address();
 
 		while (true)
 		{
-			Console.Write("Enter IDs of author`s books: ");
-			List<int> idsOfBooks = ConsoleUtilities.ReadIntListRequired();
-
-			if (ParseBookIds(idsOfBooks, out books)) break;
+			Console.Write("Enter address ID: ");
+			int addressId = ConsoleUtilities.ReadIntRequired();
+			if (ParseAddressId(addressId, out address)) break;
 		}
 
-		return books;
+		return address;
 	}
 
-	private bool ParseBookIds(List<int> idsOfBooks, out List<Book> books)
+	private bool ParseAddressId(int addressId, out Address address)
 	{
-		books = new List<Book>();
+		address = new Address();
 
-		foreach (int id in idsOfBooks)
+		Address? addressCandidate = _addressDAO.GetById(addressId);
+		if (addressCandidate == null)
 		{
-			Book? book = _bookDAO.GetById(id);
-			if (book == null)
-			{
-				books.Clear();
-				Console.WriteLine($"ERROR: Book with ID '{id}' doesn't exist.\n");
-				return false;
-			}
-
-			books.Add(book);
+			Console.WriteLine($"ERROR: Address with ID '{addressId}' doesn't exist.\n");
+			return false;
 		}
 
+		address = addressCandidate;
 		return true;
 	}
 

@@ -1,12 +1,14 @@
 ﻿using ConsoleClient.Views.Utilities;
 using Core.DAO;
+using Core.Helpers.TablePrinter;
 using Core.Models;
 
 namespace ConsoleClient.Views;
 
 public class BookView : View<Book>
 {
-	public BookView(BookDAO bookDAO) : base(bookDAO) { }
+	private readonly AuthorDAO _authorDAO;
+	public BookView(BookDAO bookDAO, AuthorDAO authorDAO) : base(bookDAO) { _authorDAO = authorDAO; }
 	protected override void ShowOptions()
 	{
 		Console.WriteLine("[Book] Available options:\n");
@@ -16,6 +18,7 @@ public class BookView : View<Book>
 		Console.WriteLine("3 -> Update");
 		Console.WriteLine("4 -> Remove");
 		Console.WriteLine("5 -> Show (with pagination and sorting)");
+		Console.WriteLine("6 -> Show details");
 		Console.WriteLine("0 -> Back\n");
 	}
 
@@ -37,6 +40,9 @@ public class BookView : View<Book>
 				break;
 			case SHOW_WITH_PAGINATION_AND_SORTING:
 				ShowPaginatedAndSortedAction();
+				break;
+			case SHOW_DETAILS:
+				ShowDetailsAction();
 				break;
 			default:
 				Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
@@ -70,6 +76,7 @@ public class BookView : View<Book>
 		Publisher publisher = new Publisher();
 
 		List<Author> authors = new List<Author>();
+		authors = InputAuthors();
 		List<Visitor> buyers = new List<Visitor>();
 		List<Visitor> wishers = new List<Visitor>();
 
@@ -89,10 +96,76 @@ public class BookView : View<Book>
 		return book;
 	}
 
+	private void ShowDetailsAction()
+	{
+		Console.WriteLine($"[{_dao.Identifier}] Showing details:\n");
+
+		Console.Write("Enter Book ID: ");
+		int id = ConsoleUtilities.ReadIntRequired();
+		Book? book = _dao.GetById(id);
+
+		Console.Write('\n');
+
+		if (book == null)
+		{
+			Console.Clear();
+			Console.WriteLine($"ERROR: Book with ID '{id}' doesn't exist.\n");
+			return;
+		}
+
+		// Prikazuje osnovne podatke o knjigama za kojeg prikazujemo detalje.
+		new TablePrinter<Book>(_dao.EntityProperties, new List<Book>() { book }).Print();
+
+		// Prikazuje autore koji su napisali knjige:
+		if (book.Authors.Count > 0)
+		{
+			Console.WriteLine($"{book.BookTitle} was written by {book.Authors.Count} author(s):\n");
+			new TablePrinter<Author>(_authorDAO.EntityProperties, book.Authors).Print();
+		}
+
+	}
+
+	private List<Author> InputAuthors()
+	{
+		List<Author> authors;
+
+		while (true)
+		{
+			Console.Write("Enter IDs of author`s: ");
+			List<int> idsOfAuthors = ConsoleUtilities.ReadIntListRequired();
+
+			if (ParseAuthorIds(idsOfAuthors, out authors)) break;
+		}
+
+		return authors;
+	}
+
+	private bool ParseAuthorIds(List<int> idsOfAuthors, out List<Author> authors)
+	{
+		authors = new List<Author>();
+
+		foreach (int id in idsOfAuthors)
+		{
+			Author? author = _authorDAO.GetById(id);
+			if (author == null)
+			{
+				authors.Clear();
+				Console.WriteLine($"ERROR: Author with ID '{id}' doesn't exist.\n");
+				return false;
+			}
+
+			authors.Add(author);
+		}
+
+		return true;
+	}
+
+
 	private const int SHOW_ALL = 1;
 	private const int ADD = 2;
 	private const int UPDATE = 3;
 	private const int REMOVE = 4;
 	private const int SHOW_WITH_PAGINATION_AND_SORTING = 5;
+	private const int SHOW_DETAILS = 6;
 }
 
