@@ -9,21 +9,9 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor : ISerializable, IIdentifiable, IPrintable
+public class Visitor : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
-
-    public string[] PrintableProperties
-    {
-        get
-        {
-            return new string[] {
-                "ID", "First name", "Last name", "Date of birth",
-                "Phone number", "Email address", "Address ID",
-                "Membership card number", "Membership year", "Status"
-            };
-        }
-    }
 
     public string FirstName { get; set; }
     public string LastName { get; set; }

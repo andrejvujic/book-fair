@@ -2,19 +2,9 @@ using Core.Helpers;
 using Core.Serialization;
 namespace Core.Models;
 
-public class Purchase : IIdentifiable, ISerializable, IPrintable
+public class Purchase : IIdentifiable, ISerializable
 {
     public int Id { get; set; }
-    public string[] PrintableProperties
-    {
-        get
-        {
-            return new string[] {
-                "ID", "Visitor ID", "Book ID", "Date", "Rating", "Comment"
-            };
-        }
-    }
-
 
     public int VisitorId { get; set;  }
     public Visitor Visitor { get; set; }
