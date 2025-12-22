@@ -30,7 +30,7 @@ const int ADDRESS_MENU = 4;
 const int AUTHOR_MENU = 5;
 const int BOOK_MENU = 6;
 
-RelationConnector relationConnector = new RelationConnector(authorDAO, bookDAO, publisherDAO, visitorDAO, addressDAO, purchaseDAO);
+RelationManager relationManager = new RelationManager(authorDAO, bookDAO, publisherDAO, visitorDAO, addressDAO, purchaseDAO);
 
 while (true)
 {
@@ -58,7 +58,7 @@ while (true)
         visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Wishlisters.Add);
     });
 
-    relationConnector.ConnectAll();
+    relationManager.ReconnectAll();
 
     Console.WriteLine("Book Fair Console App - please select an option:\n");
     Console.WriteLine("1 -> Visitor...");
