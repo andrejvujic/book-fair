@@ -1,5 +1,6 @@
 ﻿using ConsoleClient.Views.Utilities;
 using Core.DAO;
+using Core.Helpers.TablePrinter;
 using Core.Models;
 using System;
 
@@ -84,6 +85,27 @@ public class PurchaseView : View<Purchase>
 
     private void ShowDetailsAction()
     {
+        Console.WriteLine($"[{_dao.Identifier}] Showing details:\n");
+
+        Console.Write("Enter purchase ID: ");
+        int id = ConsoleUtilities.ReadIntRequired();
+        Purchase? purchase = _dao.GetById(id);
+
+        Console.Write('\n');
+
+        if (purchase == null)
+        {
+            Console.Clear();
+            Console.WriteLine($"ERROR: Purchase with ID '{id}' doesn't exist.\n");
+            return;
+        }
+
+        // Prikazuje osnovne podatke o kupovini za koju prikazujemo detalje.
+        new TablePrinter<Purchase>(_dao.EntityProperties, new List<Purchase>() { purchase }).Print();
+
+        new TablePrinter<Book>(_bookDAO.EntityProperties, new List<Book>() { purchase.Book }).Print();
+
+        new TablePrinter<Visitor>(_visitorDAO.EntityProperties, new List<Visitor>() { purchase.Visitor }).Print();
 
     }
 
