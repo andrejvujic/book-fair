@@ -19,12 +19,12 @@ authorDAO.ForEach(author => authorWrittenBooks.Connect(author, bookDAO.GetAll(),
 bookDAO.ForEach(book => authorWrittenBooks.Connect(book, authorDAO.GetAll(), book.Authors.Add));
 bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Buyers.Add));
 
-VisitorView visitorView = new VisitorView(visitorDAO, bookDAO);
+VisitorView visitorView = new VisitorView(visitorDAO, bookDAO, addressDAO);
 PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO);
 PurchaseView purchaseView = new PurchaseView(purchaseDAO);
 AddressView addressView = new AddressView(addressDAO);
 AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
-BookView bookView = new BookView(bookDAO);
+BookView bookView = new BookView(bookDAO, authorDAO);
 
 const int EXIT = 0;
 const int VISITOR_MENU = 1;
