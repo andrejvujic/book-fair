@@ -1,13 +1,13 @@
 using Core.Helpers;
 using Core.Serialization;
+using System.Reflection.Metadata.Ecma335;
 namespace Core.Models;
 
 public class Publisher : ISerializable, IIdentifiable
 {
     public int Id { get; set; } = -1;
 
-    public string FirstName { get; set; } = "";
-    public string LastName { get; set; } = "";
+    public string Name { get; set; } = "";
 
     public int BossId { get; set; } = 0;
     public Author Boss { get; set; } // TODO: Najmanje 5 godina iskustva
@@ -17,10 +17,9 @@ public class Publisher : ISerializable, IIdentifiable
 
     public Publisher() { }
 
-    public Publisher(string firstName, string lastName, Author boss, List<Author> authors, List<Book> books)
+    public Publisher(string name, Author boss, List<Author> authors, List<Book> books)
     {
-        FirstName = firstName;
-        LastName = lastName;
+        Name = name;
         Boss = boss;
         BossId = boss.Id;
         Authors = authors;
@@ -32,8 +31,7 @@ public class Publisher : ISerializable, IIdentifiable
         return
             "[Publisher]:" +
             $"\n\tId: {Id}" +
-            $"\n\tFirst name: {FirstName}" +
-            $"\n\tLast name: {LastName}" +
+            $"\n\tName: {Name}" +
             $"\n\tBoss: Id: {Boss.Id} Name: {Boss.FirstName} Surname: {Boss.LastName}" +
             $"\n\tAuthors: {Authors}" +
             $"\n\tBooks: {Books}";
@@ -45,8 +43,7 @@ public class Publisher : ISerializable, IIdentifiable
         string[] csv =
         {
             Id.ToString(),
-            FirstName,
-            LastName,
+            Name,
             BossId.ToString()
         };
         return csv;
@@ -55,8 +52,7 @@ public class Publisher : ISerializable, IIdentifiable
     public void FromCSV(string[] values)
     {
         Id = int.Parse(values[0]);
-        FirstName = values[1];
-        LastName = values[2];
-        BossId = int.Parse(values[3]);
+        Name = values[1];
+        BossId = int.Parse(values[2]);
     }
 }

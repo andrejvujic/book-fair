@@ -61,9 +61,6 @@ public class PublisherView : View<Publisher>
         Console.Write("Enter name: ");
         string name = ConsoleUtilities.ReadStringRequired();
 
-        Console.Write("Enter surname: ");
-        string surname = ConsoleUtilities.ReadStringRequired();
-
         Author boss = InputBoss();
 
         List<Author> authors = new List<Author>();
@@ -71,7 +68,6 @@ public class PublisherView : View<Publisher>
 
         Publisher publisher = new Publisher(
             name,
-            surname,
             boss,
             authors,
             books
@@ -93,7 +89,7 @@ public class PublisherView : View<Publisher>
         if (publisher == null)
         {
             Console.Clear();
-            Console.WriteLine($"ERROR: Visitor with ID '{id}' doesn't exist.\n");
+            Console.WriteLine($"ERROR: Publisher with ID '{id}' doesn't exist.\n");
             return;
         }
 
@@ -103,20 +99,27 @@ public class PublisherView : View<Publisher>
         // Prikazuje knjige koje je izdavac izdao.
         if (publisher.Books.Count > 0)
         {
-            Console.WriteLine($"{publisher.FirstName} has published {publisher.Books.Count} book(s):\n");
+            Console.WriteLine($"{publisher.Name} has published {publisher.Books.Count} book(s):\n");
             new TablePrinter<Book>(_bookDAO.EntityProperties, publisher.Books).Print();
         }
         else
-            Console.WriteLine($"{publisher.FirstName} hasn't published any books.\n");
+            Console.WriteLine($"{publisher.Name} hasn't published any books.\n");
 
         // Prikazuje autore sa kojima je izdavac saradjivao (autore cije knjige je izdao).
         if (publisher.Authors.Count > 0)
         {
-            Console.WriteLine($"{publisher.FirstName} has worked with {publisher.Authors.Count} author(s):\n");
+            Console.WriteLine($"{publisher.Name} has worked with {publisher.Authors.Count} author(s):\n");
             new TablePrinter<Author>(_authorDAO.EntityProperties, publisher.Authors).Print();
         }
         else
-            Console.WriteLine($"{publisher.FirstName} hasn't worked with any authors.\n");
+            Console.WriteLine($"{publisher.Name} hasn't worked with any authors.\n");
+
+        if (publisher.Boss == null)
+            Console.WriteLine($"{publisher.Name} doesn't have a boos.\n");
+        else {
+            Console.WriteLine($"The boss of {publisher.Name} is:\n");
+            new TablePrinter<Author>(_authorDAO.EntityProperties, new List<Author>{ publisher.Boss }).Print();
+        }
     }
 
     private Author InputBoss()

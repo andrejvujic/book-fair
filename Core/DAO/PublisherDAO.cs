@@ -11,7 +11,7 @@ public class PublisherDAO : DAO<Publisher>
         get
         {
             return new string[] {
-                "ID", "First name", "Last name", "Boss ID" 
+                "ID", "Name", "Boss ID" 
             };
         }
     }
@@ -26,8 +26,7 @@ public class PublisherDAO : DAO<Publisher>
         if (oldEntity == null) return null;
 
         oldEntity.Id = entity.Id;
-        oldEntity.FirstName = entity.FirstName;
-        oldEntity.LastName = entity.LastName;
+        oldEntity.Name = entity.Name;
         oldEntity.Boss = entity.Boss;
         oldEntity.BossId = entity.BossId;
         oldEntity.Authors = entity.Authors;
@@ -45,8 +44,7 @@ public class PublisherDAO : DAO<Publisher>
             return new Dictionary<string, IOrderedEnumerable<Publisher>>
             {
                 { "Id", _entities.OrderBy(x => x.Id) },
-                { "Name", _entities.OrderBy(x => x.FirstName) },
-                { "Surname", _entities.OrderBy(x => x.LastName) },
+                { "Name", _entities.OrderBy(x => x.Name) },
                 { "BossId", _entities.OrderBy(x => x.BossId) }
             };
         }
