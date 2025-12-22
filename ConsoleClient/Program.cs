@@ -26,6 +26,57 @@ AddressView addressView = new AddressView(addressDAO);
 AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
 BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO);
 
+void connectAdressWithAuthors(AuthorDAO authorDAO, AddressDAO addressDAO)
+{
+    List<Address> allAddresses = addressDAO.GetAll();
+
+    authorDAO.ForEach(author =>
+    {
+
+        Address? address = allAddresses.Find(address => address.Id == author.AddressId);
+
+        if(address == null)
+			throw new Exception($"FATAL ERROR: Address with ID '{author.AddressId}' doesn't exist. Resolving relations failed.");
+
+        author.Address = address;
+	});
+}
+
+
+void connectPublisherWithBooks(BookDAO bookDAO, PublisherDAO publisherDAO)
+{
+    List<Publisher> allPublishers = publisherDAO.GetAll();
+
+    bookDAO.ForEach(book =>
+    {
+
+        Publisher? publisher = allPublishers.Find(publisher => publisher.Id == book.PublisherId);
+
+        if(publisher == null)
+			throw new Exception($"FATAL ERROR: Address with ID '{book.PublisherId}' doesn't exist. Resolving relations failed.");
+
+        book.Publisher = publisher; 
+	});
+
+void connectBooksWithBuyers(BookDAO bookDAO, PurchaseDAO purchaseDAO)
+{
+        List<Purchase> allPurchases = purchaseDAO.GetAll();
+
+        bookDAO.ForEach(book =>
+        {
+            List<Purchase> bookPurchases = allPurchases.Where(purchase => purchase.BookId == book.Id).ToList();
+
+            foreach(Purchase purchase in bookPurchases)
+            {
+                if (book.Buyers.Contains(purchase.Visitor)) continue;
+
+                book.Buyers.Add(purchase.Visitor);
+            }
+        });
+}
+}
+
+
 const int EXIT = 0;
 const int VISITOR_MENU = 1;
 const int PUBLISHER_MENU = 2;

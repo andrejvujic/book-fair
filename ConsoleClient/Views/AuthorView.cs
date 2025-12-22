@@ -128,6 +128,13 @@ public class AuthorView : View<Author>
 		else
 			Console.WriteLine($"{author.FirstName} hasn't written any books.\n");
 
+		Console.WriteLine($"{author.FirstName}'s address:\n");
+
+		if (author.Address == null)
+			Console.WriteLine("Address is unknown.\n");
+		else
+			new TablePrinter<Address>(_addressDAO.EntityProperties, new List<Address> { author.Address }).Print();
+
 	}
 	private Address InputAddress()
 	{

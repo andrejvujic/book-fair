@@ -125,6 +125,13 @@ public class BookView : View<Book>
 			new TablePrinter<Author>(_authorDAO.EntityProperties, book.Authors).Print();
 		}
 
+		Console.WriteLine($"Book {book.BookTitle}'s publisher :\n");
+
+		if (book.Publisher == null)
+			Console.WriteLine("Publisher is unknown.\n");
+		else
+			new TablePrinter<Publisher>(_publisherDAO.EntityProperties, new List<Publisher> { book.Publisher }).Print();
+
 	}
 
 	private List<Author> InputAuthors()
