@@ -7,7 +7,12 @@ namespace ConsoleClient.Views;
 
 public class PurchaseView : View<Purchase>
 {
-    public PurchaseView(PurchaseDAO purchaseDAO): base(purchaseDAO) {}
+    private readonly VisitorDAO _visitorDAO;
+    private readonly BookDAO _bookDAO;
+    public PurchaseView(PurchaseDAO purchaseDAO, VisitorDAO visitorDAO, BookDAO bookDAO): base(purchaseDAO) {
+        _visitorDAO = visitorDAO;
+        _bookDAO = bookDAO;
+    }
 
     protected override void ShowOptions()
     {
@@ -18,6 +23,7 @@ public class PurchaseView : View<Purchase>
         Console.WriteLine("3 -> Update");
         Console.WriteLine("4 -> Remove");
         Console.WriteLine("5 -> Show (with pagination and sorting)");
+        Console.WriteLine("6 -> Show details");
         Console.WriteLine("0 -> Back\n");
     }
 
@@ -40,6 +46,9 @@ public class PurchaseView : View<Purchase>
             case SHOW_WITH_PAGINATION_AND_SORTING:
                 ShowPaginatedAndSortedAction();
                 break;
+            case SHOW_DETAILS:
+                ShowDetailsAction();
+                break;
             default:
                 Console.WriteLine($"ERROR: Unknown option '{selectedOption}'. Please select one of the available options.\n");
                 break;
@@ -49,11 +58,9 @@ public class PurchaseView : View<Purchase>
 
     protected override Purchase InputEntity()
     {
-        Console.Write("Enter visitor ID: ");
-        int visitorId = ConsoleUtilities.ReadIntRequired();
+        Visitor visitor = InputVisitor();
 
-        Console.Write("Enter book ID: ");
-        int bookId = ConsoleUtilities.ReadIntRequired();
+        Book book = InputBook();
 
         Console.Write("Enter purchase date (yyyy-MM-dd): ");
         DateOnly date = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
@@ -63,12 +70,6 @@ public class PurchaseView : View<Purchase>
 
         Console.Write("Enter comment: ");
         string comment = ConsoleUtilities.ReadStringRequired();
-
-        Visitor visitor = new Visitor();
-        visitor.Id = visitorId;
-
-        Book book = new Book();
-        book.Id = bookId;
 
         Purchase purchase = new Purchase(
             visitor,
@@ -81,9 +82,71 @@ public class PurchaseView : View<Purchase>
         return purchase;
     }
 
+    private void ShowDetailsAction()
+    {
+
+    }
+
+    private Visitor InputVisitor()
+    {
+        Visitor visitor = new Visitor();
+
+        while (true)
+        {
+            Console.Write("Enter visitor ID: ");
+            int visitorId = ConsoleUtilities.ReadIntRequired();
+            if (ParseVisitorId(visitorId, out visitor)) break;
+        }
+
+        return visitor;
+    }
+    private bool ParseVisitorId(int visitorId, out Visitor visitor)
+    {
+        visitor = new Visitor();
+
+        Visitor? visitorCandidate = _visitorDAO.GetById(visitorId);
+        if (visitorCandidate == null)
+        {
+            Console.WriteLine($"ERROR: Visitor with ID '{visitorId}' doesn't exist.\n");
+            return false;
+        }
+
+        visitor = visitorCandidate;
+        return true;
+    }
+
+    private Book InputBook()
+    {
+        Book book = new Book();
+
+        while (true)
+        {
+            Console.Write("Enter book ID: ");
+            int bookId = ConsoleUtilities.ReadIntRequired();
+            if (ParseBookId(bookId, out book)) break;
+        }
+
+        return book;
+    }
+    private bool ParseBookId(int bookId, out Book book)
+    {
+        book = new Book();
+
+        Book? bookCandidate = _bookDAO.GetById(bookId);
+        if (bookCandidate == null)
+        {
+            Console.WriteLine($"ERROR: Book with ID '{bookId}' doesn't exist.\n");
+            return false;
+        }
+
+        book = bookCandidate;
+        return true;
+    }
+
     private const int SHOW_ALL = 1;
     private const int ADD = 2;
     private const int UPDATE = 3;
     private const int REMOVE = 4;
     private const int SHOW_WITH_PAGINATION_AND_SORTING = 5;
+    private const int SHOW_DETAILS = 6;
 }
