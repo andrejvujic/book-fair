@@ -8,7 +8,8 @@ namespace ConsoleClient.Views;
 public class BookView : View<Book>
 {
 	private readonly AuthorDAO _authorDAO;
-	public BookView(BookDAO bookDAO, AuthorDAO authorDAO) : base(bookDAO) { _authorDAO = authorDAO; }
+	private readonly PublisherDAO _publisherDAO;
+	public BookView(BookDAO bookDAO, AuthorDAO authorDAO, PublisherDAO publisherDAO) : base(bookDAO) { _authorDAO = authorDAO; _publisherDAO = publisherDAO; }
 	protected override void ShowOptions()
 	{
 		Console.WriteLine("[Book] Available options:\n");
@@ -74,6 +75,7 @@ public class BookView : View<Book>
 		Console.Write("Enter publisher ID: ");
 		int publisherId = ConsoleUtilities.ReadIntRequired();
 		Publisher publisher = new Publisher();
+		publisher = InputPublisher();
 
 		List<Author> authors = new List<Author>();
 		authors = InputAuthors();
@@ -157,6 +159,35 @@ public class BookView : View<Book>
 			authors.Add(author);
 		}
 
+		return true;
+	}
+
+	private Publisher InputPublisher()
+	{
+		Publisher publisher = new Publisher();
+
+		while (true)
+		{
+			Console.Write("Enter publisher ID: ");
+			int publisherId = ConsoleUtilities.ReadIntRequired();
+			if (ParsePublisherId(publisherId, out publisher)) break;
+		}
+
+		return publisher;
+	}
+
+	private bool ParsePublisherId(int publisherId, out Publisher publisher)
+	{
+		publisher = new Publisher();
+
+		Publisher? publisherCandidate = _publisherDAO.GetById(publisherId);
+		if (publisherCandidate == null)
+		{
+			Console.WriteLine($"ERROR: Publisher with ID '{publisherId}' doesn't exist.\n");
+			return false;
+		}
+
+		publisher = publisherCandidate;
 		return true;
 	}
 
