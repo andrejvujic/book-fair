@@ -139,6 +139,13 @@ public class VisitorView : View<Visitor>
             new TablePrinter<Book>(_bookDAO.EntityProperties, visitor.PurchasedBooks).Print();
         } else
             Console.WriteLine($"{visitor.FirstName} hasn't purchased any books.\n");
+
+        Console.WriteLine($"{visitor.FirstName}'s address:\n");
+
+        if (visitor.Address == null)
+            Console.WriteLine("Address is unknown.\n");
+        else
+            new TablePrinter<Address>(_addressDAO.EntityProperties, new List<Address> { visitor.Address }).Print();
     }
 
     private List<Book> InputWishlistedBooks()
