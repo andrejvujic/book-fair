@@ -9,7 +9,12 @@ public class BookView : View<Book>
 {
 	private readonly AuthorDAO _authorDAO;
 	private readonly PublisherDAO _publisherDAO;
-	public BookView(BookDAO bookDAO, AuthorDAO authorDAO, PublisherDAO publisherDAO) : base(bookDAO) { _authorDAO = authorDAO; _publisherDAO = publisherDAO; }
+	private readonly VisitorDAO _visitorDAO;
+	public BookView(BookDAO bookDAO, AuthorDAO authorDAO, PublisherDAO publisherDAO, VisitorDAO visitorDAO) : base(bookDAO) {
+		_authorDAO = authorDAO;
+		_publisherDAO = publisherDAO;
+		_visitorDAO = visitorDAO;
+	}
 	protected override void ShowOptions()
 	{
 		Console.WriteLine("[Book] Available options:\n");
@@ -54,7 +59,7 @@ public class BookView : View<Book>
 
 	protected override Book InputEntity()
 	{
-		Console.Write("Enter isbn: ");
+		Console.Write("Enter ISBN: ");
 		string isbn = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter book title: ");
@@ -119,20 +124,38 @@ public class BookView : View<Book>
 		// Prikazuje autore koji su napisali knjige:
 		if (book.Authors.Count > 0)
 		{
-			Console.WriteLine($"{book.BookTitle} was written by {book.Authors.Count} author(s):\n");
+			Console.WriteLine($"'{book.BookTitle}' was written by {book.Authors.Count} author(s):\n");
 			new TablePrinter<Author>(_authorDAO.EntityProperties, book.Authors).Print();
 		}
+		else
+			Console.WriteLine($"{book.BookTitle} doesn't have any authors");
 
-		Console.WriteLine($"Book {book.BookTitle}'s publisher :\n");
+		Console.WriteLine($"'{book.BookTitle}' publisher:\n");
 
 		if (book.Publisher == null)
 			Console.WriteLine("Publisher is unknown.\n");
 		else
 			new TablePrinter<Publisher>(_publisherDAO.EntityProperties, new List<Publisher> { book.Publisher }).Print();
 
-	}
+        if (book.Buyers.Count > 0)
+        {
+            Console.WriteLine($"'{book.BookTitle}' was purchased by {book.Buyers.Count} visitors(s):\n");
+            new TablePrinter<Visitor>(_visitorDAO.EntityProperties, book.Buyers).Print();
+        }
+        else
+            Console.WriteLine($"No visitors purchased '{book.BookTitle}'.");
 
-	private List<Author> InputAuthors()
+        if (book.Wishlisters.Count > 0)
+        {
+            Console.WriteLine($"'{book.BookTitle}' was wishlisted by {book.Wishlisters.Count} visitors(s):\n");
+            new TablePrinter<Visitor>(_visitorDAO.EntityProperties, book.Wishlisters).Print();
+        }
+        else
+            Console.WriteLine($"No visitors wishlisted '{book.BookTitle}'.");
+
+    }
+
+    private List<Author> InputAuthors()
 	{
 		List<Author> authors;
 
