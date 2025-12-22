@@ -11,7 +11,7 @@ public class PublisherDAO : DAO<Publisher>
         get
         {
             return new string[] {
-                "ID", "Visitor ID", "Book ID", "Date", "Rating", "Comment"
+                "ID", "First name", "Last name", "Boss ID" 
             };
         }
     }
