@@ -105,9 +105,14 @@ public class VisitorView : View<Visitor>
         return visitor;
     }
 
-    private void ShowDetailsAction() { 
+    private void ShowDetailsAction() {
+        Console.WriteLine($"[{_dao.Identifier}] Showing details:\n");
+
+        Console.Write("Enter Visitor ID: ");
         int id = ConsoleUtilities.ReadIntRequired();
         Visitor? visitor = _dao.GetById(id);
+
+        Console.Write('\n');
 
         if (visitor == null)
         {
@@ -116,8 +121,25 @@ public class VisitorView : View<Visitor>
             return;
         }
 
-        List<Book> wishlistedBooks = visitor.WishlistedBooks;
+        // Prikazuje osnovne podatke o posjetiocu za kojeg prikazujemo detalje.
+        new TablePrinter<Visitor>(_dao.EntityProperties, new List<Visitor>() { visitor }).Print();
 
+        // Prikazuje knjige koje se nalaze na listi zelja:
+        if (visitor.WishlistedBooks.Count > 0)
+        {
+            Console.WriteLine($"{visitor.FirstName} has wishlisted {visitor.WishlistedBooks.Count} book(s):\n");
+            new TablePrinter<Book>(_bookDAO.EntityProperties, visitor.WishlistedBooks).Print();
+        }
+        else
+            Console.WriteLine($"{visitor.FirstName} hasn't purchased any books.\n");
+
+        // Prikazuje knjige koje se nalaze na listi zelja:
+        if (visitor.PurchasedBooks.Count > 0)
+        {
+            Console.WriteLine($"{visitor.FirstName} has purchased {visitor.PurchasedBooks.Count} book(s):\n");
+            new TablePrinter<Book>(_bookDAO.EntityProperties, visitor.PurchasedBooks).Print();
+        } else
+            Console.WriteLine($"{visitor.FirstName} hasn't purchased any books.\n");
     }
 
     private List<Book> InputWishlistedBooks()
