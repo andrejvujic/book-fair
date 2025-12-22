@@ -21,7 +21,7 @@ bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, visitorDAO.GetAll()
 
 VisitorView visitorView = new VisitorView(visitorDAO, bookDAO, addressDAO);
 PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO);
-PurchaseView purchaseView = new PurchaseView(purchaseDAO);
+PurchaseView purchaseView = new PurchaseView(purchaseDAO, visitorDAO, bookDAO);
 AddressView addressView = new AddressView(addressDAO);
 AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
 BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO);
