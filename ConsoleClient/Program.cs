@@ -23,7 +23,7 @@ VisitorView visitorView = new VisitorView(visitorDAO, bookDAO);
 PublisherView publisherView = new PublisherView(publisherDAO);
 PurchaseView purchaseView = new PurchaseView(purchaseDAO);
 AddressView addressView = new AddressView(addressDAO);
-AuthorView authorView = new AuthorView(authorDAO);
+AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
 BookView bookView = new BookView(bookDAO);
 
 const int EXIT = 0;
