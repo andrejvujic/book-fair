@@ -6,7 +6,13 @@ namespace ConsoleClient.Views;
 
 public class PublisherView : View<Publisher>
 {
-    public PublisherView(PublisherDAO publisherDAO) : base(publisherDAO) { }
+    private readonly AuthorDAO _authorDAO;
+    private readonly BookDAO _bookDAO;
+
+    public PublisherView(PublisherDAO publisherDAO, AuthorDAO authorDAO, BookDAO bookDAO) : base(publisherDAO) {
+        _authorDAO = authorDAO;
+        _bookDAO = bookDAO;
+    }
 
     protected override void ShowOptions()
     {
@@ -45,7 +51,6 @@ public class PublisherView : View<Publisher>
         }
     }
 
-
     protected override Publisher InputEntity()
     {
         Console.Write("Enter name: ");
@@ -54,9 +59,7 @@ public class PublisherView : View<Publisher>
         Console.Write("Enter surname: ");
         string surname = ConsoleUtilities.ReadStringRequired();
 
-        Console.Write("Enter boss ID: ");
-        int bossId = ConsoleUtilities.ReadIntRequired();
-        Author boss = new Author();
+        Author boss = InputBoss();
 
         List<Author> authors = new List<Author>();
         List<Book> books = new List<Book>();
@@ -72,10 +75,47 @@ public class PublisherView : View<Publisher>
         return publisher;
     }
 
+    private Author InputBoss()
+    {
+        Author boss = new Author();
+
+        while (true)
+        {
+            Console.Write("Enter boss ID: ");
+            int bossId = ConsoleUtilities.ReadIntRequired();
+            if (ParseBossId(bossId, out boss)) break;
+        }
+
+        return boss;
+    }
+
+    private bool ParseBossId(int bossId, out Author boss)
+    {
+        const int BOSS_MIN_YEARS_OF_EXPERIENCE = 5;
+        boss = new Author();
+
+        Author? bossCandidate = _authorDAO.GetById(bossId);
+        if (bossCandidate == null)
+        {
+            Console.WriteLine($"ERROR: Author with ID '{bossId}' doesn't exist.\n");
+            return false;
+        }
+
+        if (bossCandidate.YearsOfExperience < BOSS_MIN_YEARS_OF_EXPERIENCE)
+        {
+            Console.WriteLine($"ERROR: Minimum years of experience for a boss is 5. Author with ID '{bossId}' has only {bossCandidate.YearsOfExperience}.\n");
+            return false;   
+        }
+
+        boss = bossCandidate;
+        return true;
+    }
+
     private const int SHOW_ALL = 1;
     private const int ADD = 2;
     private const int UPDATE = 3;
     private const int REMOVE = 4;
     private const int SHOW_WITH_PAGINATION_AND_SORTING = 5;
+    private const int SHOW_DETAILS = 6;
 }
 
