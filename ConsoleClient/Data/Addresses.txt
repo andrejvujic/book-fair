@@ -1,1 +1,6 @@
-0|Kornelija Stankovica|36|Novi Sad|Serbia
+0|Kornelija Stankovica|1|Novi Sad|Serbia
+1|Dr Sime Milosevica|5|Novi Sad|Serbia
+2|Koste Racina|27|Novi Sad|Serbia
+3|Janka Cmelika|10|Novi Sad|Serbia
+4|Bulevar Slobodana Jovanovica|17|Novi Sad|Serbia
+5|Hadzi Ruvimova|3|Novi Sad|Serbia

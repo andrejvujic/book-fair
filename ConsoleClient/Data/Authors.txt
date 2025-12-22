@@ -1,1 +1,3 @@
 0|Marko|Markovic|12/1/1970|0|065/1234-567|marko.markovic@gmail.com|LK12345|10
+1|Petar|Petrovic|4/27/1985|1|065/1234-765|petar.petrovic@gmail.com|LK54321|2
+2|Jovan|Jovanovic|6/15/1983|2|065/4321-765|jovan.jovanoic@gmail.com|LK12389|6
