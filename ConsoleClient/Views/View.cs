@@ -91,7 +91,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         Console.WriteLine($"Number of entities: {_dao.Count()}\n");
 
         new TablePrinter<T>(
-            EntityProperties,
+            _dao.EntityProperties,
             _dao.GetAll()
         ).Print();
     }
@@ -144,7 +144,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
             Console.WriteLine($"Showing: {currentPageEntities.Count()} / {_dao.Count()} entities\n");
 
             new TablePrinter<T>(
-                EntityProperties,
+                _dao.EntityProperties,
                 currentPageEntities
             ).Print();
 

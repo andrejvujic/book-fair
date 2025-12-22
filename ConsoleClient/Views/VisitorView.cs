@@ -105,7 +105,7 @@ public class VisitorView : View<Visitor>
         return visitor;
     }
 
-    private void ShowDetails() { 
+    private void ShowDetailsAction() { 
         int id = ConsoleUtilities.ReadIntRequired();
         Visitor? visitor = _dao.GetById(id);
 
