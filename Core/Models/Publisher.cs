@@ -1,11 +1,20 @@
 using Core.Helpers;
-using Core.Helpers.Relations;
 using Core.Serialization;
 namespace Core.Models;
 
-public class Publisher : ISerializable, IIdentifiable
+public class Publisher : ISerializable, IIdentifiable, IPrintable
 {
     public int Id { get; set; } = -1;
+
+    public string[] PrintableProperties
+    {
+        get
+        {
+            return new string[] {
+                "ID", "First name", "Last name", "Boss ID"
+            };
+        }
+    }
 
     public string FirstName { get; set; } = "";
     public string LastName { get; set; } = "";
