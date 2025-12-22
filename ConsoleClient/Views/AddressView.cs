@@ -8,17 +8,6 @@ namespace ConsoleClient.Views;
 public class AddressView : View<Address>
 {
 	public AddressView(AddressDAO addressDAO) : base(addressDAO) { }
-
-	protected override string[] EntityProperties
-	{
-		get
-		{
-			return new string[] {
-				"ID", "Street", "StreetNumber", "City", "Country"
-			};
-		}
-	}
-
     protected override void ShowOptions()
     {
 		Console.WriteLine("[Address] Available options:\n");

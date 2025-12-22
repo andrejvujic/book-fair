@@ -9,6 +9,16 @@ public class AuthorDAO: DAO<Author>
 
 	public override string Identifier { get { return "Author"; } }
 
+	public override string[] EntityProperties
+	{
+		get
+		{
+			return new string[] {
+				"ID", "First name", "Last name", "Date of birth", "Address ID", "Phone number", "Email", "ID card number", "Years of experience"
+			};
+		}
+	}
+
 	private ManyToManyRelation<Author, Book> BooksByAuthor { get; }
 
 	public AuthorDAO(ManyToManyRelation<Author, Book> booksByAuthor) : base(_filename)

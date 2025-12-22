@@ -7,17 +7,6 @@ namespace ConsoleClient.Views;
 public class BookView : View<Book>
 {
 	public BookView(BookDAO bookDAO) : base(bookDAO) { }
-
-	protected override string[] EntityProperties
-	{
-		get
-		{
-			return new string[] {
-				"ID", "ISBN", "Book title", "Genre", "Release Year", "Price", "Number of pages", "Publisher ID"
-			};
-		}
-	}
-
 	protected override void ShowOptions()
 	{
 		Console.WriteLine("[Book] Available options:\n");

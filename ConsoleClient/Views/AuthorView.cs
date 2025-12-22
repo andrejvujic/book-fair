@@ -7,17 +7,6 @@ namespace ConsoleClient.Views;
 public class AuthorView : View<Author>
 {
 	public AuthorView(AuthorDAO authorDAO) : base(authorDAO) { }
-
-	protected override string[] EntityProperties
-	{
-		get
-		{
-			return new string[] {
-				"ID", "First name", "Last name", "Date of birth", "Address ID", "Phone number", "Email", "ID card number", "Years of experience"
-			};
-		}
-	}
-
 	protected override void ShowOptions()
 	{
 		Console.WriteLine("[Author] Available options:\n");

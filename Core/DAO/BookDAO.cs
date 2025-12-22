@@ -9,6 +9,16 @@ public class BookDAO: DAO<Book>
 	private static string _filename = "Books.txt";
     public override string Identifier { get { return "Book"; } }
 
+	public override string[] EntityProperties
+	{
+		get
+		{
+			return new string[] {
+				"ID", "ISBN", "Book title", "Genre", "Release Year", "Price", "Number of pages", "Publisher ID"
+			};
+		}
+	}
+
 	private ManyToManyRelation<Author, Book> BookAuthors { get; }
 	private ManyToManyRelation<Visitor, Book> BookWishlisters { get; }
 

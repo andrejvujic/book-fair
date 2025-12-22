@@ -8,6 +8,16 @@ public class AddressDAO : DAO<Address>
 
     public override string Identifier { get { return "Adress"; } }
 
+	public override string[] EntityProperties
+	{
+		get
+		{
+			return new string[] {
+				"ID", "Street", "StreetNumber", "City", "Country"
+			};
+		}
+	}
+
 	public AddressDAO() : base(_filename)
 	{
 	}
