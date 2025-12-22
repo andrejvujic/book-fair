@@ -70,6 +70,16 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
         int id = ConsoleUtilities.ReadIntRequired();
         Console.Write("\n");
 
+        T? oldEntity = _dao.GetById(id);
+        if (oldEntity == null)
+        {
+            Console.WriteLine($"ERROR: {_dao.Identifier} with ID '{id} doesn't exist.'\n");
+            return;
+        }
+
+        Console.WriteLine("Current entity state:\n");
+        new TablePrinter<T>(_dao.EntityProperties, new List<T> { oldEntity }).Print();
+
         T entity = InputEntity();
         entity.Id = id;
 
@@ -77,7 +87,7 @@ public abstract class View<T> where T : class, ISerializable, IIdentifiable, new
 
         if (_dao.Update(entity) == null)
         {
-            Console.WriteLine($"ERROR: {_dao.Identifier} with ID '{id}' doesn't exist.\n");
+            Console.WriteLine($"ERROR: Couldn't complete update beacuse ${_dao.Identifier} with ID '{id} doesn't exist.'\n");
             return;
         }
 
