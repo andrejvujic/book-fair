@@ -80,7 +80,15 @@ public class PurchaseView : View<Purchase>
             comment
         );
 
+        UpdateVisitorAverageRating(visitor, rating);
+
         return purchase;
+    }
+
+    private void UpdateVisitorAverageRating(Visitor visitor, int latestReviewRating)
+    {
+        int totalNumberOfRatings = visitor.PurchasedBooks.Count;
+        visitor.AverageReviewRating = Math.Round((visitor.AverageReviewRating * totalNumberOfRatings + latestReviewRating) / (totalNumberOfRatings + 1), 2);
     }
 
     private void ShowDetailsAction()

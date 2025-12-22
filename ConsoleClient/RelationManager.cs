@@ -61,8 +61,15 @@ public class RelationManager
             {
                 visitor.PurchasedBooks = new List<Book>();
                 List<Purchase> visitorPurchases = allPurchases.Where(purchase => purchase.VisitorId == visitor.Id).ToList();
+
+                int sumOfAllRatings = 0;
                 foreach (Purchase visitorPurchase in visitorPurchases)
+                {
+                    sumOfAllRatings = sumOfAllRatings + visitorPurchase.Rating;
                     visitor.PurchasedBooks.Add(visitorPurchase.Book);
+                }
+                int numberOfPurchasedBooks = visitor.PurchasedBooks.Count;
+                visitor.AverageReviewRating = Math.Round(numberOfPurchasedBooks > 0 ? sumOfAllRatings / (double)(visitor.PurchasedBooks.Count) : 0, 2);
             }
         );
     }

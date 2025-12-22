@@ -16,7 +16,7 @@ public class VisitorDAO : DAO<Visitor>
             return new string[] {
                 "ID", "First name", "Last name", "Date of birth",
                 "Phone number", "Email address", "Address ID",
-                "Membership card number", "Membership year", "Status"
+                "Membership card number", "Membership year", "Status", "AverageReviewRating"
             };
         }
     }
@@ -83,6 +83,7 @@ public class VisitorDAO : DAO<Visitor>
                 { "MembershipCardNumber", _entities.OrderBy(x => x.MembershipCardNumber) },
                 { "MembershipYear", _entities.OrderBy(x => x.MembershipYear) },
                 { "Status", _entities.OrderBy(x => x.Status) },
+                { "AverageReviewRating", _entities.OrderBy(x => x.AverageReviewRating) }
             };
         }
     }

@@ -58,7 +58,7 @@ while (true)
         visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Wishlisters.Add);
     });
 
-    relationManager.ReconnectAll();
+    relationManager.ConnectAll();
 
     Console.WriteLine("Book Fair Console App - please select an option:\n");
     Console.WriteLine("1 -> Visitor...");

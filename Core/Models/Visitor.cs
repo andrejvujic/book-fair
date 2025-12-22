@@ -93,6 +93,7 @@ public class Visitor : ISerializable, IIdentifiable
             MembershipCardNumber,
             MembershipYear.ToString(),
             Status.ToString(),
+            AverageReviewRating.ToString(),
         };
         return csv;
     }
@@ -109,5 +110,6 @@ public class Visitor : ISerializable, IIdentifiable
         MembershipCardNumber = values[7];
         MembershipYear = int.Parse(values[8]);
         Status = Enum.Parse<MemberStatus>(values[9]);
+        AverageReviewRating = double.Parse(values[10]);
     }
 }
