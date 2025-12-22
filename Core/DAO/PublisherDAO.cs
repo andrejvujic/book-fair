@@ -5,8 +5,16 @@ namespace Core.DAO;
 public class PublisherDAO : DAO<Publisher>
 {
     private static string _fileName = "Publishers.txt";
-
     public override string Identifier { get { return "Publisher"; } }
+    public override string[] EntityProperties
+    {
+        get
+        {
+            return new string[] {
+                "ID", "Visitor ID", "Book ID", "Date", "Rating", "Comment"
+            };
+        }
+    }
 
     public PublisherDAO() : base(_fileName)
     {

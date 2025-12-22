@@ -9,6 +9,17 @@ public class VisitorDAO : DAO<Visitor>
 
     private static string _fileName = "Visitors.txt";
     public override string Identifier { get { return "Visitor"; } }
+    public override string[] EntityProperties
+    {
+        get
+        {
+            return new string[] {
+                "ID", "First name", "Last name", "Date of birth",
+                "Phone number", "Email address", "Address ID",
+                "Membership card number", "Membership year", "Status"
+            };
+        }
+    }
 
     private ManyToManyRelation<Visitor, Book> VisitorWishlistedBooks { get; }
 

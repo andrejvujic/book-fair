@@ -6,6 +6,15 @@ public class PurchaseDAO : DAO<Purchase>
 {
     private static string _fileName = "Purchases.txt";
     public override string Identifier { get { return "Purchase"; } }
+    public override string[] EntityProperties
+    {
+        get
+        {
+            return new string[] {
+                "ID", "Visitor ID", "Book ID", "Date", "Rating", "Comment"
+            };
+        }
+    }
 
     public PurchaseDAO() : base(_fileName) { }
 

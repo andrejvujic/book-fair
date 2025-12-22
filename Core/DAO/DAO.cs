@@ -11,6 +11,7 @@ public abstract class DAO<T>
         where T : class, ISerializable, IIdentifiable, new()
 {
     public abstract string Identifier { get; }
+    public abstract string[] EntityProperties { get; }
 
     protected readonly List<T> _entities;
     protected readonly Storage<T> _storage;
