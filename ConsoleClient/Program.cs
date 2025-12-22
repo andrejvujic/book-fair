@@ -24,7 +24,7 @@ PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO
 PurchaseView purchaseView = new PurchaseView(purchaseDAO);
 AddressView addressView = new AddressView(addressDAO);
 AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
-BookView bookView = new BookView(bookDAO, authorDAO);
+BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO);
 
 const int EXIT = 0;
 const int VISITOR_MENU = 1;
