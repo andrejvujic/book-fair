@@ -8,9 +8,11 @@ namespace ConsoleClient.Views;
 public class VisitorView : View<Visitor>
 {
     private readonly BookDAO _bookDAO;
+    private readonly AddressDAO _addressDAO;
 
-    public VisitorView(VisitorDAO visitorDAO, BookDAO bookDAO) : base(visitorDAO) {
+    public VisitorView(VisitorDAO visitorDAO, BookDAO bookDAO, AddressDAO addressDAO) : base(visitorDAO) {
         _bookDAO = bookDAO;
+        _addressDAO = addressDAO;
     }
 
     protected override void ShowOptions() {
@@ -71,8 +73,7 @@ public class VisitorView : View<Visitor>
         Console.Write("Enter email address: ");
         string emailAddress = ConsoleUtilities.ReadStringRequired();
 
-        Console.Write("Enter address ID: ");
-        int addressId = ConsoleUtilities.ReadIntRequired();
+        Address address = InputAddress();
 
         Console.Write("Enter membership card number: ");
         string membershipCardNumber = ConsoleUtilities.ReadStringRequired();
@@ -83,9 +84,7 @@ public class VisitorView : View<Visitor>
         Console.Write("Enter member status (R = Redovan, V = VIP): ");
         MemberStatus status = Enum.Parse<MemberStatus>(ConsoleUtilities.ReadStringRequired(), true);
 
-        Address address = new Address();
         List<Book> purchasedBooks = new List<Book>();
-
         List<Book> wishlistedBooks = InputWishlistedBooks();
 
         Visitor visitor = new Visitor(
@@ -174,6 +173,35 @@ public class VisitorView : View<Visitor>
             wishlistedBooks.Add(wishlistedBook);
         }
 
+        return true;
+    }
+
+    private Address InputAddress()
+    {
+        Address address = new Address();
+
+        while (true)
+        {
+            Console.Write("Enter address ID: ");
+            int addressId = ConsoleUtilities.ReadIntRequired();
+            if (ParseAddressId(addressId, out address)) break;
+        }
+
+        return address;
+    }
+
+    private bool ParseAddressId(int addressId, out Address address)
+    {
+        address = new Address();
+
+        Address? addressCandidate = _addressDAO.GetById(addressId);
+        if (addressCandidate == null)
+        {
+            Console.WriteLine($"ERROR: Address with ID '{addressId}' doesn't exist.\n");
+            return false;
+        }
+
+        address = addressCandidate;
         return true;
     }
 
