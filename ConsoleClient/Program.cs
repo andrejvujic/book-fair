@@ -3,6 +3,7 @@ using Core.Models;
 using Core.Helpers.Relations;
 using Core.DAO;
 using ConsoleClient.Views;
+using ConsoleClient;
 
 ManyToManyRelation<Visitor, Book> visitorWhislistedBooks = new ManyToManyRelation<Visitor, Book>("VisitorWishlistedBooks.txt");
 ManyToManyRelation<Author, Book> authorWrittenBooks = new ManyToManyRelation<Author, Book>("AuthorWrittenBooks.txt");
@@ -14,67 +15,12 @@ AddressDAO addressDAO = new AddressDAO();
 AuthorDAO authorDAO = new AuthorDAO(authorWrittenBooks);
 BookDAO bookDAO = new BookDAO(authorWrittenBooks, visitorWhislistedBooks);
 
-visitorDAO.ForEach(visitor => visitorWhislistedBooks.Connect(visitor, bookDAO.GetAll(), visitor.WishlistedBooks.Add));
-authorDAO.ForEach(author => authorWrittenBooks.Connect(author, bookDAO.GetAll(), author.Books.Add));
-bookDAO.ForEach(book => authorWrittenBooks.Connect(book, authorDAO.GetAll(), book.Authors.Add));
-bookDAO.ForEach(book => visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Buyers.Add));
-
 VisitorView visitorView = new VisitorView(visitorDAO, bookDAO, addressDAO);
 PublisherView publisherView = new PublisherView(publisherDAO, authorDAO, bookDAO);
 PurchaseView purchaseView = new PurchaseView(purchaseDAO, visitorDAO, bookDAO);
 AddressView addressView = new AddressView(addressDAO);
 AuthorView authorView = new AuthorView(authorDAO,addressDAO,bookDAO);
-BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO);
-
-void connectAdressWithAuthors(AuthorDAO authorDAO, AddressDAO addressDAO)
-{
-    List<Address> allAddresses = addressDAO.GetAll();
-
-    authorDAO.ForEach(author =>
-    {
-
-        Address? address = allAddresses.Find(address => address.Id == author.AddressId);
-
-        if(address == null)
-			throw new Exception($"FATAL ERROR: Address with ID '{author.AddressId}' doesn't exist. Resolving relations failed.");
-
-        author.Address = address;
-	});
-}
-
-
-void connectPublisherWithBooks(BookDAO bookDAO, PublisherDAO publisherDAO)
-{
-    List<Publisher> allPublishers = publisherDAO.GetAll();
-
-    bookDAO.ForEach(book =>
-    {
-
-        Publisher? publisher = allPublishers.Find(publisher => publisher.Id == book.PublisherId);
-
-        if(publisher == null)
-			throw new Exception($"FATAL ERROR: Address with ID '{book.PublisherId}' doesn't exist. Resolving relations failed.");
-
-        book.Publisher = publisher; 
-	});
-
-void connectBooksWithBuyers(BookDAO bookDAO, PurchaseDAO purchaseDAO)
-{
-        List<Purchase> allPurchases = purchaseDAO.GetAll();
-
-        bookDAO.ForEach(book =>
-        {
-            List<Purchase> bookPurchases = allPurchases.Where(purchase => purchase.BookId == book.Id).ToList();
-
-            foreach(Purchase purchase in bookPurchases)
-            {
-                if (book.Buyers.Contains(purchase.Visitor)) continue;
-
-                book.Buyers.Add(purchase.Visitor);
-            }
-        });
-}
-}
+BookView bookView = new BookView(bookDAO, authorDAO, publisherDAO, visitorDAO);
 
 
 const int EXIT = 0;
@@ -85,8 +31,36 @@ const int ADDRESS_MENU = 4;
 const int AUTHOR_MENU = 5;
 const int BOOK_MENU = 6;
 
+RelationConnector relationConnector = new RelationConnector(authorDAO, bookDAO, publisherDAO, visitorDAO, addressDAO, purchaseDAO);
+
 while (true)
 {
+    visitorDAO.ForEach(visitor =>
+    {
+        visitor.WishlistedBooks = new List<Book>();
+        visitorWhislistedBooks.Connect(visitor, bookDAO.GetAll(), visitor.WishlistedBooks.Add);
+    });
+
+    authorDAO.ForEach(author =>
+    {
+        author.Books = new List<Book>();
+        authorWrittenBooks.Connect(author, bookDAO.GetAll(), author.Books.Add);
+    });
+
+    bookDAO.ForEach(book =>
+    {
+        book.Authors = new List<Author>();
+        authorWrittenBooks.Connect(book, authorDAO.GetAll(), book.Authors.Add);
+    });
+
+    bookDAO.ForEach(book =>
+    {
+        book.Wishlisters = new List<Visitor>();
+        visitorWhislistedBooks.Connect(book, visitorDAO.GetAll(), book.Wishlisters.Add);
+    });
+
+    relationConnector.ConnectAll();
+
     Console.WriteLine("Book Fair Console App - please select an option:\n");
     Console.WriteLine("1 -> Visitor...");
     Console.WriteLine("2 -> Publisher...");
