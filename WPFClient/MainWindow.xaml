@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
+        xmlns:visitor="clr-namespace:WPFClient.Views.Visitor"
         mc:Ignorable="d"
         Title="Sajam Knjiga" Height="720" Width="1080"
         WindowStartupLocation="CenterScreen"
@@ -94,5 +95,30 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+
+        <TabControl Margin="16,32,16,16">
+            <TabItem Header="Posjetioci">
+                <visitor:VisitorTab />
+            </TabItem>
+
+            <TabItem Header="Autori">
+                <Grid>
+                    <TextBlock Text="View: Autori"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                     />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Knjige">
+                <Grid>
+                    <TextBlock Text="View: Knjige"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                    />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
