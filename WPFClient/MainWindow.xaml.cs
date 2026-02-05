@@ -29,5 +29,13 @@ namespace WPFClient
         {
             Application.Current.Shutdown();
         }
+
+        private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+        }
+
+        const int VISITORS_TAB_INDEX = 0;
     }
+
 }
