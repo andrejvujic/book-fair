@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="WPFClient.Views.Visitor.VisitorTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFClient.Views.Visitor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid
+            VerticalAlignment="Top"
+            Margin="16"
+            AutoGenerateColumns="False"
+            x:Name="VisitorsDataGrid"
+            ItemsSource="{Binding Visitors, UpdateSourceTrigger=PropertyChanged}"
+            CanUserAddRows="False"
+            HeadersVisibility="Column"
+        >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Prezime" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Ime" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Broj Telefona" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Email Adresa" Binding="{Binding EmailAddress}"/>
+                <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}"/>
+                <DataGridTextColumn Header="Datum Rođenja" Binding="{Binding DateOfBirth}"/>
+                <DataGridTextColumn Header="Ketegorija" Binding="{Binding StatusText}"/>
+                <DataGridTextColumn Header="Prosjecna Ocjena Recenzija" Binding="{Binding AverageReviewRatingText}"/>
+                <DataGridTextColumn Header="Adresa" Binding="{Binding AddressText}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
