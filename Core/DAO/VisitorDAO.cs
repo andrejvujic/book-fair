@@ -6,7 +6,6 @@ namespace Core.DAO;
 
 public class VisitorDAO : DAO<Visitor>
 {
-
     private static string _fileName = "Visitors.txt";
     public override string Identifier { get { return "Visitor"; } }
     public override string[] EntityProperties
@@ -36,7 +35,7 @@ public class VisitorDAO : DAO<Visitor>
 
     public override Visitor? Remove(int id)
     {
-        Visitor? visitor =  base.Remove(id);
+        Visitor? visitor = base.Remove(id);
 
         if (visitor == null) return null;
 
@@ -68,7 +67,8 @@ public class VisitorDAO : DAO<Visitor>
         VisitorWishlistedBooks.AddAll(oldEntity, oldEntity.WishlistedBooks);
 
         _storage.Save(_entities);
-        return oldEntity;
+        Subject.NotifyObservers();
+        return oldEntity;   
     }
 
     protected override Dictionary<string, IOrderedEnumerable<Visitor>> SortCriteriaMapping {
