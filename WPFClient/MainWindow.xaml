@@ -46,7 +46,7 @@
                         <MenuItem Header="Autori" />
                         <MenuItem Header="Knjige" />
                         <MenuItem Header="Izdavači" />
-                        <MenuItem Header="Izlaz">
+                        <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
                             <MenuItem.Icon>
                                 <TextBlock FontFamily="Segoe MDL2 Assets"
                                  Text="&#xE711;"
