@@ -2,6 +2,7 @@
 using Core.Helpers;
 using Core.Storage;
 using Core.Serialization;
+using Core.Observer;
 
 namespace Core.DAO;
 
@@ -10,6 +11,8 @@ public enum SortingDirection { Ascending, Descending }
 public abstract class DAO<T>
         where T : class, ISerializable, IIdentifiable, new()
 {
+    public Subject Subject { get; }
+
     public abstract string Identifier { get; }
     public abstract string[] EntityProperties { get; }
 
@@ -18,6 +21,7 @@ public abstract class DAO<T>
 
     public DAO(string fileName)
     {
+        Subject = new Subject();
         _storage = new Storage<T>(fileName);
         _entities = _storage.Load();
     }
@@ -33,6 +37,7 @@ public abstract class DAO<T>
         entity.Id = GenerateId();
         _entities.Add(entity);
         _storage.Save(_entities);
+        Subject.NotifyObservers();
     }
 
     public virtual T? Remove(int id)
@@ -42,6 +47,7 @@ public abstract class DAO<T>
 
         _entities.Remove(entity);
         _storage.Save(_entities);
+        Subject.NotifyObservers();
 
         return entity;
     }
