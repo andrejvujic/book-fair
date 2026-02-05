@@ -5,8 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sajam Knjiga" Height="720" Width="1080"
+        WindowStartupLocation="CenterScreen"
+     >
     <Grid>
-
+        <!-- Segoe UI Icons: https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font  -->
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" >
+                <MenuItem Header="File">
+                    <MenuItem Header="New"  InputGestureText="Ctrl+N">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE710;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                            />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Save" InputGestureText="Ctrl+S">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE74E;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                            />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Open" InputGestureText="Ctrl+O">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xED25;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                            />
+                        </MenuItem.Icon>
+                        <MenuItem Header="Posjetioci" />
+                        <MenuItem Header="Autori" />
+                        <MenuItem Header="Knjige" />
+                        <MenuItem Header="Izdavači" />
+                        <MenuItem Header="Izlaz">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                 Text="&#xE711;"
+                                 FontSize="14"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                               />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Izmjena entiteta">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                 Text="&#xE70F;"
+                                 FontSize="14"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                               />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Brisanje entiteta">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                 Text="&#xE74D;"
+                                 FontSize="14"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                               />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help" >
+                    <MenuItem Header="About">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                 Text="&#xE946;"
+                                 FontSize="14"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                               />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
     </Grid>
 </Window>
