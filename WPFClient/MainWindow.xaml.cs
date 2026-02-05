@@ -27,7 +27,7 @@ namespace WPFClient
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
     }
 }
