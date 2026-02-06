@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,49 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WPFClient
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly DispatcherTimer? _timer;
+
+        private String CurrentTabIdentifier
+        {
+            get
+            {
+                int SelectedIndex = EntityTabs.SelectedIndex > -1 ? EntityTabs.SelectedIndex : 0;
+                switch (SelectedIndex)
+                {
+                    case VISITORS_TAB_INDEX:
+                        return "Posjetioci";
+                    case AUTHORS_TAB_INDEX:
+                        return "Autori";
+                    case BOOKS_TAB_INDEX:
+                        return "Knjige";
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
+
+
+            // Tajmer koji se pokreće svake sekunde i osvježava
+            // prikaz trenutnog datuma i vremena na statusnoj traci.
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _timer.Tick += (s, e) => RefreshCurrentDateAndTime();
+            _timer.Start();
+            RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -36,6 +69,24 @@ namespace WPFClient
         }
 
         const int VISITORS_TAB_INDEX = 0;
+        const int AUTHORS_TAB_INDEX = 1;    
+        const int BOOKS_TAB_INDEX = 2;
+
+        private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Poziva se svaki put kada se promijeni odabrani tab.
+            RefreshCurrentTabIndicator();
+        }
+
+        private void RefreshCurrentTabIndicator()
+        {
+            CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
+        }
+
+        private void RefreshCurrentDateAndTime()
+        {
+            CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
+        }
     }
 
 }

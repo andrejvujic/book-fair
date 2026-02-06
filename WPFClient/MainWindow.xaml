@@ -6,119 +6,147 @@
         xmlns:local="clr-namespace:WPFClient"
         xmlns:visitor="clr-namespace:WPFClient.Views.Visitor"
         mc:Ignorable="d"
-        Title="Sajam Knjiga" Height="720" Width="1080"
-        WindowStartupLocation="CenterScreen"
-     >
+        Title="Sajam Knjiga"
+        Height="720"
+        Width="1080"
+        WindowStartupLocation="CenterScreen">
+
     <Grid>
-        <!-- Segoe UI Icons: https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font  -->
+        <!-- Segoe UI Icons: https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font -->
+
         <DockPanel>
-            <Menu DockPanel.Dock="Top" >
+
+            <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
+
                     <MenuItem Header="New" InputGestureText="Ctrl+N">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                               Text="&#xE710;"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                            />
+                                       Text="&#xE710;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+
                     <MenuItem Header="Save" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                               Text="&#xE74E;"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                            />
+                                       Text="&#xE74E;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+
                     <MenuItem Header="Open" InputGestureText="Ctrl+O">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                               Text="&#xED25;"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                            />
+                                       Text="&#xED25;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
-                        <MenuItem Header="Posjetioci" Click="VisitorsMenuItem_Click" />
-                        <MenuItem Header="Autori" />
-                        <MenuItem Header="Knjige" />
-                        <MenuItem Header="Izdavači" />
+
+                        <MenuItem Header="Posjetioci" Click="VisitorsMenuItem_Click"/>
+                        <MenuItem Header="Autori"/>
+                        <MenuItem Header="Knjige"/>
+                        <MenuItem Header="Izdavači"/>
+
                         <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
                             <MenuItem.Icon>
                                 <TextBlock FontFamily="Segoe MDL2 Assets"
-                                 Text="&#xE711;"
-                                 FontSize="14"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                               />
+                                           Text="&#xE711;"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
+
                 </MenuItem>
+
                 <MenuItem Header="Edit">
+
                     <MenuItem Header="Izmjena entiteta">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" 
-                                 Text="&#xE70F;"
-                                 FontSize="14"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                               />
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE70F;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+
                     <MenuItem Header="Brisanje entiteta">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" 
-                                 Text="&#xE74D;"
-                                 FontSize="14"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                               />
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE74D;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+
                 </MenuItem>
-                <MenuItem Header="Help" >
+
+                <MenuItem Header="Help">
+
                     <MenuItem Header="About">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" 
-                                 Text="&#xE946;"
-                                 FontSize="14"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                               />
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE946;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+
                 </MenuItem>
             </Menu>
+
+            <StatusBar DockPanel.Dock="Bottom"
+                       Padding="16,0"
+                       Height="32"
+                       Background="LightGray">
+                <StatusBarItem HorizontalContentAlignment="Stretch">
+                    <DockPanel LastChildFill="False">
+                        <TextBlock x:Name="CurrentTabIndicator" DockPanel.Dock="Left" Text="Sajam Knjiga"
+                                   VerticalAlignment="Center"/>
+
+                        <DockPanel />
+
+                        <TextBlock x:Name="CurrentDateAndTime" DockPanel.Dock="Right" Text="Vrijeme"
+                                   VerticalAlignment="Center"/>
+
+                    </DockPanel>
+                </StatusBarItem>
+            </StatusBar>
+
+            <TabControl x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
+
+                <TabItem Header="Posjetioci">
+                    <visitor:VisitorTab/>
+                </TabItem>
+
+                <TabItem Header="Autori">
+                    <Grid>
+                        <TextBlock Text="View: Autori"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Knjige">
+                    <Grid>
+                        <TextBlock Text="View: Knjige"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+
         </DockPanel>
-
-        <TabControl Margin="16,32,16,16" x:Name="EntityTabs">
-            <TabItem Header="Posjetioci">
-                <visitor:VisitorTab />
-            </TabItem>
-
-            <TabItem Header="Autori">
-                <Grid>
-                    <TextBlock Text="View: Autori"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                     />
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="Knjige">
-                <Grid>
-                    <TextBlock Text="View: Knjige"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                    />
-                </Grid>
-            </TabItem>
-        </TabControl>
-
     </Grid>
 </Window>
