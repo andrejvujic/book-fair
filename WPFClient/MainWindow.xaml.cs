@@ -63,20 +63,42 @@ namespace WPFClient
             Application.Current.Shutdown();
         }
 
-        private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e)
+        private void NewMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
-        }
+            // Odabrana je opcija za dodavanje entiteta, potrebno je otvoriti odgovarajući
+            // dijalog za traženi entitet na osnovu trenutno odabranog taba.
 
-        const int VISITORS_TAB_INDEX = 0;
-        const int AUTHORS_TAB_INDEX = 1;    
-        const int BOOKS_TAB_INDEX = 2;
+            switch (EntityTabs.SelectedIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    
+                    break;
+                default:
+                    MessageBox.Show(
+                        "Dodavanje novih entiteta nije implementirano za ovaj tab.",
+                        "Funkcionalnost nije implementirana",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                    break;
+            }
+        }
 
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Poziva se svaki put kada se promijeni odabrani tab.
             RefreshCurrentTabIndicator();
         }
+
+        // Opcije menija za otvaranje tabova:
+        private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+        }
+
+        const int VISITORS_TAB_INDEX = 0;
+        const int AUTHORS_TAB_INDEX = 1;
+        const int BOOKS_TAB_INDEX = 2;
 
         private void RefreshCurrentTabIndicator()
         {

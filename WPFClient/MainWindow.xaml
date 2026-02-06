@@ -19,7 +19,7 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
 
-                    <MenuItem Header="New" InputGestureText="Ctrl+N">
+                    <MenuItem Header="New" InputGestureText="Ctrl+N" Click="NewMenuItem_Click" >
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE710;"
