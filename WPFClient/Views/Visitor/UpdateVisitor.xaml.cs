@@ -12,9 +12,11 @@ namespace WPFClient.Views.Visitor
         public UpdateVisitor(VisitorDTO visitor, VisitorController visitorController)
         {
             InitializeComponent();
-            DataContext = this;
+
             Visitor = visitor.Copy();
             this.visitorController = visitorController;
+
+            DataContext = this;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
