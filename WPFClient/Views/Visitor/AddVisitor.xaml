@@ -84,33 +84,39 @@
             </Grid>
 
 
-            <Grid Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,16,0,0">
+            <Grid Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button
-                    Grid.Column="0"
-                    Width="128"
-                    Height="32"
-                    Margin="0,0,8,0"
-                    Content="Otkaži"
-                    IsCancel="True"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                />
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button 
-                     Grid.Column="1"
-                     Width="128"
-                     Height="32"
-                     Content="Dodaj"
-                     IsDefault="True"
-                     Click="AddButton_Click"
-                     IsEnabled="{Binding Visitor.AllFieldsValid}"
-                />
+                    <Button
+                        Grid.Column="0"
+                        Width="128"
+                        Height="32"
+                        Content="Otkaži"
+                        IsCancel="True"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                    />
+
+                    <Button 
+                        Grid.Column="2"
+                        Width="128"
+                        Height="32"
+                        Content="Dodaj"
+                        IsDefault="True"
+                        Click="AddButton_Click"
+                        IsEnabled="{Binding Visitor.AllFieldsValid}"
+                    />
+                </Grid>
             </Grid>
         </Grid>
 
