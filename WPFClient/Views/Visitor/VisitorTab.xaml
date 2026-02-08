@@ -23,7 +23,7 @@
                 <DataGridTextColumn Header="Broj Telefona" Binding="{Binding PhoneNumber}"/>
                 <DataGridTextColumn Header="Email Adresa" Binding="{Binding EmailAddress}"/>
                 <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}"/>
-                <DataGridTextColumn Header="Datum Rođenja" Binding="{Binding DateOfBirth}"/>
+                <DataGridTextColumn Header="Datum Rođenja" Binding="{Binding DateOfBirth, StringFormat={}{0:d/M/yyyy}}"/>
                 <DataGridTextColumn Header="Ketegorija" Binding="{Binding StatusText}"/>
                 <DataGridTextColumn Header="Prosjecna Ocjena Recenzija" Binding="{Binding AverageReviewRatingText}"/>
                 <DataGridTextColumn Header="Adresa" Binding="{Binding AddressText}"/>
