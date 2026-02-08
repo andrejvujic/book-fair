@@ -14,12 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WPFClient.Controllers;
+using WPFClient.Views.Visitor;
 
 namespace WPFClient
 {
     public partial class MainWindow : Window
     {
         private readonly DispatcherTimer? _timer;
+        private VisitorController VisitorController { get; set; }
 
         private String CurrentTabIdentifier
         {
@@ -44,6 +47,9 @@ namespace WPFClient
         {
             InitializeComponent();
             DataContext = this;
+
+            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+
             RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
 
 
@@ -71,7 +77,9 @@ namespace WPFClient
             switch (EntityTabs.SelectedIndex)
             {
                 case VISITORS_TAB_INDEX:
-                    
+                    AddVisitor addVisitorDialog = new AddVisitor(VisitorController);
+                    addVisitorDialog.Owner = this; // Postavlja ovaj prozor kao vlasnika dijaloga - omogućava modalno ponašanje i centriranje dijaloga u odnosu na ovaj prozor.
+                    addVisitorDialog.ShowDialog();
                     break;
                 default:
                     MessageBox.Show(

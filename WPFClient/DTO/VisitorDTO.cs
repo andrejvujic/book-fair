@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using System;
 using System.ComponentModel;
+using System.IO;
 
 namespace WPFClient.DTO
 {
@@ -8,7 +9,7 @@ namespace WPFClient.DTO
     {
         public int Id { get; set; }
 
-        private string firstName;
+        private string firstName = "";
         public string FirstName
         {
             get
@@ -21,11 +22,12 @@ namespace WPFClient.DTO
                 {
                     firstName = value;
                     OnPropertyChanged(nameof(FirstName));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        private string lastName;
+        private string lastName = "";
         public string LastName
         {
             get
@@ -38,11 +40,12 @@ namespace WPFClient.DTO
                 {
                     lastName = value;
                     OnPropertyChanged(nameof(LastName));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        private DateOnly dateOfBirth;
+        private DateOnly dateOfBirth = DateOnly.FromDateTime(DateTime.Now); // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
         public DateOnly DateOfBirth
         {
             get
@@ -55,11 +58,12 @@ namespace WPFClient.DTO
                 {
                     dateOfBirth = value;
                     OnPropertyChanged(nameof(DateOfBirth));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        public string phoneNumber;
+        public string phoneNumber = "";
         public string PhoneNumber
         {
             get
@@ -72,11 +76,12 @@ namespace WPFClient.DTO
                 {
                     phoneNumber = value;
                     OnPropertyChanged(nameof(PhoneNumber));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        private string emailAddress;
+        private string emailAddress = "";
         public string EmailAddress
         {
             get
@@ -89,35 +94,102 @@ namespace WPFClient.DTO
                 {
                     emailAddress = value;
                     OnPropertyChanged(nameof(EmailAddress));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
         public int AddressId { get; set; }
 
-        private Address address;
+        private string addressCity = "";
+        public string AddressCity
+        {
+            get
+            {
+                return addressCity;
+            }
+            set
+            {
+                if (addressCity != value)
+                {
+                    addressCity = value;
+                    OnPropertyChanged(nameof(AddressCity));
+                    OnPropertyChanged(nameof(AddressText));
+                    OnPropertyChanged(nameof(AllFieldsValid));
+                }
+            }
+        }
+
+        private string addressCountry = "";
+        public string AddressCountry
+        {
+            get
+            {
+                return addressCountry;
+            }
+            set
+            {
+                if (addressCountry != value)
+                {
+                    addressCountry = value;
+                    OnPropertyChanged(nameof(AddressCountry));
+                    OnPropertyChanged(nameof(AddressText));
+                    OnPropertyChanged(nameof(AllFieldsValid));
+                }
+            }
+        }
+
+        private string addressStreet = "";
+        public string AddressStreet
+        {
+            get
+            {
+                return addressStreet;
+            }
+            set
+            {
+                if (addressStreet != value)
+                {
+                    addressStreet = value;
+                    OnPropertyChanged(nameof(AddressStreet));
+                    OnPropertyChanged(nameof(AddressText));
+                    OnPropertyChanged(nameof(AllFieldsValid));
+                }
+            }
+        }
+
+        private string addressStreetNumber = "";
+        public string AddressStreetNumber
+        {
+            get
+            {
+                return addressStreetNumber;
+            }
+            set
+            {
+                if (addressStreetNumber != value)
+                {
+                    addressStreetNumber = value;
+                    OnPropertyChanged(nameof(AddressStreetNumber));
+                    OnPropertyChanged(nameof(AddressText));
+                    OnPropertyChanged(nameof(AllFieldsValid));
+                }
+            }
+        }
+
         public Address Address
         {
             get
             {
-                return address;
-            }
-            set
-            {
-                if (address != value)
-                {
-                    address = value;
-                    OnPropertyChanged(nameof(Address));
-                    OnPropertyChanged(nameof(AddressText));
-                }
+                return new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
             }
         }
+
         public String AddressText
         {
             get
             {
-                if (Address == null) return "Nepoznata";
-                return $"{Address.Street} {Address.StreetNumber}, {Address.City}, {Address.Country}";
+                return $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
             }
         }
 
@@ -162,11 +234,12 @@ namespace WPFClient.DTO
                 {
                     membershipCardNumber = value;
                     OnPropertyChanged(nameof(MembershipCardNumber));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        private int membershipYear;
+        private int membershipYear = DateTime.Now.Year; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
         public int MembershipYear
         {
             get
@@ -179,11 +252,12 @@ namespace WPFClient.DTO
                 {
                     membershipYear = value;
                     OnPropertyChanged(nameof(MembershipYear));
+                    OnPropertyChanged(nameof(AllFieldsValid));
                 }
             }
         }
 
-        private MemberStatus status;
+        private MemberStatus status = MemberStatus.R;
         public MemberStatus Status
         {
             get
@@ -218,6 +292,26 @@ namespace WPFClient.DTO
 
         }
 
+        public bool AllFieldsValid {
+            get
+            {
+
+                return
+                    !string.IsNullOrWhiteSpace(FirstName) &&
+                    !string.IsNullOrWhiteSpace(LastName) &&
+                    DateOfBirth <= DateOnly.FromDateTime(DateTime.Now) && // Datum rođenja ne može biti u budućnosti.
+                    !string.IsNullOrWhiteSpace(PhoneNumber) &&
+                    !string.IsNullOrWhiteSpace(EmailAddress) &&
+                    Address != null &&
+                    !string.IsNullOrWhiteSpace(AddressStreet) &&
+                    !string.IsNullOrWhiteSpace(AddressStreetNumber) &&
+                    !string.IsNullOrWhiteSpace(AddressCity) &&
+                    !string.IsNullOrWhiteSpace(AddressCountry) &&
+                    !string.IsNullOrWhiteSpace(MembershipCardNumber) &&
+                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 1900. i ne može biti u budućnosti.
+            }
+        }
+
         public VisitorDTO()
         {
         }
@@ -231,7 +325,10 @@ namespace WPFClient.DTO
             PhoneNumber = visitor.PhoneNumber;
             EmailAddress = visitor.EmailAddress;
             AddressId = visitor.AddressId;
-            Address = visitor.Address;
+            AddressCity = visitor.Address.City;
+            AddressCountry = visitor.Address.Country;
+            AddressStreet = visitor.Address.Street;
+            AddressStreetNumber = visitor.Address.StreetNumber;
             MembershipCardNumber = visitor.MembershipCardNumber;
             MembershipYear = visitor.MembershipYear;
             Status = visitor.Status;

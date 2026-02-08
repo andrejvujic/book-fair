@@ -15,7 +15,7 @@ public class Visitor : ISerializable, IIdentifiable
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public DateOnly DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; } = DateOnly.FromDateTime(DateTime.Now); // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
     public string PhoneNumber { get; set; }
     public string EmailAddress { get; set; }
 
