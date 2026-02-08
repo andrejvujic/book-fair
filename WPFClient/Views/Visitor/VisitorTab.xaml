@@ -14,6 +14,7 @@
             x:Name="VisitorsDataGrid"
             ItemsSource="{Binding Visitors, UpdateSourceTrigger=PropertyChanged}"
             CanUserAddRows="False"
+            IsReadOnly="True"
             HeadersVisibility="Column"
         >
             <DataGrid.Columns>
