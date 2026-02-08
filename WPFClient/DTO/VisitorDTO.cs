@@ -45,8 +45,8 @@ namespace WPFClient.DTO
             }
         }
 
-        private DateOnly dateOfBirth = DateOnly.FromDateTime(DateTime.Now); // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
-        public DateOnly DateOfBirth
+        private DateTime dateOfBirth = DateTime.Now; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
+        public DateTime DateOfBirth
         {
             get
             {
@@ -299,7 +299,7 @@ namespace WPFClient.DTO
                 return
                     !string.IsNullOrWhiteSpace(FirstName) &&
                     !string.IsNullOrWhiteSpace(LastName) &&
-                    DateOfBirth <= DateOnly.FromDateTime(DateTime.Now) && // Datum rođenja ne može biti u budućnosti.
+                    DateOfBirth <= DateTime.Now && // Datum rođenja ne može biti u budućnosti.
                     !string.IsNullOrWhiteSpace(PhoneNumber) &&
                     !string.IsNullOrWhiteSpace(EmailAddress) &&
                     Address != null &&

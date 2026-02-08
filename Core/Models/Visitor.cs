@@ -15,7 +15,7 @@ public class Visitor : ISerializable, IIdentifiable
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public DateOnly DateOfBirth { get; set; } = DateOnly.FromDateTime(DateTime.Now); // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
+    public DateTime DateOfBirth { get; set; } = DateTime.Now; // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
     public string PhoneNumber { get; set; }
     public string EmailAddress { get; set; }
 
@@ -35,7 +35,7 @@ public class Visitor : ISerializable, IIdentifiable
     public Visitor(
         string firstName,
         string lastName,
-        DateOnly dateOfBirth,
+        DateTime dateOfBirth,
         Address address,
         string phoneNumber,
         string emailAddress,
@@ -103,7 +103,7 @@ public class Visitor : ISerializable, IIdentifiable
         Id = int.Parse(values[0]);
         FirstName = values[1];
         LastName = values[2];
-        DateOfBirth = DateOnly.Parse(values[3]);
+        DateOfBirth = DateTime.Parse(values[3]);
         PhoneNumber = values[4];
         EmailAddress = values[5];
         AddressId = int.Parse(values[6]);
