@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPFClient.Controllers;
+using WPFClient.DTO;
 using WPFClient.Views.Visitor;
 
 namespace WPFClient
@@ -92,6 +93,38 @@ namespace WPFClient
             }
         }
 
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            switch (EntityTabs.SelectedIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    VisitorDTO? targetVisitor = VisitorTab.SelectedVisitor;
+                    if (targetVisitor == null)
+                    {
+                        MessageBox.Show(
+                            "Nije odabran posjetilac za izmjenu. Potrebno je odabrati pojsetioca iz liste.",
+                            "Nije odabran posjetilac",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+                    }
+
+                    UpdateVisitor updateVisitorDialog = new UpdateVisitor(targetVisitor, VisitorController);
+                    updateVisitorDialog.Owner = this; // Postavlja ovaj prozor kao vlasnika dijaloga - omogućava modalno ponašanje i centriranje dijaloga u odnosu na ovaj prozor.
+                    updateVisitorDialog.ShowDialog();
+                    break;
+                default:
+                    MessageBox.Show(
+                        "Dodavanje novih entiteta nije implementirano za ovaj tab.",
+                        "Funkcionalnost nije implementirana",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                    break;
+            }
+        }
+        
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Poziva se svaki put kada se promijeni odabrani tab.

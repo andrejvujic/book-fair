@@ -68,7 +68,7 @@
 
                 <MenuItem Header="Edit">
 
-                    <MenuItem Header="Izmjena entiteta">
+                    <MenuItem Header="Izmjena entiteta" Click="EditMenuItem_Click">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE70F;"
@@ -126,7 +126,7 @@
             <TabControl x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
 
                 <TabItem Header="Posjetioci">
-                    <visitor:VisitorTab/>
+                    <visitor:VisitorTab x:Name="VisitorTab"/>
                 </TabItem>
 
                 <TabItem Header="Autori">

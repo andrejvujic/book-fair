@@ -10,6 +10,7 @@ namespace WPFClient.Views.Visitor
     {
         public ObservableCollection<VisitorDTO> Visitors { get; set; } = new ObservableCollection<VisitorDTO>();
         private VisitorDAO VisitorDAO { get; set; }
+        public VisitorDTO? SelectedVisitor => VisitorsDataGrid.SelectedItem as VisitorDTO;
 
         public VisitorTab()
         {

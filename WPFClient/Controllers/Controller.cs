@@ -32,6 +32,11 @@ namespace WPFClient.Controllers
             _dao.Remove(id);
         }
 
+        public void Update(T entity)
+        {
+            _dao.Update(entity);
+        }
+
         public void Subscribe(IObserver observer)
         {
             _dao.Subject.Subscribe(observer);
