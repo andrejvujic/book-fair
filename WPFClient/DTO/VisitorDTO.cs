@@ -1,5 +1,6 @@
 ﻿using Core.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 
@@ -331,6 +332,7 @@ namespace WPFClient.DTO
             AddressStreetNumber = visitor.Address.StreetNumber;
             MembershipCardNumber = visitor.MembershipCardNumber;
             MembershipYear = visitor.MembershipYear;
+            AverageReviewRating = visitor.AverageReviewRating;
             Status = visitor.Status;
         }
 
@@ -351,7 +353,8 @@ namespace WPFClient.DTO
                 AddressStreetNumber = AddressStreetNumber,
                 MembershipCardNumber = MembershipCardNumber,
                 MembershipYear = MembershipYear,
-                Status = Status
+                Status = Status,
+                AverageReviewRating = AverageReviewRating,
             };
         }
 
@@ -369,7 +372,8 @@ namespace WPFClient.DTO
                 Address = Address,
                 MembershipCardNumber = MembershipCardNumber,
                 MembershipYear = MembershipYear,
-                Status = Status
+                Status = Status,
+                AverageReviewRating = AverageReviewRating,
             };
         }
 
