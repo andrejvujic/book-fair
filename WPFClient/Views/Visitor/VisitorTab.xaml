@@ -16,6 +16,8 @@
             CanUserAddRows="False"
             IsReadOnly="True"
             HeadersVisibility="Column"
+            SelectionUnit="FullRow"
+            SelectionMode="Single"
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
