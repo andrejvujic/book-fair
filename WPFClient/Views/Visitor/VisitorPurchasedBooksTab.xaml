@@ -69,9 +69,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Izdavač" Binding="{Binding Book.Publisher.Name}"/>
-                <DataGridTextColumn Header="Cijena" Binding="{Binding Book.Price}"/>
                 <DataGridTextColumn Header="Broj stranica" Binding="{Binding Book.NumberOfPages}"/>
+                <DataGridTextColumn Header="Izdavač" Binding="{Binding Book.Publisher.Name}"/>
+                <DataGridTextColumn Header="Cijena (RSD)" Binding="{Binding Book.Price}"/>
                 <DataGridTextColumn Header="Žanr" Binding="{Binding Book.Genre}"/>
             </DataGrid.Columns>
         </DataGrid>
