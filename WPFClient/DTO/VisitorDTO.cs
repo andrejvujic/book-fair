@@ -334,6 +334,27 @@ namespace WPFClient.DTO
             Status = visitor.Status;
         }
 
+        public VisitorDTO Copy()
+        {
+            return new VisitorDTO
+            {
+                Id = Id,
+                FirstName = FirstName,
+                LastName = LastName,
+                DateOfBirth = DateOfBirth,
+                PhoneNumber = PhoneNumber,
+                EmailAddress = EmailAddress,
+                AddressId = AddressId,
+                AddressCity = AddressCity,
+                AddressCountry = AddressCountry,
+                AddressStreet = AddressStreet,
+                AddressStreetNumber = AddressStreetNumber,
+                MembershipCardNumber = MembershipCardNumber,
+                MembershipYear = MembershipYear,
+                Status = Status
+            };
+        }
+
         public Visitor ToVisitor()
         {
             return new Visitor
