@@ -53,6 +53,17 @@ public class Book : ISerializable, IIdentifiable
             $"\n\tWishlisters: {Wishlisters}";
     }
 
+    public List<string> FirstAndLastNamesOfAllAuthors
+    {
+        get
+        {
+            List<string> names = new List<string>();
+            foreach (Author author in Authors)
+                names.Add($"{author.FirstName} {author.LastName}");
+            return names;
+        }
+    }
+
     public string[] ToCSV()
     {
         string[] csv =
