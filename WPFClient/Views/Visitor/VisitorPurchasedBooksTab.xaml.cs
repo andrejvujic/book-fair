@@ -101,7 +101,7 @@ namespace WPFClient.Views.Visitor
         {
             if (Visitor == null || VisitorController == null) return;
 
-            PurchaseDTO? targetPurchase = PurchasesDataGrid.SelectedItem as PurchaseDTO;
+            PurchaseDTO? targetPurchase = PurchasedBooksDataGrid.SelectedItem as PurchaseDTO;
             if (targetPurchase == null)
             {
                 MessageBox.Show(
