@@ -22,6 +22,11 @@ namespace WPFClient.Controllers
             return _dao.GetAll();
         }
 
+        public T? GetById(int id)
+        {
+            return _dao.GetById(id);
+        }
+
         public void Add(T entity)
         {
             _dao.Add(entity);
