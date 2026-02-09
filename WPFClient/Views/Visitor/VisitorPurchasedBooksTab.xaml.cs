@@ -4,6 +4,7 @@ using Core.Observer;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using WPFClient.Controllers;
@@ -19,21 +20,35 @@ namespace WPFClient.Views.Visitor
                 nameof(Visitor),
                 typeof(VisitorDTO),
                 typeof(VisitorPurchasedBooksTab),
-                new PropertyMetadata(null, OnVisitorChanged)
+                new PropertyMetadata(null, OnDependencyPropertyChanged)
             );
-
-
-        private static void OnVisitorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            VisitorPurchasedBooksTab control = (VisitorPurchasedBooksTab)d;
-            control.Update();
-        }
 
         public VisitorDTO? Visitor
         {
             get => (VisitorDTO?)GetValue(VisitorProperty);
             set => SetValue(VisitorProperty, value);
         }
+
+        public static readonly DependencyProperty VisitorControllerProperty =
+            DependencyProperty.Register(
+                nameof(VisitorController),
+                typeof(VisitorController),
+                typeof(VisitorPurchasedBooksTab),
+                new PropertyMetadata(null, OnDependencyPropertyChanged)
+            );
+
+        public VisitorController? VisitorController
+        {
+            get => (VisitorController?)GetValue(VisitorControllerProperty);
+            set => SetValue(VisitorControllerProperty, value);
+        }
+
+        private static void OnDependencyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            VisitorPurchasedBooksTab control = (VisitorPurchasedBooksTab)d;
+            control.Update();
+        }
+
 
         public ObservableCollection<PurchaseDTO> Purchases { get; set; } = new ObservableCollection<PurchaseDTO>();
         private PurchaseController PurchaseController { get; set; }
@@ -63,14 +78,13 @@ namespace WPFClient.Views.Visitor
         public VisitorPurchasedBooksTab()
         {
             InitializeComponent();
-
             PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
             PurchaseController.Subscribe(this);
         }
 
         public void Update()
         {
-            if (Visitor == null) return;
+            if (Visitor == null || VisitorController== null) return;
 
             Purchases.Clear();
             List<Purchase> purchases = PurchaseController.GetByVisitorId(Visitor.Id);
@@ -85,7 +99,7 @@ namespace WPFClient.Views.Visitor
 
         private void DeletePurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Visitor == null) return;
+            if (Visitor == null || VisitorController == null) return;
 
             PurchaseDTO? targetPurchase = PurchasesDataGrid.SelectedItem as PurchaseDTO;
             if (targetPurchase == null)
@@ -101,6 +115,10 @@ namespace WPFClient.Views.Visitor
             
             PurchaseController.Delete(targetPurchase.Id);
             Update();
+
+            // Potrebno je knjigu koja je obrisana iz liste
+            // kupljenih knjiga prebaciti u listu želja.
+            VisitorController?.Update(Visitor.ToVisitor());
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
