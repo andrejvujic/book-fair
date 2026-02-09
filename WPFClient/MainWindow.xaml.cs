@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -121,6 +122,26 @@ namespace WPFClient
                     UpdateVisitor updateVisitorDialog = new UpdateVisitor(targetVisitor, VisitorController);
                     updateVisitorDialog.Owner = this; // Postavlja ovaj prozor kao vlasnika dijaloga - omogućava modalno ponašanje i centriranje dijaloga u odnosu na ovaj prozor.
                     updateVisitorDialog.ShowDialog();
+                    break;
+                case BOOKS_TAB_INDEX:
+                    // Privremeno dok se ne implementira prikazivanje
+                    // knjiga na tab-u za knjige i omogući odabir knjige iz liste.
+                    Book targetBookEntity = BookController.GetById(0) ?? new Book();
+                    BookDTO targetBook = new BookDTO(targetBookEntity);
+
+                    if (targetBook == null)
+                    {
+                        MessageBox.Show(
+                            "Nije odabrana knjiga za izmjenu. Potrebno je odabrati knjigu iz liste.",
+                            "Nije odabrana knjiga",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+                    }
+                    UpdateBook updateBookDialog = new UpdateBook(targetBook, BookController);
+                    updateBookDialog.Owner = this;
+                    updateBookDialog.ShowDialog();
                     break;
                 default:
                     MessageBox.Show(
