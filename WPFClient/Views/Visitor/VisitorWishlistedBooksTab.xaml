@@ -92,7 +92,7 @@
 
                     <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}"/>
                     <DataGridTextColumn Header="Izdavač" Binding="{Binding Publisher.Name}"/>
-                    <DataGridTextColumn Header="Cijena (RSD)" Binding="{Binding Book.Price}"/>
+                    <DataGridTextColumn Header="Cijena (RSD)" Binding="{Binding Price}"/>
                     <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}"/>
                 </DataGrid.Columns>
             </DataGrid>
