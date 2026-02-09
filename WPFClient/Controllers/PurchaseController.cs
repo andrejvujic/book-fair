@@ -26,6 +26,7 @@ namespace WPFClient.Controllers
         public double GetAverageRatingByVisitorId(int visitorId)
         {
             List<Purchase> purchases = GetByVisitorId(visitorId);
+            if (purchases.Count == 0) return 0;
             int totalRating = purchases.Sum(p => p.Rating);
             return totalRating / (double)purchases.Count;
         }
