@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient"
         xmlns:visitor="clr-namespace:WPFClient.Views.Visitor"
+        xmlns:book="clr-namespace:WPFClient.Views.Book"
         mc:Ignorable="d"
         Title="Sajam Knjiga"
         Height="720"
@@ -139,9 +140,7 @@
 
                 <TabItem Header="Knjige">
                     <Grid>
-                        <TextBlock Text="View: Knjige"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                        <book:BookTab x:Name="BookTab"/>
                     </Grid>
                 </TabItem>
 
