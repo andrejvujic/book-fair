@@ -74,7 +74,8 @@ public class BookDAO: DAO<Book>
         BookWishlisters.AddAll(oldEntity, oldEntity.Wishlisters);
 
 		_storage.Save(_entities);
-		return oldEntity;
+        Subject.NotifyObservers();
+        return oldEntity;
     }
 
 	protected override Dictionary<string, IOrderedEnumerable<Book>> SortCriteriaMapping
