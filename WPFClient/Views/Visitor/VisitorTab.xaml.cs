@@ -15,11 +15,12 @@ namespace WPFClient.Views.Visitor
         public VisitorTab()
         {
             InitializeComponent();
-            DataContext = this;
 
             VisitorDAO = App.Context.VisitorDAO;
             VisitorDAO.Subject.Subscribe(this);
             Update();
+
+            DataContext = this;
         }
 
         public void Update()
@@ -44,6 +45,7 @@ namespace WPFClient.Views.Visitor
                     MembershipYear = v.MembershipYear,
                     Status = v.Status,
                     AverageReviewRating = v.AverageReviewRating,
+                    WishlistedBooks = v.WishlistedBooks
                 });
             }
         }
