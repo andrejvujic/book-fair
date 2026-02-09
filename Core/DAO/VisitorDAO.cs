@@ -1,6 +1,7 @@
 ﻿
 using Core.Helpers.Relations;
 using Core.Models;
+using System.Diagnostics;
 
 namespace Core.DAO;
 
@@ -60,8 +61,9 @@ public class VisitorDAO : DAO<Visitor>
         oldEntity.MembershipCardNumber = entity.MembershipCardNumber;
         oldEntity.MembershipYear = entity.MembershipYear;
         oldEntity.Status = entity.Status;
-        oldEntity.WishlistedBooks = entity.WishlistedBooks;
-        oldEntity.PurchasedBooks = entity.PurchasedBooks;
+
+        oldEntity.WishlistedBooks = new List<Book>(entity.WishlistedBooks);
+        oldEntity.PurchasedBooks = new List<Book>(entity.PurchasedBooks);
 
         VisitorWishlistedBooks.RemoveAll(oldEntity);
         VisitorWishlistedBooks.AddAll(oldEntity, oldEntity.WishlistedBooks);
