@@ -65,7 +65,7 @@ public class VisitorView : View<Visitor>
         string lastName = ConsoleUtilities.ReadStringRequired();
 
         Console.Write("Enter date of birth (yyyy-MM-dd): ");
-        DateOnly dateOfBirth = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
+        DateTime dateOfBirth = DateTime.Parse(ConsoleUtilities.ReadStringRequired());
 
         Console.Write("Enter phone number: ");
         string phoneNumber = ConsoleUtilities.ReadStringRequired();
