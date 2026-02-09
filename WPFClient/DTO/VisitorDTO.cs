@@ -10,7 +10,7 @@ namespace WPFClient.DTO
     {
         public int Id { get; set; }
 
-        private string firstName = "";
+        private string firstName = string.Empty;
         public string FirstName
         {
             get
@@ -64,7 +64,7 @@ namespace WPFClient.DTO
             }
         }
 
-        public string phoneNumber = "";
+        public string phoneNumber = string.Empty;
         public string PhoneNumber
         {
             get
@@ -82,7 +82,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private string emailAddress = "";
+        private string emailAddress = string.Empty;
         public string EmailAddress
         {
             get
@@ -102,7 +102,7 @@ namespace WPFClient.DTO
 
         public int AddressId { get; set; }
 
-        private string addressCity = "";
+        private string addressCity = string.Empty;
         public string AddressCity
         {
             get
@@ -121,7 +121,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private string addressCountry = "";
+        private string addressCountry = string.Empty;
         public string AddressCountry
         {
             get
@@ -140,7 +140,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private string addressStreet = "";
+        private string addressStreet = string.Empty;
         public string AddressStreet
         {
             get
@@ -159,7 +159,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private string addressStreetNumber = "";
+        private string addressStreetNumber = string.Empty;
         public string AddressStreetNumber
         {
             get
@@ -212,6 +212,8 @@ namespace WPFClient.DTO
             }
         }
 
+        // Koristi se za prikaz prosječne ocjene recenzija u korisničkom interfejsu
+        // (na po na početnom ekranu na tab-u za posjetioce unutar DataGrid-a) .
         public String AverageReviewRatingText
         {
             get
@@ -290,9 +292,27 @@ namespace WPFClient.DTO
                         return "Nepoznat";
                 }
             }
-
         }
 
+        private List<Book> wishlistedBooks = new List<Book>();
+        public List<Book> WishlistedBooks
+        {
+            get
+            {
+                return wishlistedBooks;
+            }
+            set
+            {
+                if (wishlistedBooks != value)
+                {
+                    wishlistedBooks = value;
+                    OnPropertyChanged(nameof(WishlistedBooks));
+                }
+            }
+        }
+
+        // Koristi se za omogućavanje dugmeta za čuvanje promjena (promjene je moguće sačuvati
+        // samo ako su svi obavezni podaci ispravno uneseni).
         public bool AllFieldsValid {
             get
             {
@@ -309,13 +329,11 @@ namespace WPFClient.DTO
                     !string.IsNullOrWhiteSpace(AddressCity) &&
                     !string.IsNullOrWhiteSpace(AddressCountry) &&
                     !string.IsNullOrWhiteSpace(MembershipCardNumber) &&
-                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 1900. i ne može biti u budućnosti.
+                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 2000. i ne može biti u budućnosti.
             }
         }
 
-        public VisitorDTO()
-        {
-        }
+        public VisitorDTO() {}
 
         public VisitorDTO(Visitor visitor)
         {
@@ -334,6 +352,7 @@ namespace WPFClient.DTO
             MembershipYear = visitor.MembershipYear;
             AverageReviewRating = visitor.AverageReviewRating;
             Status = visitor.Status;
+            WishlistedBooks = visitor.WishlistedBooks;
         }
 
         public VisitorDTO Copy()
@@ -355,6 +374,7 @@ namespace WPFClient.DTO
                 MembershipYear = MembershipYear,
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
+                WishlistedBooks = new List<Book>(WishlistedBooks)
             };
         }
 
@@ -374,6 +394,7 @@ namespace WPFClient.DTO
                 MembershipYear = MembershipYear,
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
+                WishlistedBooks = WishlistedBooks
             };
         }
 
