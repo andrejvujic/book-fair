@@ -100,8 +100,24 @@ namespace WPFClient.Views.Visitor
                 return;
             }
 
-            Visitor.WishlistedBooks.Remove(targetBook);
-            VisitorController.Update(Visitor.ToVisitor());
+            var result = MessageBox.Show(
+                "Da li ste sigurni da želite da obrišete knjigu iz liste želja?",
+                "Brisanje knjige",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Visitor.WishlistedBooks.Remove(targetBook);
+                        VisitorController.Update(Visitor.ToVisitor());
+                    break;
+                    case MessageBoxResult.No:
+                        break;
+                    default:
+                        break;
+                }
         }
     }
 }
