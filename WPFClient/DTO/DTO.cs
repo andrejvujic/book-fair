@@ -17,8 +17,6 @@ namespace WPFClient.DTO
 
         public abstract T ToModel();
 
-        public abstract bool AllFieldsValid { get; }
-
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
