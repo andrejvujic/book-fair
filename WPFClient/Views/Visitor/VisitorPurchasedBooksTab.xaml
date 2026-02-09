@@ -26,7 +26,7 @@
             VerticalAlignment="Top"
             Margin="16"
             AutoGenerateColumns="False"
-            x:Name="PurchasesDataGrid"
+            x:Name="PurchasedBooksDataGrid"
             ItemsSource="{Binding Purchases, RelativeSource={RelativeSource AncestorType=UserControl}}"
             CanUserAddRows="False"
             IsReadOnly="True"
