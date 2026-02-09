@@ -84,5 +84,24 @@ namespace WPFClient.Views.Visitor
                 return;
             }
         }
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Visitor == null || VisitorController == null) return;
+
+            Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Book;
+            if (targetBook == null)
+            {
+                MessageBox.Show(
+                      "Nije odabrana knjiga za brisanje. Potrebno je odabrati knjigu iz liste, a zatim odabrati opciju 'Obriši'.",
+                      "Nije odabrana knjiga za brisanje",
+                      MessageBoxButton.OK,
+                      MessageBoxImage.Warning
+                  );
+                return;
+            }
+
+            Visitor.WishlistedBooks.Remove(targetBook);
+            VisitorController.Update(Visitor.ToVisitor());
+        }
     }
 }
