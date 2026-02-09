@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace WPFClient.DTO
 {
-    public class BookDTO : INotifyPropertyChanged
+    public class BookDTO : DTO<Book>, IValidatable
     {
         public int Id { get; set; }
 
@@ -176,28 +176,11 @@ namespace WPFClient.DTO
             }
         }
 
-        public BookDTO() { }
+        public BookDTO() : base(new Book()) { }
 
-        public BookDTO(Book book)
-        {
-            Id = book.Id;
-            Isbn = book.Isbn;
-            BookTitle = book.BookTitle;
-            Genre = book.Genre;
-            ReleaseYear = book.ReleaseYear;
-            Price = book.Price;
-            NumberOfPages = book.NumberOfPages;
+        public BookDTO(Book book) : base(book) {}
 
-            Authors = book.Authors ?? new List<Author>();
-
-            PublisherId = book.PublisherId;
-            Publisher = book.Publisher;
-
-            Buyers = book.Buyers ?? new List<Visitor>();
-            Wishlisters = book.Wishlisters ?? new List<Visitor>();
-        }
-
-        public BookDTO Copy()
+        public override BookDTO Copy()
         {
             return new BookDTO
             {
@@ -219,7 +202,26 @@ namespace WPFClient.DTO
             };
         }
 
-        public Book ToBook()
+        protected override void FromModel(Book book)
+        {
+            Id = book.Id;
+            Isbn = book.Isbn;
+            BookTitle = book.BookTitle;
+            Genre = book.Genre;
+            ReleaseYear = book.ReleaseYear;
+            Price = book.Price;
+            NumberOfPages = book.NumberOfPages;
+
+            Authors = book.Authors ?? new List<Author>();
+
+            PublisherId = book.PublisherId;
+            Publisher = book.Publisher;
+
+            Buyers = book.Buyers ?? new List<Visitor>();
+            Wishlisters = book.Wishlisters ?? new List<Visitor>();
+        }
+
+        public override Book ToModel()
         {
             return new Book
             {
@@ -239,12 +241,6 @@ namespace WPFClient.DTO
                 Buyers = Buyers ?? new List<Visitor>(),
                 Wishlisters = Wishlisters ?? new List<Visitor>()
             };
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
