@@ -148,11 +148,12 @@
             </TabItem>
 
             <TabItem Header="Kupovine">
-                <local:VisitorPurchasedBooksTab Visitor="{Binding Visitor}"/>
+                <local:VisitorPurchasedBooksTab Visitor="{Binding Visitor}" VisitorController="{Binding VisitorController}"/>
             </TabItem>
 
 
             <TabItem Header="Lista želja">
+                <local:VisitorWishlistedBooksTab Visitor="{Binding Visitor}" VisitorController="{Binding VisitorController}"/>
             </TabItem>
         </TabControl>
     </Grid>
