@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WPFClient.DTO
 {
-    public class VisitorDTO : DTO<Visitor>
+    public class VisitorDTO : DTO<Visitor>, IValidatable
     {
         public VisitorDTO() : base(new Visitor()) { }
 
@@ -44,10 +44,10 @@ namespace WPFClient.DTO
             PhoneNumber = visitor.PhoneNumber;
             EmailAddress = visitor.EmailAddress;
             AddressId = visitor.AddressId;
-            AddressCity = visitor.Address.City;
-            AddressCountry = visitor.Address.Country;
-            AddressStreet = visitor.Address.Street;
-            AddressStreetNumber = visitor.Address.StreetNumber;
+            AddressCity = visitor.Address?.City ?? string.Empty;
+            AddressCountry = visitor.Address?.Country ?? string.Empty;
+            AddressStreet = visitor.Address?.Street ?? string.Empty;
+            AddressStreetNumber = visitor.Address?.StreetNumber ?? string.Empty;
             MembershipCardNumber = visitor.MembershipCardNumber;
             MembershipYear = visitor.MembershipYear;
             AverageReviewRating = visitor.AverageReviewRating;
@@ -380,7 +380,7 @@ namespace WPFClient.DTO
 
         // Koristi se za omogućavanje dugmeta za čuvanje promjena (promjene je moguće sačuvati
         // samo ako su svi obavezni podaci ispravno uneseni).
-        public override bool AllFieldsValid {
+        public bool AllFieldsValid {
             get
             {
 
