@@ -1,13 +1,80 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 
 namespace WPFClient.DTO
 {
-    public class VisitorDTO : INotifyPropertyChanged
+    public class VisitorDTO : DTO<Visitor>
     {
+        public VisitorDTO() : base(new Visitor()) { }
+
+        public VisitorDTO(Visitor visitor) : base(visitor)
+        {
+        }
+
+        public override VisitorDTO Copy()
+        {
+            return new VisitorDTO
+            {
+                Id = Id,
+                FirstName = FirstName,
+                LastName = LastName,
+                DateOfBirth = DateOfBirth,
+                PhoneNumber = PhoneNumber,
+                EmailAddress = EmailAddress,
+                AddressId = AddressId,
+                AddressCity = AddressCity,
+                AddressCountry = AddressCountry,
+                AddressStreet = AddressStreet,
+                AddressStreetNumber = AddressStreetNumber,
+                MembershipCardNumber = MembershipCardNumber,
+                MembershipYear = MembershipYear,
+                Status = Status,
+                AverageReviewRating = AverageReviewRating,
+                WishlistedBooks = new List<Book>(WishlistedBooks)
+            };
+        }
+
+        protected override void FromModel(Visitor visitor)
+        {
+            Id = visitor.Id;
+            FirstName = visitor.FirstName;
+            LastName = visitor.LastName;
+            DateOfBirth = visitor.DateOfBirth;
+            PhoneNumber = visitor.PhoneNumber;
+            EmailAddress = visitor.EmailAddress;
+            AddressId = visitor.AddressId;
+            AddressCity = visitor.Address.City;
+            AddressCountry = visitor.Address.Country;
+            AddressStreet = visitor.Address.Street;
+            AddressStreetNumber = visitor.Address.StreetNumber;
+            MembershipCardNumber = visitor.MembershipCardNumber;
+            MembershipYear = visitor.MembershipYear;
+            AverageReviewRating = visitor.AverageReviewRating;
+            Status = visitor.Status;
+            WishlistedBooks = visitor.WishlistedBooks;
+        }
+
+        public override Visitor ToModel()
+        {
+            return new Visitor
+            {
+                Id = Id,
+                FirstName = FirstName,
+                LastName = LastName,
+                DateOfBirth = DateOfBirth,
+                PhoneNumber = PhoneNumber,
+                EmailAddress = EmailAddress,
+                AddressId = AddressId,
+                Address = Address,
+                MembershipCardNumber = MembershipCardNumber,
+                MembershipYear = MembershipYear,
+                Status = Status,
+                AverageReviewRating = AverageReviewRating,
+                WishlistedBooks = WishlistedBooks
+            };
+        }
+
         public int Id { get; set; }
 
         private string firstName = string.Empty;
@@ -28,7 +95,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private string lastName = "";
+        private string lastName = string.Empty;
         public string LastName
         {
             get
@@ -313,7 +380,7 @@ namespace WPFClient.DTO
 
         // Koristi se za omogućavanje dugmeta za čuvanje promjena (promjene je moguće sačuvati
         // samo ako su svi obavezni podaci ispravno uneseni).
-        public bool AllFieldsValid {
+        public override bool AllFieldsValid {
             get
             {
 
@@ -329,79 +396,8 @@ namespace WPFClient.DTO
                     !string.IsNullOrWhiteSpace(AddressCity) &&
                     !string.IsNullOrWhiteSpace(AddressCountry) &&
                     !string.IsNullOrWhiteSpace(MembershipCardNumber) &&
-                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 2000. i ne može biti u budućnosti.
+                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 1900. i ne može biti u budućnosti.
             }
-        }
-
-        public VisitorDTO() {}
-
-        public VisitorDTO(Visitor visitor)
-        {
-            Id = visitor.Id;
-            FirstName = visitor.FirstName;
-            LastName = visitor.LastName;
-            DateOfBirth = visitor.DateOfBirth;
-            PhoneNumber = visitor.PhoneNumber;
-            EmailAddress = visitor.EmailAddress;
-            AddressId = visitor.AddressId;
-            AddressCity = visitor.Address.City;
-            AddressCountry = visitor.Address.Country;
-            AddressStreet = visitor.Address.Street;
-            AddressStreetNumber = visitor.Address.StreetNumber;
-            MembershipCardNumber = visitor.MembershipCardNumber;
-            MembershipYear = visitor.MembershipYear;
-            AverageReviewRating = visitor.AverageReviewRating;
-            Status = visitor.Status;
-            WishlistedBooks = visitor.WishlistedBooks;
-        }
-
-        public VisitorDTO Copy()
-        {
-            return new VisitorDTO
-            {
-                Id = Id,
-                FirstName = FirstName,
-                LastName = LastName,
-                DateOfBirth = DateOfBirth,
-                PhoneNumber = PhoneNumber,
-                EmailAddress = EmailAddress,
-                AddressId = AddressId,
-                AddressCity = AddressCity,
-                AddressCountry = AddressCountry,
-                AddressStreet = AddressStreet,
-                AddressStreetNumber = AddressStreetNumber,
-                MembershipCardNumber = MembershipCardNumber,
-                MembershipYear = MembershipYear,
-                Status = Status,
-                AverageReviewRating = AverageReviewRating,
-                WishlistedBooks = new List<Book>(WishlistedBooks)
-            };
-        }
-
-        public Visitor ToVisitor()
-        {
-            return new Visitor
-            {
-                Id = Id,
-                FirstName = FirstName,
-                LastName = LastName,
-                DateOfBirth = DateOfBirth,
-                PhoneNumber = PhoneNumber,
-                EmailAddress = EmailAddress,
-                AddressId = AddressId,
-                Address = Address,
-                MembershipCardNumber = MembershipCardNumber,
-                MembershipYear = MembershipYear,
-                Status = Status,
-                AverageReviewRating = AverageReviewRating,
-                WishlistedBooks = WishlistedBooks
-            };
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
