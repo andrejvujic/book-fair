@@ -118,7 +118,7 @@ namespace WPFClient.Views.Visitor
 
             // Potrebno je knjigu koja je obrisana iz liste
             // kupljenih knjiga prebaciti u listu želja.
-            VisitorController?.Update(Visitor.ToVisitor());
+            VisitorController?.Update(Visitor.ToModel());
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

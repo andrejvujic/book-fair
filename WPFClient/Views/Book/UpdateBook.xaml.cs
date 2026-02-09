@@ -33,7 +33,7 @@ namespace WPFClient.Views.Book
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            BookController.Update(Book.ToBook());
+            BookController.Update(Book.ToModel());
             Close();
         }
     }

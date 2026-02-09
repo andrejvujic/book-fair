@@ -34,7 +34,7 @@ namespace WPFClient.Views.Book
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            bookController.Add(Book.ToBook());
+            bookController.Add(Book.ToModel());
             Close();
         }
     }
