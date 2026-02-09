@@ -52,7 +52,7 @@ namespace WPFClient.Views.Visitor
             control.VisitorController.Subscribe(control);
         }
 
-        public ObservableCollection<Book> WishlistedBooks { get; set; } = new ObservableCollection<Book>();
+        public ObservableCollection<Core.Models.Book> WishlistedBooks { get; set; } = new ObservableCollection<Core.Models.Book>();
         private PurchaseController PurchaseController { get; set; }
 
         public VisitorWishlistedBooksTab()
@@ -66,13 +66,13 @@ namespace WPFClient.Views.Visitor
             if (Visitor == null) return;
 
             WishlistedBooks.Clear();
-            foreach (Book book in Visitor.WishlistedBooks)
+            foreach (Core.Models.Book book in Visitor.WishlistedBooks)
                 WishlistedBooks.Add(book);
         }
 
         private void MakePurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Book;
+            Core.Models.Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Core.Models.Book;
             if (targetBook == null)
             {
                 MessageBox.Show(
@@ -88,7 +88,7 @@ namespace WPFClient.Views.Visitor
         {
             if (Visitor == null || VisitorController == null) return;
 
-            Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Book;
+            Core.Models.Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Core.Models.Book;
             if (targetBook == null)
             {
                 MessageBox.Show(
@@ -100,7 +100,7 @@ namespace WPFClient.Views.Visitor
                 return;
             }
 
-            var result = MessageBox.Show(
+            MessageBoxResult result = MessageBox.Show(
                 "Da li ste sigurni da želite da obrišete knjigu iz liste želja?",
                 "Brisanje knjige",
                 MessageBoxButton.YesNo,
@@ -111,7 +111,7 @@ namespace WPFClient.Views.Visitor
                 {
                     case MessageBoxResult.Yes:
                         Visitor.WishlistedBooks.Remove(targetBook);
-                        VisitorController.Update(Visitor.ToVisitor());
+                        VisitorController.Update(Visitor.ToModel());
                     break;
                     case MessageBoxResult.No:
                         break;

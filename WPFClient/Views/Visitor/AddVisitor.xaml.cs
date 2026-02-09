@@ -22,7 +22,7 @@ namespace WPFClient.Views.Visitor
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            visitorController.Add(Visitor.ToVisitor());
+            visitorController.Add(Visitor.ToModel());
             Close();
         }
 

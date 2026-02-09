@@ -21,7 +21,7 @@ namespace WPFClient.Views.Visitor
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            VisitorController.Update(Visitor.ToVisitor());
+            VisitorController.Update(Visitor.ToModel());
             Close();
         }
     }
