@@ -124,11 +124,7 @@ namespace WPFClient
                     updateVisitorDialog.ShowDialog();
                     break;
                 case BOOKS_TAB_INDEX:
-                    // Privremeno dok se ne implementira prikazivanje
-                    // knjiga na tab-u za knjige i omogući odabir knjige iz liste.
-                    Book targetBookEntity = BookController.GetById(0) ?? new Book();
-                    BookDTO targetBook = new BookDTO(targetBookEntity);
-
+                    BookDTO? targetBook = BookTab.SelectedBook;
                     if (targetBook == null)
                     {
                         MessageBox.Show(
