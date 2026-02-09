@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Book;
 using WPFClient.Views.Visitor;
 
 namespace WPFClient
@@ -24,6 +25,7 @@ namespace WPFClient
     {
         private readonly DispatcherTimer? _timer;
         private VisitorController VisitorController { get; set; }
+        private BookController BookController { get; set; }
 
         private String CurrentTabIdentifier
         {
@@ -50,6 +52,7 @@ namespace WPFClient
             DataContext = this;
 
             VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            BookController = new BookController(App.Context.BookDAO);
 
             RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
 
@@ -81,6 +84,11 @@ namespace WPFClient
                     AddVisitor addVisitorDialog = new AddVisitor(VisitorController);
                     addVisitorDialog.Owner = this; // Postavlja ovaj prozor kao vlasnika dijaloga - omogućava modalno ponašanje i centriranje dijaloga u odnosu na ovaj prozor.
                     addVisitorDialog.ShowDialog();
+                    break;
+                case BOOKS_TAB_INDEX:
+                    AddBook addBookDialog = new AddBook(BookController);
+                    addBookDialog.Owner = this;
+                    addBookDialog.ShowDialog();
                     break;
                 default:
                     MessageBox.Show(
