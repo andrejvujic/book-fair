@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace WPFClient.DTO
 {
-    public class PurchaseDTO : INotifyPropertyChanged
+    public class PurchaseDTO : DTO<Purchase>
     {
         private int id;
         public int Id
@@ -34,7 +34,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private Visitor visitor;
+        private Visitor visitor = new Visitor();
         public Visitor Visitor
         {
             get => visitor;
@@ -62,7 +62,7 @@ namespace WPFClient.DTO
             }
         }
 
-        private Book book;
+        private Book book = new Book();
         public Book Book
         {
             get => book;
@@ -118,9 +118,12 @@ namespace WPFClient.DTO
             }
         }
 
-        public PurchaseDTO() { }
+        public PurchaseDTO() : base(new Purchase()) { }
 
-        public PurchaseDTO(Purchase purchase)
+        public PurchaseDTO(Purchase purchase) : base(purchase) {}
+
+
+        protected override void FromModel(Purchase purchase)
         {
             Id = purchase.Id;
             VisitorId = purchase.VisitorId;
@@ -132,16 +135,13 @@ namespace WPFClient.DTO
             Comment = purchase.Comment;
         }
 
-        public Purchase ToPurchase()
+        public override  Purchase ToModel()
         {
-            if (Visitor == null) throw new Exception("Visitor can't be null");
-            if (Book == null) throw new Exception("Book can't be null");
-
             return new Purchase
             {
-                Visitor = Visitor,
+                Visitor = Visitor ?? new Visitor(),
                 VisitorId = VisitorId,
-                Book = Book,
+                Book = Book ?? new Book(),
                 BookId = BookId,
                 Date =Date,
                 Rating=Rating,
@@ -150,11 +150,19 @@ namespace WPFClient.DTO
             };
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
+        public override DTO<Purchase> Copy()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            return new PurchaseDTO
+            {
+                Id = Id,
+                VisitorId = VisitorId,
+                Visitor = Visitor,
+                BookId = BookId,
+                Book = Book,
+                Date = Date,
+                Rating = Rating,
+                Comment = Comment
+            };
         }
     }
 }
