@@ -26,11 +26,13 @@
 
             <Button Grid.Column="2"
                     Height="32"
-                    Content="Obriši" />
+                    Content="Obriši"
+                    Click="DeleteButton_Click"/>
 
             <Button Grid.Column="4"
                     Height="32"
-                    Content="Kupovina" />
+                    Content="Kupovina"
+                    Click="MakePurchaseButton_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">

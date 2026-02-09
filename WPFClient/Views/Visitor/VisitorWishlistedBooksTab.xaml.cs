@@ -53,21 +53,36 @@ namespace WPFClient.Views.Visitor
         }
 
         public ObservableCollection<Book> WishlistedBooks { get; set; } = new ObservableCollection<Book>();
+        private PurchaseController PurchaseController { get; set; }
 
         public VisitorWishlistedBooksTab()
         {
             InitializeComponent();
+            PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
         }
 
         public void Update()
         {
-            Trace.WriteLine("VisitorWishlistedBooksTab Update called");
             if (Visitor == null) return;
 
             WishlistedBooks.Clear();
             foreach (Book book in Visitor.WishlistedBooks)
                 WishlistedBooks.Add(book);
+        }
 
+        private void MakePurchaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Book;
+            if (targetBook == null)
+            {
+                MessageBox.Show(
+                      "Nije odabrana knjiga za kupovinu. Potrebno je odabrati knjigu iz liste, a zatim odabrati opciju 'Kupovina'.",
+                      "Nije odabrana knjiga za kupovinu",
+                      MessageBoxButton.OK,
+                      MessageBoxImage.Warning
+                  );
+                return;
+            }
         }
     }
 }
