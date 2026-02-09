@@ -1,5 +1,6 @@
 ﻿using Core.Serialization;
 using Core.Storage;
+using System.Diagnostics;
 
 namespace Core.Helpers.Relations;
 public class ManyToManyRelation<T1, T2>
@@ -17,6 +18,8 @@ public class ManyToManyRelation<T1, T2>
     public ManyToManyRelation(string storagePath) {
         storage = new Storage<RelationPair>(storagePath);
         allPairs = storage.Load();
+        foreach (RelationPair pair in allPairs)
+            allPairsSet.Add((pair.FirstId, pair.SecondId));
     }
 
     public void Add(T1 firstEntity, T2 secondEntity, bool updateStorageImmediately = true) {
@@ -57,6 +60,7 @@ public class ManyToManyRelation<T1, T2>
         RelationPair? pair = allPairs.Find(pair => pair.FirstId == firstEntity.Id && pair.SecondId == secondEntity.Id);
         if (pair == null) return;
         allPairs.Remove(pair);
+        allPairsSet.Remove((firstEntity.Id, secondEntity.Id));
         storage.Save(allPairs);
     }
 
@@ -65,6 +69,7 @@ public class ManyToManyRelation<T1, T2>
     public void RemoveAll(T1 entity)
     {
         allPairs.RemoveAll((pair) => pair.FirstId == entity.Id);
+        allPairsSet.RemoveWhere(pair => pair.Item1 == entity.Id);
         storage.Save(allPairs);
     }
 
@@ -73,6 +78,7 @@ public class ManyToManyRelation<T1, T2>
     public void RemoveAll(T2 entity)
     {
         allPairs.RemoveAll((pair) => pair.SecondId == entity.Id);
+        allPairsSet.RemoveWhere(pair => pair.Item2 == entity.Id);
         storage.Save(allPairs);
     }
 
