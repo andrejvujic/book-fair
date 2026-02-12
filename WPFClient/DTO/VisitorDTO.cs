@@ -51,7 +51,7 @@ namespace WPFClient.DTO
             AddressStreet = visitor.Address?.Street ?? string.Empty;
             AddressStreetNumber = visitor.Address?.StreetNumber ?? string.Empty;
             MembershipCardNumber = visitor.MembershipCardNumber;
-            MembershipYear = visitor.MembershipYear;
+            MembershipYear = visitor.MembershipYear.ToString();
             AverageReviewRating = visitor.AverageReviewRating;
             Status = visitor.Status;
             WishlistedBooks = visitor.WishlistedBooks;
@@ -72,7 +72,7 @@ namespace WPFClient.DTO
                 AddressId = AddressId,
                 Address = Address,
                 MembershipCardNumber = MembershipCardNumber,
-                MembershipYear = MembershipYear,
+                MembershipYear = int.Parse(MembershipYear),
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
                 WishlistedBooks = WishlistedBooks,
@@ -219,7 +219,7 @@ namespace WPFClient.DTO
         }
 
         public Address Address => new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
-        public String AddressText => $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
+        public string AddressText => $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
 
         private double averageReviewRating;
         public double AverageReviewRating
@@ -236,14 +236,7 @@ namespace WPFClient.DTO
 
         // Koristi se za prikaz prosječne ocjene recenzija u korisničkom interfejsu
         // (na po na početnom ekranu na tab-u za posjetioce unutar DataGrid-a) .
-        public String AverageReviewRatingText
-        {
-            get
-            {
-                if (AverageReviewRating == 0) return "Nema recenzija";
-                return AverageReviewRating.ToString("0.00");
-            }
-        }
+        public string AverageReviewRatingText => AverageReviewRating > 0 ? AverageReviewRating.ToString("0.00") : "Nema recenzija";
 
         private string membershipCardNumber = string.Empty;
         public string MembershipCardNumber
@@ -258,8 +251,8 @@ namespace WPFClient.DTO
             }
         }
 
-        private int membershipYear = DateTime.Now.Year; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
-        public int MembershipYear
+        private string membershipYear = string.Empty;
+        public string MembershipYear
         {
             get => membershipYear;
             set
@@ -267,7 +260,17 @@ namespace WPFClient.DTO
                 if (membershipYear == value) return;
                 membershipYear = value;
                 OnPropertyChanged(nameof(MembershipYear));
+                OnPropertyChanged(nameof(IsMembershipYearValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private bool IsMembershipYearValid
+        {
+            get {
+                if (string.IsNullOrWhiteSpace(MembershipYear)) return false;
+                if (!int.TryParse(MembershipYear, out int value)) return false;
+                return value > 0 && value <= DateTime.Now.Year;
             }
         }
 
@@ -284,7 +287,7 @@ namespace WPFClient.DTO
             }
         }
 
-        public String StatusText
+        public string StatusText
         {
             get
             {
@@ -342,7 +345,7 @@ namespace WPFClient.DTO
                     !string.IsNullOrWhiteSpace(AddressCity) &&
                     !string.IsNullOrWhiteSpace(AddressCountry) &&
                     !string.IsNullOrWhiteSpace(MembershipCardNumber) &&
-                    MembershipYear > 1900 && MembershipYear <= DateTime.Now.Year; // Pretpostavljamo da godina članstva ne može biti prije 1900. i ne može biti u budućnosti.
+                    IsMembershipYearValid;
             }
         }
     }
