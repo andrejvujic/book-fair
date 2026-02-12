@@ -56,12 +56,10 @@ namespace WPFClient
             RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
         }
 
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void NewMenuItem_Click(object sender, RoutedEventArgs e)
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+    
+        private void NewMenuItem_Click(object sender, RoutedEventArgs e) => PerformAddEntity();
+        private void PerformAddEntity()
         {
             // Odabrana je opcija za dodavanje entiteta, potrebno je otvoriti odgovarajući
             // dijalog za traženi entitet na osnovu trenutno odabranog taba.
@@ -89,7 +87,8 @@ namespace WPFClient
             }
         }
 
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e) => PerformEditEntity();
+        private void PerformEditEntity()
         {
             switch (EntityTabs.SelectedIndex)
             {
@@ -137,7 +136,8 @@ namespace WPFClient
             }
         }
 
-        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e) => PerformDeleteEntity();
+        private void PerformDeleteEntity()
         {
             switch (EntityTabs.SelectedIndex)
             {
@@ -173,7 +173,7 @@ namespace WPFClient
                             break;
                     }
 
-                   
+
                     break;
                 case BOOKS_TAB_INDEX:
                     MessageBox.Show(
@@ -193,32 +193,21 @@ namespace WPFClient
                     break;
             }
         }
-
-        private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Poziva se svaki put kada se promijeni odabrani tab.
-            RefreshCurrentTabIndicator();
-        }
-
+        
+        // Poziva se svaki put kada se promijeni odabrani tab.
+        private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e) => RefreshCurrentTabIndicator();
+        
         // Opcije menija za otvaranje tabova:
-        private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
-        }
+        private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
 
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
         const int BOOKS_TAB_INDEX = 2;
 
-        private void RefreshCurrentTabIndicator()
-        {
+        private void RefreshCurrentTabIndicator() =>
             CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
-        }
 
-        private void RefreshCurrentDateAndTime()
-        {
+        private void RefreshCurrentDateAndTime() =>
             CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
-        }
     }
-
 }
