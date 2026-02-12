@@ -31,7 +31,8 @@ namespace WPFClient.DTO
                 MembershipYear = MembershipYear,
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
-                WishlistedBooks = new List<Book>(WishlistedBooks)
+                WishlistedBooks = new List<Book>(WishlistedBooks),
+                PurchasedBooks = new List<Book>(PurchasedBooks)
             };
         }
 
@@ -53,6 +54,7 @@ namespace WPFClient.DTO
             AverageReviewRating = visitor.AverageReviewRating;
             Status = visitor.Status;
             WishlistedBooks = visitor.WishlistedBooks;
+            PurchasedBooks = visitor.PurchasedBooks;
         }
 
         public override Visitor ToModel()
@@ -71,7 +73,8 @@ namespace WPFClient.DTO
                 MembershipYear = MembershipYear,
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
-                WishlistedBooks = WishlistedBooks
+                WishlistedBooks = WishlistedBooks,
+                PurchasedBooks = PurchasedBooks,
             };
         }
 
@@ -374,6 +377,23 @@ namespace WPFClient.DTO
                 {
                     wishlistedBooks = value;
                     OnPropertyChanged(nameof(WishlistedBooks));
+                }
+            }
+        }
+
+        private List<Book> purchasedBooks = new List<Book>();
+        public List<Book> PurchasedBooks
+        {
+            get
+            {
+                return purchasedBooks;
+            }
+            set
+            {
+                if (purchasedBooks != value)
+                {
+                    purchasedBooks = value;
+                    OnPropertyChanged(nameof(PurchasedBooks));
                 }
             }
         }

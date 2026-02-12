@@ -1,6 +1,8 @@
 ﻿using Core.DAO;
+using Core.Models;
 using Core.Observer;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Controls;
 using WPFClient.DTO;
 
@@ -45,7 +47,8 @@ namespace WPFClient.Views.Visitor
                     MembershipYear = v.MembershipYear,
                     Status = v.Status,
                     AverageReviewRating = v.AverageReviewRating,
-                    WishlistedBooks = v.WishlistedBooks
+                    WishlistedBooks = v.WishlistedBooks,
+                    PurchasedBooks = v.PurchasedBooks,
                 });
             }
         }
