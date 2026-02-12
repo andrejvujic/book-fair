@@ -9,28 +9,31 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor : ISerializable, IIdentifiable
+public class Visitor : ISerializable, IIdentifiable, IDeletable
 {
     public int Id { get; set; }
 
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
     public DateTime DateOfBirth { get; set; } = DateTime.Now; // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
-    public string PhoneNumber { get; set; }
-    public string EmailAddress { get; set; }
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
 
     public int AddressId { get; set; }
-    public Address Address { get; set; }
+    public Address Address { get; set; } = new Address();
 
-    public string MembershipCardNumber { get; set; } // npr. CK-1-2023
+    public string MembershipCardNumber { get; set; } = string.Empty; // npr. CK-1-2023
     public int MembershipYear { get; set; }
     public MemberStatus Status { get; set; }
 
     public double AverageReviewRating { get; set; }
     public List<Book> PurchasedBooks { get; set; } = new List<Book>();
     public List<Book> WishlistedBooks { get; set; } = new List<Book>();
+    public bool IsDeleted { get; set; }
 
-    public Visitor() { }
+    public Visitor() { 
+        IsDeleted = false;
+    }
 
     public Visitor(
         string firstName,
@@ -43,7 +46,8 @@ public class Visitor : ISerializable, IIdentifiable
         int membershipYear,
         MemberStatus status,
         List<Book> purchasedBooks,
-        List<Book> wishlistedBooks
+        List<Book> wishlistedBooks,
+        bool isDeleted = false
     )
     {
         FirstName = firstName;
@@ -58,6 +62,7 @@ public class Visitor : ISerializable, IIdentifiable
         Status = status;
         PurchasedBooks = purchasedBooks;
         WishlistedBooks = wishlistedBooks;
+        IsDeleted = isDeleted;
     }
 
     public override string ToString()
@@ -76,7 +81,8 @@ public class Visitor : ISerializable, IIdentifiable
             $"\n\tStatus: {Status}" +
             $"\n\tAverage review rating: {AverageReviewRating}" +
             $"\n\tPurchased books: ${PurchasedBooks}" +
-            $"\n\tWishlisted books: ${WishlistedBooks}";
+            $"\n\tWishlisted books: ${WishlistedBooks}" +
+            $"\n\tDeleted: ${IsDeleted}";
     }
 
     public string[] ToCSV()
@@ -94,6 +100,7 @@ public class Visitor : ISerializable, IIdentifiable
             MembershipYear.ToString(),
             Status.ToString(),
             AverageReviewRating.ToString(),
+            IsDeleted.ToString(),
         };
         return csv;
     }
@@ -111,5 +118,6 @@ public class Visitor : ISerializable, IIdentifiable
         MembershipYear = int.Parse(values[8]);
         Status = Enum.Parse<MemberStatus>(values[9]);
         AverageReviewRating = double.Parse(values[10]);
+        IsDeleted = bool.Parse(values[11]);
     }
 }
