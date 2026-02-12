@@ -86,104 +86,77 @@ namespace WPFClient.DTO
         private bool isDeleted = false;
         public bool IsDeleted
         {
-            get { return isDeleted; }
+            get => isDeleted;
             set
             {
-                if (isDeleted != value)
-                {
-                    isDeleted = value;
-                    OnPropertyChanged(nameof(IsDeleted));
-                }
+                if (isDeleted == value) return;
+                isDeleted = value;
+                OnPropertyChanged(nameof(IsDeleted));
             }
         }
 
         private string firstName = string.Empty;
         public string FirstName
         {
-            get
-            {
-                return firstName;
-            }
+            get => firstName;
             set
             {
-                if (firstName != value)
-                {
-                    firstName = value;
-                    OnPropertyChanged(nameof(FirstName));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (firstName == value) return;
+                firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private string lastName = string.Empty;
         public string LastName
         {
-            get
-            {
-                return lastName;
-            }
+            get => lastName;
             set
             {
-                if (lastName != value)
-                {
-                    lastName = value;
-                    OnPropertyChanged(nameof(LastName));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (lastName == value) return;
+                lastName = value;
+                OnPropertyChanged(nameof(LastName));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private DateTime dateOfBirth = DateTime.Now; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
         public DateTime DateOfBirth
         {
-            get
-            {
-                return dateOfBirth;
-            }
+            get => dateOfBirth;
             set
             {
-                if (dateOfBirth != value)
-                {
-                    dateOfBirth = value;
-                    OnPropertyChanged(nameof(DateOfBirth));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (dateOfBirth == value) return;
+                dateOfBirth = value;
+                OnPropertyChanged(nameof(DateOfBirth));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         public string phoneNumber = string.Empty;
         public string PhoneNumber
         {
-            get
-            {
-                return phoneNumber;
-            }
+            get => phoneNumber;
             set
             {
-                if (phoneNumber != value)
-                {
-                    phoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (phoneNumber == value) return;
+                phoneNumber = value;
+                OnPropertyChanged(nameof(PhoneNumber));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private string emailAddress = string.Empty;
         public string EmailAddress
         {
-            get
-            {
-                return emailAddress;
-            }
+            get => emailAddress;
             set
             {
-                if (emailAddress != value)
-                {
-                    emailAddress = value;
-                    OnPropertyChanged(nameof(EmailAddress));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (emailAddress == value) return;
+                emailAddress = value;
+                OnPropertyChanged(nameof(EmailAddress));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
@@ -192,110 +165,72 @@ namespace WPFClient.DTO
         private string addressCity = string.Empty;
         public string AddressCity
         {
-            get
-            {
-                return addressCity;
-            }
+            get => addressCity;
             set
             {
-                if (addressCity != value)
-                {
-                    addressCity = value;
-                    OnPropertyChanged(nameof(AddressCity));
-                    OnPropertyChanged(nameof(AddressText));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (addressCity == value) return;
+                addressCity = value;
+                OnPropertyChanged(nameof(AddressCity));
+                OnPropertyChanged(nameof(AddressText));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private string addressCountry = string.Empty;
         public string AddressCountry
         {
-            get
-            {
-                return addressCountry;
-            }
+            get => addressCountry;
             set
             {
-                if (addressCountry != value)
-                {
-                    addressCountry = value;
-                    OnPropertyChanged(nameof(AddressCountry));
-                    OnPropertyChanged(nameof(AddressText));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (addressCountry == value) return;
+                addressCountry = value;
+                OnPropertyChanged(nameof(AddressCountry));
+                OnPropertyChanged(nameof(AddressText));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private string addressStreet = string.Empty;
         public string AddressStreet
         {
-            get
-            {
-                return addressStreet;
-            }
+            get => addressStreet;
             set
             {
-                if (addressStreet != value)
-                {
-                    addressStreet = value;
-                    OnPropertyChanged(nameof(AddressStreet));
-                    OnPropertyChanged(nameof(AddressText));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (addressStreet == value) return;
+                addressStreet = value;
+                OnPropertyChanged(nameof(AddressStreet));
+                OnPropertyChanged(nameof(AddressText));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private string addressStreetNumber = string.Empty;
         public string AddressStreetNumber
         {
-            get
-            {
-                return addressStreetNumber;
-            }
+            get => addressStreetNumber;
             set
             {
-                if (addressStreetNumber != value)
-                {
-                    addressStreetNumber = value;
-                    OnPropertyChanged(nameof(AddressStreetNumber));
-                    OnPropertyChanged(nameof(AddressText));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (addressStreetNumber == value) return;
+                addressStreetNumber = value;
+                OnPropertyChanged(nameof(AddressStreetNumber));
+                OnPropertyChanged(nameof(AddressText));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        public Address Address
-        {
-            get
-            {
-                return new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
-            }
-        }
-
-        public String AddressText
-        {
-            get
-            {
-                return $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
-            }
-        }
+        public Address Address => new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
+        public String AddressText => $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
 
         private double averageReviewRating;
         public double AverageReviewRating
         {
-            get
-            {
-                return averageReviewRating;
-            }
+            get => averageReviewRating;
             set
             {
-                if (averageReviewRating != value)
-                {
-                    averageReviewRating = value;
-                    OnPropertyChanged(nameof(AverageReviewRating));
-                    OnPropertyChanged(nameof(AverageReviewRatingText));
-                }
+                if (averageReviewRating == value) return;
+                averageReviewRating = value;
+                OnPropertyChanged(nameof(AverageReviewRating));
+                OnPropertyChanged(nameof(AverageReviewRatingText));
             }
         }
 
@@ -310,58 +245,42 @@ namespace WPFClient.DTO
             }
         }
 
-
         private string membershipCardNumber = string.Empty;
         public string MembershipCardNumber
         {
-            get
-            {
-                return membershipCardNumber;
-            }
+            get => membershipCardNumber;
             set
             {
-                if (membershipCardNumber != value)
-                {
-                    membershipCardNumber = value;
-                    OnPropertyChanged(nameof(MembershipCardNumber));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (membershipCardNumber == value) return;
+                membershipCardNumber = value;
+                OnPropertyChanged(nameof(MembershipCardNumber));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private int membershipYear = DateTime.Now.Year; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
         public int MembershipYear
         {
-            get
-            {
-                return membershipYear;
-            }
+            get => membershipYear;
             set
             {
-                if (membershipYear != value)
-                {
-                    membershipYear = value;
-                    OnPropertyChanged(nameof(MembershipYear));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
+                if (membershipYear == value) return;
+                membershipYear = value;
+                OnPropertyChanged(nameof(MembershipYear));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
         private MemberStatus status = MemberStatus.R;
         public MemberStatus Status
         {
-            get
-            {
-                return status;
-            }
+            get => status;
             set
             {
-                if (status != value)
-                {
-                    status = value;
-                    OnPropertyChanged(nameof(Status));
-                    OnPropertyChanged(nameof(StatusText));
-                }
+                if (status == value) return;
+                status = value;
+                OnPropertyChanged(nameof(Status));
+                OnPropertyChanged(nameof(StatusText));
             }
         }
 
@@ -384,43 +303,33 @@ namespace WPFClient.DTO
         private List<Book> wishlistedBooks = new List<Book>();
         public List<Book> WishlistedBooks
         {
-            get
-            {
-                return wishlistedBooks;
-            }
+            get => wishlistedBooks;
             set
             {
-                if (wishlistedBooks != value)
-                {
-                    wishlistedBooks = value;
-                    OnPropertyChanged(nameof(WishlistedBooks));
-                }
+                if (wishlistedBooks == value) return;
+                wishlistedBooks = value;
+                OnPropertyChanged(nameof(WishlistedBooks));
             }
         }
 
         private List<Book> purchasedBooks = new List<Book>();
         public List<Book> PurchasedBooks
         {
-            get
-            {
-                return purchasedBooks;
-            }
+            get => purchasedBooks;
             set
             {
-                if (purchasedBooks != value)
-                {
-                    purchasedBooks = value;
-                    OnPropertyChanged(nameof(PurchasedBooks));
-                }
+                if (purchasedBooks == value) return;
+                purchasedBooks = value;
+                OnPropertyChanged(nameof(PurchasedBooks));
             }
         }
 
         // Koristi se za omogućavanje dugmeta za čuvanje promjena (promjene je moguće sačuvati
         // samo ako su svi obavezni podaci ispravno uneseni).
-        public bool AllFieldsValid {
+        public bool AllFieldsValid
+        {
             get
             {
-
                 return
                     !string.IsNullOrWhiteSpace(FirstName) &&
                     !string.IsNullOrWhiteSpace(LastName) &&

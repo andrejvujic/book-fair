@@ -7,178 +7,10 @@ namespace WPFClient.DTO
 {
     public class BookDTO : DTO<Book>, IValidatable
     {
-        public int Id { get; set; }
-
-        private string isbn = string.Empty;
-        public string Isbn
-        {
-            get => isbn;
-            set
-            {
-                if (isbn != value)
-                {
-                    isbn = value;
-                    OnPropertyChanged(nameof(Isbn));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private string bookTitle = string.Empty;
-        public string BookTitle
-        {
-            get => bookTitle;
-            set
-            {
-                if (bookTitle != value)
-                {
-                    bookTitle = value;
-                    OnPropertyChanged(nameof(BookTitle));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private string genre = string.Empty;
-        public string Genre
-        {
-            get => genre;
-            set
-            {
-                if (genre != value)
-                {
-                    genre = value;
-                    OnPropertyChanged(nameof(Genre));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private int releaseYear;
-        public int ReleaseYear
-        {
-            get => releaseYear;
-            set
-            {
-                if (releaseYear != value)
-                {
-                    releaseYear = value;
-                    OnPropertyChanged(nameof(ReleaseYear));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private int price;
-        public int Price
-        {
-            get => price;
-            set
-            {
-                if (price != value)
-                {
-                    price = value;
-                    OnPropertyChanged(nameof(Price));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private int? numberOfPages;
-        public int NumberOfPages
-        {
-            get => numberOfPages ?? 0;
-            set
-            {
-                if (numberOfPages != value)
-                {
-                    numberOfPages = value;
-                    OnPropertyChanged(nameof(NumberOfPages));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private List<Author> authors = new List<Author>();
-        public List<Author> Authors
-        {
-            get => authors;
-            set
-            {
-                if (authors != value)
-                {
-                    authors = value;
-                    OnPropertyChanged(nameof(Authors));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        public int PublisherId { get; set; }
-
-        private Publisher? publisher;
-        public Publisher? Publisher
-        {
-            get => publisher;
-            set
-            {
-                if (publisher != value)
-                {
-                    publisher = value;
-                    PublisherId = publisher?.Id ?? 0;
-                    OnPropertyChanged(nameof(Publisher));
-                    OnPropertyChanged(nameof(PublisherId));
-                    OnPropertyChanged(nameof(AllFieldsValid));
-                }
-            }
-        }
-
-        private List<Visitor> buyers = new List<Visitor>();
-        public List<Visitor> Buyers
-        {
-            get => buyers;
-            set
-            {
-                if (buyers != value)
-                {
-                    buyers = value;
-                    OnPropertyChanged(nameof(Buyers));
-                }
-            }
-        }
-
-        private List<Visitor> wishlisters = new List<Visitor>();
-        public List<Visitor> Wishlisters
-        {
-            get => wishlisters;
-            set
-            {
-                if (wishlisters != value)
-                {
-                    wishlisters = value;
-                    OnPropertyChanged(nameof(Wishlisters));
-                }
-            }
-        }
-
-        public bool AllFieldsValid
-        {
-            get
-            {
-                return
-                    !string.IsNullOrWhiteSpace(Isbn) &&
-                    !string.IsNullOrWhiteSpace(BookTitle) &&
-                    !string.IsNullOrWhiteSpace(Genre) &&
-
-                    ReleaseYear <= DateTime.Now.Year &&
-                    Price >= 0 &&
-                    NumberOfPages > 0;
-            }
-        }
 
         public BookDTO() : base(new Book()) { }
 
-        public BookDTO(Book book) : base(book) {}
+        public BookDTO(Book book) : base(book) { }
 
         public override BookDTO Copy()
         {
@@ -242,5 +74,147 @@ namespace WPFClient.DTO
                 Wishlisters = Wishlisters ?? new List<Visitor>()
             };
         }
+
+        public int Id { get; set; }
+
+        private string isbn = string.Empty;
+        public string Isbn
+        {
+            get => isbn;
+            set
+            {
+                if (isbn == value) return;
+                isbn = value;
+                OnPropertyChanged(nameof(Isbn));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private string bookTitle = string.Empty;
+        public string BookTitle
+        {
+            get => bookTitle;
+            set
+            {
+                if (bookTitle == value) return;
+                bookTitle = value;
+                OnPropertyChanged(nameof(BookTitle));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private string genre = string.Empty;
+        public string Genre
+        {
+            get => genre;
+            set
+            {
+                if (genre == value) return;
+                genre = value;
+                OnPropertyChanged(nameof(Genre));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private int releaseYear;
+        public int ReleaseYear
+        {
+            get => releaseYear;
+            set
+            {
+                if (releaseYear == value) return;
+                releaseYear = value;
+                OnPropertyChanged(nameof(ReleaseYear));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private int price;
+        public int Price
+        {
+            get => price;
+            set
+            {
+                if (price == value) return;
+                price = value;
+                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private int? numberOfPages;
+        public int NumberOfPages
+        {
+            get => numberOfPages ?? 0;
+            set
+            {
+                if (numberOfPages == value) return;
+                numberOfPages = value;
+                OnPropertyChanged(nameof(NumberOfPages));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private List<Author> authors = new List<Author>();
+        public List<Author> Authors
+        {
+            get => authors;
+            set
+            {
+                if (authors == value) return;
+                authors = value;
+                OnPropertyChanged(nameof(Authors));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        public int PublisherId { get; set; }
+
+        private Publisher? publisher;
+        public Publisher? Publisher
+        {
+            get => publisher;
+            set
+            {
+                if (publisher == value) return;
+                publisher = value;
+                PublisherId = publisher?.Id ?? 0;
+                OnPropertyChanged(nameof(Publisher));
+                OnPropertyChanged(nameof(PublisherId));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private List<Visitor> buyers = new List<Visitor>();
+        public List<Visitor> Buyers
+        {
+            get => buyers;
+            set
+            {
+                if (buyers == value) return;
+                buyers = value;
+                OnPropertyChanged(nameof(Buyers));
+            }
+        }
+
+        private List<Visitor> wishlisters = new List<Visitor>();
+        public List<Visitor> Wishlisters
+        {
+            get => wishlisters;
+            set
+            {
+                if (wishlisters == value) return;
+                wishlisters = value;
+                OnPropertyChanged(nameof(Wishlisters));
+            }
+        }
+
+        public bool AllFieldsValid =>
+            !string.IsNullOrWhiteSpace(Isbn) &&
+            !string.IsNullOrWhiteSpace(BookTitle) &&
+            !string.IsNullOrWhiteSpace(Genre) &&
+            ReleaseYear <= DateTime.Now.Year &&
+            Price >= 0 &&
+            NumberOfPages > 0;
     }
 }

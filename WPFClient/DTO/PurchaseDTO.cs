@@ -6,122 +6,9 @@ namespace WPFClient.DTO
 {
     public class PurchaseDTO : DTO<Purchase>
     {
-        private int id;
-        public int Id
-        {
-            get => id;
-            set
-            {
-                if (id != value)
-                {
-                    id = value;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
-
-        private int visitorId;
-        public int VisitorId
-        {
-            get => visitorId;
-            set
-            {
-                if (visitorId != value)
-                {
-                    visitorId = value;
-                    OnPropertyChanged(nameof(VisitorId));
-                }
-            }
-        }
-
-        private Visitor visitor = new Visitor();
-        public Visitor Visitor
-        {
-            get => visitor;
-            set
-            {
-                if (visitor != value)
-                {
-                    visitor = value;
-                    OnPropertyChanged(nameof(Visitor));
-                }
-            }
-        }
-
-        private int bookId;
-        public int BookId
-        {
-            get => bookId;
-            set
-            {
-                if (bookId != value)
-                {
-                    bookId = value;
-                    OnPropertyChanged(nameof(BookId));
-                }
-            }
-        }
-
-        private Book book = new Book();
-        public Book Book
-        {
-            get => book;
-            set
-            {
-                if (book != value)
-                {
-                    book = value;
-                    OnPropertyChanged(nameof(Book));
-                }
-            }
-        }
-
-        private DateOnly date = DateOnly.FromDateTime(DateTime.Now);
-        public DateOnly Date
-        {
-            get => date;
-            set
-            {
-                if (date != value)
-                {
-                    date = value;
-                    OnPropertyChanged(nameof(Date));
-                }
-            }
-        }
-
-        private int rating;
-        public int Rating
-        {
-            get => rating;
-            set
-            {
-                if (rating != value)
-                {
-                    rating = value;
-                    OnPropertyChanged(nameof(Rating));
-                }
-            }
-        }
-
-        private string comment = "";
-        public string Comment
-        {
-            get => comment;
-            set
-            {
-                if (comment != value)
-                {
-                    comment = value;
-                    OnPropertyChanged(nameof(Comment));
-                }
-            }
-        }
-
         public PurchaseDTO() : base(new Purchase()) { }
 
-        public PurchaseDTO(Purchase purchase) : base(purchase) {}
-
+        public PurchaseDTO(Purchase purchase) : base(purchase) { }
 
         protected override void FromModel(Purchase purchase)
         {
@@ -135,7 +22,7 @@ namespace WPFClient.DTO
             Comment = purchase.Comment;
         }
 
-        public override  Purchase ToModel()
+        public override Purchase ToModel()
         {
             return new Purchase
             {
@@ -143,9 +30,9 @@ namespace WPFClient.DTO
                 VisitorId = VisitorId,
                 Book = Book ?? new Book(),
                 BookId = BookId,
-                Date =Date,
-                Rating=Rating,
-                Comment=Comment,
+                Date = Date,
+                Rating = Rating,
+                Comment = Comment,
                 Id = Id
             };
         }
@@ -163,6 +50,102 @@ namespace WPFClient.DTO
                 Rating = Rating,
                 Comment = Comment
             };
+        }
+
+        private int id;
+        public int Id
+        {
+            get => id;
+            set
+            {
+                if (id == value) return;
+                id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
+        private int visitorId;
+        public int VisitorId
+        {
+            get => visitorId;
+            set
+            {
+                if (visitorId == value) return;
+                visitorId = value;
+                OnPropertyChanged(nameof(VisitorId));
+            }
+        }
+
+        private Visitor visitor = new Visitor();
+        public Visitor Visitor
+        {
+            get => visitor;
+            set
+            {
+                if (visitor == value) return;
+                visitor = value;
+                OnPropertyChanged(nameof(Visitor));
+            }
+        }
+
+        private int bookId;
+        public int BookId
+        {
+            get => bookId;
+            set
+            {
+                if (bookId == value) return;
+                bookId = value;
+                OnPropertyChanged(nameof(BookId));
+            }
+        }
+
+        private Book book = new Book();
+        public Book Book
+        {
+            get => book;
+            set
+            {
+                if (book == value) return;
+                book = value;
+                OnPropertyChanged(nameof(Book));
+            }
+        }
+
+        private DateOnly date = DateOnly.FromDateTime(DateTime.Now);
+        public DateOnly Date
+        {
+            get => date;
+            set
+            {
+                if (date == value) return;
+                date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+        private int rating;
+        public int Rating
+        {
+            get => rating;
+            set
+            {
+                if (rating == value) return;
+                rating = value;
+                OnPropertyChanged(nameof(Rating));
+            }
+        }
+
+        private string comment = string.Empty;
+        public string Comment
+        {
+            get => comment;
+            set
+            {
+                if (comment == value) return;
+                comment = value;
+                OnPropertyChanged(nameof(Comment));
+            }
         }
     }
 }
