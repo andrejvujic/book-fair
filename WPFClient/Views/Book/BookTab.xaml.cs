@@ -27,23 +27,8 @@ namespace WPFClient.Views.Book
         public void Update()
         {
             Books.Clear();
-            foreach (var v in BookDAO.GetAll())
-            {
-                Books.Add(new BookDTO
-                {
-                    Id = v.Id,
-                    Isbn = v.Isbn,
-                    BookTitle = v.BookTitle,
-                    Genre = v.Genre,
-                    ReleaseYear = v.ReleaseYear,
-                    Price = v.Price,
-                    NumberOfPages = v.NumberOfPages,
-                    Authors = v.Authors,
-                    Publisher = v.Publisher,
-                    Buyers = v.Buyers,
-                    Wishlisters = v.Wishlisters
-                });
-            }
+            foreach (var b in BookDAO.GetAll())
+                Books.Add(new BookDTO(b));
         }
     }
 }
