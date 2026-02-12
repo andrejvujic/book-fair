@@ -1,6 +1,8 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WPFClient.DTO
 {
@@ -235,9 +237,10 @@ namespace WPFClient.DTO
         }
 
         // Koristi se za prikaz prosječne ocjene recenzija u korisničkom interfejsu
-        // (na po na početnom ekranu na tab-u za posjetioce unutar DataGrid-a) .
+        // (na po na početnom ekranu na tab-u za posjetioce unutar DataGrid-a).
         public string AverageReviewRatingText => AverageReviewRating > 0 ? AverageReviewRating.ToString("0.00") : "Nema recenzija";
 
+        // Broj clanske karte i odgovarajuca validacija:
         private string membershipCardNumber = string.Empty;
         public string MembershipCardNumber
         {
@@ -247,10 +250,28 @@ namespace WPFClient.DTO
                 if (membershipCardNumber == value) return;
                 membershipCardNumber = value;
                 OnPropertyChanged(nameof(MembershipCardNumber));
+                OnPropertyChanged(nameof(IsMembershipCardNumberValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
+        private bool IsMembershipCardNumberValid
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(MembershipCardNumber)) return false;
+
+                string pattern = @"^CK-([0-9]+)-([0-9]{4})$";
+                if (!Regex.IsMatch(MembershipCardNumber, pattern)) return false;
+
+                Match match = Regex.Match(MembershipCardNumber, pattern);
+                string rawMembershipYear = match.Groups[2].Value ?? string.Empty;
+                return int.Parse(rawMembershipYear) <= DateTime.Now.Year;
+            }
+        }
+
+
+        // Trenutna godina clanarine i odgovarajuca validacija.
         private string membershipYear = string.Empty;
         public string MembershipYear
         {
@@ -344,7 +365,7 @@ namespace WPFClient.DTO
                     !string.IsNullOrWhiteSpace(AddressStreetNumber) &&
                     !string.IsNullOrWhiteSpace(AddressCity) &&
                     !string.IsNullOrWhiteSpace(AddressCountry) &&
-                    !string.IsNullOrWhiteSpace(MembershipCardNumber) &&
+                    IsMembershipCardNumberValid &&
                     IsMembershipYearValid;
             }
         }
