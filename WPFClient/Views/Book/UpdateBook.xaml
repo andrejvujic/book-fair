@@ -42,7 +42,7 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Naziv*" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1"
                      Margin="0,4"
-                     Text="{Binding Path=Book.BookTitle, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Path=Book.Title, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Žanr*" VerticalAlignment="Center"/>
             <TextBox Grid.Row="2" Grid.Column="1"

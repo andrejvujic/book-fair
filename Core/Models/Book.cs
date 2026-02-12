@@ -8,7 +8,7 @@ public class Book : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
     public string Isbn { get; set; }
-    public string BookTitle { get; set; }
+    public string Title { get; set; }
     public string Genre { get; set; }
     public int ReleaseYear { get; set; } = DateTime.Now.Year;
     public int Price { get; set; }
@@ -21,10 +21,10 @@ public class Book : ISerializable, IIdentifiable
 
     public Book() { }
 
-    public Book(string isbn, string bookTitle, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
+    public Book(string isbn, string title, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
     {
         Isbn = isbn;
-        BookTitle = bookTitle;
+        Title = title;
         Genre = genre;
         ReleaseYear = releaseYear;
         Price = price;
@@ -42,7 +42,7 @@ public class Book : ISerializable, IIdentifiable
             $"[Book]:" +
             $"\n\tId: {Id}" +  
             $"\n\tISBN: {Isbn}" +
-            $"\n\tTitle: {BookTitle}" +
+            $"\n\tTitle: {Title}" +
             $"\n\tGenre: {Genre}" +
             $"\n\tReleaseYear: {ReleaseYear}" +
             $"\n\tPrice: {Price}" +
@@ -70,7 +70,7 @@ public class Book : ISerializable, IIdentifiable
         {
             Id.ToString(),
             Isbn,
-            BookTitle,
+            Title,
             Genre,
             ReleaseYear.ToString(),
             Price.ToString(),
@@ -85,7 +85,7 @@ public class Book : ISerializable, IIdentifiable
     {
         Id = int.Parse(values[0]);
         Isbn = values[1];
-        BookTitle = values[2];
+        Title = values[2];
         Genre = values[3];
         ReleaseYear = int.Parse(values[4]);
         Price = int.Parse(values[5]);

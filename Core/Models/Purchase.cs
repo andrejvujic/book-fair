@@ -34,7 +34,7 @@ public class Purchase : IIdentifiable, ISerializable
         return
             "[Purchase]:" +
             $"\n\tVisitor: Id: {Visitor.Id}, Name: {Visitor.FirstName}, Surname: {Visitor.LastName}" +
-            $"\n\tBook: Id: {Book.Id}, Title: {Book.BookTitle}" +
+            $"\n\tBook: Id: {Book.Id}, Title: {Book.Title}" +
             $"\n\tDate: {Date}" +
             $"\n\tRating: {Rating}" +
             $"\n\tComment: {Comment}";

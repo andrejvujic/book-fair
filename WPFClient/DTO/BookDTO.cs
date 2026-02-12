@@ -18,7 +18,7 @@ namespace WPFClient.DTO
             {
                 Id = Id,
                 Isbn = Isbn,
-                BookTitle = BookTitle,
+                Title = Title,
                 Genre = Genre,
                 ReleaseYear = ReleaseYear,
                 Price = Price,
@@ -38,7 +38,7 @@ namespace WPFClient.DTO
         {
             Id = book.Id;
             Isbn = book.Isbn;
-            BookTitle = book.BookTitle;
+            Title = book.Title;
             Genre = book.Genre;
             ReleaseYear = book.ReleaseYear.ToString();
             Price = book.Price.ToString();
@@ -59,7 +59,7 @@ namespace WPFClient.DTO
             {
                 Id = Id,
                 Isbn = Isbn,
-                BookTitle = BookTitle,
+                Title = Title,
                 Genre = Genre,
                 ReleaseYear = int.Parse(ReleaseYear),
                 Price = int.Parse(Price),
@@ -90,15 +90,15 @@ namespace WPFClient.DTO
             }
         }
 
-        private string bookTitle = string.Empty;
-        public string BookTitle
+        private string title = string.Empty;
+        public string Title
         {
-            get => bookTitle;
+            get => title;
             set
             {
-                if (bookTitle == value) return;
-                bookTitle = value;
-                OnPropertyChanged(nameof(BookTitle));
+                if (title == value) return;
+                title = value;
+                OnPropertyChanged(nameof(Title));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
@@ -243,7 +243,7 @@ namespace WPFClient.DTO
 
         public bool AllFieldsValid =>
             !string.IsNullOrWhiteSpace(Isbn) &&
-            !string.IsNullOrWhiteSpace(BookTitle) &&
+            !string.IsNullOrWhiteSpace(Title) &&
             !string.IsNullOrWhiteSpace(Genre) &&
             IsReleaseYearValid &&
             IsPriceValid &&

@@ -14,7 +14,7 @@ public class BookDAO: DAO<Book>
 		get
 		{
 			return new string[] {
-				"ID", "ISBN", "Book title", "Genre", "Release Year", "Price", "Number of pages", "Publisher ID"
+				"ID", "ISBN", "Title", "Genre", "Release Year", "Price", "Number of pages", "Publisher ID"
 			};
 		}
 	}
@@ -56,7 +56,7 @@ public class BookDAO: DAO<Book>
 
 		oldEntity.Id = entity.Id;
 		oldEntity.Isbn = entity.Isbn;
-		oldEntity.BookTitle = entity.BookTitle;
+		oldEntity.Title = entity.Title;
 		oldEntity.Genre = entity.Genre;	
 		oldEntity.ReleaseYear = entity.ReleaseYear;
 		oldEntity.Price = entity.Price;
@@ -86,7 +86,7 @@ public class BookDAO: DAO<Book>
 			{
 				{ "Id", _entities.OrderBy(x => x.Id) },
 				{ "Isbn", _entities.OrderBy(x => x.Isbn) },
-				{ "BookTitle", _entities.OrderBy(x => x.BookTitle) },
+				{ "Title", _entities.OrderBy(x => x.Title) },
 				{ "Genre", _entities.OrderBy(x => x.Genre) },
 				{ "ReleaseYear", _entities.OrderBy(x => x.ReleaseYear) },
 				{ "Price", _entities.OrderBy(x => x.Price) },

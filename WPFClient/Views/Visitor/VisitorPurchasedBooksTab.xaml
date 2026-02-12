@@ -55,7 +55,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Book.Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Book.BookTitle}"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Book.Title}"/>
                 <DataGridTemplateColumn Header="Autori">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
