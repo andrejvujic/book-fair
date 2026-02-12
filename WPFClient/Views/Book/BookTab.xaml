@@ -21,7 +21,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding BookTitle}"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Title}"/>
                 <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}"/>
                 <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}"/>
                 <DataGridTextColumn Header="Cijena" Binding="{Binding Price}"/>
