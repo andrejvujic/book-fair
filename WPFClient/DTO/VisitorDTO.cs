@@ -32,7 +32,8 @@ namespace WPFClient.DTO
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
                 WishlistedBooks = new List<Book>(WishlistedBooks),
-                PurchasedBooks = new List<Book>(PurchasedBooks)
+                PurchasedBooks = new List<Book>(PurchasedBooks),
+                IsDeleted = IsDeleted,
             };
         }
 
@@ -55,6 +56,7 @@ namespace WPFClient.DTO
             Status = visitor.Status;
             WishlistedBooks = visitor.WishlistedBooks;
             PurchasedBooks = visitor.PurchasedBooks;
+            IsDeleted = visitor.IsDeleted;
         }
 
         public override Visitor ToModel()
@@ -75,10 +77,25 @@ namespace WPFClient.DTO
                 AverageReviewRating = AverageReviewRating,
                 WishlistedBooks = WishlistedBooks,
                 PurchasedBooks = PurchasedBooks,
+                IsDeleted = IsDeleted,
             };
         }
 
         public int Id { get; set; }
+
+        private bool isDeleted = false;
+        public bool IsDeleted
+        {
+            get { return isDeleted; }
+            set
+            {
+                if (isDeleted != value)
+                {
+                    isDeleted = value;
+                    OnPropertyChanged(nameof(IsDeleted));
+                }
+            }
+        }
 
         private string firstName = string.Empty;
         public string FirstName
@@ -294,7 +311,7 @@ namespace WPFClient.DTO
         }
 
 
-        private string membershipCardNumber = "";
+        private string membershipCardNumber = string.Empty;
         public string MembershipCardNumber
         {
             get
