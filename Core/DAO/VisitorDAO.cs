@@ -65,6 +65,8 @@ public class VisitorDAO : DAO<Visitor>
         oldEntity.WishlistedBooks = new List<Book>(entity.WishlistedBooks);
         oldEntity.PurchasedBooks = new List<Book>(entity.PurchasedBooks);
 
+        oldEntity.IsDeleted = entity.IsDeleted;
+
         VisitorWishlistedBooks.RemoveAll(oldEntity);
         VisitorWishlistedBooks.AddAll(oldEntity, oldEntity.WishlistedBooks);
 
