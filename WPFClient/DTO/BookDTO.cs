@@ -40,9 +40,9 @@ namespace WPFClient.DTO
             Isbn = book.Isbn;
             BookTitle = book.BookTitle;
             Genre = book.Genre;
-            ReleaseYear = book.ReleaseYear;
-            Price = book.Price;
-            NumberOfPages = book.NumberOfPages;
+            ReleaseYear = book.ReleaseYear.ToString();
+            Price = book.Price.ToString();
+            NumberOfPages = book.NumberOfPages.ToString();
 
             Authors = book.Authors ?? new List<Author>();
 
@@ -61,9 +61,9 @@ namespace WPFClient.DTO
                 Isbn = Isbn,
                 BookTitle = BookTitle,
                 Genre = Genre,
-                ReleaseYear = ReleaseYear,
-                Price = Price,
-                NumberOfPages = NumberOfPages,
+                ReleaseYear = int.Parse(ReleaseYear),
+                Price = int.Parse(Price),
+                NumberOfPages = int.Parse(NumberOfPages),
 
                 Authors = Authors ?? new List<Author>(),
 
@@ -115,22 +115,32 @@ namespace WPFClient.DTO
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
-
-        private int releaseYear;
-        public int ReleaseYear
+        private string releaseYear = string.Empty;
+        public string ReleaseYear
         {
             get => releaseYear;
             set
             {
                 if (releaseYear == value) return;
                 releaseYear = value;
-                OnPropertyChanged(nameof(ReleaseYear));
+                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(IsReleaseYearValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        private int price;
-        public int Price
+        private bool IsReleaseYearValid
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(ReleaseYear)) return false;
+                if (!int.TryParse(ReleaseYear, out int value)) return false;
+                return value > 0 && value <= DateTime.Now.Year;
+            }
+        }
+
+        private string price = string.Empty;
+        public string Price
         {
             get => price;
             set
@@ -138,20 +148,42 @@ namespace WPFClient.DTO
                 if (price == value) return;
                 price = value;
                 OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(IsPriceValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        private int? numberOfPages;
-        public int NumberOfPages
+        private bool IsPriceValid
         {
-            get => numberOfPages ?? 0;
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Price)) return false;
+                if (!int.TryParse(Price, out int value)) return false;
+                return value > 0;
+            }
+        }
+
+        private string numberOfPages = string.Empty;
+        public string NumberOfPages
+        {
+            get => numberOfPages;
             set
             {
                 if (numberOfPages == value) return;
                 numberOfPages = value;
                 OnPropertyChanged(nameof(NumberOfPages));
+                OnPropertyChanged(nameof(IsNumberOfPagesValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        private bool IsNumberOfPagesValid
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(NumberOfPages)) return false;
+                if (!int.TryParse(NumberOfPages, out int value)) return false;
+                return value > 0;
             }
         }
 
@@ -213,8 +245,8 @@ namespace WPFClient.DTO
             !string.IsNullOrWhiteSpace(Isbn) &&
             !string.IsNullOrWhiteSpace(BookTitle) &&
             !string.IsNullOrWhiteSpace(Genre) &&
-            ReleaseYear <= DateTime.Now.Year &&
-            Price >= 0 &&
-            NumberOfPages > 0;
+            IsReleaseYearValid &&
+            IsPriceValid &&
+            IsNumberOfPagesValid;
     }
 }
