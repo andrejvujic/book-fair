@@ -29,36 +29,20 @@ namespace WPFClient.Views.Visitor
             set => SetValue(VisitorProperty, value);
         }
 
-        public static readonly DependencyProperty VisitorControllerProperty =
-                    DependencyProperty.Register(
-                        nameof(VisitorController),
-                        typeof(VisitorController),
-                        typeof(VisitorWishlistedBooksTab),
-                        new PropertyMetadata(null, OnDependencyPropertyChanged)
-                    );
-
-
-        public VisitorController? VisitorController
-        {
-            get => (VisitorController?)GetValue(VisitorControllerProperty);
-            set => SetValue(VisitorControllerProperty, value);
-        }
-
         private static void OnDependencyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             VisitorWishlistedBooksTab control = (VisitorWishlistedBooksTab)d;
             control.Update();
-            if (control.VisitorController == null) return;
-            control.VisitorController.Subscribe(control);
         }
 
         public ObservableCollection<Core.Models.Book> WishlistedBooks { get; set; } = new ObservableCollection<Core.Models.Book>();
-        private PurchaseController PurchaseController { get; set; }
+        private VisitorController VisitorController { get; set; }
 
         public VisitorWishlistedBooksTab()
         {
             InitializeComponent();
-            PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
+            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController.Subscribe(this);
         }
 
         public void Update()
@@ -86,7 +70,7 @@ namespace WPFClient.Views.Visitor
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Visitor == null || VisitorController == null) return;
+            if (Visitor == null) return;
 
             Core.Models.Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Core.Models.Book;
             if (targetBook == null)

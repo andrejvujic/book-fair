@@ -29,20 +29,6 @@ namespace WPFClient.Views.Visitor
             set => SetValue(VisitorProperty, value);
         }
 
-        public static readonly DependencyProperty VisitorControllerProperty =
-            DependencyProperty.Register(
-                nameof(VisitorController),
-                typeof(VisitorController),
-                typeof(VisitorPurchasedBooksTab),
-                new PropertyMetadata(null, OnDependencyPropertyChanged)
-            );
-
-        public VisitorController? VisitorController
-        {
-            get => (VisitorController?)GetValue(VisitorControllerProperty);
-            set => SetValue(VisitorControllerProperty, value);
-        }
-
         private static void OnDependencyPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             VisitorPurchasedBooksTab control = (VisitorPurchasedBooksTab)d;
@@ -52,6 +38,7 @@ namespace WPFClient.Views.Visitor
 
         public ObservableCollection<PurchaseDTO> Purchases { get; set; } = new ObservableCollection<PurchaseDTO>();
         private PurchaseController PurchaseController { get; set; }
+        private VisitorController VisitorController { get; set; }
 
         private double totalSpent;
         public double TotalSpent
@@ -80,11 +67,13 @@ namespace WPFClient.Views.Visitor
             InitializeComponent();
             PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
             PurchaseController.Subscribe(this);
-        }
+            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController.Subscribe(this);
+        }  
 
         public void Update()
         {
-            if (Visitor == null || VisitorController== null) return;
+            if (Visitor == null) return;
 
             Purchases.Clear();
             List<Purchase> purchases = PurchaseController.GetByVisitorId(Visitor.Id);
@@ -99,7 +88,7 @@ namespace WPFClient.Views.Visitor
 
         private void DeletePurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Visitor == null || VisitorController == null) return;
+            if (Visitor == null) return;
 
             PurchaseDTO? targetPurchase = PurchasedBooksDataGrid.SelectedItem as PurchaseDTO;
             if (targetPurchase == null)
@@ -119,7 +108,7 @@ namespace WPFClient.Views.Visitor
             Visitor.WishlistedBooks.Add(targetPurchase.Book);
             // Potrebno je knjigu koja je obrisana iz liste
             // kupljenih knjiga prebaciti u listu želja.
-            VisitorController?.Update(Visitor.ToModel());
+            VisitorController.Update(Visitor.ToModel());
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
