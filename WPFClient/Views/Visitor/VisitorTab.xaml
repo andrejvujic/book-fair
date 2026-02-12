@@ -21,8 +21,8 @@
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Ime" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Broj Telefona" Binding="{Binding PhoneNumber}"/>
                 <DataGridTextColumn Header="Email Adresa" Binding="{Binding EmailAddress}"/>
                 <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}"/>
