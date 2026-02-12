@@ -10,7 +10,7 @@ public class Book : ISerializable, IIdentifiable
     public string Isbn { get; set; }
     public string BookTitle { get; set; }
     public string Genre { get; set; }
-    public int ReleaseYear { get; set; }
+    public int ReleaseYear { get; set; } = DateTime.Now.Year;
     public int Price { get; set; }
     public int NumberOfPages { get; set; }
     public List<Author> Authors { get; set; } = new List<Author>();
