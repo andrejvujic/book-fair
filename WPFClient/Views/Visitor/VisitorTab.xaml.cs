@@ -28,29 +28,13 @@ namespace WPFClient.Views.Visitor
         public void Update()
         {
             Visitors.Clear();
-            foreach (var v in VisitorDAO.GetAll())
-            {
-                Visitors.Add(new VisitorDTO
-                {
-                    Id = v.Id,
-                    FirstName = v.FirstName,
-                    LastName = v.LastName,
-                    DateOfBirth = v.DateOfBirth,
-                    PhoneNumber = v.PhoneNumber,
-                    EmailAddress = v.EmailAddress,
-                    AddressId = v.AddressId,
-                    AddressCity = v.Address.City,
-                    AddressCountry = v.Address.Country,
-                    AddressStreet = v.Address.Street,
-                    AddressStreetNumber = v.Address.StreetNumber,
-                    MembershipCardNumber = v.MembershipCardNumber,
-                    MembershipYear = v.MembershipYear,
-                    Status = v.Status,
-                    AverageReviewRating = v.AverageReviewRating,
-                    WishlistedBooks = v.WishlistedBooks,
-                    PurchasedBooks = v.PurchasedBooks,
-                });
-            }
+            // Prikazuje samo posjetioce koji nisu obrisani.
+            // Brisanje je logicko sto znaci da se (logicki) obrisani
+            // posjetioci ignorisu, nema fizickog brisanja zbog komplikacija
+            // oko vezivanja sa drugim entitetima.
+            foreach (var v in VisitorDAO.GetWhere((e) => !e.IsDeleted))
+                Visitors.Add(new VisitorDTO(v));
+            
         }
     }
 }
