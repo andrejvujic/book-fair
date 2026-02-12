@@ -1,7 +1,4 @@
-﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -18,7 +15,7 @@ namespace WPFClient
         private VisitorController VisitorController { get; set; }
         private BookController BookController { get; set; }
 
-        private String CurrentTabIdentifier
+        private string CurrentTabIdentifier
         {
             get
             {
@@ -157,10 +154,26 @@ namespace WPFClient
                         return;
                     }
 
-                    Trace.WriteLine($"Deleting visitor: {targetVisitor.Id}");
+                    MessageBoxResult result = MessageBox.Show(
+                        "Da li ste sigurni da želite da obrišete posjetioca?",
+                        "Brisanje posjetioca",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question
+                    );
 
-                    targetVisitor.IsDeleted = true;
-                    VisitorController.Update(targetVisitor.ToModel());
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            targetVisitor.IsDeleted = true;
+                            VisitorController.Update(targetVisitor.ToModel());
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+
+                   
                     break;
                 case BOOKS_TAB_INDEX:
                     MessageBox.Show(
