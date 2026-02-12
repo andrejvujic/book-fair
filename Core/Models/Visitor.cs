@@ -31,9 +31,7 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable
     public List<Book> WishlistedBooks { get; set; } = new List<Book>();
     public bool IsDeleted { get; set; }
 
-    public Visitor() { 
-        IsDeleted = false;
-    }
+    public Visitor() {}
 
     public Visitor(
         string firstName,
