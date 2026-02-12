@@ -29,7 +29,7 @@
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding BookTitle}"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Title}"/>
             </DataGrid.Columns>
         </DataGrid>
 
