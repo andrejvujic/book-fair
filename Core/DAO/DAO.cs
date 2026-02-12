@@ -61,6 +61,11 @@ public abstract class DAO<T>
         return _entities;
     }
 
+    public List<T> GetWhere(Predicate<T> predicate)
+    {
+        return _entities.Where((e) => predicate(e)).ToList();
+    }
+
     public T? GetById(int id)
     {
         return _entities.Find(e => e.Id == id);
