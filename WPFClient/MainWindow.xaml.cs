@@ -1,19 +1,9 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPFClient.Controllers;
 using WPFClient.DTO;
@@ -149,7 +139,48 @@ namespace WPFClient
                     break;
             }
         }
-        
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            switch (EntityTabs.SelectedIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    VisitorDTO? targetVisitor = VisitorTab.SelectedVisitor;
+                    if (targetVisitor == null)
+                    {
+                        MessageBox.Show(
+                            "Nije odabran posjetilac za brisanje. Potrebno je odabrati pojsetioca iz liste.",
+                            "Nije odabran posjetilac",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+                    }
+
+                    Trace.WriteLine($"Deleting visitor: {targetVisitor.Id}");
+
+                    targetVisitor.IsDeleted = true;
+                    VisitorController.Update(targetVisitor.ToModel());
+                    break;
+                case BOOKS_TAB_INDEX:
+                    MessageBox.Show(
+                        "Brisanje entiteta nije implementirano za ovaj tab.",
+                        "Funkcionalnost nije implementirana",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                    break;
+                default:
+                    MessageBox.Show(
+                        "Brisanje entiteta nije implementirano za ovaj tab.",
+                        "Funkcionalnost nije implementirana",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                    break;
+            }
+        }
+
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Poziva se svaki put kada se promijeni odabrani tab.
