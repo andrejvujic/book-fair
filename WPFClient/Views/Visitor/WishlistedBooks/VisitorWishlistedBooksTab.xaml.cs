@@ -1,14 +1,10 @@
-﻿using Core.Models;
-using Core.Observer;
-using System;
-using System.Collections.Generic;
+﻿using Core.Observer;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Visitor.WishlistedBooks;
 
 namespace WPFClient.Views.Visitor
 {
@@ -102,6 +98,14 @@ namespace WPFClient.Views.Visitor
                     default:
                         break;
                 }
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Visitor == null) return;
+            VisitorWishlistedBooksAdd addBookDialog = new VisitorWishlistedBooksAdd(Visitor);
+            addBookDialog.Owner = Window.GetWindow(this);
+            addBookDialog.ShowDialog();
         }
     }
 }
