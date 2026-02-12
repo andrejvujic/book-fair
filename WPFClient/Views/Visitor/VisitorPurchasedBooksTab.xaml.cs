@@ -105,6 +105,7 @@ namespace WPFClient.Views.Visitor
             PurchaseController.Delete(targetPurchase.Id);
             Update();
 
+            Visitor.PurchasedBooks.Remove(targetPurchase.Book);
             Visitor.WishlistedBooks.Add(targetPurchase.Book);
             // Potrebno je knjigu koja je obrisana iz liste
             // kupljenih knjiga prebaciti u listu želja.
