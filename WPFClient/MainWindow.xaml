@@ -124,27 +124,37 @@
                 </StatusBarItem>
             </StatusBar>
 
-            <TabControl x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <TabItem Header="Posjetioci">
-                    <visitor:VisitorTab x:Name="VisitorTab"/>
-                </TabItem>
+                <TextBox Grid.Row="0"
+                                 Text="{Binding Path=RawSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TabItem Header="Autori">
-                    <Grid>
-                        <TextBlock Text="View: Autori"
+                <TabControl Grid.Row="1" x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
+
+                    <TabItem Header="Posjetioci">
+                        <visitor:VisitorTab x:Name="VisitorTab" RawSearchQuery="{Binding RawSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+                    </TabItem>
+
+                    <TabItem Header="Autori">
+                        <Grid>
+                            <TextBlock Text="View: Autori"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
-                    </Grid>
-                </TabItem>
+                        </Grid>
+                    </TabItem>
 
-                <TabItem Header="Knjige">
-                    <Grid>
-                        <book:BookTab x:Name="BookTab"/>
-                    </Grid>
-                </TabItem>
+                    <TabItem Header="Knjige">
+                        <Grid>
+                            <book:BookTab x:Name="BookTab"/>
+                        </Grid>
+                    </TabItem>
 
-            </TabControl>
+                </TabControl>
+            </Grid>
 
         </DockPanel>
     </Grid>
