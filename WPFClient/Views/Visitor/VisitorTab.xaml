@@ -12,7 +12,7 @@
             Margin="16"
             AutoGenerateColumns="False"
             x:Name="VisitorsDataGrid"
-            ItemsSource="{Binding Visitors, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding Visitors, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
             CanUserAddRows="False"
             IsReadOnly="True"
             HeadersVisibility="Column"
