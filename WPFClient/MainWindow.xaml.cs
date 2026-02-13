@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -9,11 +11,23 @@ using WPFClient.Views.Visitor;
 
 namespace WPFClient
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private readonly DispatcherTimer? _timer;
-        private VisitorController VisitorController { get; set; }
-        private BookController BookController { get; set; }
+        private VisitorController VisitorController { get; }
+        private BookController BookController { get; }
+
+        private string rawSearchQuery = string.Empty;
+        public string RawSearchQuery
+        {
+            get => rawSearchQuery;
+            set
+            {
+                if (string.Equals(rawSearchQuery, value)) return;
+                rawSearchQuery = value;
+                OnPropertyChanged(nameof(RawSearchQuery));
+            }
+        }
 
         private string CurrentTabIdentifier
         {
@@ -203,6 +217,10 @@ namespace WPFClient
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
         const int BOOKS_TAB_INDEX = 2;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+                   => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private void RefreshCurrentTabIndicator() =>
             CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
