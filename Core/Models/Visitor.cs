@@ -1,5 +1,6 @@
 using Core.Serialization;
 using Core.Helpers;
+using Core.Helpers.Search;
 
 namespace Core.Models;
 
@@ -9,7 +10,7 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor : ISerializable, IIdentifiable, IDeletable
+public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable
 {
     public int Id { get; set; }
 
@@ -30,6 +31,8 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable
     public List<Book> PurchasedBooks { get; set; } = new List<Book>();
     public List<Book> WishlistedBooks { get; set; } = new List<Book>();
     public bool IsDeleted { get; set; }
+
+    public List<string> SearchFields => new List<string>() { LastName, FirstName, MembershipCardNumber };
 
     public Visitor() {}
 
