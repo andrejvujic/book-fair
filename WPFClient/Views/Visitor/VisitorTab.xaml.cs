@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFClient.DTO;
 using Core.Helpers.Pagination;
+using System.Diagnostics;
 
 namespace WPFClient.Views.Visitor
 {
