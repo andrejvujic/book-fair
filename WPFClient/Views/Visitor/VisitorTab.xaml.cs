@@ -73,6 +73,7 @@ namespace WPFClient.Views.Visitor
 
             MaxPageNumber = FilteredVisitors.GetNumberOfPages(PageSize);
             OnPropertyChanged(nameof(MaxPageNumber));
+            OnPropertyChanged(nameof(PreviousPageExists));
             OnPropertyChanged(nameof(NextPageExists));
         }
 
