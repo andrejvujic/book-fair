@@ -1,6 +1,7 @@
 using Core.Serialization;
 using Core.Helpers;
 using Core.Helpers.Search;
+using Core.Helpers.Sorting;
 
 namespace Core.Models;
 
@@ -10,7 +11,7 @@ public enum MemberStatus
     V // VIP
 }
 
-public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable
+public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, ISortable
 {
     public int Id { get; set; }
 
@@ -33,6 +34,19 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable
     public bool IsDeleted { get; set; }
 
     public List<string> SearchFields => new List<string>() { LastName, FirstName, MembershipCardNumber };
+
+    public Dictionary<string, dynamic> SortFields {
+        get => new Dictionary<string, dynamic>
+        {
+            { nameof(Id), Id },
+            { nameof(FirstName), FirstName },
+            { nameof(LastName), LastName },
+            { nameof(MembershipCardNumber), MembershipCardNumber  },
+            { nameof(MembershipYear), MembershipYear },
+            { nameof(Status), Status },
+            { nameof(AverageReviewRating), AverageReviewRating },
+        };
+    }
 
     public Visitor() {}
 
