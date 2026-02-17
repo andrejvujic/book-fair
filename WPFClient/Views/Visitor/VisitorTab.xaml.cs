@@ -41,7 +41,7 @@ namespace WPFClient.Views.Visitor
         private static void OnSearchQueryPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             VisitorTab control = (VisitorTab)d;
-            control.PageNumber = 1; // Promjena pretrage resetuje paginaciju na prvu stranicu.
+            control.PageNumber = 1; // Promjena search query-ja resetuje paginaciju na prvu stranicu.
             control.Update();
         }
 
@@ -58,8 +58,16 @@ namespace WPFClient.Views.Visitor
 
         public void Update()
         {
-            FetchVisitors(); // Treba pozivati samo kada se promijeni search query.
+            // Treba pozivati samo kada se promijeni search query ili kada
+            // dodje do promjene liste entiteta.
+            FetchVisitors();
+
+            // Ukoliko je zbog promjene search query-ja ili liste entiteta
+            // doslo do smanjenja maksimalnog broja stranica,
+            // potrebno je provjeriti da trenutni broj stranice
+            // ne prelazi novi maksimalni broj stranice.
             if (PageNumber > MaxPageNumber) PageNumber = MaxPageNumber;
+
             UpdateSorting();
             UpdatePagination();
             UpdateCurrentPageIndicator();
