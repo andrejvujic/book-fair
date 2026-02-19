@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WPFClient.Controllers
 {
-    public abstract class Controller<T> where T: class, ISerializable, IIdentifiable, new()
+    public class Controller<T> where T: class, ISerializable, IIdentifiable, new()
     {
         protected readonly DAO<T> _dao;
         public Controller(DAO<T> dao) {
