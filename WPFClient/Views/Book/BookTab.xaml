@@ -8,8 +8,28 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
-        <DataGrid VerticalAlignment="Top"
-                  Margin="16"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Width="128"
+                    Height="32"
+                    Margin="16"
+                    Content="Poređenje knjiga"
+                    Click="CompareButton_Click"/>
+
+        </Grid>
+
+        <DataGrid Grid.Row="1"
+                  VerticalAlignment="Top"
+                  Margin="16,0,16,16"
                   AutoGenerateColumns="False"
                   x:Name="BooksDataGrid"
                   ItemsSource="{Binding Books, UpdateSourceTrigger=PropertyChanged}"
@@ -17,15 +37,15 @@
                   IsReadOnly="True"
                   HeadersVisibility="Column"
                   SelectionUnit="FullRow"
-                  SelectionMode="Single">
+                  SelectionMode="Extended">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Title}"/>
-                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}"/>
-                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}"/>
-                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}"/>
-                <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="*"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
+                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="*"/>
+                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="*"/>
+                <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
