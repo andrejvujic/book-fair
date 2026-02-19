@@ -22,8 +22,7 @@
             </TextBlock.Text>
         </TextBlock>
 
-        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                                   Margin="0,8,0,8"/>
+        <Separator Grid.Row="1" Margin="0,16,0,16"></Separator>
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
