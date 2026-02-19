@@ -33,8 +33,22 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
     public List<Book> WishlistedBooks { get; set; } = new List<Book>();
     public bool IsDeleted { get; set; }
 
-    public List<string> SearchFields => new List<string>() { LastName, FirstName, MembershipCardNumber };
+    public bool IsMatch(SearchQuery query)
+    {
+        if (query.Empty) return true;
 
+        switch (query.Length)
+        {
+            case 1:
+                return query.IsMatch(new string[] { LastName });
+            case 2:
+                return query.IsMatch(new string[] { FirstName, LastName });
+            case 3:
+                return query.IsMatch(new string[] { MembershipCardNumber, FirstName, LastName });
+        }
+
+        return false;
+    }
     public Dictionary<string, dynamic> SortFields {
         get => new Dictionary<string, dynamic>
         {
