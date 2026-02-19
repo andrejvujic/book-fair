@@ -11,16 +11,8 @@ namespace Core.Helpers.Search
     {
         public static List<T> Search<T>(this List<T> entities, SearchQuery q) where T : ISearchable
         {
-            if (q == null || q.IsEmpty) return entities;
-
-            return entities.Where((entity) => {
-                List<string> f = entity.SearchFields.Select((e) => e.ToLower().Trim()).ToList();
-
-                for (int index = 0; index < Math.Min(q.Length, f.Count); ++index)
-                    if (!f[index].Contains(q.Tokens[index])) return false;
-
-                return true;
-            }).ToList();
+            if (q.Empty) return entities;
+            return entities.Where((entity) => entity.IsMatch(q)).ToList();
         }
     }
 }
