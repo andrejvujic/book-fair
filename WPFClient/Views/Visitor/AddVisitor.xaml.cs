@@ -1,6 +1,7 @@
 ﻿using Core.DAO;
 using Core.Models;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
@@ -27,10 +28,5 @@ namespace WPFClient.Views.Visitor
         }
 
         // Potrebno zbog povezivanja sa poljem za unos statusa člana u korisničkom interfejsu.
-    }
-
-    public static class MemberStatusValues
-    {
-        public static Array All => Enum.GetValues(typeof(MemberStatus));
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Visitor"
+        xmlns:msm="clr-namespace:WPFClient.Views.Visitor.MemberStatusMapping"
         mc:Ignorable="d"
         Title="Dodavanje Posjetioca"
         Height="640"
@@ -55,8 +56,10 @@
 
             <Label Grid.Row="7" Grid.Column="0" Content="Status*" VerticalAlignment="Center"/>
             <ComboBox Grid.Row="7" Grid.Column="1" Margin="0,4" 
-                ItemsSource="{Binding Source={x:Static local:MemberStatusValues.All}}"
-                SelectedItem="{Binding Path=Visitor.Status, UpdateSourceTrigger=PropertyChanged}"
+                DisplayMemberPath="Label"
+                SelectedValuePath="Value"
+                ItemsSource="{Binding Source={x:Static msm:MemberStatusValues.All}}"
+                SelectedValue="{Binding Path=Visitor.Status, UpdateSourceTrigger=PropertyChanged}"
             />
 
             <Separator  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,0,8"/>
