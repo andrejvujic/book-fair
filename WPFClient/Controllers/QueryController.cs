@@ -14,10 +14,12 @@ namespace WPFClient.Controllers
         where T : class, ISerializable, IIdentifiable, ISearchable, ISortable, IDeletable, new()
     {
         public QueryController(DAO<T> dao) : base(dao) { }
-
         private List<T> FilteredEntities { get; set; } = new List<T>();
 
+
+        private string PreviousRawSearchQuery { get; set; } = string.Empty;
         public abstract int SearchQueryLength { get; }
+
 
         private const int PageSize = 16;
         public int MaxPageNumber { get => FilteredEntities.GetNumberOfPages(PageSize); }
@@ -27,9 +29,6 @@ namespace WPFClient.Controllers
         public bool NextPageExists { get => PageNumber + 1 <= MaxPageNumber; }
 
         private void Search(string rawSearchQuery, bool excludeDeleted = true) {
-            // Promjena pretrage resetuje paginaciju na pocetnu stranicu.
-            PageNumber = 1;
-
             FilteredEntities = _dao
                 .GetWhere((e) => !e.IsDeleted || !excludeDeleted)
                 .Search(
@@ -38,15 +37,13 @@ namespace WPFClient.Controllers
                         SearchQueryLength
                     )
                 );
-
-            OnPropertyChanged(nameof(NextPageExists));
-            OnPropertyChanged(nameof(PreviousPageExists));
-            OnPropertyChanged(nameof(PageNumber));
-            OnPropertyChanged(nameof(MaxPageNumber));
-            OnPropertyChanged(nameof(CurrentPageText));
         }
 
         public QueryController<T> PerformSerach(string rawSearchQuery, bool excludeDeleted = true) {
+            // Promjena pretrage resetuje paginaciju na pocetnu stranicu.
+            if (!string.Equals(PreviousRawSearchQuery, rawSearchQuery)) PageNumber = 1;
+            PreviousRawSearchQuery = rawSearchQuery;
+
             Search(rawSearchQuery, excludeDeleted);
 
             // Ukoliko je zbog promjene search query-ja ili liste entiteta
@@ -55,12 +52,21 @@ namespace WPFClient.Controllers
             // ne prelazi novi maksimalni broj stranice.
             if (PageNumber > MaxPageNumber) PageNumber = MaxPageNumber;
 
+            OnPropertyChanged(nameof(NextPageExists));
+            OnPropertyChanged(nameof(PreviousPageExists));
+            OnPropertyChanged(nameof(PageNumber));
+            OnPropertyChanged(nameof(MaxPageNumber));
+            OnPropertyChanged(nameof(CurrentPageText));
             return this;
         }
 
-
+        private string PreviousSortingCriteria { get; set; } = string.Empty;
         private string SortingCriteria { get; set; } = string.Empty;
+
+        private Direction PreviousSortingDirection { get; set; } = Direction.Ascending;
         private Direction SortingDirection { get; set; } = Direction.Ascending;
+        
+        
         private void Sort() => FilteredEntities = FilteredEntities.Sort(SortingCriteria, SortingDirection);
 
         public bool SetSortingParameters(string sortingCriteria, Direction sortingDirection)
@@ -73,12 +79,19 @@ namespace WPFClient.Controllers
 
         public QueryController<T> PerformSorting()
         {
-            // Sortiranje resetuje paginaciju na pocetnu stranicu.
-            PageNumber = 1;
+            // Promjena sortiranja resetuje paginaciju na pocetnu stranicu.
+            if (!string.Equals(PreviousSortingCriteria, SortingCriteria) || PreviousSortingDirection != SortingDirection)
+                PageNumber = 1;
+
+            PreviousSortingDirection = SortingDirection;
+            PreviousSortingCriteria = SortingCriteria;
 
             Sort();
 
+            OnPropertyChanged(nameof(NextPageExists));
+            OnPropertyChanged(nameof(PreviousPageExists));
             OnPropertyChanged(nameof(PageNumber));
+            OnPropertyChanged(nameof(MaxPageNumber));
             OnPropertyChanged(nameof(CurrentPageText));
             return this;
         }
