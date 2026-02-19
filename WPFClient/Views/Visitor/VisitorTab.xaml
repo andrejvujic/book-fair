@@ -17,7 +17,7 @@
             Margin="16"
             AutoGenerateColumns="False"
             x:Name="VisitorsDataGrid"
-            ItemsSource="{Binding Visitors, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            ItemsSource="{Binding Visitors, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Sorting="VisitorsDataGrid_Sorting"
             CanUserAddRows="False"
             IsReadOnly="True"
@@ -52,9 +52,9 @@
                 Height="32"
                 Content="Prethodna"
                 Click="PreviousPageButton_Click"
-                IsEnabled="{Binding PreviousPageExists, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                IsEnabled="{Binding VisitorController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-            <TextBlock x:Name="CurrentPageIndicator" Grid.Column="1"
+            <TextBlock x:Name="CurrentPageIndicator" Grid.Column="1" Text="{Binding VisitorController.CurrentPageText, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             <Button Grid.Column="2"
@@ -62,7 +62,7 @@
                 Height="32"
                 Content="Naredna"
                 Click="NextPageButton_Click"
-                IsEnabled="{Binding NextPageExists, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                IsEnabled="{Binding VisitorController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Grid>
     </Grid>
 </UserControl>
