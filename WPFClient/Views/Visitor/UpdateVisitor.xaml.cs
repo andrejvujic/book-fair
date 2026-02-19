@@ -22,6 +22,8 @@ namespace WPFClient.Views.Visitor
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             VisitorController.Update(Visitor.ToModel());
+            // TODO: Ovde treba da se koristi AddressController kada se napravi...
+            App.Context.AddressDAO.Update(Visitor.Address);
             Close();
         }
     }
