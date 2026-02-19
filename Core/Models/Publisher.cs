@@ -5,12 +5,12 @@ namespace Core.Models;
 
 public class Publisher : ISerializable, IIdentifiable
 {
-    public int Id { get; set; } = -1;
+    public int Id { get; set; } = 0;
 
-    public string Name { get; set; } = "";
+    public string Name { get; set; } = string.Empty;
 
     public int BossId { get; set; } = 0;
-    public Author Boss { get; set; } // TODO: Najmanje 5 godina iskustva
+    public Author Boss { get; set; } = new Author(); // Najmanje 5 godina iskustva
 
     public List<Author> Authors { get; set; } = new List<Author>();
     public List<Book> Books { get; set; } = new List<Book>();
