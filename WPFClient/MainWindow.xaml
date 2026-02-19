@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFClient"
         xmlns:visitor="clr-namespace:WPFClient.Views.Visitor"
         xmlns:book="clr-namespace:WPFClient.Views.Book"
+        xmlns:publisher="clr-namespace:WPFClient.Views.Publisher"
         mc:Ignorable="d"
         Title="Sajam Knjiga"
         Height="720"
@@ -52,7 +53,7 @@
                         <MenuItem Header="Posjetioci" Click="VisitorsMenuItem_Click"/>
                         <MenuItem Header="Autori"/>
                         <MenuItem Header="Knjige"/>
-                        <MenuItem Header="Izdavači"/>
+                        <MenuItem Header="Izdavači" Click="PublishersMenuItem_Click"/>
 
                         <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
                             <MenuItem.Icon>

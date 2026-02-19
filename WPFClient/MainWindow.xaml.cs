@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 using WPFClient.Views.Book;
+using WPFClient.Views.Publisher;
 using WPFClient.Views.Visitor;
 
 namespace WPFClient
@@ -213,6 +213,13 @@ namespace WPFClient
         
         // Opcije menija za otvaranje tabova:
         private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+
+        private void PublishersMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            PublisherWindow window = new PublisherWindow();
+            window.Owner = this;
+            window.ShowDialog();
+        }
 
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
