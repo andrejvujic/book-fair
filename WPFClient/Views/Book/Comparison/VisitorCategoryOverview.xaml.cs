@@ -8,6 +8,7 @@ namespace WPFClient.Views.Book.Comparison
 {
     public partial class VisitorCategoryOverview : UserControl
     {
+        public string RawSearchQuery { get; set; } = string.Empty;
         public ObservableCollection<VisitorDTO> Visitors { get; set; } = new ObservableCollection<VisitorDTO>();
 
         public static readonly DependencyProperty VisitorsProperty =
@@ -42,6 +43,11 @@ namespace WPFClient.Views.Book.Comparison
         public VisitorCategoryOverview()
         {
             InitializeComponent();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
