@@ -26,7 +26,7 @@
             SelectionMode="Single"
         >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" SortMemberPath="Id"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
                 <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
                 <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" SortMemberPath="LastName"/>
                 <DataGridTextColumn Header="Broj Telefona" Binding="{Binding PhoneNumber}" CanUserSort="False"/>

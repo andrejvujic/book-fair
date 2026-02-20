@@ -25,13 +25,13 @@
                   SelectionUnit="FullRow"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="*"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
-                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="*"/>
-                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="*"/>
-                <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}" Width="*"/>
+                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
+                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto"/>
+                <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
 

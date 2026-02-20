@@ -54,9 +54,9 @@
             </DataGrid.CellStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Book.Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Book.Title}"/>
-                <DataGridTemplateColumn Header="Autori">
+                <DataGridTextColumn Header="ISBN" Width="*" Binding="{Binding Book.Isbn}"/>
+                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Book.Title}"/>
+                <DataGridTemplateColumn Header="Autori" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding Book.FirstAndLastNamesOfAllAuthors}">
@@ -69,10 +69,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Broj stranica" Binding="{Binding Book.NumberOfPages}"/>
-                <DataGridTextColumn Header="Izdavač" Binding="{Binding Book.Publisher.Name}"/>
-                <DataGridTextColumn Header="Cijena (RSD)" Binding="{Binding Book.Price}"/>
-                <DataGridTextColumn Header="Žanr" Binding="{Binding Book.Genre}"/>
+                <DataGridTextColumn Header="Broj stranica" Width="Auto" Binding="{Binding Book.NumberOfPages}"/>
+                <DataGridTextColumn Header="Izdavač" Width="*" Binding="{Binding Book.Publisher.Name}"/>
+                <DataGridTextColumn Header="Cijena (RSD)" Width="Auto" Binding="{Binding Book.Price}"/>
+                <DataGridTextColumn Header="Žanr" Width="*" Binding="{Binding Book.Genre}"/>
             </DataGrid.Columns>
         </DataGrid>
 
