@@ -90,11 +90,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Broj stranica" Width="Auto" Binding="{Binding NumberOfPages}"/>
                     <DataGridTextColumn Header="Izdavač" Width="*" Binding="{Binding Publisher.Name}"/>
                     <DataGridTextColumn Header="Cijena (RSD)" Width="Auto" Binding="{Binding Price}"/>
-                    <DataGridTextColumn Header="Žanr" Width="*" Binding="{Binding Genre}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
