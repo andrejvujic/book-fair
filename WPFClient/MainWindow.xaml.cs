@@ -29,6 +29,11 @@ namespace WPFClient
             }
         }
 
+        public string VisitorsTabSearchQuery { get => SelectedTabIndex == VISITORS_TAB_INDEX ? RawSearchQuery : string.Empty; }
+        public string BooksTabSearchQuery { get => SelectedTabIndex == BOOKS_TAB_INDEX ? RawSearchQuery : string.Empty; }
+        public string AuthorsTabSearchQuery { get => SelectedTabIndex == AUTHORS_TAB_INDEX ? RawSearchQuery : string.Empty; }
+
+        private int SelectedTabIndex { get; set; }
         private string CurrentTabIdentifier
         {
             get
@@ -212,9 +217,41 @@ namespace WPFClient
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RawSearchQuery = string.Empty;
+            switch (SelectedTabIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(VisitorsTabSearchQuery));
+                    break;
+                case AUTHORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(AuthorsTabSearchQuery));
+                    break;
+                case BOOKS_TAB_INDEX:
+                    OnPropertyChanged(nameof(BooksTabSearchQuery));
+                    break;
+            }
+
+            SelectedTabIndex = EntityTabs.SelectedIndex > -1 ? EntityTabs.SelectedIndex : 0;
+            OnPropertyChanged(nameof(SelectedTabIndex));
+
             RefreshCurrentTabIndicator();
         }
-        
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            switch (SelectedTabIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(VisitorsTabSearchQuery));
+                    break;
+                case AUTHORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(AuthorsTabSearchQuery));
+                    break;
+                case BOOKS_TAB_INDEX:
+                    OnPropertyChanged(nameof(BooksTabSearchQuery));
+                    break;
+            }
+        }
+
         // Opcije menija za otvaranje tabova:
         private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
 

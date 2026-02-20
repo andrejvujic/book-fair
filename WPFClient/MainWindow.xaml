@@ -132,12 +132,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0"
-                                 Text="{Binding Path=RawSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding Path=RawSearchQuery, UpdateSourceTrigger=PropertyChanged}" TextChanged="Search_TextChanged"/>
 
                 <TabControl Grid.Row="1" x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
 
                     <TabItem Header="Posjetioci">
-                        <visitor:VisitorTab x:Name="VisitorTab" RawSearchQuery="{Binding RawSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+                        <visitor:VisitorTab x:Name="VisitorTab" RawSearchQuery="{Binding VisitorsTabSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
                     </TabItem>
 
                     <TabItem Header="Autori">
