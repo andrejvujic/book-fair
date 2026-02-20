@@ -52,7 +52,7 @@ namespace WPFClient.Views.Visitor
                 VisitorController
                 .PerformSerach(RawSearchQuery ?? string.Empty)
                 .PerformSorting()
-                .Get()
+                .GetWithPagination()
             );
         }
 
@@ -73,20 +73,20 @@ namespace WPFClient.Views.Visitor
             Render(
                 VisitorController
                 .PerformSorting()
-                .Get()
+                .GetWithPagination()
             );
         }
 
         private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
         {
             if (!VisitorController.GoToPreviousPage()) return;
-            Render(VisitorController.Get());
+            Render(VisitorController.GetWithPagination());
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
             if (!VisitorController.GoToNextPage()) return;
-            Render(VisitorController.Get());
+            Render(VisitorController.GetWithPagination());
         }
     }
 }
