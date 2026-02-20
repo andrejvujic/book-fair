@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
                 <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto"/>
-                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
+                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
 
