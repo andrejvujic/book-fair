@@ -29,10 +29,9 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="Auto"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*"/>
-                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
                 <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
                 <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto"/>
-                <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}" Width="Auto"/>
+                <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
