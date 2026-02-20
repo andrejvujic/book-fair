@@ -123,8 +123,8 @@ namespace WPFClient.DTO
             }
         }
 
-        private DateTime dateOfBirth = DateTime.Now; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
-        public DateTime DateOfBirth
+        private DateTime? dateOfBirth; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
+        public DateTime? DateOfBirth
         {
             get => dateOfBirth;
             set
@@ -357,6 +357,7 @@ namespace WPFClient.DTO
                 return
                     !string.IsNullOrWhiteSpace(FirstName) &&
                     !string.IsNullOrWhiteSpace(LastName) &&
+                    DateOfBirth != null &&
                     DateOfBirth <= DateTime.Now && // Datum rođenja ne može biti u budućnosti.
                     !string.IsNullOrWhiteSpace(PhoneNumber) &&
                     !string.IsNullOrWhiteSpace(EmailAddress) &&
