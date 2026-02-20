@@ -52,36 +52,56 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding FirstBookSelectionText}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding SecondBookSelectionText}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Width="192" Text="{Binding FirstBookSelectionText}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Width="192" Text="{Binding SecondBookSelectionText}" VerticalAlignment="Center"/>
 
             <Button Grid.Row="0" Grid.Column="2"
-                    Width="128"
-                    Height="32"
-                    Content="Odaberi prvu knjigu"
+                    Width="24"
+                    Height="24"
                     IsEnabled="{Binding IsSelectFirstBookButtonEnabled}"
-                    Click="SelectFirstBookButton_Click"/>
+                    Click="SelectFirstBookButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE710;"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Button>
 
             <Button Grid.Row="2" Grid.Column="2"
-                    Width="128"
-                    Height="32"
-                    Content="Odaberi drugu knjigu"
+                    Width="24"
+                    Height="24"
                     IsEnabled="{Binding IsSelectSecondBookButtonEnabled}"
-                    Click="SelectSecondBookButton_Click"/>
+                    Click="SelectSecondBookButton_Click">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE710;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+            </Button>
 
             <Button Grid.Row="0" Grid.Column="4"
-                    Width="128"
-                    Height="32"
-                    Content="Ukloni prvu knjigu"
+                    Width="24"
+                    Height="24"
                     IsEnabled="{Binding IsDeselectFirstBookButtonEnabled}"
-                    Click="DeselectFirstBookButton_Click"/>
+                    Click="DeselectFirstBookButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE738;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+            </Button>
 
             <Button Grid.Row="2" Grid.Column="4"
-                    Width="128"
-                    Height="32"
-                    Content="Ukloni drugu knjigu"
+                    Width="24"
+                    Height="24"
                     IsEnabled="{Binding IsDeselectSecondBookButtonEnabled}"
-                    Click="DeselectSecondBookButton_Click"/>
+                    Click="DeselectSecondBookButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE738;"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+            </Button>
 
             <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                     Width="128"
