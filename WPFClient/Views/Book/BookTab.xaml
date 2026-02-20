@@ -23,7 +23,7 @@
                   IsReadOnly="True"
                   HeadersVisibility="Column"
                   SelectionUnit="FullRow"
-                  SelectionMode="Extended">
+                  SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="*"/>
