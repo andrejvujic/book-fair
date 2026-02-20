@@ -4,14 +4,16 @@ using Core.Helpers;
 
 namespace Core.Models;
 
+public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, HISTORICAL_FICTION, BIOGRAPHY, POETRY, DRAMA}
+
 public class Book : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
     public string Isbn { get; set; }
     public string Title { get; set; }
-    public string Genre { get; set; }
+    public BookGenre Genre { get; set; }
     public int ReleaseYear { get; set; } = DateTime.Now.Year;
-    public int Price { get; set; }
+    public double Price { get; set; }
     public int NumberOfPages { get; set; }
     public List<Author> Authors { get; set; } = new List<Author>();
     public int PublisherId { get; set; }
@@ -21,7 +23,7 @@ public class Book : ISerializable, IIdentifiable
 
     public Book() { }
 
-    public Book(string isbn, string title, string genre, int releaseYear, int price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
+    public Book(string isbn, string title, BookGenre genre, int releaseYear, double price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
     {
         Isbn = isbn;
         Title = title;
@@ -71,7 +73,7 @@ public class Book : ISerializable, IIdentifiable
             Id.ToString(),
             Isbn,
             Title,
-            Genre,
+            Genre.ToString(),
             ReleaseYear.ToString(),
             Price.ToString(),
             NumberOfPages.ToString(),
@@ -86,9 +88,9 @@ public class Book : ISerializable, IIdentifiable
         Id = int.Parse(values[0]);
         Isbn = values[1];
         Title = values[2];
-        Genre = values[3];
-        ReleaseYear = int.Parse(values[4]);
-        Price = int.Parse(values[5]);
+        Genre = Enum.Parse<BookGenre>(values[3]);
+		ReleaseYear = int.Parse(values[4]);
+        Price = double.Parse(values[5]);
         NumberOfPages = int.Parse(values[6]);
         PublisherId = int.Parse(values[7]);
     }
