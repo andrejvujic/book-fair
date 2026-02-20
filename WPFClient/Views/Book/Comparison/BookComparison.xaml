@@ -39,8 +39,8 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,8" Text="Posjetioci koju na listi želja imaju i prvu i drugu knjigu" HorizontalAlignment="Left"/>
             <TextBlock Grid.Row="0" Grid.Column="2" Margin="0,0,0,8" Text="Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu" HorizontalAlignment="Left"/>
 
-            <local:VisitorCategoryOverview Visitors_="{Binding VisitorsInFirstCategory}" Grid.Row="1" Grid.Column="0"/>
-            <local:VisitorCategoryOverview Visitors_="{Binding VisitorsInSecondCategory}" Grid.Row="1" Grid.Column="2"/>
+            <local:FirstCategoryVisitors FirstBookId="{Binding FirstBook.Id}" SecondBookId="{Binding SecondBook.Id}" Grid.Row="1" Grid.Column="0"/>
+            <local:SecondCategoryVisitors FirstBookId="{Binding FirstBook.Id}" SecondBookId="{Binding SecondBook.Id}" Grid.Row="1" Grid.Column="2"/>
         </Grid>
     </Grid>
 </Window>
