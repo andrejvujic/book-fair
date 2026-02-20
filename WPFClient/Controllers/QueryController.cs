@@ -4,6 +4,7 @@ using Core.Helpers.Pagination;
 using Core.Helpers.Search;
 using Core.Helpers.Sorting;
 using Core.Serialization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -28,9 +29,10 @@ namespace WPFClient.Controllers
         public bool PreviousPageExists { get => PageNumber - 1 >= 1; }
         public bool NextPageExists { get => PageNumber + 1 <= MaxPageNumber; }
 
-        private void Search(string rawSearchQuery, bool excludeDeleted = true) {
+        private void Search(string rawSearchQuery, Predicate<T>? additionalPredicate = null, bool excludeDeleted = true)
+        {
             FilteredEntities = _dao
-                .GetWhere((e) => !e.IsDeleted || !excludeDeleted)
+                .GetWhere((e) => (!e.IsDeleted || !excludeDeleted) && (additionalPredicate == null || additionalPredicate(e)))
                 .Search(
                     new SearchQuery(
                         rawSearchQuery ?? string.Empty,
@@ -39,12 +41,16 @@ namespace WPFClient.Controllers
                 );
         }
 
-        public QueryController<T> PerformSerach(string rawSearchQuery, bool excludeDeleted = true) {
+        public QueryController<T> PerformSerach(
+            string rawSearchQuery,
+            Predicate<T>? additionalPredicate = null,
+            bool excludeDeleted = true
+        ) {
             // Promjena pretrage resetuje paginaciju na pocetnu stranicu.
             if (!string.Equals(PreviousRawSearchQuery, rawSearchQuery)) PageNumber = 1;
             PreviousRawSearchQuery = rawSearchQuery;
 
-            Search(rawSearchQuery, excludeDeleted);
+            Search(rawSearchQuery, additionalPredicate, excludeDeleted);
 
             // Ukoliko je zbog promjene search query-ja ili liste entiteta
             // doslo do smanjenja maksimalnog broja stranica,
@@ -102,7 +108,9 @@ namespace WPFClient.Controllers
                 .Paginate(pageNumber, PageSize);
         }
 
-        public List<T> Get() => Paginate(PageNumber);
+        public List<T> GetWithPagination() => Paginate(PageNumber);
+
+        public List<T> GetAllWithoutPagination() => FilteredEntities;
 
         public bool GoToNextPage()
         {
