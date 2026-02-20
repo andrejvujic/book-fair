@@ -209,7 +209,11 @@ namespace WPFClient
         }
         
         // Poziva se svaki put kada se promijeni odabrani tab.
-        private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e) => RefreshCurrentTabIndicator();
+        private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RawSearchQuery = string.Empty;
+            RefreshCurrentTabIndicator();
+        }
         
         // Opcije menija za otvaranje tabova:
         private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
