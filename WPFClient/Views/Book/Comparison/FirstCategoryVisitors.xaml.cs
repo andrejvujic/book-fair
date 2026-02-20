@@ -70,8 +70,8 @@ namespace WPFClient.Views.Book.Comparison
                 VisitorController
                 .PerformSerach(
                     RawSearchQuery,
-                    // Druga kategorija predstavlja posjetioce koji su kupili prvu knjigu,
-                    // ali nisu kupili drugu knjigu.
+                    // Prva kategorija predstavlja posjetioce koji na listi zelja
+                    // imaju i prvu knjigu i drugu knjigu.
                     (e) => e.WishlistedBooks.Any((b) => b.Id == FirstBookId) && e.WishlistedBooks.Any((b) => b.Id == SecondBookId)
                 )
                 .PerformSorting()
