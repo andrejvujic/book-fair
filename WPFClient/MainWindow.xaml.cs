@@ -279,14 +279,13 @@ namespace WPFClient
             }
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
+        private void SearchButton_Click(object sender, RoutedEventArgs e) =>
             UpdateSearchQuery();
-        }
 
         private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
         {
             RawSearchQuery = string.Empty;
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
             UpdateSearchQuery();
         }
 
