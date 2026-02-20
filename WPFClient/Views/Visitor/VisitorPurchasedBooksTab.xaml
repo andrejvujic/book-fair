@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -53,7 +53,7 @@
             </DataGrid.CellStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Width="*" Binding="{Binding Book.Isbn}"/>
+                <DataGridTextColumn Header="ISBN" Width="Auto" Binding="{Binding Book.Isbn}"/>
                 <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Book.Title}"/>
                 <DataGridTemplateColumn Header="Autori" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -69,7 +69,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Izdavač" Width="*" Binding="{Binding Book.Publisher.Name}"/>
-                <DataGridTextColumn Header="Cijena (RSD)" Width="Auto" Binding="{Binding Book.Price}"/>
+                <DataGridTextColumn Header="Cijena" Width="Auto" Binding="{Binding Book.Price}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -86,7 +86,7 @@
             />
 
 
-            <TextBlock Grid.Row="1"
+            <TextBlock Margin="0,0,0,16" Grid.Row="1"
                 Text="{Binding TotalSpent,
                        RelativeSource={RelativeSource AncestorType=local:VisitorPurchasedBooksTab},
                        StringFormat=Ukupno potrošeno — {0} RSD}"
