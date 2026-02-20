@@ -9,27 +9,13 @@
              d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0"
-                    Width="128"
-                    Height="32"
-                    Margin="16"
-                    Content="Poređenje knjiga"
-                    Click="CompareButton_Click"/>
-
-        </Grid>
-
-        <DataGrid Grid.Row="1"
+        <DataGrid Grid.Row="0"
                   VerticalAlignment="Top"
-                  Margin="16,0,16,16"
+                  Margin="16"
                   AutoGenerateColumns="False"
                   x:Name="BooksDataGrid"
                   ItemsSource="{Binding Books, UpdateSourceTrigger=PropertyChanged}"
@@ -48,5 +34,60 @@
                 <DataGridTextColumn Header="Broj stranica" Binding="{Binding NumberOfPages}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid Grid.Row="1" Margin="16,0,16,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding FirstBookSelectionText}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding SecondBookSelectionText}" VerticalAlignment="Center"/>
+
+            <Button Grid.Row="0" Grid.Column="2"
+                    Width="128"
+                    Height="32"
+                    Content="Odaberi prvu knjigu"
+                    IsEnabled="{Binding IsSelectFirstBookButtonEnabled}"
+                    Click="SelectFirstBookButton_Click"/>
+
+            <Button Grid.Row="2" Grid.Column="2"
+                    Width="128"
+                    Height="32"
+                    Content="Odaberi drugu knjigu"
+                    IsEnabled="{Binding IsSelectSecondBookButtonEnabled}"
+                    Click="SelectSecondBookButton_Click"/>
+
+            <Button Grid.Row="0" Grid.Column="4"
+                    Width="128"
+                    Height="32"
+                    Content="Ukloni prvu knjigu"
+                    IsEnabled="{Binding IsDeselectFirstBookButtonEnabled}"
+                    Click="DeselectFirstBookButton_Click"/>
+
+            <Button Grid.Row="2" Grid.Column="4"
+                    Width="128"
+                    Height="32"
+                    Content="Ukloni drugu knjigu"
+                    IsEnabled="{Binding IsDeselectSecondBookButtonEnabled}"
+                    Click="DeselectSecondBookButton_Click"/>
+
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
+                    Width="128"
+                    Height="32"
+                    Content="Poređenje knjiga"
+                    Click="CompareButton_Click"/>
+        </Grid>
     </Grid>
 </UserControl>
