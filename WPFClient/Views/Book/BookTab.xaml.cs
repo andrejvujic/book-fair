@@ -53,6 +53,16 @@ namespace WPFClient.Views.Book
             BookComparison window = new BookComparison(FirstBook!, SecondBook!);
             window.Owner = Window.GetWindow(this);
             window.ShowDialog();
+
+            FirstBook = null;
+            OnPropertyChanged(nameof(FirstBookSelectionText));
+            OnPropertyChanged(nameof(IsSelectFirstBookButtonEnabled));
+            OnPropertyChanged(nameof(IsDeselectFirstBookButtonEnabled));
+
+            SecondBook = null;
+            OnPropertyChanged(nameof(SecondBookSelectionText));
+            OnPropertyChanged(nameof(IsSelectSecondBookButtonEnabled));
+            OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
 
         public string FirstBookSelectionText { get => FirstBook == null ? "Nije odabrana" : FirstBook!.Title; }
