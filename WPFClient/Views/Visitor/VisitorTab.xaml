@@ -27,16 +27,11 @@
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
-                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" SortMemberPath="LastName"/>
-                <DataGridTextColumn Header="Broj Telefona" Binding="{Binding PhoneNumber}" CanUserSort="False"/>
-                <DataGridTextColumn Header="Email Adresa" Binding="{Binding EmailAddress}" CanUserSort="False"/>
-                <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}" SortMemberPath="MembershipCardNumber"/>
-                <DataGridTextColumn Header="Godina Članstva" Binding="{Binding MembershipYear}" SortMemberPath="MembershipYear"/>
-                <DataGridTextColumn Header="Datum Rođenja" Binding="{Binding DateOfBirth, StringFormat={}{0:d/M/yyyy}}" CanUserSort="False"/>
-                <DataGridTextColumn Header="Ketegorija" Binding="{Binding StatusText}" SortMemberPath="Status"/>
-                <DataGridTextColumn Header="Prosjecna Ocjena Recenzija" Binding="{Binding AverageReviewRatingText}" SortMemberPath="AverageReviewRating"/>
-                <DataGridTextColumn Header="Adresa" Binding="{Binding AddressText}" CanUserSort="False"/>
+                <DataGridTextColumn Header="Broj Članske Karte" Width="Auto"  Binding="{Binding MembershipCardNumber}" SortMemberPath="MembershipCardNumber"/>
+                <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
+                <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding LastName}" SortMemberPath="LastName"/>
+                <DataGridTextColumn Header="Ketegorija" Width="Auto" Binding="{Binding StatusText}" SortMemberPath="Status"/>
+                <DataGridTextColumn Header="Adresa" Width="*" Binding="{Binding AddressText}" CanUserSort="False"/>
             </DataGrid.Columns>
         </DataGrid>
 
