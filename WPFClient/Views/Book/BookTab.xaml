@@ -26,7 +26,7 @@
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="*"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="Auto"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
                 <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
