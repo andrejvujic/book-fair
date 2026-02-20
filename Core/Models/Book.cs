@@ -9,15 +9,15 @@ public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HO
 public class Book : ISerializable, IIdentifiable
 {
     public int Id { get; set; }
-    public string Isbn { get; set; }
-    public string Title { get; set; }
+    public string Isbn { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
     public BookGenre Genre { get; set; }
-    public int ReleaseYear { get; set; } = DateTime.Now.Year;
-    public double Price { get; set; }
-    public int NumberOfPages { get; set; }
+    public int ReleaseYear { get; set; } = 0;
+    public double Price { get; set; } = 0;
+    public int NumberOfPages { get; set; } = 0;
     public List<Author> Authors { get; set; } = new List<Author>();
-    public int PublisherId { get; set; }
-    public Publisher Publisher { get; set; }
+    public int PublisherId { get; set; } = 0;
+    public Publisher Publisher { get; set; } = new Publisher();
     public List<Visitor> Buyers { get; set; } = new List<Visitor>();
     public List<Visitor> Wishlisters { get; set; } = new List<Visitor>();
 

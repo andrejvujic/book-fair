@@ -1,7 +1,6 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace WPFClient.DTO
 {
@@ -40,9 +39,9 @@ namespace WPFClient.DTO
             Isbn = book.Isbn;
             Title = book.Title;
             Genre = book.Genre;
-            ReleaseYear = book.ReleaseYear.ToString();
-            Price = book.Price.ToString();
-            NumberOfPages = book.NumberOfPages.ToString();
+            ReleaseYear = book.ReleaseYear > 0 ? book.ReleaseYear.ToString() : string.Empty;
+            Price = book.Price > 0 ? book.Price.ToString() : string.Empty;
+            NumberOfPages = book.NumberOfPages > 0 ? book.NumberOfPages.ToString() : string.Empty;
 
             Authors = book.Authors ?? new List<Author>();
 
