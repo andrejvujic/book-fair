@@ -21,17 +21,17 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
     public string PhoneNumber { get; set; } = string.Empty;
     public string EmailAddress { get; set; } = string.Empty;
 
-    public int AddressId { get; set; }
+    public int AddressId { get; set; } = 0;
     public Address Address { get; set; } = new Address();
 
     public string MembershipCardNumber { get; set; } = string.Empty; // npr. CK-1-2023
-    public int MembershipYear { get; set; }
+    public int MembershipYear { get; set; } = 0;
     public MemberStatus Status { get; set; }
 
-    public double AverageReviewRating { get; set; }
+    public double AverageReviewRating { get; set; } = 0;
     public List<Book> PurchasedBooks { get; set; } = new List<Book>();
     public List<Book> WishlistedBooks { get; set; } = new List<Book>();
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; set; } = false;
 
     public bool IsMatch(SearchQuery query)
     {

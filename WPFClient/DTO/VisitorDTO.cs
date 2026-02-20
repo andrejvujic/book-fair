@@ -53,7 +53,7 @@ namespace WPFClient.DTO
             AddressStreet = visitor.Address?.Street ?? string.Empty;
             AddressStreetNumber = visitor.Address?.StreetNumber ?? string.Empty;
             MembershipCardNumber = visitor.MembershipCardNumber;
-            MembershipYear = visitor.MembershipYear.ToString();
+            MembershipYear = visitor.MembershipYear > 0 ? visitor.MembershipYear.ToString() : string.Empty;
             AverageReviewRating = visitor.AverageReviewRating;
             Status = visitor.Status;
             WishlistedBooks = visitor.WishlistedBooks;
