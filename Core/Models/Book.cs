@@ -4,7 +4,7 @@ using Core.Helpers;
 
 namespace Core.Models;
 
-public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, HISTORICAL_FICTION, BIOGRAPHY, POETRY, DRAMA}
+public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, COMEDY, NOVEL, POETRY, DRAMA}
 
 public class Book : ISerializable, IIdentifiable
 {
