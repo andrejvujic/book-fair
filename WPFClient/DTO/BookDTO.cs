@@ -62,7 +62,7 @@ namespace WPFClient.DTO
                 Title = Title,
                 Genre = Genre,
                 ReleaseYear = int.Parse(ReleaseYear),
-                Price = int.Parse(Price),
+                Price = double.Parse(Price),
                 NumberOfPages = int.Parse(NumberOfPages),
 
                 Authors = Authors ?? new List<Author>(),
@@ -192,7 +192,7 @@ namespace WPFClient.DTO
             get
             {
                 if (string.IsNullOrWhiteSpace(Price)) return false;
-                if (!int.TryParse(Price, out int value)) return false;
+                if (!double.TryParse(Price, out double value)) return false;
                 return value > 0;
             }
         }
