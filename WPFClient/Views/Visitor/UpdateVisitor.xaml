@@ -9,8 +9,8 @@
         d:DataContext="{d:DesignInstance Type=dto:VisitorDTO}"
         mc:Ignorable="d"
         Title="Izmjena posjetioca"
-        Height="640"
-        Width="480"
+        Height="512"
+        Width="640"
         WindowStartupLocation="CenterOwner">
 
     <Grid>
