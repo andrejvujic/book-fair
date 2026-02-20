@@ -287,7 +287,6 @@ namespace WPFClient
         private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
         {
             RawSearchQuery = string.Empty;
-            OnPropertyChanged(nameof(RawSearchQuery));
             UpdateSearchQuery();
         }
 
