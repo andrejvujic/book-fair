@@ -131,8 +131,39 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"
-                                 Text="{Binding Path=RawSearchQuery, UpdateSourceTrigger=PropertyChanged}" TextChanged="Search_TextChanged"/>
+                <Grid Grid.Row="0" Margin="16,16,16,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" KeyDown="SearchTextBox_KeyDown" VerticalContentAlignment="Center" Grid.Column="0" Text="{Binding Path=RawSearchQuery, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+                    
+                    <Button Grid.Column="2"
+                        Width="24"
+                        Height="24"
+                        Click="SearchButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE721;"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/> 
+                    </Button>
+
+                    <Button Grid.Column="4"
+                        Width="24"
+                        Height="24"
+                        Click="ResetSearchButton_Click">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE711;"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Button>
+                </Grid>
 
                 <TabControl Grid.Row="1" x:Name="EntityTabs" Margin="16" SelectionChanged="EntityTabs_SelectionChanged">
 

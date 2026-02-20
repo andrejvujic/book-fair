@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Windows.Input;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 using WPFClient.Views.Book;
@@ -76,7 +77,6 @@ namespace WPFClient
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
-    
         private void NewMenuItem_Click(object sender, RoutedEventArgs e) => PerformAddEntity();
         private void PerformAddEntity()
         {
@@ -217,6 +217,7 @@ namespace WPFClient
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RawSearchQuery = string.Empty;
+
             switch (SelectedTabIndex)
             {
                 case VISITORS_TAB_INDEX:
@@ -234,22 +235,6 @@ namespace WPFClient
             OnPropertyChanged(nameof(SelectedTabIndex));
 
             RefreshCurrentTabIndicator();
-        }
-
-        private void Search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            switch (SelectedTabIndex)
-            {
-                case VISITORS_TAB_INDEX:
-                    OnPropertyChanged(nameof(VisitorsTabSearchQuery));
-                    break;
-                case AUTHORS_TAB_INDEX:
-                    OnPropertyChanged(nameof(AuthorsTabSearchQuery));
-                    break;
-                case BOOKS_TAB_INDEX:
-                    OnPropertyChanged(nameof(BooksTabSearchQuery));
-                    break;
-            }
         }
 
         // Opcije menija za otvaranje tabova:
@@ -275,5 +260,52 @@ namespace WPFClient
 
         private void RefreshCurrentDateAndTime() =>
             CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
+
+        private void UpdateSearchQuery()
+        {
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+
+            switch (SelectedTabIndex)
+            {
+                case VISITORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(VisitorsTabSearchQuery));
+                    break;
+                case AUTHORS_TAB_INDEX:
+                    OnPropertyChanged(nameof(AuthorsTabSearchQuery));
+                    break;
+                case BOOKS_TAB_INDEX:
+                    OnPropertyChanged(nameof(BooksTabSearchQuery));
+                    break;
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateSearchQuery();
+        }
+
+        private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            RawSearchQuery = string.Empty;
+            OnPropertyChanged(nameof(RawSearchQuery));
+            UpdateSearchQuery();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox target = (TextBox)sender;
+            if (!string.IsNullOrWhiteSpace(target.Text)) return;
+
+            UpdateSearchQuery();
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateSearchQuery();
+                return;
+            }
+        }
     }
 }
