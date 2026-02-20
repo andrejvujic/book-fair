@@ -12,20 +12,37 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,12">
+        <Grid Grid.Row="0" Margin="0,0,0,16">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="8"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" FontFamily="Segoe MDL2 Assets"
-                       Text="&#xE721;"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-            />
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" KeyDown="SearchTextBox_KeyDown" VerticalContentAlignment="Center" Grid.Column="0" Text="{Binding Path=RawSearchQuery, Mode=TwoWay, UpdateSourceTrigger=Explicit, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Button Grid.Column="2"
+                    Width="24"
+                    Height="24"
+                    Click="SearchButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                        Text="&#xE721;"
+                        FontSize="14"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+            </Button>
 
-            <TextBox Grid.Column="2" Text="{Binding Path=RawSearchQuery, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" Width="384" HorizontalAlignment="Left" TextChanged="Search_TextChanged"/>
+            <Button Grid.Column="4"
+                    Width="24"
+                    Height="24"
+                    Click="ResetSearchButton_Click">    
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                    Text="&#xE711;"
+                    FontSize="14"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Button>
         </Grid>
 
         <DataGrid

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +19,22 @@ using WPFClient.DTO;
 
 namespace WPFClient.Views.Book.Comparison
 {
-    public partial class FirstCategoryVisitors : UserControl
+    public partial class FirstCategoryVisitors : UserControl, INotifyPropertyChanged
     {
         public ObservableCollection<VisitorDTO> Visitors { get; set; } = new ObservableCollection<VisitorDTO>();
         private VisitorController VisitorController { get; }
-        public string RawSearchQuery { get; set; } = string.Empty;
+
+        private string rawSearchQuery = string.Empty;
+        public string RawSearchQuery
+        {
+            get => rawSearchQuery;
+            set
+            {
+                if (string.Equals(rawSearchQuery, value)) return;
+                rawSearchQuery = value;
+                OnPropertyChanged(nameof(RawSearchQuery));
+            }
+        }
 
         public static readonly DependencyProperty FirstBookIdProperty =
             DependencyProperty.Register(
@@ -85,17 +97,49 @@ namespace WPFClient.Views.Book.Comparison
             InitializeComponent();
         }
 
-        private void Search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (FirstBookId == null || SecondBookId == null) return;
-            Update();
-        }
-
         private void Render(List<Core.Models.Visitor> visitors)
         {
             Visitors.Clear();
             foreach (Core.Models.Visitor v in visitors)
                 Visitors.Add(new VisitorDTO(v));
         }
+
+        private void UpdateSearchQuery()
+        {
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            Update();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateSearchQuery();
+        }
+
+        private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            RawSearchQuery = string.Empty;
+            Update();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox target = (TextBox)sender;
+            if (!string.IsNullOrWhiteSpace(target.Text)) return;
+            UpdateSearchQuery();
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateSearchQuery();
+                return;
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+                   => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
     }
 }
