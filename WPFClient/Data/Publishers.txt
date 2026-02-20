@@ -1,2 +1,2 @@
 0|Klett|0
-1|Finesa|2
+1|Finesa|0
