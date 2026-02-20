@@ -103,8 +103,8 @@ namespace WPFClient.DTO
             }
         }
 
-        private string genre = string.Empty;
-        public string Genre
+        private BookGenre genre;
+        public BookGenre Genre
         {
             get => genre;
             set
@@ -112,9 +112,43 @@ namespace WPFClient.DTO
                 if (genre == value) return;
                 genre = value;
                 OnPropertyChanged(nameof(Genre));
+                OnPropertyChanged(nameof(GenreText));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
+
+        public string GenreText
+        {
+            get
+            {
+                switch (Genre)
+                {
+                    case BookGenre.FANTASY:
+                        return "Fantazija";
+                    case BookGenre.SCIENCE_FICTION:
+                        return "Naučna fantastika";
+                    case BookGenre.MYSTERY:
+                        return "Misterija";
+                    case BookGenre.THRILLER:
+                        return "Triler";
+                    case BookGenre.ROMANCE:
+                        return "Romansa";
+                    case BookGenre.HORROR:
+                        return "Horor";
+                    case BookGenre.COMEDY:
+                        return "Komedija";
+                    case BookGenre.NOVEL:
+                        return "Roman";
+                    case BookGenre.POETRY:
+                        return "Poezija";
+                    case BookGenre.DRAMA:
+                        return "Drama";
+                    default:
+                        return "Nepoznat";
+                }
+            }
+        }
+
         private string releaseYear = string.Empty;
         public string ReleaseYear
         {
@@ -244,7 +278,6 @@ namespace WPFClient.DTO
         public bool AllFieldsValid =>
             !string.IsNullOrWhiteSpace(Isbn) &&
             !string.IsNullOrWhiteSpace(Title) &&
-            !string.IsNullOrWhiteSpace(Genre) &&
             IsReleaseYearValid &&
             IsPriceValid &&
             IsNumberOfPagesValid;
