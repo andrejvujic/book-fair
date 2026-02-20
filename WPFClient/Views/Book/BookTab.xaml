@@ -38,9 +38,9 @@
         <Grid Grid.Row="1" Margin="16,0,16,16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="16"/>
+                <RowDefinition Height="8"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="16"/>
+                <RowDefinition Height="8"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -52,8 +52,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Width="192" Text="{Binding FirstBookSelectionText}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Width="192" Text="{Binding SecondBookSelectionText}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" MinWidth="192" Text="{Binding FirstBookSelectionText}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" MinWidth="192" Text="{Binding SecondBookSelectionText}" VerticalAlignment="Center"/>
 
             <Button Grid.Row="0" Grid.Column="2"
                     Width="24"

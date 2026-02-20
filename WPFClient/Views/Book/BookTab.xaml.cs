@@ -65,8 +65,8 @@ namespace WPFClient.Views.Book
             OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
 
-        public string FirstBookSelectionText { get => FirstBook == null ? "Nije odabrana" : FirstBook!.Title; }
-        public string SecondBookSelectionText { get => SecondBook == null ? "Nije odabrana" : SecondBook!.Title; }
+        public string FirstBookSelectionText { get => FirstBook == null ? "Prva knjiga — nije odabrana" : FirstBook!.Title; }
+        public string SecondBookSelectionText { get => SecondBook == null ? "Druga knjiga — nije odabrana" : SecondBook!.Title; }
 
         public bool IsSelectFirstBookButtonEnabled => FirstBook == null;
         public bool IsSelectSecondBookButtonEnabled => SecondBook == null;
