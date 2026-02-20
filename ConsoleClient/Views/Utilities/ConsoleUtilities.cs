@@ -86,5 +86,30 @@ public static class ConsoleUtilities
         if (value.Length > 0) return value;
         return defaultValue;
     }
+
+	public static double ReadDoubleRequired()
+	{
+		double value = -1;
+		while (true)
+		{
+			if (!double.TryParse(Console.ReadLine(), out value))
+			{
+				Console.WriteLine("ERROR: Please enter a valid number.\n");
+				Console.Write("Try again: ");
+				continue;
+			}
+
+			return value;
+		}
+	}
+
+	public static double ReadDoubleOptional(double defaultValue)
+	{
+		double value = -1;
+		if (!double.TryParse(Console.ReadLine(), out value))
+			return defaultValue;
+
+		return value;
+	}
 }
 

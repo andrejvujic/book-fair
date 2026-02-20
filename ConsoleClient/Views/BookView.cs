@@ -66,13 +66,13 @@ public class BookView : View<Book>
 		string title = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter genre: ");
-		string genre = ConsoleUtilities.ReadStringRequired();
+		BookGenre genre = Enum.Parse<BookGenre>(ConsoleUtilities.ReadStringRequired(), true);
 
 		Console.Write("Enter release year: ");
 		int releaseYear = ConsoleUtilities.ReadIntRequired();
 
 		Console.Write("Enter price: ");
-		int price = ConsoleUtilities.ReadIntRequired();
+		double price = ConsoleUtilities.ReadDoubleRequired();
 
 		Console.Write("Enter number of pages: ");
 		int numberOfPages = ConsoleUtilities.ReadIntRequired();
