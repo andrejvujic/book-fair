@@ -41,7 +41,7 @@
                 <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}" Width="*"/>
                 <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
                 <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-                <DataGridTextColumn Header="Ketegorija" Binding="{Binding StatusText}" Width="*"/>
+                <DataGridTextColumn Header="Kategorija" Binding="{Binding StatusText}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

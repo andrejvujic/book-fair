@@ -30,7 +30,7 @@
                 <DataGridTextColumn Header="Broj Članske Karte" Width="Auto"  Binding="{Binding MembershipCardNumber}" SortMemberPath="MembershipCardNumber"/>
                 <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
                 <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding LastName}" SortMemberPath="LastName"/>
-                <DataGridTextColumn Header="Ketegorija" Width="Auto" Binding="{Binding StatusText}" SortMemberPath="Status"/>
+                <DataGridTextColumn Header="Kategorija" Width="Auto" Binding="{Binding StatusText}" SortMemberPath="Status"/>
                 <DataGridTextColumn Header="Adresa" Width="*" Binding="{Binding AddressText}" CanUserSort="False"/>
             </DataGrid.Columns>
         </DataGrid>
