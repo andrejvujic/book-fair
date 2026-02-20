@@ -247,20 +247,6 @@ namespace WPFClient
             window.ShowDialog();
         }
 
-        const int VISITORS_TAB_INDEX = 0;
-        const int AUTHORS_TAB_INDEX = 1;
-        const int BOOKS_TAB_INDEX = 2;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-                   => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        private void RefreshCurrentTabIndicator() =>
-            CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
-
-        private void RefreshCurrentDateAndTime() =>
-            CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
-
         private void UpdateSearchQuery()
         {
             SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
@@ -293,7 +279,6 @@ namespace WPFClient
         {
             TextBox target = (TextBox)sender;
             if (!string.IsNullOrWhiteSpace(target.Text)) return;
-
             UpdateSearchQuery();
         }
 
@@ -305,5 +290,20 @@ namespace WPFClient
                 return;
             }
         }
+
+        const int VISITORS_TAB_INDEX = 0;
+        const int AUTHORS_TAB_INDEX = 1;
+        const int BOOKS_TAB_INDEX = 2;
+
+        private void RefreshCurrentTabIndicator() =>
+            CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
+
+        private void RefreshCurrentDateAndTime() =>
+            CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+                   => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
     }
 }
