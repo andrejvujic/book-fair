@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Book"
+        xmlns:gm="clr-namespace:WPFClient.Views.Book.GenreMapping"
         mc:Ignorable="d"
         Title="Dodavanje Knjige"
         Height="640"
@@ -39,9 +40,12 @@
                      Text="{Binding Path=Book.Title, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Žanr*" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2" Grid.Column="1"
-                     Margin="0,4"
-                     Text="{Binding Path=Book.Genre, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,4" 
+                DisplayMemberPath="Label"
+                SelectedValuePath="Value"
+                ItemsSource="{Binding Source={x:Static gm:GenreValues.All}}"
+                SelectedValue="{Binding Path=Book.Genre, UpdateSourceTrigger=PropertyChanged}"
+            />
 
             <Label Grid.Row="3" Grid.Column="0" Content="Godina izdanja*" VerticalAlignment="Center"/>
             <TextBox Grid.Row="3" Grid.Column="1"
