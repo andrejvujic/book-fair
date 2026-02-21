@@ -1,5 +1,4 @@
-﻿using Core.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
@@ -8,7 +7,8 @@ namespace WPFClient.Views.Publisher
 {
     public partial class SetPublisherBoss : Window
     {
-        public List<Author> Authors { get; } = new List<Author>(App.Context.AuthorDAO.GetAll());
+        // TODO: Koristiti AuthorDTO
+        public List<Core.Models.Author> Authors { get; } = new List<Core.Models.Author>(App.Context.AuthorDAO.GetAll());
         private PublisherDTO Publisher { get; }
         private PublisherController PublisherController { get; }
 
@@ -24,7 +24,7 @@ namespace WPFClient.Views.Publisher
 
         private void SetAsBossButton_Click(object sender, RoutedEventArgs e)
         {
-            Author? boss = (Author?)AuthorsDataGrid.SelectedItem;
+            Core.Models.Author? boss = (Core.Models.Author?)AuthorsDataGrid.SelectedItem;
 
             if (boss == null)
             {
