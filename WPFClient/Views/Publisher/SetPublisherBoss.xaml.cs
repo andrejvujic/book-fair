@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
@@ -8,7 +9,10 @@ namespace WPFClient.Views.Publisher
     public partial class SetPublisherBoss : Window
     {
         // TODO: Koristiti AuthorDTO
-        public List<Core.Models.Author> Authors { get; } = new List<Core.Models.Author>(App.Context.AuthorDAO.GetAll());
+        public List<Core.Models.Author> Authors { get; } = new List<Core.Models.Author>(
+            App.Context.AuthorDAO.GetAll().OrderByDescending((a) => a.YearsOfExperience)
+        );
+
         private PublisherDTO Publisher { get; }
         private PublisherController PublisherController { get; }
 
