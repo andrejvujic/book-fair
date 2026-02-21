@@ -12,31 +12,43 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
     public partial class VisitorWishlistedBooksAdd : Window
     {
         private VisitorDTO Visitor { get; }
-        public List<Core.Models.Book> AllowedBooks { get; set; }
+        private HashSet<int> VisitorWishlistedBookIds { get; }
+        private HashSet<int> VisitorPurchasedBookIds { get; }
+
+        public List<BookDTO> AllowedBooks { get; set; }
+        private BookController BookController { get; }
         private VisitorController VisitorController { get; }
 
         public VisitorWishlistedBooksAdd(VisitorDTO visitor)
         {
             InitializeComponent();
             Visitor = visitor;
+            VisitorWishlistedBookIds = new HashSet<int>(Visitor.WishlistedBooks.Select((b) => b.Id));
+            VisitorPurchasedBookIds = new HashSet<int>(Visitor.PurchasedBooks.Select((b) => b.Id));
+
+            BookController = new BookController(App.Context.BookDAO);
             VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+
             AllowedBooks = GetAllowedBooks();
+
             DataContext = this;
         }
 
-        private List<Core.Models.Book> GetAllowedBooks()
+        private List<BookDTO> GetAllowedBooks()
         {
-            List<Core.Models.Book> allBooks = App.Context.BookDAO.GetAll();
             // Knjigu je moguce dodati na listu zelja iskljucivo ako nije prethodno
             // dodana na listu zelja i ako nije medju kupljenim knjigama.
-            return allBooks.Where(
-                (book) => !Visitor.WishlistedBooks.Contains(book) && !Visitor.PurchasedBooks.Contains(book)
-            ).ToList();
+            return BookController
+                .GetWhere(
+                    (b) => !VisitorWishlistedBookIds.Contains(b.Id) && !VisitorPurchasedBookIds.Contains(b.Id)
+                )
+                .Select((b) => new BookDTO(b))
+                .ToList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Core.Models.Book? targetBook = AllowedBooksDataGrid.SelectedItem as Core.Models.Book;
+            BookDTO? targetBook = AllowedBooksDataGrid.SelectedItem as BookDTO;
             if (targetBook == null)
             {
                 MessageBox.Show(
@@ -48,7 +60,7 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
                 return;
             }
 
-            Visitor.WishlistedBooks.Add(targetBook);
+            Visitor.WishlistedBooks.Add(targetBook.ToModel());
             VisitorController.Update(Visitor.ToModel());
             Close();
         }
