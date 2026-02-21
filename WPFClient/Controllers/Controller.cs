@@ -2,6 +2,7 @@
 using Core.Helpers;
 using Core.Observer;
 using Core.Serialization;
+using System;
 using System.Collections.Generic;
 
 namespace WPFClient.Controllers
@@ -11,6 +12,11 @@ namespace WPFClient.Controllers
         protected readonly DAO<T> _dao;
         public Controller(DAO<T> dao) {
             _dao = dao;
+        }
+
+        public List<T> GetWhere(Predicate<T> predicate)
+        {
+            return _dao.GetWhere(predicate);
         }
 
         public List<T> GetAll()
