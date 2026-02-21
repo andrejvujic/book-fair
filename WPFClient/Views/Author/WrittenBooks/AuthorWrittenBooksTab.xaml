@@ -27,7 +27,8 @@
             <Button Grid.Column="2"
                  Width="128"
                  Height="32"
-                 Content="Obriši"/>
+                 Content="Obriši"
+                 Click="DeleteButton_Click"/>
 
         </Grid>
 
@@ -42,7 +43,7 @@
                IsReadOnly="True"
                HeadersVisibility="Column"
                SelectionUnit="FullRow"
-               SelectionMode="Single">
+               SelectionMode="Extended">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ISBN" Width="Auto" Binding="{Binding Isbn}"/>
                     <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Title}"/>

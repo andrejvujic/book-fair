@@ -1,8 +1,11 @@
 ﻿using Core.Observer;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using WPFClient.Controllers;
 using WPFClient.DTO;
 
 namespace WPFClient.Views.Author.WrittenBooks
@@ -59,6 +62,50 @@ namespace WPFClient.Views.Author.WrittenBooks
             AuthorWrittenBooksAdd dialog = new AuthorWrittenBooksAdd(Author);
             dialog.Owner = Window.GetWindow(this);
             dialog.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Author == null) return;
+
+            List<BookDTO> books = WrittenBooksDataGrid.SelectedItems.Cast<BookDTO>().ToList();  
+            if (books.Count > 0)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    "Da li ste sigurni da želite da uklonite odabrane knjige sa autora?",
+                    "Uklanjanje knjiga",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                            // Mora se brisati preko ID-a jer bi se konverzijom
+                            // BookDTO u Book napravila nova instanca od Book
+                            // i metoda Remove je ne bi uklonio jer bi referenca bila
+                            // razlicita.
+                            HashSet<int> ids = new HashSet<int>(books.Select(b => b.Id));
+                            Author.Books.RemoveAll((b) => ids.Contains(b.Id));
+
+                            // TODO: Ovde treba koristiti AuthorController
+                            App.Context.AuthorDAO.Update(Author);
+                            break;
+                    case MessageBoxResult.No:
+                        break;
+                    default:
+                        break;
+                }
+
+                return;
+            }
+
+            MessageBox.Show(
+                  "Nije odabrana nijedna knjiga za brisanje. Potrebno je odabrati barem jednu knjigu iz liste, a zatim odabrati opciju 'Obriši'.",
+                  "Nije odabrana nijedna knjiga",
+                  MessageBoxButton.OK,
+                  MessageBoxImage.Warning
+             );
         }
     }
 }
