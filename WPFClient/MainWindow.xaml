@@ -173,9 +173,11 @@
 
                     <TabItem Header="Autori">
                         <Grid>
-                            <TextBlock Text="View: Autori"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                            <Button
+                                Width="128"
+                                Height="32"
+                                Content="Prikaži posjetioce"
+                                Click="VisitorsAuthorsButton_Click"/>
                         </Grid>
                     </TabItem>
 

@@ -248,6 +248,16 @@ namespace WPFClient
             window.ShowDialog();
         }
 
+        private void VisitorsAuthorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
+            // autora iz liste autora...
+            Core.Models.Author targetAuthor = App.Context.AuthorDAO.GetById(0) ?? new Core.Models.Author();
+            AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
+            dialog.Owner = this;
+            dialog.ShowDialog();
+        }
+
         private void UpdateSearchQuery()
         {
             SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
@@ -305,6 +315,5 @@ namespace WPFClient
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
                    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     }
 }
