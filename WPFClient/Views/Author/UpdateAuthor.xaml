@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPFClient.Views.Author.UpdateAuthor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient.Views.Author"
+        xmlns:awb="clr-namespace:WPFClient.Views.Author.WrittenBooks"
+        mc:Ignorable="d"
+        Title="Izmjena autora"
+        Height="512"
+        Width="640"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TabControl Margin="16">
+            <TabItem Header="Informacije">
+                
+            </TabItem>
+
+            <TabItem Header="Knjige">
+                <awb:AuthorWrittenBooksTab Author="{Binding Author}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
