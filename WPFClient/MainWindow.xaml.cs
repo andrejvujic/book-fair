@@ -9,6 +9,7 @@ using WPFClient.DTO;
 using WPFClient.Views.Book;
 using WPFClient.Views.Publisher;
 using WPFClient.Views.Visitor;
+using WPFClient.Views.Author;
 
 namespace WPFClient
 {
@@ -145,12 +146,12 @@ namespace WPFClient
                     updateBookDialog.ShowDialog();
                     break;
                 default:
-                    MessageBox.Show(
-                        "Dodavanje novih entiteta nije implementirano za ovaj tab.",
-                        "Funkcionalnost nije implementirana",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information
-                    );
+                    // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
+                    // autora iz liste autora...
+                    Core.Models.Author targetAuthor = App.Context.AuthorDAO.GetById(0) ?? new Core.Models.Author();
+                    UpdateAuthor updateAuthorDialog = new UpdateAuthor(targetAuthor);
+                    updateAuthorDialog.Owner = this;
+                    updateAuthorDialog.ShowDialog();
                     break;
             }
         }
