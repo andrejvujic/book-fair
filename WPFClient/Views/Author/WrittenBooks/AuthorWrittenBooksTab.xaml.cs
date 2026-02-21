@@ -52,5 +52,13 @@ namespace WPFClient.Views.Author.WrittenBooks
             // TODO: Zamijeniti sa AuthorController.Subscribe(this)
             App.Context.AuthorDAO.Subject.Subscribe(this);
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Author == null) return;
+            AuthorWrittenBooksAdd dialog = new AuthorWrittenBooksAdd(Author);
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+        }
     }
 }

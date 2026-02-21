@@ -21,7 +21,8 @@
             <Button Grid.Column="0"
                  Width="128"
                  Height="32"
-                 Content="Dodaj"/>
+                 Content="Dodaj"
+                 Click="AddButton_Click"/>
 
             <Button Grid.Column="2"
                  Width="128"
