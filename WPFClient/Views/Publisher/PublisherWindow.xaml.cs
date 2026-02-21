@@ -49,5 +49,12 @@ namespace WPFClient.Views.Publisher
             window.Owner = this;
             window.ShowDialog();
         }
+
+        private void AddPublisherButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddPublisher window = new AddPublisher();
+            window.Owner = this;
+            window.ShowDialog();
+        }
     }
 }

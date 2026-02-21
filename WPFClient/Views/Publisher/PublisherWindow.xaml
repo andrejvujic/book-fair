@@ -21,7 +21,8 @@
 
             <Button Grid.Column="0"
                     Height="32"
-                    Content="Dodaj izdavača"/>
+                    Content="Dodaj izdavača"
+                    Click="AddPublisherButton_Click"/>
 
             <Button Grid.Column="2"
                     Height="32"
