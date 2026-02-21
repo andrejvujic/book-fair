@@ -105,7 +105,7 @@ namespace WPFClient.DTO
             get
             {
                 return
-                    !string.IsNullOrWhiteSpace(Name) && BossId > 0 && Boss is not null;
+                    !string.IsNullOrWhiteSpace(Name);
             }
         }
     }
