@@ -22,7 +22,6 @@
         />
 
         <DataGrid Grid.Row="1"
-            VerticalAlignment="Top"
             Margin="16"
             AutoGenerateColumns="False"
             x:Name="PurchasedBooksDataGrid"
