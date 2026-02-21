@@ -80,8 +80,9 @@ public class RelationManager
 
         publisherDAO.ForEach(publisher =>
             {
+                if (publisher.BossId == -1) return;
                 Author? boss = allAuthors.Find(author => author.Id == publisher.BossId);
-
+                
                 if (boss == null)
                     throw new Exception($"FATAL ERROR: Author with ID '{publisher.BossId}' doesn't exist. Resolving relations failed.");
 
