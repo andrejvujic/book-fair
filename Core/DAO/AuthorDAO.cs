@@ -63,6 +63,7 @@ public class AuthorDAO: DAO<Author>
         BooksByAuthor.AddAll(oldEntity, oldEntity.Books);
 
         _storage.Save(_entities);
+        Subject.NotifyObservers();
         return oldEntity;
     }
 
