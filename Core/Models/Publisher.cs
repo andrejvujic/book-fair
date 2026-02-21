@@ -9,7 +9,7 @@ public class Publisher : ISerializable, IIdentifiable
 
     public string Name { get; set; } = string.Empty;
 
-    public int BossId { get; set; } = 0;
+    public int BossId { get; set; } = -1;
     public Author Boss { get; set; } = new Author(); // Najmanje 5 godina iskustva
 
     public List<Author> Authors { get; set; } = new List<Author>();
