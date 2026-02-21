@@ -31,7 +31,7 @@ namespace WPFClient.Views.Visitor
             control.Update();
         }
 
-        public ObservableCollection<Core.Models.Book> WishlistedBooks { get; set; } = new ObservableCollection<Core.Models.Book>();
+        public ObservableCollection<BookDTO> WishlistedBooks { get; set; } = new ObservableCollection<BookDTO>();
         private VisitorController VisitorController { get; set; }
 
         public VisitorWishlistedBooksTab()
@@ -46,13 +46,13 @@ namespace WPFClient.Views.Visitor
             if (Visitor == null) return;
 
             WishlistedBooks.Clear();
-            foreach (Core.Models.Book book in Visitor.WishlistedBooks)
-                WishlistedBooks.Add(book);
+            foreach (var book in Visitor.WishlistedBooks)
+                WishlistedBooks.Add(new BookDTO(book));
         }
 
         private void MakePurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            Core.Models.Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Core.Models.Book;
+            BookDTO? targetBook = WishlistedBooksDataGrid.SelectedItem as BookDTO;
             if (targetBook == null)
             {
                 MessageBox.Show(
@@ -68,7 +68,7 @@ namespace WPFClient.Views.Visitor
         {
             if (Visitor == null) return;
 
-            Core.Models.Book? targetBook = WishlistedBooksDataGrid.SelectedItem as Core.Models.Book;
+            BookDTO? targetBook = WishlistedBooksDataGrid.SelectedItem as BookDTO;
             if (targetBook == null)
             {
                 MessageBox.Show(
@@ -90,7 +90,7 @@ namespace WPFClient.Views.Visitor
             switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        Visitor.WishlistedBooks.Remove(targetBook);
+                        Visitor.WishlistedBooks.RemoveAll((book) => book.Id == targetBook.Id);
                         VisitorController.Update(Visitor.ToModel());
                     break;
                     case MessageBoxResult.No:
