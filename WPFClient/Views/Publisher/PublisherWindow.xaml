@@ -31,7 +31,6 @@
 
         <DataGrid
             Grid.Row="1"
-            VerticalAlignment="Top"
             Margin="16,0,16,16"
             AutoGenerateColumns="False"
             x:Name="PublishersDataGrid"

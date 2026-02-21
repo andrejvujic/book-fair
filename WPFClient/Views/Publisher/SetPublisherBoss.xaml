@@ -21,7 +21,6 @@
 
         <DataGrid
             Grid.Row="1"
-            VerticalAlignment="Top"
             Margin="16,0,16,16"
             AutoGenerateColumns="False"
             x:Name="AuthorsDataGrid"
@@ -33,7 +32,7 @@
             SelectionMode="Single"
         >   
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
                 <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
                 <DataGridTextColumn Header="Godine iskustva" Binding="{Binding YearsOfExperience}" Width="*"/>
