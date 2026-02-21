@@ -44,12 +44,10 @@ namespace WPFClient.Views.Author.WrittenBooks
             if (books.Count > 0)
             {
                 foreach (var b in books)
-                {
-                    // TODO: Ovde treba koristiti AuthorController
                     Author.Books.Add(b.ToModel());
-                    App.Context.AuthorDAO.Update(Author);
-                    Close();
-                }
+                // TODO: Ovde treba koristiti AuthorController
+                App.Context.AuthorDAO.Update(Author);
+                Close();
                 return;
             }
 
