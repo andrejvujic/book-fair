@@ -1,17 +1,16 @@
 ﻿using System.Windows;
 using Core.Models;
+using WPFClient.DTO;
 namespace WPFClient.Views.Author
 {
     public partial class UpdateAuthor : Window
     {
-        public Core.Models.Author Author { get; set; }
+        public AuthorDTO Author { get; set; }
 
-        public UpdateAuthor(Core.Models.Author author)
+        public UpdateAuthor(AuthorDTO author)
         {
             InitializeComponent();
-
             Author = author;
-
             DataContext = this;
         }
     }
