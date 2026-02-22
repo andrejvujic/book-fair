@@ -8,33 +8,48 @@ namespace WPFClient.Views.Publisher
 {
     public partial class SetPublisherBoss : Window
     {
-        // TODO: Koristiti AuthorDTO
-        public List<Core.Models.Author> Authors { get; } = new List<Core.Models.Author>(
-            App.Context.AuthorDAO.GetAll().OrderByDescending((a) => a.YearsOfExperience)
-        );
-
-        private PublisherDTO Publisher { get; }
         private PublisherController PublisherController { get; }
+        private PublisherDTO Publisher { get; }
+
+        private AuthorController AuthorController { get; }
+        public List<AuthorDTO> Authors { get; }
+
 
         public SetPublisherBoss(PublisherDTO publisher)
         {
             InitializeComponent();
 
-            Publisher = publisher;
             PublisherController = new PublisherController(App.Context.PublisherDAO);
+            Publisher = publisher;
+
+            AuthorController = new AuthorController(App.Context.AuthorDAO);
+            Authors = GetAvailableAuthors();
 
             DataContext = this;
         }
 
+        List<AuthorDTO> GetAvailableAuthors()
+        {
+            // Dobavlja sve autore koji ce u korisnickom interfejsu
+            // predstavljati kandidate za sefa izdavaca.
+            return AuthorController
+                .GetAll()
+                .Select(a => new AuthorDTO(a))
+                .ToList();
+        }
+
+
         private void SetAsBossButton_Click(object sender, RoutedEventArgs e)
         {
-            Core.Models.Author? boss = (Core.Models.Author?)AuthorsDataGrid.SelectedItem;
+            AuthorDTO? selectedAuthor = (AuthorDTO?)AuthorsDataGrid.SelectedItem;
 
-            if (boss == null)
+            if (selectedAuthor == null)
             {
                 MessageBox.Show("Nije odabran autor koji se postavlja za šefa odabranog izdavača. Potrebno je odabrati autora iz liste.", "Nije odabran autor", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
+            Core.Models.Author boss = selectedAuthor.ToModel();
 
             if (boss.YearsOfExperience < 5)
             {
