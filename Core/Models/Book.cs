@@ -6,7 +6,7 @@ namespace Core.Models;
 
 public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, COMEDY, NOVEL, POETRY, DRAMA}
 
-public class Book : ISerializable, IIdentifiable
+public class Book : ISerializable, IIdentifiable, IDeletable
 {
     public int Id { get; set; }
     public string Isbn { get; set; } = string.Empty;
@@ -20,10 +20,11 @@ public class Book : ISerializable, IIdentifiable
     public Publisher Publisher { get; set; } = new Publisher();
     public List<Visitor> Buyers { get; set; } = new List<Visitor>();
     public List<Visitor> Wishlisters { get; set; } = new List<Visitor>();
+    public bool IsDeleted { get; set; } = false;
 
-    public Book() { }
+	public Book() { }
 
-    public Book(string isbn, string title, BookGenre genre, int releaseYear, double price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters)
+    public Book(string isbn, string title, BookGenre genre, int releaseYear, double price, int numberOfPages, List<Author> authors, Publisher publisher, List<Visitor> buyers, List<Visitor> wishlisters, bool isDeleted = false)
     {
         Isbn = isbn;
         Title = title;
@@ -36,7 +37,8 @@ public class Book : ISerializable, IIdentifiable
         Publisher = publisher;
         Buyers = buyers;
         Wishlisters = wishlisters;
-    }
+        IsDeleted = isDeleted;
+	}
 
     public override string ToString()
     {
@@ -52,8 +54,9 @@ public class Book : ISerializable, IIdentifiable
             $"\n\tPublisher ID: {PublisherId}" +
             $"\n\tAuthors: {Authors}" +
             $"\n\tBuyers: {Buyers}" +
-            $"\n\tWishlisters: {Wishlisters}";
-    }
+            $"\n\tWishlisters: {Wishlisters}" + 
+            $"\n\tIsDeleted: {IsDeleted}";
+	}
 
     public List<string> FirstAndLastNamesOfAllAuthors
     {
@@ -78,8 +81,8 @@ public class Book : ISerializable, IIdentifiable
             Price.ToString(),
             NumberOfPages.ToString(),
             PublisherId.ToString(),
-
-        };
+            IsDeleted.ToString()
+		};
         return csv;
     }
 
@@ -93,5 +96,6 @@ public class Book : ISerializable, IIdentifiable
         Price = double.Parse(values[5]);
         NumberOfPages = int.Parse(values[6]);
         PublisherId = int.Parse(values[7]);
-    }
+        IsDeleted = bool.Parse(values[8]);
+	}
 }

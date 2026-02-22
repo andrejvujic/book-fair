@@ -29,7 +29,9 @@ namespace WPFClient.DTO
                 Publisher = Publisher,
 
                 Buyers = new List<Visitor>(Buyers),
-                Wishlisters = new List<Visitor>(Wishlisters)
+                Wishlisters = new List<Visitor>(Wishlisters),
+
+                IsDeleted = IsDeleted,
             };
         }
 
@@ -50,7 +52,9 @@ namespace WPFClient.DTO
 
             Buyers = book.Buyers ?? new List<Visitor>();
             Wishlisters = book.Wishlisters ?? new List<Visitor>();
-        }
+
+            IsDeleted = book.IsDeleted;
+		}
 
         public override Book ToModel()
         {
@@ -70,13 +74,27 @@ namespace WPFClient.DTO
                 Publisher = Publisher ?? new Publisher(),
 
                 Buyers = Buyers ?? new List<Visitor>(),
-                Wishlisters = Wishlisters ?? new List<Visitor>()
-            };
+                Wishlisters = Wishlisters ?? new List<Visitor>(),
+
+                IsDeleted = IsDeleted,
+			};
         }
+		public int Id { get; set; }
 
-        public int Id { get; set; }
+        private bool isDeleted = false;
 
-        private string isbn = string.Empty;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                if (isDeleted == value) return;
+                isDeleted = value;
+                OnPropertyChanged(nameof(IsDeleted));
+            }
+		}
+
+		private string isbn = string.Empty;
         public string Isbn
         {
             get => isbn;
@@ -280,5 +298,5 @@ namespace WPFClient.DTO
             IsReleaseYearValid &&
             IsPriceValid &&
             IsNumberOfPagesValid;
-    }
+	}
 }

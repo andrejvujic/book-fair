@@ -196,22 +196,37 @@ namespace WPFClient
 
                     break;
                 case BOOKS_TAB_INDEX:
-                    MessageBox.Show(
-                        "Brisanje entiteta nije implementirano za ovaj tab.",
-                        "Funkcionalnost nije implementirana",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information
+                  BookDTO? targetBook = BookTab.SelectedBook;
+                    if (targetBook == null)
+                    {
+                        MessageBox.Show(
+                            "Nije odabrana knjiga za brisanje. Potrebno je odabrati knjigu iz liste.",
+                            "Nije odabrana knjiga",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+                    }
+                    MessageBoxResult bookResult = MessageBox.Show(
+                        "Da li ste sigurni da želite da obrišete knjigu?",
+                        "Brisanje knjige",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question
                     );
+
+                    switch (bookResult)
+                    {
+                        case MessageBoxResult.Yes:
+                            targetBook.IsDeleted = true;
+							BookController.Update(targetBook.ToModel());
+                            break;
+                        case MessageBoxResult.No:
+                            break;
+                        default:
+                            break;
+                    }
                     break;
-                default:
-                    MessageBox.Show(
-                        "Brisanje entiteta nije implementirano za ovaj tab.",
-                        "Funkcionalnost nije implementirana",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information
-                    );
-                    break;
-            }
+			}
         }
         
         // Poziva se svaki put kada se promijeni odabrani tab.

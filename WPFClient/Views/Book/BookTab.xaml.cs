@@ -36,7 +36,7 @@ namespace WPFClient.Views.Book
         public void Update()
         {
             Books.Clear();
-            foreach (var b in BookDAO.GetAll())
+            foreach (var b in BookDAO.GetAll().Where(b => !b.IsDeleted))
                 Books.Add(new BookDTO(b));
         }
 

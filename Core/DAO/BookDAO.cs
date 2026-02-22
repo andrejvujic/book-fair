@@ -67,6 +67,8 @@ public class BookDAO: DAO<Book>
 		oldEntity.Buyers = entity.Buyers;
 		oldEntity.Wishlisters = entity.Wishlisters;
 
+		oldEntity.IsDeleted = entity.IsDeleted;
+
 		BookAuthors.RemoveAll(oldEntity);
         BookWishlisters.RemoveAll(oldEntity);
 
