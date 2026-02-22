@@ -139,8 +139,8 @@
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="8"/>
 						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="700"/>
 						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="320"/>
                         <ColumnDefinition Width="8"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="8"/>
