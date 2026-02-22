@@ -42,7 +42,6 @@ namespace WPFClient.Views.Author
 			Update();
 		}
 
-		// IObserver implementation - called when DAO notifies observers
 		public void Update()
 		{
 			var all = AuthorDAO.GetAll();
@@ -67,11 +66,9 @@ namespace WPFClient.Views.Author
 			dlg.Owner = Window.GetWindow(this);
 			dlg.ShowDialog();
 
-			// If user filled required fields (minimal check), add to DAO.
 			if (!string.IsNullOrWhiteSpace(model.FirstName) || !string.IsNullOrWhiteSpace(model.LastName))
 			{
 				AuthorDAO.Add(model);
-				// AuthorDAO will notify observers -> Update() will refresh the grid.
 			}
 		}
 
@@ -89,9 +86,7 @@ namespace WPFClient.Views.Author
 			dlg.Owner = Window.GetWindow(this);
 			dlg.ShowDialog();
 
-			// After dialog close, persist changes
 			AuthorDAO.Update(model);
-			// AuthorDAO notifies observers -> Update()
 		}
 
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -107,7 +102,6 @@ namespace WPFClient.Views.Author
 			if (result == MessageBoxResult.Yes)
 			{
 				AuthorDAO.Remove(sel.Id);
-				// AuthorDAO notifies observers -> Update()
 			}
 		}
 
