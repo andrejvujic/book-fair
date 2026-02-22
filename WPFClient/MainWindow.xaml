@@ -56,10 +56,10 @@
                                        VerticalAlignment="Center"/>
                         </MenuItem.Icon>
 
-                        <MenuItem Header="Posjetioci" InputGestureText="Ctrl+V" Click="VisitorsMenuItem_Click"/>
-                        <MenuItem Header="Autori" InputGestureText="Ctrl+A" Click="AuthorsMenuItem_Click"/>
-                        <MenuItem Header="Knjige" InputGestureText="Ctrl+B" Click="BooksMenuItem_Click"/>
-                        <MenuItem Header="Izdavači" InputGestureText="Ctrl+P" Click="PublishersMenuItem_Click"/>
+                        <MenuItem Header="Posjetioci" InputGestureText="Ctrl+1" Click="VisitorsMenuItem_Click"/>
+                        <MenuItem Header="Autori" InputGestureText="Ctrl+2" Click="AuthorsMenuItem_Click"/>
+                        <MenuItem Header="Knjige" InputGestureText="Ctrl+3" Click="BooksMenuItem_Click"/>
+                        <MenuItem Header="Izdavači" InputGestureText="Ctrl+4" Click="PublishersMenuItem_Click"/>
 
                         <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
                             <MenuItem.Icon>

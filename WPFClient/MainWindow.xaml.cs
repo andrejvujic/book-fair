@@ -351,25 +351,25 @@ namespace WPFClient
                 return;
             }
 
-            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.V))
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D1))
             {
                 EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
                 return;
             }
 
-            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.A))
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D2))
             {
                 EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
                 return;
             }
 
-            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.B))
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D3))
             {
                 EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
                 return;
             }
 
-            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.P))
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D4))
             {
                 OpenPublishersWindow();
                 return;
