@@ -78,12 +78,13 @@ namespace WPFClient
             RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
         }
 
-        private void SetWindowSize(double factor = 0.75)
+        private void SetWindowSize()
         {
+            const double factor = 0.75;
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
-            Width = screenWidth * 0.75;
-            Height = screenHeight * 0.75;
+            Width = screenWidth * factor;
+            Height = screenHeight * factor;
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
