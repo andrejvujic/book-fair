@@ -59,36 +59,6 @@ namespace WPFClient.Views.Author
 				Authors.Add(new AuthorDTO(a));
 		}
 
-		private void AddButton_Click(object sender, RoutedEventArgs e)
-		{
-			var model = new Core.Models.Author();
-			var dlg = new UpdateAuthor(model);
-			dlg.Owner = Window.GetWindow(this);
-			dlg.ShowDialog();
-
-			if (!string.IsNullOrWhiteSpace(model.FirstName) || !string.IsNullOrWhiteSpace(model.LastName))
-			{
-				AuthorDAO.Add(model);
-			}
-		}
-
-		private void EditButton_Click(object sender, RoutedEventArgs e)
-		{
-			var sel = SelectedAuthor;
-			if (sel == null)
-			{
-				MessageBox.Show("Nije odabran autor za izmjenu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-				return;
-			}
-
-			var model = sel.ToModel();
-			var dlg = new UpdateAuthor(model);
-			dlg.Owner = Window.GetWindow(this);
-			dlg.ShowDialog();
-
-			AuthorDAO.Update(model);
-		}
-
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
 			var sel = SelectedAuthor;
@@ -105,7 +75,28 @@ namespace WPFClient.Views.Author
 			}
 		}
 
-		public event PropertyChangedEventHandler? PropertyChanged;
+        private void OpenVisitorsWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
+            // autora iz liste autora...
+            AuthorDTO? targetAuthor = AuthorsDataGrid.SelectedItem as AuthorDTO;
+            if (targetAuthor == null)
+            {
+                MessageBox.Show(
+                    "Nije odabran autor za prikaz posjetilaca. Potrebno je odabrati autora iz liste.",
+                    "Nije odabran autor",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+                return;
+            }
+
+            AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 		protected virtual void OnPropertyChanged(string propertyName)
 			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}

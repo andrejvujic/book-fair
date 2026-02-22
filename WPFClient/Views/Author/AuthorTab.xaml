@@ -35,7 +35,18 @@
 		</DataGrid>
 
 		<Separator Grid.Row="1" Margin="16,0" Height="32"/>
-		<Grid Grid.Row="2" Margin="16,0,16,16" Height="120"/>
 
-	</Grid>
+        <Grid Grid.Row="2" Margin="16,0,16,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                Width="128"
+                Height="32"
+                Content="Prikaži posjetioce"
+                Click="OpenVisitorsWindowButton_Click"/>
+        </Grid>
+
+    </Grid>
 </UserControl>
