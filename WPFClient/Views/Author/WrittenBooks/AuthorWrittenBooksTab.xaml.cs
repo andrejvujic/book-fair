@@ -17,15 +17,16 @@ namespace WPFClient.Views.Author.WrittenBooks
         public static readonly DependencyProperty AuthorProperty =
                    DependencyProperty.Register(
                        nameof(Author),
-                       typeof(Core.Models.Author),
+                       typeof(AuthorDTO),
                        typeof(AuthorWrittenBooksTab),
                        new PropertyMetadata(null, OnDependencyPropertyChanged)
                    );
+    
+        private AuthorController AuthorController { get; }
 
-        // TODO: Koristiti AuthorDTO
-        public Core.Models.Author? Author
+        public AuthorDTO? Author
         {
-            get => (Core.Models.Author?)GetValue(AuthorProperty);
+            get => (AuthorDTO?)GetValue(AuthorProperty);
             set => SetValue(AuthorProperty, value);
         }
 
@@ -52,8 +53,8 @@ namespace WPFClient.Views.Author.WrittenBooks
         {
             InitializeComponent();
 
-            // TODO: Zamijeniti sa AuthorController.Subscribe(this)
-            App.Context.AuthorDAO.Subject.Subscribe(this);
+            AuthorController = new AuthorController(App.Context.AuthorDAO);
+            AuthorController.Subscribe(this);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -88,8 +89,7 @@ namespace WPFClient.Views.Author.WrittenBooks
                             HashSet<int> ids = new HashSet<int>(books.Select(b => b.Id));
                             Author.Books.RemoveAll((b) => ids.Contains(b.Id));
 
-                            // TODO: Ovde treba koristiti AuthorController
-                            App.Context.AuthorDAO.Update(Author);
+                            AuthorController.Update(Author.ToModel());
                             break;
                     case MessageBoxResult.No:
                         break;
