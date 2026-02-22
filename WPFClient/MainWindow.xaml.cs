@@ -57,6 +57,7 @@ namespace WPFClient
 
         public MainWindow()
         {
+            SetWindowSize();
             InitializeComponent();
             DataContext = this;
 
@@ -75,6 +76,14 @@ namespace WPFClient
             _timer.Tick += (s, e) => RefreshCurrentDateAndTime();
             _timer.Start();
             RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
+        }
+
+        private void SetWindowSize(double factor = 0.75)
+        {
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            Width = screenWidth * 0.75;
+            Height = screenHeight * 0.75;
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
