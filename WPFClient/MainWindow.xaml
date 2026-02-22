@@ -52,8 +52,8 @@
                         </MenuItem.Icon>
 
                         <MenuItem Header="Posjetioci" Click="VisitorsMenuItem_Click"/>
-                        <MenuItem Header="Autori"/>
-                        <MenuItem Header="Knjige"/>
+                        <MenuItem Header="Autori" Click="AuthorsMenuItem_Click"/>
+                        <MenuItem Header="Knjige" Click="BooksMenuItem_Click"/>
                         <MenuItem Header="Izdavači" Click="PublishersMenuItem_Click"/>
 
                         <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">

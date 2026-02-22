@@ -240,15 +240,19 @@ namespace WPFClient
 
         // Opcije menija za otvaranje tabova:
         private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+		private void AuthorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
+		private void BooksMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
 
-        private void PublishersMenuItem_Click(object sender, RoutedEventArgs e)
+		private void PublishersMenuItem_Click(object sender, RoutedEventArgs e)
         {
             PublisherWindow window = new PublisherWindow();
             window.Owner = this;
             window.ShowDialog();
         }
 
-        private void VisitorsAuthorsButton_Click(object sender, RoutedEventArgs e)
+
+
+		private void VisitorsAuthorsButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
             // autora iz liste autora...
@@ -315,5 +319,7 @@ namespace WPFClient
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
                    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+
+
+	}
 }
