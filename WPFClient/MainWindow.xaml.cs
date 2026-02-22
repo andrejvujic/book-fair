@@ -146,9 +146,17 @@ namespace WPFClient
                     updateBookDialog.ShowDialog();
                     break;
                 default:
-                    // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
-                    // autora iz liste autora...
-                    Core.Models.Author targetAuthor = App.Context.AuthorDAO.GetById(0) ?? new Core.Models.Author();
+                    AuthorDTO? targetAuthor = AuthorTab.SelectedAuthor;
+                    if (targetAuthor == null)
+                    {
+                        MessageBox.Show(
+                            "Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.",
+                            "Nije odabran autor",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+                    }
                     UpdateAuthor updateAuthorDialog = new UpdateAuthor(targetAuthor);
                     updateAuthorDialog.Owner = this;
                     updateAuthorDialog.ShowDialog();
