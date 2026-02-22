@@ -273,29 +273,6 @@ namespace WPFClient
             window.ShowDialog();
         }
 
-
-
-		private void VisitorsAuthorsButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
-            // autora iz liste autora...
-            AuthorDTO? targetAuthor = AuthorTab.SelectedAuthor;
-            if (targetAuthor == null)
-            {
-                MessageBox.Show(
-                    "Nije odabran autor za prikaz posjetilaca. Potrebno je odabrati autora iz liste.",
-                    "Nije odabran autor",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning
-                );
-                return;
-            }
-
-            AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
-            dialog.Owner = this;
-            dialog.ShowDialog();
-        }
-
         private void UpdateSearchQuery()
         {
             SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
