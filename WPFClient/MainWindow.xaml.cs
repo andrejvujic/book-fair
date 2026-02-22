@@ -166,7 +166,7 @@ namespace WPFClient
                     if (targetVisitor == null)
                     {
                         MessageBox.Show(
-                            "Nije odabran posjetilac za brisanje. Potrebno je odabrati pojsetioca iz liste.",
+                            "Nije odabran posjetilac za brisanje. Potrebno je odabrati posjetioca iz liste.",
                             "Nije odabran posjetilac",
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning
