@@ -12,7 +12,8 @@
         Title="Sajam Knjiga"
         Height="720"
         Width="1080"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
 
     <Grid>
         <!-- Segoe UI Icons: https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-ui-symbol-font -->
@@ -32,6 +33,9 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
+                    <!--
+                    Sve se automatski cuva? Ovo nam treba?
+
                     <MenuItem Header="Save" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
@@ -41,8 +45,9 @@
                                        VerticalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    -->
 
-                    <MenuItem Header="Open" InputGestureText="Ctrl+O">
+                    <MenuItem Header="Open">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xED25;"
@@ -51,10 +56,10 @@
                                        VerticalAlignment="Center"/>
                         </MenuItem.Icon>
 
-                        <MenuItem Header="Posjetioci" Click="VisitorsMenuItem_Click"/>
-                        <MenuItem Header="Autori" Click="AuthorsMenuItem_Click"/>
-                        <MenuItem Header="Knjige" Click="BooksMenuItem_Click"/>
-                        <MenuItem Header="Izdavači" Click="PublishersMenuItem_Click"/>
+                        <MenuItem Header="Posjetioci" InputGestureText="Ctrl+V" Click="VisitorsMenuItem_Click"/>
+                        <MenuItem Header="Autori" InputGestureText="Ctrl+A" Click="AuthorsMenuItem_Click"/>
+                        <MenuItem Header="Knjige" InputGestureText="Ctrl+B" Click="BooksMenuItem_Click"/>
+                        <MenuItem Header="Izdavači" InputGestureText="Ctrl+P" Click="PublishersMenuItem_Click"/>
 
                         <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
                             <MenuItem.Icon>
@@ -71,7 +76,7 @@
 
                 <MenuItem Header="Edit">
 
-                    <MenuItem Header="Izmjena entiteta" Click="EditMenuItem_Click">
+                    <MenuItem Header="Izmjena entiteta" InputGestureText="Ctrl+E" Click="EditMenuItem_Click">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE70F;"
@@ -81,7 +86,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Header="Brisanje entiteta" Click="DeleteMenuItem_Click">
+                    <MenuItem Header="Brisanje entiteta" InputGestureText="Ctrl+D" Click="DeleteMenuItem_Click">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE74D;"
@@ -95,7 +100,7 @@
 
                 <MenuItem Header="Help">
 
-                    <MenuItem Header="About">
+                    <MenuItem Header="About" InputGestureText="Ctrl+H">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE946;"

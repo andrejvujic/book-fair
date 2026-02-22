@@ -276,7 +276,9 @@ namespace WPFClient
 		private void AuthorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
 		private void BooksMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
 
-		private void PublishersMenuItem_Click(object sender, RoutedEventArgs e)
+        private void PublishersMenuItem_Click(object sender, RoutedEventArgs e) => OpenPublishersWindow();
+
+        private void OpenPublishersWindow()
         {
             PublisherWindow window = new PublisherWindow();
             window.Owner = this;
@@ -327,6 +329,53 @@ namespace WPFClient
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            bool isCtrlKeyDown = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.N))
+            {
+                PerformAddEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.E))
+            {
+                PerformEditEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D))
+            {
+                PerformDeleteEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.V))
+            {
+                EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.A))
+            {
+                EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.B))
+            {
+                EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.P))
+            {
+                OpenPublishersWindow();
+                return;
+            }
+        }
+
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
         const int BOOKS_TAB_INDEX = 2;
@@ -340,7 +389,5 @@ namespace WPFClient
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
                    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-
-	}
+    }
 }
