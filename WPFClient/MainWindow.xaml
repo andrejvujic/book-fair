@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFClient"
         xmlns:visitor="clr-namespace:WPFClient.Views.Visitor"
         xmlns:book="clr-namespace:WPFClient.Views.Book"
+        xmlns:author="clr-namespace:WPFClient.Views.Author"
         xmlns:publisher="clr-namespace:WPFClient.Views.Publisher"
         mc:Ignorable="d"
         Title="Sajam Knjiga"
@@ -148,7 +149,7 @@
 
 					<Button Grid.Column="0"
                         Width="24"
-                        Height="24">
+                        Height="24"  Click="NewMenuItem_Click">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xECC8;"
                                    FontSize="14"
@@ -158,7 +159,7 @@
 
 					<Button Grid.Column="2"
                         Width="24"
-                        Height="24">
+                        Height="24" Click="EditMenuItem_Click">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE70F;"
                                    FontSize="14"
@@ -168,7 +169,7 @@
 
 					<Button Grid.Column="4"
                         Width="24"
-                        Height="24">
+                        Height="24" Click="DeleteMenuItem_Click">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE74D;"
                                    FontSize="14"
@@ -209,12 +210,8 @@
 
                     <TabItem Header="Autori">
                         <Grid>
-                            <Button
-                                Width="128"
-                                Height="32"
-                                Content="Prikaži posjetioce"
-                                Click="VisitorsAuthorsButton_Click"/>
-                        </Grid>
+							<author:AuthorTab x:Name="AuthorTab"/>
+						</Grid>
                     </TabItem>
 
                     <TabItem Header="Knjige">
