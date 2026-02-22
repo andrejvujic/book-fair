@@ -8,12 +8,13 @@
              d:DesignWidth="800">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="345"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<!-- DataGrid sa kolonama: Id, FirstName, LastName, IdCardNumber, DateOfBirth, Email -->
 		<DataGrid Grid.Row="0"
+				  VerticalAlignment="Top"
                   Margin="16,16,16,0"
                   x:Name="AuthorsDataGrid"
                   ItemsSource="{Binding Authors, UpdateSourceTrigger=PropertyChanged}"
@@ -32,5 +33,9 @@
 				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
 			</DataGrid.Columns>
 		</DataGrid>
+
+		<Separator Grid.Row="1" Margin="16,0" Height="32"/>
+		<Grid Grid.Row="2" Margin="16,0,16,16" Height="120"/>
+
 	</Grid>
 </UserControl>
