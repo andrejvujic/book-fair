@@ -1,17 +1,20 @@
-using Core.Serialization;
-using Core.Helpers.Relations;
+using System.Net.NetworkInformation;
 using Core.Helpers;
+using Core.Helpers.Relations;
+using Core.Helpers.Search;
+using Core.Helpers.Sorting;
+using Core.Serialization;
 
 namespace Core.Models;
 
 
-public class Author : ISerializable, IIdentifiable
+public class Author : ISerializable, IIdentifiable, IDeletable, ISearchable, ISortable
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string FullName { get => $"{FirstName} {LastName}";}
-    public DateOnly? DateOfBirth { get; set; }
+    public DateTime? DateOfBirth { get; set; }
     public int AddressId { get; set; } = 0;
     public Address Address { get; set; } = new Address();
     public string PhoneNumber { get; set; } = string.Empty;
@@ -19,9 +22,36 @@ public class Author : ISerializable, IIdentifiable
     public string IdCardNumber { get; set; } = string.Empty;
     public int YearsOfExperience { get; set; } = 0;
     public List<Book> Books { get; set; } = new List<Book>();
+	public bool IsDeleted { get; set; } = false;
 
-    public Author() { }
-    public Author(string firstname, string lastName, DateOnly dateOfBirth, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books)
+	public bool IsMatch(SearchQuery query)
+	{
+		if (query.Empty) return true;
+
+		switch (query.Length)
+		{
+			case 1:
+				return query.IsMatch(new string[] { LastName });
+			case 2:
+				return query.IsMatch(new string[] { FirstName, LastName });
+		}
+
+		return false;
+	}
+
+	public Dictionary<string, dynamic> SortFields
+	{
+		get => new Dictionary<string, dynamic>
+		{
+			{ nameof(Id), Id },
+			{ nameof(FirstName), FirstName },
+			{ nameof(LastName), LastName },
+            { nameof(Email), Email },
+		};
+	}
+
+	public Author() { }
+    public Author(string firstname, string lastName, DateTime dateOfBirth, Address address, string phoneNumber, string email, string idCardNumber, int yearsOfExperience, List<Book> books, bool isDeleted = false)
     {
         FirstName = firstname;
         LastName = lastName;
@@ -33,9 +63,10 @@ public class Author : ISerializable, IIdentifiable
         IdCardNumber = idCardNumber;
         YearsOfExperience = yearsOfExperience;
         Books = books;
-    }
+		IsDeleted = isDeleted;
+	}
 
-    public override string ToString()
+	public override string ToString()
     {
         return
             "[Author]:" +
@@ -48,10 +79,11 @@ public class Author : ISerializable, IIdentifiable
             $"\n\tEmail: {Email}" +
             $"\n\tIdCardNumber: {IdCardNumber}" +
             $"\n\tYearsOfExperience: {YearsOfExperience}" +
-            $"\n\tBooks: {Books}";
-    }
+            $"\n\tBooks: {Books}" +
+			$"\n\tIsDeleted: {IsDeleted}";
+	}
 
-    public string[] ToCSV()
+	public string[] ToCSV()
     {
         string[] csv =
         {
@@ -63,8 +95,9 @@ public class Author : ISerializable, IIdentifiable
             PhoneNumber,
             Email,
             IdCardNumber,
-            YearsOfExperience.ToString()
-        };
+            YearsOfExperience.ToString(),
+			IsDeleted.ToString()
+		};
         return csv;
     }
 
@@ -73,11 +106,12 @@ public class Author : ISerializable, IIdentifiable
         Id = int.Parse(values[0]);
         FirstName = values[1];
         LastName = values[2];
-        DateOfBirth = DateOnly.Parse(values[3]);
+        DateOfBirth = DateTime.Parse(values[3]);
         AddressId = int.Parse(values[4]);
         PhoneNumber = values[5];
         Email = values[6];
         IdCardNumber = values[7];
         YearsOfExperience = int.Parse(values[8]);
-    }
+		IsDeleted = bool.Parse(values[9]);
+	}
 }

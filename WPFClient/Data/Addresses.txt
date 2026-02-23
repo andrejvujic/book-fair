@@ -1,4 +1,4 @@
-0|Temerinska|88|Novi Sad|Serbia
+0|Vladike Ćirića|7|Novi Sad|Serbia
 1|Dr Sime Miloševića|5|Novi Sad|Serbia
 2|Koste Racina|27|Novi Sad|Serbia
 3|Janka Čmelika|10|Novi Sad|Serbia

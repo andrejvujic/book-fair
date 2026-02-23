@@ -62,7 +62,7 @@ public class AuthorView : View<Author>
 		string surname = ConsoleUtilities.ReadStringRequired();
 
 		Console.Write("Enter date of birth (yyyy-MM-dd): ");
-		DateOnly dateOfBirth = DateOnly.Parse(ConsoleUtilities.ReadStringRequired());
+		DateTime dateOfBirth = DateTime.Parse(ConsoleUtilities.ReadStringRequired());
 
 		Address address = new Address();
 		address = InputAddress();

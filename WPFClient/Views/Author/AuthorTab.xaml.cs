@@ -1,112 +1,92 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Core.DAO;
-using WPFClient.DTO;
+using Core.Helpers.Sorting;
+using Core.Models;
 using Core.Observer;
+using WPFClient.Controllers;
+using WPFClient.DTO;
+using WPFClient.Views.Visitor;
 
 namespace WPFClient.Views.Author
 {
-	public partial class AuthorTab : UserControl, IObserver, INotifyPropertyChanged
+	public partial class AuthorTab : UserControl, IObserver
 	{
 		public ObservableCollection<AuthorDTO> Authors { get; set; } = new ObservableCollection<AuthorDTO>();
-
-		private AuthorDAO AuthorDAO { get; set; }
-
-		private string rawSearchQuery = string.Empty;
-		public string RawSearchQuery
-		{
-			get => rawSearchQuery;
-			set
-			{
-				if (rawSearchQuery == value) return;
-				rawSearchQuery = value;
-				OnPropertyChanged(nameof(RawSearchQuery));
-				Update();
-			}
-		}
-
+		public AuthorController AuthorController { get;}
 		public AuthorDTO? SelectedAuthor => AuthorsDataGrid.SelectedItem as AuthorDTO;
 
+		public static readonly DependencyProperty RawSearchQueryProperty =
+		   DependencyProperty.Register(
+			   nameof(RawSearchQuery),
+			   typeof(string),
+			   typeof(AuthorTab),
+			   new PropertyMetadata(null, OnSearchQueryPropertyChanged)
+		   );
+
+		public string? RawSearchQuery
+		{
+			get => (string?)GetValue(RawSearchQueryProperty);
+			set => SetValue(RawSearchQueryProperty, value);
+		}
+
+		private static void OnSearchQueryPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			AuthorTab control = (AuthorTab)d;
+			control.Update();
+		}
 		public AuthorTab()
 		{
 			InitializeComponent();
-
-			AuthorDAO = App.Context.AuthorDAO;
-			AuthorDAO.Subject.Subscribe(this);
-
-			DataContext = this;
+			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+			AuthorController.Subscribe(this);
 			Update();
 		}
 
 		public void Update()
 		{
-			var all = AuthorDAO.GetAll();
+			Render(
+				AuthorController
+				.PerformSerach(RawSearchQuery ?? string.Empty)
+				.PerformSorting()
+				.GetWithPagination()
+			);
+		}
 
-			var filtered = string.IsNullOrWhiteSpace(RawSearchQuery)
-				? all
-				: all.Where(a =>
-					(a.FirstName ?? string.Empty).Contains(RawSearchQuery, StringComparison.InvariantCultureIgnoreCase) ||
-					(a.LastName ?? string.Empty).Contains(RawSearchQuery, StringComparison.InvariantCultureIgnoreCase) ||
-					(a.Email ?? string.Empty).Contains(RawSearchQuery, StringComparison.InvariantCultureIgnoreCase)
-				  ).ToList();
-
+		private void Render(List<Core.Models.Author> authors)
+		{
 			Authors.Clear();
-			foreach (var a in filtered)
+			foreach (Core.Models.Author a in authors)
 				Authors.Add(new AuthorDTO(a));
 		}
 
-		private void AddButton_Click(object sender, RoutedEventArgs e)
+		private void AuthorsDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
 		{
-			var model = new Core.Models.Author();
-			var dlg = new UpdateAuthor(model);
-			dlg.Owner = Window.GetWindow(this);
-			dlg.ShowDialog();
+			string criteria = e.Column.SortMemberPath ?? string.Empty;
+			Direction direction = e.Column.SortDirection == ListSortDirection.Ascending ? Direction.Descending : Direction.Ascending;
 
-			if (!string.IsNullOrWhiteSpace(model.FirstName) || !string.IsNullOrWhiteSpace(model.LastName))
-			{
-				AuthorDAO.Add(model);
-			}
+			if (!AuthorController.SetSortingParameters(criteria, direction)) return;
+
+			Render(
+				AuthorController
+				.PerformSorting()
+				.GetWithPagination()
+			);
 		}
-
-		private void EditButton_Click(object sender, RoutedEventArgs e)
+		private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
 		{
-			var sel = SelectedAuthor;
-			if (sel == null)
-			{
-				MessageBox.Show("Nije odabran autor za izmjenu.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-				return;
-			}
-
-			var model = sel.ToModel();
-			var dlg = new UpdateAuthor(model);
-			dlg.Owner = Window.GetWindow(this);
-			dlg.ShowDialog();
-
-			AuthorDAO.Update(model);
+			if (!AuthorController.GoToPreviousPage()) return;
+			Render(AuthorController.GetWithPagination());
 		}
-
-		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		private void NextPageButton_Click(object sender, RoutedEventArgs e)
 		{
-			var sel = SelectedAuthor;
-			if (sel == null)
-			{
-				MessageBox.Show("Nije odabran autor za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-				return;
-			}
-
-			var result = MessageBox.Show($"Da li ste sigurni da želite obrisati autora '{sel.FirstName} {sel.LastName}'?", "Brisanje", MessageBoxButton.YesNo, MessageBoxImage.Question);
-			if (result == MessageBoxResult.Yes)
-			{
-				AuthorDAO.Remove(sel.Id);
-			}
+			if (!AuthorController.GoToNextPage()) return;
+			Render(AuthorController.GetWithPagination());
 		}
-
-		public event PropertyChangedEventHandler? PropertyChanged;
-		protected virtual void OnPropertyChanged(string propertyName)
-			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 }
