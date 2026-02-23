@@ -16,8 +16,8 @@ public class Book : ISerializable, IIdentifiable, IDeletable
     public double Price { get; set; } = 0;
     public int NumberOfPages { get; set; } = 0;
     public List<Author> Authors { get; set; } = new List<Author>();
-    public int PublisherId { get; set; } = 0;
-    public Publisher Publisher { get; set; } = new Publisher();
+    public int PublisherId { get; set; } = -1;
+    public Publisher? Publisher { get; set; }
     public List<Visitor> Buyers { get; set; } = new List<Visitor>();
     public List<Visitor> Wishlisters { get; set; } = new List<Visitor>();
     public bool IsDeleted { get; set; } = false;
