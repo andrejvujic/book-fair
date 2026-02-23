@@ -12,8 +12,7 @@ namespace WPFClient.Views.Author
 {
     public partial class AuthorConnectedVisitors : Window
     {
-        // TODO: Ovde treba koristiti AuthorDTO i na njega treba dodati FullName
-        public Core.Models.Author Author { get; }
+        public AuthorDTO Author { get; }
         private HashSet<int> AuthorBookIds { get; }
 
         public string RawSearchQuery { get; set; } = string.Empty;
@@ -21,7 +20,7 @@ namespace WPFClient.Views.Author
         public ObservableCollection<VisitorDTO> Visitors { get; set; } = new ObservableCollection<VisitorDTO>();
         private VisitorController VisitorController { get; }
 
-        public AuthorConnectedVisitors(Core.Models.Author author)
+        public AuthorConnectedVisitors(AuthorDTO author)
         {
             InitializeComponent();
 

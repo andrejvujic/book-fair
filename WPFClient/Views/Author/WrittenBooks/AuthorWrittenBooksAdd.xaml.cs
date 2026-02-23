@@ -9,12 +9,13 @@ namespace WPFClient.Views.Author.WrittenBooks
     public partial class AuthorWrittenBooksAdd : Window
     {
         public List<BookDTO> AllowedBooks { get; set; } = new List<BookDTO>();
-        private Core.Models.Author Author { get; }
+        private AuthorDTO Author { get; }
 
+        private AuthorController AuthorController { get; } = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
         private BookController BookController { get; } = new BookController(App.Context.BookDAO);
 
 
-        public AuthorWrittenBooksAdd(Core.Models.Author author)
+        public AuthorWrittenBooksAdd(AuthorDTO author)
         {
             InitializeComponent();
 
@@ -45,8 +46,7 @@ namespace WPFClient.Views.Author.WrittenBooks
             {
                 foreach (var b in books)
                     Author.Books.Add(b.ToModel());
-                // TODO: Ovde treba koristiti AuthorController
-                App.Context.AuthorDAO.Update(Author);
+                AuthorController.Update(Author.ToModel());
                 Close();
                 return;
             }

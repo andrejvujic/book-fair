@@ -58,6 +58,7 @@ namespace WPFClient
 
         public MainWindow()
         {
+            SetWindowSize();
             InitializeComponent();
             DataContext = this;
 
@@ -77,6 +78,15 @@ namespace WPFClient
             _timer.Tick += (s, e) => RefreshCurrentDateAndTime();
             _timer.Start();
             RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
+        }
+
+        private void SetWindowSize()
+        {
+            const double factor = 0.75;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            Width = screenWidth * factor;
+            Height = screenHeight * factor;
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
@@ -168,14 +178,6 @@ namespace WPFClient
 					updateAuthorDialog.Owner = this;
 					updateAuthorDialog.ShowDialog();
 					break;
-                /*default:
-                    // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
-                    // autora iz liste autora...
-                    Core.Models.Author targetAuthor = App.Context.AuthorDAO.GetById(0) ?? new Core.Models.Author();
-                    UpdateAuthor updateAuthorDialog = new UpdateAuthor(targetAuthor);
-                    updateAuthorDialog.Owner = this;
-                    updateAuthorDialog.ShowDialog();
-                    break;*/
             }
         }
 
@@ -313,23 +315,13 @@ namespace WPFClient
 		private void AuthorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
 		private void BooksMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
 
-		private void PublishersMenuItem_Click(object sender, RoutedEventArgs e)
+        private void PublishersMenuItem_Click(object sender, RoutedEventArgs e) => OpenPublishersWindow();
+
+        private void OpenPublishersWindow()
         {
             PublisherWindow window = new PublisherWindow();
             window.Owner = this;
             window.ShowDialog();
-        }
-
-
-
-		private void VisitorsAuthorsButton_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
-            // autora iz liste autora...
-            Core.Models.Author targetAuthor = App.Context.AuthorDAO.GetById(0) ?? new Core.Models.Author();
-            AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
-            dialog.Owner = this;
-            dialog.ShowDialog();
         }
 
         private void UpdateSearchQuery()
@@ -376,6 +368,53 @@ namespace WPFClient
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            bool isCtrlKeyDown = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.N))
+            {
+                PerformAddEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.E))
+            {
+                PerformEditEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D))
+            {
+                PerformDeleteEntity();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D1))
+            {
+                EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D2))
+            {
+                EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D3))
+            {
+                EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D4))
+            {
+                OpenPublishersWindow();
+                return;
+            }
+        }
+
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
         const int BOOKS_TAB_INDEX = 2;
@@ -389,7 +428,5 @@ namespace WPFClient
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
                    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-
-	}
+    }
 }

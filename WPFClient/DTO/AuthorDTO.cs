@@ -98,7 +98,8 @@ namespace WPFClient.DTO
 				if (firstName == value) return;
 				firstName = value;
 				OnPropertyChanged(nameof(FirstName));
-				OnPropertyChanged(nameof(AllFieldsValid));
+                OnPropertyChanged(nameof(FullName));
+                OnPropertyChanged(nameof(AllFieldsValid));
 
 			}
 		}
@@ -112,10 +113,17 @@ namespace WPFClient.DTO
 				if (lastName == value) return;
 				lastName = value;
 				OnPropertyChanged(nameof(LastName));
+				OnPropertyChanged(nameof(FullName));
 				OnPropertyChanged(nameof(AllFieldsValid));
 
 			}
 		}
+
+		public string FullName
+		{
+			get => $"{FirstName} {LastName}";
+		}
+
 
 		private DateTime? dateOfBirth;
 		public DateTime? DateOfBirth
@@ -127,7 +135,6 @@ namespace WPFClient.DTO
 				dateOfBirth = value;
 				OnPropertyChanged(nameof(DateOfBirth));
 				OnPropertyChanged(nameof(AllFieldsValid));
-
 			}
 		}
 

@@ -88,5 +88,33 @@ namespace WPFClient.Views.Author
 			if (!AuthorController.GoToNextPage()) return;
 			Render(AuthorController.GetWithPagination());
 		}
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+        private void OpenVisitorsWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
+            // autora iz liste autora...
+            AuthorDTO? targetAuthor = AuthorsDataGrid.SelectedItem as AuthorDTO;
+            if (targetAuthor == null)
+            {
+                MessageBox.Show(
+                    "Nije odabran autor za prikaz posjetilaca. Potrebno je odabrati autora iz liste.",
+                    "Nije odabran autor",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+                return;
+            }
+
+            AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+		protected virtual void OnPropertyChanged(string propertyName)
+			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
 }

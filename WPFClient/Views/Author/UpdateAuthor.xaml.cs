@@ -7,7 +7,7 @@ namespace WPFClient.Views.Author
     public partial class UpdateAuthor : Window
     {
         public AuthorDTO Author { get;set; }
-        public AuthorController AuthorController { get;set; }   
+        public AuthorController AuthorController { get;set; }
 
         public UpdateAuthor(AuthorDTO author, AuthorController authorController)
         {
@@ -15,8 +15,8 @@ namespace WPFClient.Views.Author
 
             Author = author.Copy();
             AuthorController = authorController;
-
             DataContext = this;
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
