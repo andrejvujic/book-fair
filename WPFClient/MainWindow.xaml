@@ -100,7 +100,7 @@
 
                 <MenuItem Header="Help">
 
-                    <MenuItem Header="About" InputGestureText="Ctrl+H">
+                    <MenuItem Header="About" InputGestureText="Ctrl+H" Click="HelpMenuItem_Click">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE946;"

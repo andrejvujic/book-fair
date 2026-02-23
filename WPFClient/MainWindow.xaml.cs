@@ -10,6 +10,7 @@ using WPFClient.Views.Book;
 using WPFClient.Views.Publisher;
 using WPFClient.Views.Visitor;
 using WPFClient.Views.Author;
+using WPFClient.Views.About;
 
 namespace WPFClient
 {
@@ -275,12 +276,19 @@ namespace WPFClient
         private void VisitorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = VISITORS_TAB_INDEX;
 		private void AuthorsMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = AUTHORS_TAB_INDEX;
 		private void BooksMenuItem_Click(object sender, RoutedEventArgs e) => EntityTabs.SelectedIndex = BOOKS_TAB_INDEX;
-
+        
         private void PublishersMenuItem_Click(object sender, RoutedEventArgs e) => OpenPublishersWindow();
-
         private void OpenPublishersWindow()
         {
             PublisherWindow window = new PublisherWindow();
+            window.Owner = this;
+            window.ShowDialog();
+        }
+
+        private void HelpMenuItem_Click(object sender, RoutedEventArgs e) => OpenHelpWindow();
+        private void OpenHelpWindow()
+        {
+            AboutWindow window = new AboutWindow();
             window.Owner = this;
             window.ShowDialog();
         }
@@ -372,6 +380,12 @@ namespace WPFClient
             if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.D4))
             {
                 OpenPublishersWindow();
+                return;
+            }
+
+            if (isCtrlKeyDown && Keyboard.IsKeyDown(Key.H))
+            {
+                OpenHelpWindow();
                 return;
             }
         }
