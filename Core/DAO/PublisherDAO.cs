@@ -31,8 +31,10 @@ public class PublisherDAO : DAO<Publisher>
         oldEntity.BossId = entity.BossId;
         oldEntity.Authors = entity.Authors;
         oldEntity.Books = entity.Books;
+        oldEntity.IsDeleted = entity.IsDeleted;
 
         _storage.Save(_entities);
+        Subject.NotifyObservers();
         return oldEntity;
     }
 

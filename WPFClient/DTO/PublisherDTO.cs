@@ -19,6 +19,7 @@ namespace WPFClient.DTO
                 Boss = Boss,
                 Authors = new List<Author>(Authors),
                 Books = new List<Book>(Books),
+                IsDeleted = IsDeleted,
             };
         }
 
@@ -32,6 +33,8 @@ namespace WPFClient.DTO
 
             Authors = publisher.Authors ?? new List<Author>();
             Books = publisher.Books ?? new List<Book>();
+
+            IsDeleted = publisher.IsDeleted;
         }
 
         public override Publisher ToModel()
@@ -43,11 +46,24 @@ namespace WPFClient.DTO
                 BossId = BossId,
                 Boss = Boss ?? new Author(),
                 Authors = Authors,
-                Books = Books
+                Books = Books,
+                IsDeleted = IsDeleted,
             };
         }
 
         public int Id { get; set; }
+
+        private bool isDeleted = false;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                if (isDeleted == value) return;
+                isDeleted = value;
+                OnPropertyChanged(nameof(IsDeleted));
+            }
+        }
 
         private string name = string.Empty;
         public string Name
@@ -104,8 +120,7 @@ namespace WPFClient.DTO
         {
             get
             {
-                return
-                    !string.IsNullOrWhiteSpace(Name);
+                return !string.IsNullOrWhiteSpace(Name);
             }
         }
     }
