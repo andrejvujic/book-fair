@@ -25,7 +25,6 @@ namespace WPFClient.DTO
 
                 Authors = new List<Author>(Authors),
 
-                PublisherId = PublisherId,
                 Publisher = Publisher,
 
                 Buyers = new List<Visitor>(Buyers),
@@ -47,8 +46,7 @@ namespace WPFClient.DTO
 
             Authors = book.Authors ?? new List<Author>();
 
-            PublisherId = book.PublisherId;
-            Publisher = book.Publisher;
+            Publisher = book.PublisherId > -1 ? book.Publisher : null;
 
             Buyers = book.Buyers ?? new List<Visitor>();
             Wishlisters = book.Wishlisters ?? new List<Visitor>();
@@ -251,7 +249,7 @@ namespace WPFClient.DTO
             }
         }
 
-        public int PublisherId { get; set; }
+        public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
 
         private Publisher? publisher;
         public Publisher? Publisher
@@ -261,12 +259,17 @@ namespace WPFClient.DTO
             {
                 if (publisher == value) return;
                 publisher = value;
-                PublisherId = publisher?.Id ?? 0;
                 OnPropertyChanged(nameof(Publisher));
                 OnPropertyChanged(nameof(PublisherId));
+                OnPropertyChanged(nameof(HasGotPublisher));
+                OnPropertyChanged(nameof(HasntGotPublisher));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
+
+        public bool HasGotPublisher { get => Publisher != null; }
+        public bool HasntGotPublisher { get => Publisher == null; }
+
 
         private List<Visitor> buyers = new List<Visitor>();
         public List<Visitor> Buyers
@@ -297,6 +300,7 @@ namespace WPFClient.DTO
             !string.IsNullOrWhiteSpace(Title) &&
             IsReleaseYearValid &&
             IsPriceValid &&
-            IsNumberOfPagesValid;
+            IsNumberOfPagesValid &&
+            HasGotPublisher;
 	}
 }
