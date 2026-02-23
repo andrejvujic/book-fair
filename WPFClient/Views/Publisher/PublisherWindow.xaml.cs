@@ -59,6 +59,21 @@ namespace WPFClient.Views.Publisher
 
         private void EditPublisherButton_Click(object sender, RoutedEventArgs e)
         {
+            PublisherDTO? targetPublisher = (PublisherDTO?)PublishersDataGrid.SelectedItem;
+            if (targetPublisher == null)
+            {
+                MessageBox.Show(
+                    "Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste.",
+                    "Nije odabran izdavač",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+                return;
+            }
+
+            EditPublisher window = new EditPublisher(targetPublisher);
+            window.Owner = this;
+            window.ShowDialog();
         }
 
         private void DeletePublisherButton_Click(object sender, RoutedEventArgs e)
