@@ -19,6 +19,8 @@ namespace WPFClient.DTO
                 Boss = Boss,
                 Authors = new List<Author>(Authors),
                 Books = new List<Book>(Books),
+                CodeText = CodeText,
+                IsDeleted = IsDeleted,
             };
         }
 
@@ -27,11 +29,15 @@ namespace WPFClient.DTO
             Id = publisher.Id;
             Name = publisher.Name;
 
+            CodeText = publisher.Code > -1 ? publisher.Code.ToString() : string.Empty;
+
             BossId = publisher.BossId;
             Boss = publisher.Boss;
 
             Authors = publisher.Authors ?? new List<Author>();
             Books = publisher.Books ?? new List<Book>();
+
+            IsDeleted = publisher.IsDeleted;
         }
 
         public override Publisher ToModel()
@@ -40,14 +46,28 @@ namespace WPFClient.DTO
             {
                 Id = Id,
                 Name = Name,
+                Code = Code,
                 BossId = BossId,
                 Boss = Boss ?? new Author(),
                 Authors = Authors,
-                Books = Books
+                Books = Books,
+                IsDeleted = IsDeleted,
             };
         }
 
         public int Id { get; set; }
+
+        private bool isDeleted = false;
+        public bool IsDeleted
+        {
+            get => isDeleted;
+            set
+            {
+                if (isDeleted == value) return;
+                isDeleted = value;
+                OnPropertyChanged(nameof(IsDeleted));
+            }
+        }
 
         private string name = string.Empty;
         public string Name
@@ -62,6 +82,27 @@ namespace WPFClient.DTO
             }
         }
 
+        private string codeText = string.Empty;
+        public string CodeText
+        {
+            get => codeText;
+            set
+            {
+                if (codeText == value) return;
+                codeText = value;
+                OnPropertyChanged(nameof(CodeText));
+                OnPropertyChanged(nameof(Code));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        public int Code
+        { 
+            get { 
+                if (int.TryParse(codeText, out int code)) return code;
+                return -1;
+            }
+        } 
 
         private int bossId;
         public int BossId
@@ -104,8 +145,7 @@ namespace WPFClient.DTO
         {
             get
             {
-                return
-                    !string.IsNullOrWhiteSpace(Name);
+                return !string.IsNullOrWhiteSpace(Name) && Code != -1;
             }
         }
     }

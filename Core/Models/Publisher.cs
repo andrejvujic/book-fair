@@ -3,9 +3,13 @@ using Core.Serialization;
 using System.Reflection.Metadata.Ecma335;
 namespace Core.Models;
 
-public class Publisher : ISerializable, IIdentifiable
+public class Publisher : ISerializable, IIdentifiable, IDeletable
 {
     public int Id { get; set; } = 0;
+
+    public bool IsDeleted { get; set; }
+
+    public int Code { get; set; } = -1;
 
     public string Name { get; set; } = string.Empty;
 
@@ -44,7 +48,9 @@ public class Publisher : ISerializable, IIdentifiable
         {
             Id.ToString(),
             Name,
-            BossId.ToString()
+            BossId.ToString(),
+            Code.ToString(),
+            IsDeleted.ToString()
         };
         return csv;
     }
@@ -54,5 +60,7 @@ public class Publisher : ISerializable, IIdentifiable
         Id = int.Parse(values[0]);
         Name = values[1];
         BossId = int.Parse(values[2]);
+        Code = int.Parse(values[3]);
+        IsDeleted = bool.Parse(values[4]);
     }
 }
