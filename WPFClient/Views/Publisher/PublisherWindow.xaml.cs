@@ -26,7 +26,7 @@ namespace WPFClient.Views.Publisher
         public void Update()
         {
             Publishers.Clear();
-            foreach (var p in PublisherController.GetAll())
+            foreach (var p in PublisherController.GetWhere((e) => !e.IsDeleted))
                 Publishers.Add(new PublisherDTO(p));
         }
 
@@ -63,6 +63,36 @@ namespace WPFClient.Views.Publisher
 
         private void DeletePublisherButton_Click(object sender, RoutedEventArgs e)
         {
+            PublisherDTO? targetPublisher = (PublisherDTO?)PublishersDataGrid.SelectedItem;
+            if (targetPublisher == null)
+            {
+                MessageBox.Show(
+                    "Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste.",
+                    "Nije odabran izdavač",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show(
+                "Da li ste sigurni da želite da obrišete izdavača?",
+                "Brisanje izdavača",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    targetPublisher.IsDeleted = true;
+                    PublisherController.Update(targetPublisher.ToModel());
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
