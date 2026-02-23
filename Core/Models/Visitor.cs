@@ -121,7 +121,7 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
             Id.ToString(),
             FirstName,
             LastName,
-            DateOfBirth.ToString(),
+            DateOfBirth?.ToString() ?? DateTime.Now.ToString(),
             PhoneNumber,
             EmailAddress,
             AddressId.ToString(),
