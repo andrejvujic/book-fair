@@ -10,7 +10,8 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<DataGrid Grid.Row="0"
@@ -62,7 +63,9 @@
 					IsEnabled="{Binding AuthorController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 		</Grid>
 
-		<Grid Grid.Row="2" Margin="16,0,16,16">
+        <Separator Grid.Row="2" Margin="16,0" Height="32"/>
+
+        <Grid Grid.Row="3" Margin="16,0,16,16">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
