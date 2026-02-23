@@ -9,7 +9,7 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
 
     public bool IsDeleted { get; set; }
 
-    public int Code { get; set; }
+    public int Code { get; set; } = -1;
 
     public string Name { get; set; } = string.Empty;
 

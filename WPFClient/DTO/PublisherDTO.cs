@@ -29,7 +29,7 @@ namespace WPFClient.DTO
             Id = publisher.Id;
             Name = publisher.Name;
 
-            CodeText = publisher.Code.ToString();
+            CodeText = publisher.Code > -1 ? publisher.Code.ToString() : string.Empty;
 
             BossId = publisher.BossId;
             Boss = publisher.Boss;
