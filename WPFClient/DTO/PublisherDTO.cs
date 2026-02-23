@@ -19,6 +19,7 @@ namespace WPFClient.DTO
                 Boss = Boss,
                 Authors = new List<Author>(Authors),
                 Books = new List<Book>(Books),
+                CodeText = CodeText,
                 IsDeleted = IsDeleted,
             };
         }
@@ -27,6 +28,8 @@ namespace WPFClient.DTO
         {
             Id = publisher.Id;
             Name = publisher.Name;
+
+            CodeText = publisher.Code.ToString();
 
             BossId = publisher.BossId;
             Boss = publisher.Boss;
@@ -43,6 +46,7 @@ namespace WPFClient.DTO
             {
                 Id = Id,
                 Name = Name,
+                Code = Code,
                 BossId = BossId,
                 Boss = Boss ?? new Author(),
                 Authors = Authors,
@@ -78,6 +82,27 @@ namespace WPFClient.DTO
             }
         }
 
+        private string codeText = string.Empty;
+        public string CodeText
+        {
+            get => codeText;
+            set
+            {
+                if (codeText == value) return;
+                codeText = value;
+                OnPropertyChanged(nameof(CodeText));
+                OnPropertyChanged(nameof(Code));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        public int Code
+        { 
+            get { 
+                if (int.TryParse(codeText, out int code)) return code;
+                return -1;
+            }
+        } 
 
         private int bossId;
         public int BossId
@@ -120,7 +145,7 @@ namespace WPFClient.DTO
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(Name);
+                return !string.IsNullOrWhiteSpace(Name) && Code != -1;
             }
         }
     }

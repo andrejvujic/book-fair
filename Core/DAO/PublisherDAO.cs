@@ -11,7 +11,7 @@ public class PublisherDAO : DAO<Publisher>
         get
         {
             return new string[] {
-                "ID", "Name", "Boss ID" 
+                "ID", "Name", "Boss ID", "Code" 
             };
         }
     }
@@ -27,6 +27,7 @@ public class PublisherDAO : DAO<Publisher>
 
         oldEntity.Id = entity.Id;
         oldEntity.Name = entity.Name;
+        oldEntity.Code = entity.Code;
         oldEntity.Boss = entity.Boss;
         oldEntity.BossId = entity.BossId;
         oldEntity.Authors = entity.Authors;
@@ -47,6 +48,7 @@ public class PublisherDAO : DAO<Publisher>
             {
                 { "Id", _entities.OrderBy(x => x.Id) },
                 { "Name", _entities.OrderBy(x => x.Name) },
+                { "Code", _entities.OrderBy(x => x.Code) },
                 { "BossId", _entities.OrderBy(x => x.BossId) }
             };
         }

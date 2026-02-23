@@ -6,7 +6,10 @@ namespace Core.Models;
 public class Publisher : ISerializable, IIdentifiable, IDeletable
 {
     public int Id { get; set; } = 0;
+
     public bool IsDeleted { get; set; }
+
+    public int Code { get; set; }
 
     public string Name { get; set; } = string.Empty;
 
@@ -46,6 +49,7 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
             Id.ToString(),
             Name,
             BossId.ToString(),
+            Code.ToString(),
             IsDeleted.ToString()
         };
         return csv;
@@ -56,6 +60,7 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
         Id = int.Parse(values[0]);
         Name = values[1];
         BossId = int.Parse(values[2]);
-        IsDeleted = bool.Parse(values[3]);
+        Code = int.Parse(values[3]);
+        IsDeleted = bool.Parse(values[4]);
     }
 }
