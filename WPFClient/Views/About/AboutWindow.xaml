@@ -75,7 +75,8 @@
                 <TextBlock Grid.Row="2" Text="Radovan Vitomirov" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
 
                 <TextBlock Grid.Row="4" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
-                    [TODO] Ovde upisati biografiju...
+                    Rođen u Kikindi 31. maja 2004. godine. Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u Novom Sadu. Tokom obrazovanja
+                    učesnik mnogobrojnih takmičenja i vannastavnih aktivnosti.
                 </TextBlock>
 
                 <TextBlock Grid.Row="6" TextAlignment="Center">
