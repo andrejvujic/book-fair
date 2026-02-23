@@ -8,17 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Andrej.png" />
-    <None Remove="Assets\Radovan.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\Andrej.png" />
-    <Resource Include="Assets\Radovan.png" />
   </ItemGroup>
   
 </Project>
