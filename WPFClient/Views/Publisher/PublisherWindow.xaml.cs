@@ -10,11 +10,13 @@ namespace WPFClient.Views.Publisher
     {
         public ObservableCollection<PublisherDTO> Publishers { get; set; } = new ObservableCollection<PublisherDTO>();
         private PublisherController PublisherController { get; }
+        private BookController BookController { get; }
 
         public PublisherWindow()
         {
             InitializeComponent();
 
+            BookController = new BookController(App.Context.BookDAO);
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             PublisherController.Subscribe(this);
 
@@ -84,6 +86,17 @@ namespace WPFClient.Views.Publisher
                 MessageBox.Show(
                     "Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste.",
                     "Nije odabran izdavač",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+                return;
+            }
+
+            if (BookController.GetWhere(b => b.Publisher.Id == targetPublisher.Id).Count > 0)
+            {
+                MessageBox.Show(
+                    "Brisanje odabranog izdavača nije moguće zato što u sistemu postoje knjige koje je izdao. Potrebno je prvo obrisati knjige ovog izdavača.",
+                    "Brisanje nije moguće",
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
