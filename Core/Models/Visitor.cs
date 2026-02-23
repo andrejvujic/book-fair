@@ -42,7 +42,7 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
             case 1:
                 return query.IsMatch(new string[] { LastName });
             case 2:
-                return query.IsMatch(new string[] { FirstName, LastName });
+                return query.IsMatch(new string[] { LastName, FirstName });
             case 3:
                 return query.IsMatch(new string[] { MembershipCardNumber, FirstName, LastName });
         }
