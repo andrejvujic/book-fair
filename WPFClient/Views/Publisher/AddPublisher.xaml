@@ -15,6 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -31,7 +32,15 @@
                      Margin="0,4"
                      Text="{Binding Path=Publisher.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,16">
+            <Label Grid.Row="1" Grid.Column="0"
+                   Content="Šifra*"
+                   VerticalAlignment="Center"/>
+
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Margin="0,4"
+                     Text="{Binding Path=Publisher.CodeText, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
