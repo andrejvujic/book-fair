@@ -9,29 +9,48 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="16">
+        <Grid Grid.Row="0" Margin="16,16,16,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="16"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="16"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"
+            <Button Grid.Row="0" Grid.Column="0"
                     Height="32"
                     Content="Dodaj izdavača"
                     Click="AddPublisherButton_Click"/>
 
-            <Button Grid.Column="2"
+            <Button Grid.Row="0" Grid.Column="2"
+                    Height="32"
+                    Content="Izmijeni izdavača"
+                    Click="EditPublisherButton_Click"/>
+
+            <Button Grid.Row="0" Grid.Column="4"
+                    Height="32"
+                    Content="Obriši izdavača"
+                    Click="DeletePublisherButton_Click"/>
+
+            <Button Grid.Row="2" Grid.Column="0"
                     Height="32"
                     Content="Postavi šefa izdavača"
                     Click="SetBossButton_Click"/>
         </Grid>
 
         <DataGrid
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="16,0,16,16"
             AutoGenerateColumns="False"
             x:Name="PublishersDataGrid"

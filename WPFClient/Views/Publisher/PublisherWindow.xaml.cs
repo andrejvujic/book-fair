@@ -56,5 +56,13 @@ namespace WPFClient.Views.Publisher
             window.Owner = this;
             window.ShowDialog();
         }
+
+        private void EditPublisherButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void DeletePublisherButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
