@@ -88,10 +88,7 @@ namespace WPFClient.Views.Author
 			if (!AuthorController.GoToNextPage()) return;
 			Render(AuthorController.GetWithPagination());
 		}
-		private void DeleteButton_Click(object sender, RoutedEventArgs e)
-		{
 
-		}
         private void OpenVisitorsWindowButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Ovde treba koristiti AuthorDTO i treba kupiti oznacenog
