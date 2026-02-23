@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace WPFClient.Controllers
 {
-    public class BookController : Controller<Book>
+    public class BookController : QueryController<Book>
     {
         public BookController(BookDAO bookDAO) : base(bookDAO) { }
 
+        public override int SearchQueryLength => 1;
     }
 }

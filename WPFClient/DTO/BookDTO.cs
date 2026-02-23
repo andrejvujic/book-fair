@@ -103,9 +103,12 @@ namespace WPFClient.DTO
                 if (isbn == value) return;
                 isbn = value;
                 OnPropertyChanged(nameof(Isbn));
+                OnPropertyChanged(nameof(IsbnNumber));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
+        
+        public long IsbnNumber => long.TryParse(Isbn, out var p) ? p : 0;
 
         private string title = string.Empty;
         public string Title
@@ -175,12 +178,13 @@ namespace WPFClient.DTO
                 if (releaseYear == value) return;
                 releaseYear = value;
                 OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(ReleaseYearNumber));
                 OnPropertyChanged(nameof(IsReleaseYearValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
-
-        private bool IsReleaseYearValid
+        public int ReleaseYearNumber => int.TryParse(ReleaseYear, out var p) ? p : 0;
+		private bool IsReleaseYearValid
         {
             get
             {
@@ -199,12 +203,13 @@ namespace WPFClient.DTO
                 if (price == value) return;
                 price = value;
                 OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(PriceNumber));
                 OnPropertyChanged(nameof(IsPriceValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
-
-        private bool IsPriceValid
+		public double PriceNumber => double.TryParse(Price, out var p) ? p : 0.0;
+		private bool IsPriceValid
         {
             get
             {

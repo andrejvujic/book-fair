@@ -217,11 +217,9 @@
 						<author:AuthorTab x:Name="AuthorTab" RawSearchQuery="{Binding AuthorsTabSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
 					</TabItem>
 
-                    <TabItem Header="Knjige">
-                        <Grid>
-							<book:BookTab x:Name="BookTab"/>
-                        </Grid>
-                    </TabItem>
+					<TabItem Header="Knjige">
+						<book:BookTab x:Name="BookTab" RawSearchQuery="{Binding BooksTabSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+					</TabItem>
 
                 </TabControl>
             </Grid>

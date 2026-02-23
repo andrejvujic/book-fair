@@ -1,12 +1,13 @@
+using Core.Helpers;
+using Core.Helpers.Search;
 using Core.Models;
 using Core.Serialization;
-using Core.Helpers;
-
+using Core.Helpers.Sorting;
 namespace Core.Models;
 
 public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, COMEDY, NOVEL, POETRY, DRAMA}
 
-public class Book : ISerializable, IIdentifiable, IDeletable
+public class Book : ISerializable, IIdentifiable, IDeletable, ISearchable, ISortable
 {
     public int Id { get; set; }
     public string Isbn { get; set; } = string.Empty;
@@ -21,6 +22,32 @@ public class Book : ISerializable, IIdentifiable, IDeletable
     public List<Visitor> Buyers { get; set; } = new List<Visitor>();
     public List<Visitor> Wishlisters { get; set; } = new List<Visitor>();
     public bool IsDeleted { get; set; } = false;
+
+	public bool IsMatch(SearchQuery query)
+	{
+		if (query.Empty) return true;
+
+		switch (query.Length)
+		{
+			case 1:
+				return query.IsMatch(new string[] { Title }) || query.IsMatch(new string[] {Isbn});
+		}
+
+		return false;
+	}
+
+	public Dictionary<string, dynamic> SortFields
+	{
+		get => new Dictionary<string, dynamic>
+		{
+			{ nameof(Id), Id },
+			{ "IsbnNumber", long.TryParse(Isbn, out var p) ? p : 0},
+			{ nameof(Title), Title },
+			{ "PriceNumber", Price },
+			{ "ReleaseYearNumber", ReleaseYear },
+            { nameof(Genre), Genre },
+		};
+	}
 
 	public Book() { }
 

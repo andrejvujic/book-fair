@@ -1,12 +1,17 @@
-﻿using Core.DAO;
-using Core.Observer;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Core.DAO;
+using Core.Helpers.Sorting;
+using Core.Models;
+using Core.Observer;
+using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Author;
 using WPFClient.Views.Book.Comparison;
 
 namespace WPFClient.Views.Book
@@ -16,18 +21,35 @@ namespace WPFClient.Views.Book
     {
         public ObservableCollection<BookDTO> Books { get; set; } = new ObservableCollection<BookDTO>();
         private BookDAO BookDAO { get; set; }
+        public BookController BookController { get; }
         public BookDTO? SelectedBook => BooksDataGrid.SelectedItem as BookDTO;
+		private BookDTO? FirstBook { get; set; }
+		private BookDTO? SecondBook { get; set; }
 
+		public static readonly DependencyProperty RawSearchQueryProperty =
+           DependencyProperty.Register(
+	           nameof(RawSearchQuery),
+	           typeof(string),
+	           typeof(BookTab),
+	           new PropertyMetadata(null, OnSearchQueryPropertyChanged)
+           );
 
-        private BookDTO? FirstBook { get; set; }
-        private BookDTO? SecondBook { get; set; }
+		public string? RawSearchQuery
+		{
+			get => (string?)GetValue(RawSearchQueryProperty);
+			set => SetValue(RawSearchQueryProperty, value);
+		}
+		private static void OnSearchQueryPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			BookTab control = (BookTab)d;
+			control.Update();
+		}
 
-        public BookTab()
+		public BookTab()
         {
             InitializeComponent();
-
-            BookDAO = App.Context.BookDAO;
-            BookDAO.Subject.Subscribe(this);
+            BookController = new BookController(App.Context.BookDAO);
+            BookController.Subscribe(this);
             Update();
 
             DataContext = this;
@@ -35,12 +57,37 @@ namespace WPFClient.Views.Book
 
         public void Update()
         {
-            Books.Clear();
-            foreach (var b in BookDAO.GetAll().Where(b => !b.IsDeleted))
-                Books.Add(new BookDTO(b));
-        }
+			Render(
+				BookController
+				.PerformSerach(RawSearchQuery ?? string.Empty)
+				.PerformSorting()
+				.GetWithPagination()
+			);
+		}
 
-        private void CompareButton_Click(object sender, RoutedEventArgs e)
+		private void Render(List<Core.Models.Book> books)
+		{
+			Books.Clear();
+			foreach (Core.Models.Book b in books)
+				Books.Add(new BookDTO(b));
+		}
+
+		private void BooksDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+		{
+			string criteria = e.Column.SortMemberPath ?? string.Empty;
+			Direction direction = e.Column.SortDirection == ListSortDirection.Ascending ? Direction.Descending : Direction.Ascending;
+
+			if (!BookController.SetSortingParameters(criteria, direction)) return;
+
+			Render(
+				BookController
+				.PerformSorting()
+				.GetWithPagination()
+			);
+		}
+
+
+		private void CompareButton_Click(object sender, RoutedEventArgs e)
         {
             // Potrebno je selektovati dvije knjige da bi se otvorio prozor za uporedjivanje.
             if (FirstBook == null || SecondBook == null)
@@ -135,5 +182,17 @@ namespace WPFClient.Views.Book
             OnPropertyChanged(nameof(IsSelectSecondBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
-    }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+			if (!BookController.GoToPreviousPage()) return;
+			Render(BookController.GetWithPagination());
+		}
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+			if (!BookController.GoToNextPage()) return;
+			Render(BookController.GetWithPagination());
+		}
+	}
 }
