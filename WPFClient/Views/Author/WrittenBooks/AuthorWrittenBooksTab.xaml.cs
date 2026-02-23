@@ -53,7 +53,7 @@ namespace WPFClient.Views.Author.WrittenBooks
         {
             InitializeComponent();
 
-            AuthorController = new AuthorController(App.Context.AuthorDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
             AuthorController.Subscribe(this);
         }
 

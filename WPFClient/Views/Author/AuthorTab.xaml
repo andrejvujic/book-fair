@@ -8,45 +8,71 @@
              d:DesignWidth="800">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="345"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<DataGrid Grid.Row="0"
 				  VerticalAlignment="Top"
-                  Margin="16,16,16,0"
+                  Margin="16"
+				  AutoGenerateColumns="False"
                   x:Name="AuthorsDataGrid"
-                  ItemsSource="{Binding Authors, UpdateSourceTrigger=PropertyChanged}"
-                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Authors, RelativeSource={RelativeSource AncestorType=UserControl}}"
+				  Sorting="AuthorsDataGrid_Sorting"
                   CanUserAddRows="False"
                   IsReadOnly="True"
                   HeadersVisibility="Column"
                   SelectionUnit="FullRow"
                   SelectionMode="Single">
+
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-				<DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="150"/>
-				<DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="150"/>
-				<DataGridTextColumn Header="Broj lične karte" Binding="{Binding IdCardNumber}" Width="150"/>
-				<DataGridTextColumn Header="Datum rođenja" Binding="{Binding DateOfBirth, StringFormat=d}" Width="130"/>
-				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+				<DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
+				<DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="150" SortMemberPath="FirstName"/>
+				<DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="150" SortMemberPath="LastName"/>
+				<DataGridTextColumn Header="Broj lične karte" Binding="{Binding IdCardNumber}" Width="150" CanUserSort="False"/>
+				<DataGridTextColumn Header="Datum rođenja" Binding="{Binding DateOfBirth, StringFormat=d}" Width="130" CanUserSort="False"/>
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" SortMemberPath="Email"/>
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<Separator Grid.Row="1" Margin="16,0" Height="32"/>
 
-        <Grid Grid.Row="2" Margin="16,0,16,16">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+		<Grid Grid.Row="1" Margin="16,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"
-                Width="128"
-                Height="32"
-                Content="Prikaži posjetioce"
-                Click="OpenVisitorsWindowButton_Click"/>
-        </Grid>
+			<Button Grid.Column="0"
+					Width="128"
+					Height="32"
+					Content="Prethodna"
+					Click="PreviousPageButton_Click"
+					IsEnabled="{Binding AuthorController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-    </Grid>
+			<TextBlock x:Name="CurrentPageIndicator" Grid.Column="1" Text="{Binding AuthorController.CurrentPageText, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+			<Button Grid.Column="2"
+					Width="128"
+					Height="32"
+					Content="Naredna"
+					Click="NextPageButton_Click"
+					IsEnabled="{Binding AuthorController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+		</Grid>
+
+		<Grid Grid.Row="2" Margin="16,0,16,16">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Button Grid.Column="0"
+					Width="128"
+					Height="32"
+					Content="Prikaži posjetioce"
+					Click="OpenVisitorsWindowButton_Click"/>
+		</Grid>
+
+	</Grid>
 </UserControl>

@@ -213,15 +213,13 @@
                         <visitor:VisitorTab x:Name="VisitorTab" RawSearchQuery="{Binding VisitorsTabSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
                     </TabItem>
 
-                    <TabItem Header="Autori">
-                        <Grid>
-							<author:AuthorTab x:Name="AuthorTab"/>
-						</Grid>
-                    </TabItem>
+					<TabItem Header="Autori">
+						<author:AuthorTab x:Name="AuthorTab" RawSearchQuery="{Binding AuthorsTabSearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+					</TabItem>
 
                     <TabItem Header="Knjige">
                         <Grid>
-                            <book:BookTab x:Name="BookTab"/>
+							<book:BookTab x:Name="BookTab"/>
                         </Grid>
                     </TabItem>
 

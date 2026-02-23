@@ -14,7 +14,7 @@ namespace WPFClient.DTO
 
 		public AuthorDTO(Author author) : base(author) { }
 
-		public override DTO<Author> Copy()
+		public override AuthorDTO Copy()
 		{
 			return new AuthorDTO
 			{
@@ -32,7 +32,7 @@ namespace WPFClient.DTO
 				PhoneNumber = PhoneNumber,
 				IdCardNumber = IdCardNumber,
 				Books = new List<Book>(Books),
-
+				IsDeleted = IsDeleted,
 			};
 		}
 
@@ -52,6 +52,7 @@ namespace WPFClient.DTO
 			PhoneNumber = author.PhoneNumber;
 			IdCardNumber = author.IdCardNumber;
 			Books = author.Books;
+			IsDeleted = author.IsDeleted;
 		}
 
 		public override Author ToModel()
@@ -69,11 +70,24 @@ namespace WPFClient.DTO
 				PhoneNumber = PhoneNumber,
 				Books = Books,
 				IdCardNumber = IdCardNumber,
+				IsDeleted = IsDeleted,
 			};
 		}
 
 		public int Id { get; set; }
 
+		private bool isDeleted = false;
+
+		public bool IsDeleted
+		{
+			get => isDeleted;
+			set
+			{
+				if (isDeleted == value) return;
+				isDeleted = value;
+				OnPropertyChanged(nameof(IsDeleted));
+			}
+		}
 
 		private string firstName = string.Empty;
 		public string FirstName
@@ -110,8 +124,9 @@ namespace WPFClient.DTO
 			get => $"{FirstName} {LastName}";
 		}
 
-		private DateOnly? dateOfBirth;
-		public DateOnly? DateOfBirth
+
+		private DateTime? dateOfBirth;
+		public DateTime? DateOfBirth
 		{
 			get => dateOfBirth;
 			set
@@ -120,7 +135,6 @@ namespace WPFClient.DTO
 				dateOfBirth = value;
 				OnPropertyChanged(nameof(DateOfBirth));
 				OnPropertyChanged(nameof(AllFieldsValid));
-
 			}
 		}
 
@@ -259,7 +273,7 @@ namespace WPFClient.DTO
 					!string.IsNullOrWhiteSpace(FirstName) &&
 					!string.IsNullOrWhiteSpace(LastName) &&
 					DateOfBirth != null &&
-					DateOfBirth <= DateOnly.FromDateTime(DateTime.Now) &&
+					DateOfBirth <= DateTime.Now &&
 					!string.IsNullOrWhiteSpace(PhoneNumber) &&
 					!string.IsNullOrWhiteSpace(Email) &&
 					!string.IsNullOrWhiteSpace(IdCardNumber) &&

@@ -22,7 +22,7 @@ namespace WPFClient.Views.Publisher
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             Publisher = publisher;
 
-            AuthorController = new AuthorController(App.Context.AuthorDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
             Authors = GetAvailableAuthors();
 
             DataContext = this;

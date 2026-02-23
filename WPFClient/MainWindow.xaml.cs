@@ -19,6 +19,7 @@ namespace WPFClient
         private readonly DispatcherTimer? _timer;
         private VisitorController VisitorController { get; }
         private BookController BookController { get; }
+        private AuthorController AuthorController { get; }
 
         private string rawSearchQuery = string.Empty;
         public string RawSearchQuery
@@ -64,6 +65,7 @@ namespace WPFClient
 
             VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
             BookController = new BookController(App.Context.BookDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
 
             RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
 
@@ -106,6 +108,11 @@ namespace WPFClient
                     AddBook addBookDialog = new AddBook(BookController);
                     addBookDialog.Owner = this;
                     addBookDialog.ShowDialog();
+                    break;
+                case AUTHORS_TAB_INDEX:
+                    AddAuthor addAuthorDialog = new AddAuthor(AuthorController);
+                    addAuthorDialog.Owner = this;
+                    addAuthorDialog.ShowDialog();
                     break;
                 default:
                     MessageBox.Show(
@@ -156,22 +163,22 @@ namespace WPFClient
                     updateBookDialog.Owner = this;
                     updateBookDialog.ShowDialog();
                     break;
-                default:
-                    AuthorDTO? targetAuthor = AuthorTab.SelectedAuthor;
-                    if (targetAuthor == null)
-                    {
-                        MessageBox.Show(
-                            "Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.",
-                            "Nije odabran autor",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning
-                        );
-                        return;
-                    }
-                    UpdateAuthor updateAuthorDialog = new UpdateAuthor(targetAuthor);
-                    updateAuthorDialog.Owner = this;
-                    updateAuthorDialog.ShowDialog();
-                    break;
+                case AUTHORS_TAB_INDEX:
+					AuthorDTO? targetAuthor = AuthorTab.SelectedAuthor;
+					if (targetAuthor == null)
+					{
+						MessageBox.Show(
+							"Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.",
+							"Nije odabran autor",
+							MessageBoxButton.OK,
+							MessageBoxImage.Warning
+						);
+						return;
+					}
+					UpdateAuthor updateAuthorDialog = new UpdateAuthor(targetAuthor, AuthorController);
+					updateAuthorDialog.Owner = this;
+					updateAuthorDialog.ShowDialog();
+					break;
             }
         }
 
@@ -211,9 +218,8 @@ namespace WPFClient
                         default:
                             break;
                     }
-
-
                     break;
+
                 case BOOKS_TAB_INDEX:
                   BookDTO? targetBook = BookTab.SelectedBook;
                     if (targetBook == null)
@@ -245,6 +251,39 @@ namespace WPFClient
                             break;
                     }
                     break;
+
+				case AUTHORS_TAB_INDEX:
+					AuthorDTO? targetAuthor = AuthorTab.SelectedAuthor;
+					if (targetAuthor == null)
+					{
+						MessageBox.Show(
+							"Nije odabran autor za brisanje. Potrebno je odabrati autora iz liste.",
+							"Nije odabran autor",
+							MessageBoxButton.OK,
+							MessageBoxImage.Warning
+						);
+						return;
+					}
+
+					MessageBoxResult authorResult = MessageBox.Show(
+						"Da li ste sigurni da želite da obrišete autora?",
+						"Brisanje autora",
+						MessageBoxButton.YesNo,
+						MessageBoxImage.Question
+					);
+
+					switch (authorResult)
+					{
+						case MessageBoxResult.Yes:
+							targetAuthor.IsDeleted = true;
+							AuthorController.Update(targetAuthor.ToModel());
+							break;
+						case MessageBoxResult.No:
+							break;
+						default:
+							break;
+					}
+					break;
 			}
         }
         

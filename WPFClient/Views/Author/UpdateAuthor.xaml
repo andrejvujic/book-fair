@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Author"
+		xmlns:dto="clr-namespace:WPFClient.DTO"
+		d:DataContext="{d:DesignInstance Type=dto:AuthorDTO}"
         xmlns:awb="clr-namespace:WPFClient.Views.Author.WrittenBooks"
         mc:Ignorable="d"
         Title="Izmjena autora"
@@ -13,8 +15,131 @@
     <Grid>
         <TabControl Margin="16">
             <TabItem Header="Informacije">
-                
-            </TabItem>
+				<Grid Margin="16">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="170"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<Label Grid.Row="0" Grid.Column="0" Content="Ime*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="0" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="1" Grid.Column="0" Content="Prezime*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="1" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="2" Grid.Column="0" Content="Datum rođenja*" VerticalAlignment="Center"/>
+						<DatePicker Grid.Row="2" Grid.Column="1"
+                    Margin="0,4"
+                    SelectedDate="{Binding Path=Author.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="3" Grid.Column="0" Content="Broj telefona*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="3" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="4" Grid.Column="0" Content="Email adresa*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="4" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.Email, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="5" Grid.Column="0" Content="Broj lične karte*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="5" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.IdCardNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Label Grid.Row="6" Grid.Column="0" Content="Godine iskustva*" VerticalAlignment="Center"/>
+						<TextBox Grid.Row="6" Grid.Column="1"
+                 Margin="0,4"
+                 Text="{Binding Path=Author.YearsOfExperience, UpdateSourceTrigger=PropertyChanged}"/>
+
+						<Separator Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
+                   Margin="0,8,0,8"/>
+
+						<Label Grid.Row="8" Grid.Column="0" Content="Država, grad*" VerticalAlignment="Center"/>
+						<Grid Grid.Row="8" Grid.Column="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition Width="8"/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+
+							<TextBox Grid.Column="0"
+                     Margin="0,4"
+                     Text="{Binding Path=Author.AddressCountry, UpdateSourceTrigger=PropertyChanged}"/>
+
+							<TextBox Grid.Column="2"
+                     Margin="0,4"
+                     Text="{Binding Path=Author.AddressCity, UpdateSourceTrigger=PropertyChanged}"/>
+						</Grid>
+
+						<Label Grid.Row="9" Grid.Column="0" Content="Ulica, broj*" VerticalAlignment="Center"/>
+						<Grid Grid.Row="9" Grid.Column="1">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="8"/>
+								<ColumnDefinition Width="32"/>
+							</Grid.ColumnDefinitions>
+
+							<TextBox Grid.Column="0"
+                     Margin="0,4"
+                     Text="{Binding Path=Author.AddressStreet, UpdateSourceTrigger=PropertyChanged}"/>
+
+							<TextBox Grid.Column="2"
+                     Margin="0,4"
+                     Text="{Binding Path=Author.AddressStreetNumber, UpdateSourceTrigger=PropertyChanged}"/>
+						</Grid>
+					</Grid>
+
+					<Grid Grid.Row="1" Margin="0,16,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="8"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+
+						<Button Grid.Column="1"
+                Width="128"
+                Height="32"
+                Content="Otkaži"
+                IsCancel="True"/>
+
+						<Button Grid.Column="3"
+                Width="128"
+                Height="32"
+                Content="Sačuvaj"
+                IsDefault="True"
+                Click="SaveButton_Click"
+                IsEnabled="{Binding Author.AllFieldsValid}"/>
+					</Grid>
+				</Grid>
+			</TabItem>
 
             <TabItem Header="Knjige">
                 <awb:AuthorWrittenBooksTab Author="{Binding Author}"/>

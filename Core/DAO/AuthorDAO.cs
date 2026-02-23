@@ -59,7 +59,9 @@ public class AuthorDAO: DAO<Author>
         oldEntity.YearsOfExperience = entity.YearsOfExperience; 
         oldEntity.Books = entity.Books;
 
-        BooksByAuthor.RemoveAll(oldEntity);
+		oldEntity.IsDeleted = entity.IsDeleted;
+
+		BooksByAuthor.RemoveAll(oldEntity);
         BooksByAuthor.AddAll(oldEntity, oldEntity.Books);
 
         _storage.Save(_entities);

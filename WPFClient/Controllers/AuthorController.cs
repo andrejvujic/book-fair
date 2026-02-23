@@ -8,9 +8,13 @@ using Core.Models;
 
 namespace WPFClient.Controllers
 {
-    public class AuthorController: Controller<Author>
+    public class AuthorController: QueryController<Author>
     {
-        public AuthorController(AuthorDAO authorDAO): base(authorDAO) { }
+		private readonly AddressDAO _addressDAO;
+		public AuthorController(AuthorDAO authorDAO, AddressDAO addressDAO): base(authorDAO) {
+            _addressDAO = addressDAO;
+        }
 
+        public override int SearchQueryLength => 2;
     }
 }
