@@ -6,14 +6,21 @@
         xmlns:local="clr-namespace:WPFClient.Views.About"
         mc:Ignorable="d"
         Title="O Aplikaciji" Height="512" Width="640" WindowStartupLocation="CenterOwner">
+
     <Grid Margin="16">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,16">
+            Sajam Knjiga je predmetni projekat na predmetu Osnovi informacionih sistema i softverskog inženjerstva.
+            Aplikacija je razvijena od strane studenata:
+        </TextBlock>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="16"/>
@@ -23,31 +30,22 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="16"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="8"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="8"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Ellipse Grid.Row="0" Width="128" Height="128">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="../../Assets/Andrej.png"
-                                    Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+                <TextBlock Grid.Row="0" Text="Andrej Vujić" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
 
-                <TextBlock Grid.Row="2" Text="Andrej Vujić" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
-
-                <TextBlock Grid.Row="4" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
+                <TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
                     Rođen u Doboju 17. februara 2004. godine.
                     Autor nagrađivanih softverskih rješenja.
                     Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u
                     Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.
                 </TextBlock>
 
-                <TextBlock Grid.Row="6" TextAlignment="Center">
+                <TextBlock Grid.Row="4" TextAlignment="Center">
                     <Hyperlink NavigateUri="mailto:vujic.ra130.2023@uns.ac.rs">
                         vujic.ra130.2023@uns.ac.rs
                     </Hyperlink>
@@ -57,29 +55,20 @@
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="16"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="8"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="8"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Ellipse Grid.Row="0" Width="128" Height="128">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="../../Assets/Radovan.png"
-                        Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+                <TextBlock Grid.Row="0" Text="Radovan Vitomirov" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
 
-                <TextBlock Grid.Row="2" Text="Radovan Vitomirov" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
-
-                <TextBlock Grid.Row="4" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
+                <TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
                     Rođen u Kikindi 31. maja 2004. godine. Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u Novom Sadu. Tokom obrazovanja
                     učesnik mnogobrojnih takmičenja i vannastavnih aktivnosti.
                 </TextBlock>
 
-                <TextBlock Grid.Row="6" TextAlignment="Center">
+                <TextBlock Grid.Row="4" TextAlignment="Center">
                     <Hyperlink NavigateUri="mailto:vujic.ra130.2023@uns.ac.rs">
                         vitormirov.ra132.2023@uns.ac.rs
                     </Hyperlink>
@@ -87,8 +76,8 @@
             </Grid>
         </Grid>
 
-        <Separator Grid.Row="1"  Height="16" />
+        <Separator Grid.Row="2"  Height="16" />
 
-        <TextBlock Grid.Row="2" Text="Sajam Knjiga v1.0.0 — mart 2026" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="Sajam Knjiga v1.0.0 — mart 2026" HorizontalAlignment="Center"/>
     </Grid>
 </Window>
