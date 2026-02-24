@@ -51,8 +51,6 @@ namespace WPFClient.Views.Book
             BookController = new BookController(App.Context.BookDAO);
             BookController.Subscribe(this);
             Update();
-
-            DataContext = this;
         }
 
         public void Update()
