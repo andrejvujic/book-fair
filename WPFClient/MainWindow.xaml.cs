@@ -297,8 +297,6 @@ namespace WPFClient
 						return;
 					}
 
-
-
 					MessageBoxResult authorResult = MessageBox.Show(
 						"Da li ste sigurni da želite da obrišete autora?",
 						"Brisanje autora",
