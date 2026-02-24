@@ -3,6 +3,7 @@ using Core.Helpers.Search;
 using Core.Models;
 using Core.Serialization;
 using Core.Helpers.Sorting;
+using System.Diagnostics;
 namespace Core.Models;
 
 public enum BookGenre { FANTASY, SCIENCE_FICTION, MYSTERY, THRILLER, ROMANCE, HORROR, COMEDY, NOVEL, POETRY, DRAMA}
