@@ -60,18 +60,33 @@
                         <MenuItem Header="Autori" InputGestureText="Ctrl+2" Click="AuthorsMenuItem_Click"/>
                         <MenuItem Header="Knjige" InputGestureText="Ctrl+3" Click="BooksMenuItem_Click"/>
                         <MenuItem Header="Izdavači" InputGestureText="Ctrl+4" Click="PublishersMenuItem_Click"/>
+                    </MenuItem>
 
-                        <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
-                            <MenuItem.Icon>
-                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                    <MenuItem Header="Language">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xF2B7;"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </MenuItem.Icon>
+
+                        <MenuItem Header="Srpski" Click="SerbianMenuItem_Click">
+                        </MenuItem>
+
+                        <MenuItem Header="Engleski" Click="EnglishMenuItem_Click">
+                        </MenuItem>
+                    </MenuItem>
+
+                    <MenuItem Header="Izlaz" Click="ExitMenuItem_Click">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
                                            Text="&#xE711;"
                                            FontSize="14"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"/>
-                            </MenuItem.Icon>
-                        </MenuItem>
+                        </MenuItem.Icon>
                     </MenuItem>
-
                 </MenuItem>
 
                 <MenuItem Header="Edit">
