@@ -17,7 +17,8 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
 
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public DateTime? DateOfBirth { get; set; } // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
+	public string FullName { get => $"{FirstName} {LastName}"; }
+	public DateTime? DateOfBirth { get; set; } // Podrazumijevana vrijednost za kada se prikazuje u UI-u.
     public string PhoneNumber { get; set; } = string.Empty;
     public string EmailAddress { get; set; } = string.Empty;
 

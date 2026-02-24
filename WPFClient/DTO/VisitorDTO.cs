@@ -122,8 +122,12 @@ namespace WPFClient.DTO
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
+		public string FullName
+		{
+			get => $"{FirstName} {LastName}";
+		}
 
-        private DateTime? dateOfBirth; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
+		private DateTime? dateOfBirth; // Podrazumijevana vrijednost za prikaz u korisničkom interfejsu.
         public DateTime? DateOfBirth
         {
             get => dateOfBirth;

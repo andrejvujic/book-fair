@@ -1,12 +1,13 @@
-﻿using Core.Helpers.Sorting;
-using Core.Observer;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using Core.Helpers.Sorting;
+using Core.Observer;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Author;
 
 namespace WPFClient.Views.Visitor
 {
@@ -100,5 +101,24 @@ namespace WPFClient.Views.Visitor
             if (!VisitorController.GoToNextPage()) return;
             Render(VisitorController.GetWithPagination());
         }
+
+        private void OpenAuthorsWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+			VisitorDTO? targetVisitor = VisitorsDataGrid.SelectedItem as VisitorDTO;
+			if (targetVisitor == null)
+			{
+				MessageBox.Show(
+					"Nije odabran posetilac za prikaz autora. Potrebno je odabrati posetioca iz liste.",
+					"Nije odabran posetilac",
+					MessageBoxButton.OK,
+					MessageBoxImage.Warning
+				);
+				return;
+			}
+
+			VisitorConnectedAuthors dialog = new VisitorConnectedAuthors(targetVisitor);
+			dialog.Owner = Window.GetWindow(this);
+			dialog.ShowDialog();
+		}
     }
 }
