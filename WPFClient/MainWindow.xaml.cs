@@ -11,6 +11,7 @@ using WPFClient.Views.Publisher;
 using WPFClient.Views.Visitor;
 using WPFClient.Views.Author;
 using WPFClient.Views.About;
+using System.Diagnostics;
 
 namespace WPFClient
 {
@@ -290,6 +291,8 @@ namespace WPFClient
         // Poziva se svaki put kada se promijeni odabrani tab.
         private void EntityTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (EntityTabs.SelectedIndex == SelectedTabIndex) return;
+
             RawSearchQuery = string.Empty;
 
             switch (SelectedTabIndex)
