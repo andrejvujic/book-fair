@@ -245,7 +245,19 @@ namespace WPFClient.DTO
                 if (authors == value) return;
                 authors = value;
                 OnPropertyChanged(nameof(Authors));
+                OnPropertyChanged(nameof(FirstAndLastNamesOfAllAuthors));
                 OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        public List<string> FirstAndLastNamesOfAllAuthors
+        {
+            get
+            {
+                List<string> names = new List<string>();
+                foreach (Author author in Authors)
+                    names.Add($"{author.FirstName} {author.LastName}");
+                return names;
             }
         }
 
