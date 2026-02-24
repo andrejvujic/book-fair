@@ -1,17 +1,18 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using System.Windows.Input;
+using System.Windows.Threading;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.About;
+using WPFClient.Views.Author;
 using WPFClient.Views.Book;
 using WPFClient.Views.Publisher;
 using WPFClient.Views.Visitor;
-using WPFClient.Views.Author;
-using WPFClient.Views.About;
-using System.Diagnostics;
 
 namespace WPFClient
 {
@@ -265,6 +266,38 @@ namespace WPFClient
 						);
 						return;
 					}
+
+					/*if (BookController.GetWhere(b =>
+		                    !b.IsDeleted &&
+		                    b.Authors != null &&
+		                    b.Authors.Any(a => a.Id == targetAuthor.Id)
+	                   ).Count > 0)
+					{
+						MessageBox.Show(
+							"Brisanje autora nije moguće zato što postoje knjige koje je napisao. Prvo obriši te knjige ili ukloni autora iz njih.",
+							"Brisanje nije moguće",
+							MessageBoxButton.OK,
+							MessageBoxImage.Warning
+						);
+						return;
+					}*/
+
+					if (AuthorController.GetWhere(b =>
+							!b.IsDeleted &&
+							b.Books != null &&
+							b.Books.Any(a => a.Id == targetAuthor.Id)
+					   ).Count > 0)
+					{
+						MessageBox.Show(
+							"Brisanje autora nije moguće zato što postoje knjige koje je napisao. Prvo obriši te knjige ili ukloni autora iz njih.",
+							"Brisanje nije moguće",
+							MessageBoxButton.OK,
+							MessageBoxImage.Warning
+						);
+						return;
+					}
+
+
 
 					MessageBoxResult authorResult = MessageBox.Show(
 						"Da li ste sigurni da želite da obrišete autora?",
