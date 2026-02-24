@@ -147,5 +147,24 @@ namespace WPFClient.Views.Publisher
 			dialog.Owner = Window.GetWindow(this);
 			dialog.ShowDialog();
 		}
+
+        private void OpenBooksWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+			PublisherDTO? targetPublisher = PublishersDataGrid.SelectedItem as PublisherDTO;
+			if (targetPublisher == null)
+			{
+				MessageBox.Show(
+					"Nije odabran izdavač za prikaz knjiga. Potrebno je odabrati izdavača iz liste.",
+					"Nije odabran izdavač",
+					MessageBoxButton.OK,
+					MessageBoxImage.Warning
+				);
+				return;
+			}
+
+            PublisherConnectedBooks dialog = new PublisherConnectedBooks(targetPublisher);
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+		}
     }
 }

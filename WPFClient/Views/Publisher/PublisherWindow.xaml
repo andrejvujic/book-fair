@@ -52,6 +52,12 @@
                     Height="32"
                     Content="Prikaži autore"
                     Click="OpenAuthorsWindowButton_Click"/>
+
+			<Button Grid.Row="2" Grid.Column="4"
+                    Height="32"
+                    Content="Prikaži knjige"
+                    Click="OpenBooksWindowButton_Click"/>
+
 		</Grid>
 
         <DataGrid
