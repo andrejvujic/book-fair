@@ -24,6 +24,7 @@ namespace WPFClient.DTO
                 DateOfBirth = DateOfBirth,
                 PhoneNumber = PhoneNumber,
                 EmailAddress = EmailAddress,
+                Address = Address,
                 AddressId = AddressId,
                 AddressCity = AddressCity,
                 AddressCountry = AddressCountry,
@@ -47,6 +48,7 @@ namespace WPFClient.DTO
             DateOfBirth = visitor.DateOfBirth;
             PhoneNumber = visitor.PhoneNumber;
             EmailAddress = visitor.EmailAddress;
+            Address = visitor.Address;
             AddressId = visitor.AddressId;
             AddressCity = visitor.Address?.City ?? string.Empty;
             AddressCountry = visitor.Address?.Country ?? string.Empty;
@@ -176,6 +178,7 @@ namespace WPFClient.DTO
             {
                 if (addressCity == value) return;
                 addressCity = value;
+                ReconstructAddress();
                 OnPropertyChanged(nameof(AddressCity));
                 OnPropertyChanged(nameof(AddressText));
                 OnPropertyChanged(nameof(AllFieldsValid));
@@ -190,6 +193,7 @@ namespace WPFClient.DTO
             {
                 if (addressCountry == value) return;
                 addressCountry = value;
+                ReconstructAddress();
                 OnPropertyChanged(nameof(AddressCountry));
                 OnPropertyChanged(nameof(AddressText));
                 OnPropertyChanged(nameof(AllFieldsValid));
@@ -204,6 +208,7 @@ namespace WPFClient.DTO
             {
                 if (addressStreet == value) return;
                 addressStreet = value;
+                ReconstructAddress();
                 OnPropertyChanged(nameof(AddressStreet));
                 OnPropertyChanged(nameof(AddressText));
                 OnPropertyChanged(nameof(AllFieldsValid));
@@ -218,13 +223,37 @@ namespace WPFClient.DTO
             {
                 if (addressStreetNumber == value) return;
                 addressStreetNumber = value;
+                ReconstructAddress();
                 OnPropertyChanged(nameof(AddressStreetNumber));
                 OnPropertyChanged(nameof(AddressText));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        public Address Address => new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
+       private void ReconstructAddress()
+       {
+            address = new Address
+            {
+                Id = AddressId,
+                City = AddressCity,
+                Street = AddressStreet,
+                StreetNumber = AddressStreetNumber,
+                Country = AddressCountry,
+            };
+       }
+
+        private Address address = new Address();
+        public Address Address
+        {
+            get => address;
+            set
+            {
+                if (address == value) return;
+                address = value;
+                OnPropertyChanged(nameof(Address));
+            }
+        }
+         
         public string AddressText => $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
 
         private double averageReviewRating;
