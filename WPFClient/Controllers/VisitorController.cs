@@ -48,6 +48,8 @@ namespace WPFClient.Controllers
                 _bookDAO.Update(book);
             }
 
+            _addressDAO.Remove(visitor.AddressId);
+
             base.Delete(visitor.Id);
         }
     }
