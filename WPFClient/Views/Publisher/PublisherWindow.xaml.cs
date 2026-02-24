@@ -1,8 +1,9 @@
-﻿using Core.Observer;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Core.Observer;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Author;
 
 namespace WPFClient.Views.Publisher
 {
@@ -127,5 +128,24 @@ namespace WPFClient.Views.Publisher
                     break;
             }
         }
+
+        private void OpenAuthorsWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+			PublisherDTO? targetPublisher = PublishersDataGrid.SelectedItem as PublisherDTO;
+			if (targetPublisher == null)
+			{
+				MessageBox.Show(
+					"Nije odabran izdavač za prikaz autora. Potrebno je odabrati izdavača iz liste.",
+					"Nije odabran izdavač",
+					MessageBoxButton.OK,
+					MessageBoxImage.Warning
+				);
+				return;
+			}
+
+			//AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
+			//dialog.Owner = Window.GetWindow(this);
+			//dialog.ShowDialog();
+		}
     }
 }

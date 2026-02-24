@@ -47,7 +47,12 @@
                     Height="32"
                     Content="Postavi šefa izdavača"
                     Click="SetBossButton_Click"/>
-        </Grid>
+
+			<Button Grid.Row="2" Grid.Column="2"
+                    Height="32"
+                    Content="Prikaži autore"
+                    Click="OpenAuthorsWindowButton_Click"/>
+		</Grid>
 
         <DataGrid
             Grid.Row="2"
