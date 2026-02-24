@@ -101,15 +101,31 @@ namespace WPFClient.Views.Visitor
                   );
                 return;
             }
-            
-            PurchaseController.Delete(targetPurchase.Id);
-            Update();
 
-            Visitor.PurchasedBooks.Remove(targetPurchase.Book);
-            Visitor.WishlistedBooks.Add(targetPurchase.Book);
-            // Potrebno je knjigu koja je obrisana iz liste
-            // kupljenih knjiga prebaciti u listu želja.
-            VisitorController.Update(Visitor.ToModel());
+			MessageBoxResult result = MessageBox.Show(
+	            "Da li ste sigurni da želite da poništite kupovinu?",
+	            "Poništi kupovinu",
+	            MessageBoxButton.YesNo,
+	            MessageBoxImage.Question
+            );
+
+			switch (result)
+			{
+				case MessageBoxResult.Yes:
+					PurchaseController.Delete(targetPurchase.Id);
+					Update();
+
+					Visitor.PurchasedBooks.Remove(targetPurchase.Book);
+					Visitor.WishlistedBooks.Add(targetPurchase.Book);
+					// Potrebno je knjigu koja je obrisana iz liste
+					// kupljenih knjiga prebaciti u listu želja.
+					VisitorController.Update(Visitor.ToModel());
+					break;
+				case MessageBoxResult.No:
+					break;
+				default:
+					break;
+			}
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
