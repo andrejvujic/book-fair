@@ -76,7 +76,7 @@ namespace WPFClient.DTO
                 AddressId = AddressId,
                 Address = Address,
                 MembershipCardNumber = MembershipCardNumber,
-                MembershipYear = int.Parse(MembershipYear),
+                MembershipYear = int.TryParse(MembershipYear, out int year) ? year : 0,
                 Status = Status,
                 AverageReviewRating = AverageReviewRating,
                 WishlistedBooks = WishlistedBooks,
@@ -142,7 +142,7 @@ namespace WPFClient.DTO
             }
         }
 
-        public string phoneNumber = string.Empty;
+        private string phoneNumber = string.Empty;
         public string PhoneNumber
         {
             get => phoneNumber;
@@ -232,7 +232,7 @@ namespace WPFClient.DTO
 
        private void ReconstructAddress()
        {
-            address = new Address
+            Address = new Address
             {
                 Id = AddressId,
                 City = AddressCity,
