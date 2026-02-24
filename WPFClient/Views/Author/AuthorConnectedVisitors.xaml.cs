@@ -50,7 +50,7 @@ namespace WPFClient.Views.Author
                     (e) => e.WishlistedBooks.Any((b) => AuthorBookIds.Contains(b.Id))
                 )
                 .PerformSorting()
-                .GetWithPagination()
+                .GetAllWithoutPagination()
             );
         }
 

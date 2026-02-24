@@ -50,7 +50,7 @@ namespace WPFClient.Views.Visitor
 					(e) => e.Books.Any((b) => VisitorBookIds.Contains(b.Id))
 				)
 				.PerformSorting()
-				.GetWithPagination()
+				.GetAllWithoutPagination()
 			);
 		}
 

@@ -46,7 +46,7 @@ namespace WPFClient.Views.Publisher
 					(e) => e.Books.Any((b) => PublisherBookIds.Contains(b.Id))
 				)
 				.PerformSorting()
-				.GetWithPagination()
+				.GetAllWithoutPagination()
 			);
 		}
 
