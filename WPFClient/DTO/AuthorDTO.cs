@@ -248,7 +248,18 @@ namespace WPFClient.DTO
 				if (yearsOfExperience == value) return;
 				yearsOfExperience = value;
 				OnPropertyChanged(nameof(YearsOfExperience));
+				OnPropertyChanged(nameof(IsYearsOfExperienceValid));
 				OnPropertyChanged(nameof(AllFieldsValid));
+			}
+		}
+
+		private bool IsYearsOfExperienceValid
+		{
+			get
+			{
+				if (string.IsNullOrWhiteSpace(YearsOfExperience)) return false;
+				if (!int.TryParse(YearsOfExperience, out int value)) return false;
+				return value > 0 && value <= DateTime.Now.Year;
 			}
 		}
 
@@ -282,7 +293,8 @@ namespace WPFClient.DTO
 					!string.IsNullOrWhiteSpace(addressCity) &&
 					!string.IsNullOrWhiteSpace(addressStreetNumber) &&
 					!string.IsNullOrWhiteSpace(addressCountry) &&
-					!string.IsNullOrWhiteSpace(YearsOfExperience);
+					!string.IsNullOrWhiteSpace(YearsOfExperience) &&
+					IsYearsOfExperienceValid;
 			}
 		}
 	}

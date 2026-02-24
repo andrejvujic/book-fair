@@ -102,3 +102,5 @@
 101|Andrej |Vujic|2/4/2026 12:00:00 AM|0|0648283920|andrej@example.com|LK02321|6|True
 102|Vuk|Vukovic|2/3/2026 12:00:00 AM|0|04623|ime@exaple.com|LK0323|6|True
 103|fds|fds|2/10/2026 12:00:00 AM|0|fds|fds|Lk0202|5|True
+104|Ivo |Andric|2/3/2026 12:00:00 AM|0|0542432|com|LK0324|1|True
+105|dsadas|dasda|2/11/2026 12:00:00 AM|0|das|das|das|3|True
