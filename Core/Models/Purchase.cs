@@ -65,6 +65,6 @@ public class Purchase : IIdentifiable, ISerializable, IDeletable
         Date = DateOnly.Parse(values[3]);
         Rating = int.Parse(values[4]);
         Comment = values[5];
-        IsDeleted = values.Length > 6 ? bool.Parse(values[5]) : false;
+        IsDeleted = values.Length > 6 ? bool.Parse(values[6]) : false;
     }
 }
