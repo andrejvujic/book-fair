@@ -32,6 +32,7 @@ public class AddressDAO : DAO<Address>
         oldEntity.StreetNumber = entity.StreetNumber;
         oldEntity.Country = entity.Country; 
         oldEntity.City = entity.City;
+        oldEntity.IsDeleted = entity.IsDeleted;
 
         _storage.Save(_entities);
         return oldEntity;   

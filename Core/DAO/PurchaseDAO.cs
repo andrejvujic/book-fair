@@ -30,6 +30,7 @@ public class PurchaseDAO : DAO<Purchase>
         oldEntity.Comment = entity.Comment;
         oldEntity.Rating = entity.Rating;
         oldEntity.Date = entity.Date;
+        oldEntity.IsDeleted = entity.IsDeleted;
 
         _storage.Save(_entities);
         return oldEntity;
