@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WPFClient.DTO
 {
@@ -52,7 +53,7 @@ namespace WPFClient.DTO
             Wishlisters = book.Wishlisters ?? new List<Visitor>();
 
             IsDeleted = book.IsDeleted;
-		}
+        }
 
         public override Book ToModel()
         {
@@ -75,9 +76,9 @@ namespace WPFClient.DTO
                 Wishlisters = Wishlisters ?? new List<Visitor>(),
 
                 IsDeleted = IsDeleted,
-			};
+            };
         }
-		public int Id { get; set; }
+        public int Id { get; set; }
 
         private bool isDeleted = false;
 
@@ -90,9 +91,9 @@ namespace WPFClient.DTO
                 isDeleted = value;
                 OnPropertyChanged(nameof(IsDeleted));
             }
-		}
+        }
 
-		private string isbn = string.Empty;
+        private string isbn = string.Empty;
         public string Isbn
         {
             get => isbn;
@@ -104,7 +105,7 @@ namespace WPFClient.DTO
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
-        
+
         private string title = string.Empty;
         public string Title
         {
@@ -178,7 +179,7 @@ namespace WPFClient.DTO
             }
         }
 
-		private bool IsReleaseYearValid
+        private bool IsReleaseYearValid
         {
             get
             {
@@ -202,7 +203,7 @@ namespace WPFClient.DTO
             }
         }
 
-		private bool IsPriceValid
+        private bool IsPriceValid
         {
             get
             {
@@ -308,11 +309,19 @@ namespace WPFClient.DTO
         }
 
         public bool AllFieldsValid =>
-            !string.IsNullOrWhiteSpace(Isbn) &&
+            IsIsbnValid &&
             !string.IsNullOrWhiteSpace(Title) &&
             IsReleaseYearValid &&
             IsPriceValid &&
             IsNumberOfPagesValid &&
             HasGotPublisher;
-	}
+        private bool IsIsbnValid
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Isbn)) return false;
+                return Isbn.Length == 13 && Isbn.All(char.IsDigit);
+            }
+        }
+    }
 }
