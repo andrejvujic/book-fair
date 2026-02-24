@@ -2,7 +2,7 @@ using Core.Helpers;
 using Core.Serialization;
 namespace Core.Models;
 
-public class Purchase : IIdentifiable, ISerializable
+public class Purchase : IIdentifiable, ISerializable, IDeletable
 {
     public int Id { get; set; }
 
@@ -15,6 +15,8 @@ public class Purchase : IIdentifiable, ISerializable
     public DateOnly Date { get; set; }
     public int Rating { get; set; } // TODO: Rating mora biti [1, 5]
     public string Comment { get; set; }
+
+    public bool IsDeleted { get; set; }
 
     public Purchase() { }
 
@@ -50,6 +52,7 @@ public class Purchase : IIdentifiable, ISerializable
             Date.ToString(),
             Rating.ToString(),
             Comment,
+            IsDeleted.ToString(),
         };
         return csv;
     }
@@ -62,5 +65,6 @@ public class Purchase : IIdentifiable, ISerializable
         Date = DateOnly.Parse(values[3]);
         Rating = int.Parse(values[4]);
         Comment = values[5];
+        IsDeleted = values.Length > 6 ? bool.Parse(values[5]) : false;
     }
 }

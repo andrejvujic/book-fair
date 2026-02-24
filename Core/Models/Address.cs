@@ -3,13 +3,15 @@ using Core.Serialization;
 namespace Core.Models;
 
 
-public class Address : ISerializable, IIdentifiable
+public class Address : ISerializable, IIdentifiable, IDeletable
 {
     public int Id { get; set; }
     public string Street { get; set; }
     public string StreetNumber { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
 
     public Address() { }
 
@@ -40,7 +42,8 @@ public class Address : ISerializable, IIdentifiable
             Street,
             StreetNumber,
             City,
-            Country
+            Country,
+            IsDeleted.ToString()
         };
         return csv;
     }
@@ -52,5 +55,6 @@ public class Address : ISerializable, IIdentifiable
         StreetNumber = values[2];
         City = values[3];
         Country = values[4];
+        IsDeleted = values.Length > 5 ? bool.Parse(values[5]) : false;
     }
 }
