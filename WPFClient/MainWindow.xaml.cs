@@ -340,6 +340,16 @@ namespace WPFClient
             window.ShowDialog();
         }
 
+        private void SerbianMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EnglishMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void UpdateSearchQuery()
         {
             SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
