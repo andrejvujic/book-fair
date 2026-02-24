@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace WPFClient.DTO
 {
-    public abstract class DTO<T> : INotifyPropertyChanged where T : class, ISerializable, IIdentifiable, new()
+    public abstract class DTO<T> : INotifyPropertyChanged where T : class, ISerializable, IIdentifiable, IDeletable, new()
     {
         public DTO(T entity) {
             FromModel(entity);
