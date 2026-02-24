@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPFClient.Localization;
 
 namespace WPFClient
 {
@@ -11,6 +12,11 @@ namespace WPFClient
         {
             InitializeComponent();
             Context.RestoreRelations();
+        }
+
+        public void ChangeLanguage(string language)
+        {
+            TranslationSource.Instance.CurrentCulture = new System.Globalization.CultureInfo(language);
         }
     }
 }

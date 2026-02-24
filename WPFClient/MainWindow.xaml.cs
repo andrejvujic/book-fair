@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.About;
 using WPFClient.Views.Author;
 using WPFClient.Views.Book;
@@ -341,14 +342,10 @@ namespace WPFClient
         }
 
         private void SerbianMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+            => (App.Current as App)?.ChangeLanguage(LanguageConfiguration.Serbian);
 
         private void EnglishMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+           => (App.Current as App)?.ChangeLanguage(LanguageConfiguration.English);
 
         private void UpdateSearchQuery()
         {
