@@ -143,9 +143,9 @@ namespace WPFClient.Views.Publisher
 				return;
 			}
 
-			//AuthorConnectedVisitors dialog = new AuthorConnectedVisitors(targetAuthor);
-			//dialog.Owner = Window.GetWindow(this);
-			//dialog.ShowDialog();
+			PublisherConnectedAuthors dialog = new PublisherConnectedAuthors(targetPublisher);
+			dialog.Owner = Window.GetWindow(this);
+			dialog.ShowDialog();
 		}
     }
 }
