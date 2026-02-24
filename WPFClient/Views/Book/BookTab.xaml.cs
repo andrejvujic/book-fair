@@ -21,9 +21,10 @@ namespace WPFClient.Views.Book
     public partial class BookTab : UserControl, IObserver, INotifyPropertyChanged
     {
         public ObservableCollection<BookDTO> Books { get; set; } = new ObservableCollection<BookDTO>();
-        private BookDAO BookDAO { get; set; }
         public BookController BookController { get; }
+
         public BookDTO? SelectedBook => BooksDataGrid.SelectedItem as BookDTO;
+
 		private BookDTO? FirstBook { get; set; }
 		private BookDTO? SecondBook { get; set; }
 
