@@ -1,6 +1,7 @@
 ﻿using Core.DAO;
 using Core.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using WPFClient.DTO;
 
@@ -48,8 +49,9 @@ namespace WPFClient.Controllers
                 _bookDAO.Update(book);
             }
 
-            visitor.Address.IsDeleted = true;
-            _addressDAO.Update(visitor.Address);
+            Address address = visitor.Address;
+            address.IsDeleted = true;
+            _addressDAO.Update(address);
 
             visitor.IsDeleted = true;
             base.Update(visitor.ToModel());
