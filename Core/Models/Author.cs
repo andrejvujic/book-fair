@@ -112,6 +112,6 @@ public class Author : ISerializable, IIdentifiable, IDeletable, ISearchable, ISo
         Email = values[6];
         IdCardNumber = values[7];
         YearsOfExperience = int.Parse(values[8]);
-		IsDeleted = bool.Parse(values[9]);
+		IsDeleted = values.Length > 9 ? bool.Parse(values[9]) : false;
 	}
 }

@@ -61,6 +61,6 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
         Name = values[1];
         BossId = int.Parse(values[2]);
         Code = int.Parse(values[3]);
-        IsDeleted = bool.Parse(values[4]);
+        IsDeleted = values.Length > 4 ? bool.Parse(values[4]) : false;
     }
 }

@@ -124,6 +124,6 @@ public class Book : ISerializable, IIdentifiable, IDeletable, ISearchable, ISort
         Price = double.Parse(values[5]);
         NumberOfPages = int.Parse(values[6]);
         PublisherId = int.Parse(values[7]);
-        IsDeleted = bool.Parse(values[8]);
-	}
+        IsDeleted = values.Length > 8 ? bool.Parse(values[8]) : false;
+    }
 }
