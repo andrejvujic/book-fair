@@ -92,7 +92,12 @@ namespace WPFClient.Views.Publisher
                 return;
             }
 
-            if (BookController.GetWhere(b => b.Publisher.Id == targetPublisher.Id).Count > 0)
+            if (BookController.GetWhere(
+                    b => b.Publisher != null && b.Publisher.Id == targetPublisher.Id &&
+                         !b.IsDeleted
+                )
+                .Count > 0
+            )
             {
                 MessageBox.Show(
                     "Brisanje odabranog izdavača nije moguće zato što u sistemu postoje knjige koje je izdao. Potrebno je prvo obrisati knjige ovog izdavača.",
