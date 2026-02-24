@@ -41,10 +41,10 @@ public class Book : ISerializable, IIdentifiable, IDeletable, ISearchable, ISort
 		get => new Dictionary<string, dynamic>
 		{
 			{ nameof(Id), Id },
-			{ "IsbnNumber", long.TryParse(Isbn, out var p) ? p : 0},
+			{ nameof(Isbn), long.TryParse(Isbn, out var isbn) ? isbn : 0},
 			{ nameof(Title), Title },
-			{ "PriceNumber", Price },
-			{ "ReleaseYearNumber", ReleaseYear },
+			{ nameof(Price), Price },
+			{ nameof(ReleaseYear), ReleaseYear },
             { nameof(Genre), Genre },
 		};
 	}
