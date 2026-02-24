@@ -27,7 +27,12 @@ namespace WPFClient.Views.Author
             Author = author;
             AuthorBookIds = new HashSet<int>(Author.Books.Select((b) => b.Id));
 
-            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController = new VisitorController(
+                App.Context.VisitorDAO,
+                App.Context.AddressDAO,
+                App.Context.BookDAO,
+                App.Context.PurchaseDAO
+            );
 
             DataContext = this;
 

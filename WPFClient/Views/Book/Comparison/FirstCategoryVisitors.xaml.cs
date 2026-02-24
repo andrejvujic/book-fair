@@ -93,7 +93,13 @@ namespace WPFClient.Views.Book.Comparison
 
         public FirstCategoryVisitors()
         {
-            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController = new VisitorController(
+                App.Context.VisitorDAO,
+                App.Context.AddressDAO,
+                App.Context.BookDAO,
+                App.Context.PurchaseDAO
+            );
+
             InitializeComponent();
         }
 

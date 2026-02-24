@@ -65,7 +65,12 @@ namespace WPFClient
             InitializeComponent();
             DataContext = this;
 
-            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController = new VisitorController(
+                App.Context.VisitorDAO,
+                App.Context.AddressDAO,
+                App.Context.BookDAO,
+                App.Context.PurchaseDAO
+            );
             BookController = new BookController(App.Context.BookDAO);
             AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
 
@@ -212,8 +217,7 @@ namespace WPFClient
                     switch (result)
                     {
                         case MessageBoxResult.Yes:
-                            targetVisitor.IsDeleted = true;
-                            VisitorController.Update(targetVisitor.ToModel());
+                            VisitorController.Delete(targetVisitor);
                             break;
                         case MessageBoxResult.No:
                             break;

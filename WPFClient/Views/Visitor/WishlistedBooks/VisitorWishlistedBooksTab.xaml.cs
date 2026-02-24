@@ -37,7 +37,12 @@ namespace WPFClient.Views.Visitor
         public VisitorWishlistedBooksTab()
         {
             InitializeComponent();
-            VisitorController = new VisitorController(App.Context.VisitorDAO, App.Context.AddressDAO);
+            VisitorController = new VisitorController(
+                App.Context.VisitorDAO,
+                App.Context.AddressDAO,
+                App.Context.BookDAO,
+                App.Context.PurchaseDAO
+            );
             VisitorController.Subscribe(this);
         }
 
