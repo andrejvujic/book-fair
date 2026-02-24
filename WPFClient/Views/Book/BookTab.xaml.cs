@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Core.DAO;
+using Core.Helpers.Sorting;
+using Core.Models;
+using Core.Observer;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Core.DAO;
-using Core.Helpers.Sorting;
-using Core.Models;
-using Core.Observer;
+using System.Windows.Data;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 using WPFClient.Views.Author;
@@ -72,22 +73,36 @@ namespace WPFClient.Views.Book
 				Books.Add(new BookDTO(b));
 		}
 
-		private void BooksDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
-		{
-			string criteria = e.Column.SortMemberPath ?? string.Empty;
-			Direction direction = e.Column.SortDirection == ListSortDirection.Ascending ? Direction.Descending : Direction.Ascending;
+        private void BooksDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            e.Handled = true;
 
-			if (!BookController.SetSortingParameters(criteria, direction)) return;
+            string criteria = e.Column.SortMemberPath ?? string.Empty;
 
-			Render(
-				BookController
-				.PerformSorting()
-				.GetWithPagination()
-			);
-		}
+            var inverseDireciton = e.Column.SortDirection != ListSortDirection.Ascending
+                ? ListSortDirection.Ascending
+                : ListSortDirection.Descending;
+
+            foreach (var column in BooksDataGrid.Columns)
+                column.SortDirection = null;
+            e.Column.SortDirection = inverseDireciton;
+
+            var direction = inverseDireciton == ListSortDirection.Ascending
+                ? Direction.Ascending
+                : Direction.Descending;
+
+            if (!BookController.SetSortingParameters(criteria, direction))
+                return;
+
+            Render(
+                BookController
+                    .PerformSorting()
+                    .GetWithPagination()
+            );
+        }
 
 
-		private void CompareButton_Click(object sender, RoutedEventArgs e)
+        private void CompareButton_Click(object sender, RoutedEventArgs e)
         {
             // Potrebno je selektovati dvije knjige da bi se otvorio prozor za uporedjivanje.
             if (FirstBook == null || SecondBook == null)

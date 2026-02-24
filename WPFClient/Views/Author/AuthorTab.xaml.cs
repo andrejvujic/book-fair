@@ -67,10 +67,23 @@ namespace WPFClient.Views.Author
 
 		private void AuthorsDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
 		{
-			string criteria = e.Column.SortMemberPath ?? string.Empty;
-			Direction direction = e.Column.SortDirection == ListSortDirection.Ascending ? Direction.Descending : Direction.Ascending;
+            e.Handled = true;
 
-			if (!AuthorController.SetSortingParameters(criteria, direction)) return;
+            string criteria = e.Column.SortMemberPath ?? string.Empty;
+
+            var inverseDireciton = e.Column.SortDirection != ListSortDirection.Ascending
+                ? ListSortDirection.Ascending
+                : ListSortDirection.Descending;
+
+            foreach (var column in AuthorsDataGrid.Columns)
+                column.SortDirection = null;
+            e.Column.SortDirection = inverseDireciton;
+
+            var direction = inverseDireciton == ListSortDirection.Ascending
+                ? Direction.Ascending
+                : Direction.Descending;
+
+            if (!AuthorController.SetSortingParameters(criteria, direction)) return;
 
 			Render(
 				AuthorController

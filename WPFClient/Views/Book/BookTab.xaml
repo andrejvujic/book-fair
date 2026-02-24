@@ -29,10 +29,10 @@
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding IsbnNumber}" Width="Auto" SortMemberPath="IsbnNumber"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="Auto" SortMemberPath="Isbn"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*" SortMemberPath="Title"/>
-                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto" SortMemberPath="ReleaseYearNumber"/>
-                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto" SortMemberPath="PriceNumber"/>
+                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto" SortMemberPath="ReleaseYear"/>
+                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto" SortMemberPath="Price"/>
                 <DataGridTextColumn Header="Žanr" Binding="{Binding GenreText}" Width="*" SortMemberPath="Genre"/>
             </DataGrid.Columns>
         </DataGrid>

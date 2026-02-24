@@ -5,8 +5,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using WPFClient.DTO;
+using System.Windows.Data;
 using WPFClient.Controllers;
+using WPFClient.DTO;
 
 namespace WPFClient.Views.Visitor
 {
@@ -65,9 +66,21 @@ namespace WPFClient.Views.Visitor
 
         private void VisitorsDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
         {
-            string criteria = e.Column.SortMemberPath ?? string.Empty;
-            Direction direction = e.Column.SortDirection == ListSortDirection.Ascending ? Direction.Descending : Direction.Ascending;
+            e.Handled = true;
 
+            string criteria = e.Column.SortMemberPath ?? string.Empty;
+
+            var inverseDireciton = e.Column.SortDirection != ListSortDirection.Ascending
+                ? ListSortDirection.Ascending
+                : ListSortDirection.Descending;
+
+            foreach (var column in VisitorsDataGrid.Columns)
+                column.SortDirection = null;
+            e.Column.SortDirection = inverseDireciton;
+
+            var direction = inverseDireciton == ListSortDirection.Ascending
+                ? Direction.Ascending
+                : Direction.Descending;
             if (!VisitorController.SetSortingParameters(criteria, direction)) return;
 
             Render(
