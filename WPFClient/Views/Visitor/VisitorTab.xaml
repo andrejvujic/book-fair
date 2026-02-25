@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFClient.Views.Visitor"
+             xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <TextBlock x:Key="CurrentPageLabelText" Text="{l:Localization CurrentPage}" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,11 +33,11 @@
         >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
-                <DataGridTextColumn Header="Broj Članske Karte" Width="Auto"  Binding="{Binding MembershipCardNumber}" SortMemberPath="MembershipCardNumber"/>
-                <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
-                <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding LastName}" SortMemberPath="LastName"/>
-                <DataGridTextColumn Header="Kategorija" Width="Auto" Binding="{Binding StatusText}" SortMemberPath="Status"/>
-                <DataGridTextColumn Header="Adresa" Width="*" Binding="{Binding AddressText}" CanUserSort="False"/>
+                <DataGridTextColumn Header="{l:Localization MembershipCardNumber}" Width="Auto"  Binding="{Binding MembershipCardNumber}" SortMemberPath="MembershipCardNumber"/>
+                <DataGridTextColumn Header="{l:Localization FirstName}" Width="*" Binding="{Binding FirstName}" SortMemberPath="FirstName"/>
+                <DataGridTextColumn Header="{l:Localization LastName}" Width="*" Binding="{Binding LastName}" SortMemberPath="LastName"/>
+                <DataGridTextColumn Header="{l:Localization Status}" Width="Auto" Binding="{Binding StatusText}" SortMemberPath="Status"/>
+                <DataGridTextColumn Header="{l:Localization Address}" Width="*" Binding="{Binding AddressText}" CanUserSort="False"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -47,17 +51,23 @@
             <Button Grid.Column="0"
                 Width="128"
                 Height="32"
-                Content="Prethodna"
+                Content="{l:Localization PreviousPage}"
                 Click="PreviousPageButton_Click"
                 IsEnabled="{Binding VisitorController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-            <TextBlock x:Name="CurrentPageIndicator" Grid.Column="1" Text="{Binding VisitorController.CurrentPageText, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} — {1}">
+                        <Binding Source="{StaticResource CurrentPageLabelText}" Path="Text" />
+                        <Binding Path="VisitorController.CurrentPageText" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
 
             <Button Grid.Column="2"
                 Width="128"
                 Height="32"
-                Content="Naredna"
+                Content="{l:Localization NextPage}"
                 Click="NextPageButton_Click"
                 IsEnabled="{Binding VisitorController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </Grid>
@@ -72,7 +82,7 @@
 			<Button Grid.Column="0"
 					Width="128"
 					Height="32"
-					Content="Prikaži autore"
+                    Content="{l:Localization ShowAuthors}"
 					Click="OpenAuthorsWindowButton_Click"/>
 		</Grid>
 	</Grid>

@@ -139,9 +139,9 @@ namespace WPFClient.Controllers
             get
             {
                 if (MaxPageNumber > 0)
-                    return $"Trenutna stranica — {PageNumber} / {MaxPageNumber}";
+                    return $"{PageNumber} / {MaxPageNumber}";
 
-                return "Nema entiteta za prikazivanje";
+                return "/";
             }
         }
 

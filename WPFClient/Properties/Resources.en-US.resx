@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Book Fair</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Books" xml:space="preserve">
     <value>Books</value>
+  </data>
+  <data name="CurrentPage" xml:space="preserve">
+    <value>Page</value>
   </data>
   <data name="DeleteEntity" xml:space="preserve">
     <value>Delete entity</value>
@@ -147,14 +153,29 @@
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="MembershipCardNumber" xml:space="preserve">
+    <value>Membership Card ID</value>
+  </data>
   <data name="NewEntity" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous</value>
   </data>
   <data name="Publishers" xml:space="preserve">
     <value>Publishers</value>
@@ -164,6 +185,12 @@
   </data>
   <data name="Serbian" xml:space="preserve">
     <value>Serbian</value>
+  </data>
+  <data name="ShowAuthors" xml:space="preserve">
+    <value>Show authors</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="ViewEntities" xml:space="preserve">
     <value>Open</value>

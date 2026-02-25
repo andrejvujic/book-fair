@@ -287,8 +287,7 @@ namespace WPFClient
 						return;
 					}
 
-					bool hasActiveBook = BookController.GetWhere(b => !b.IsDeleted && b.Authors.Any(a => a.Id == targetAuthor.Id)).Count>0;
-
+					bool hasActiveBook = BookController.GetWhere(b => !b.IsDeleted && b.Authors.Any(a => a.Id == targetAuthor.Id)).Count > 0;
 					if (hasActiveBook)
 					{
 						MessageBox.Show(

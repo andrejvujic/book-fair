@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>O aplikaciji</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Sajam Knjiga</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Books" xml:space="preserve">
     <value>Knjige</value>
+  </data>
+  <data name="CurrentPage" xml:space="preserve">
+    <value>Trenutna stranica</value>
   </data>
   <data name="DeleteEntity" xml:space="preserve">
     <value>Brisanje entiteta</value>
@@ -147,14 +153,29 @@
   <data name="File" xml:space="preserve">
     <value>Fajl</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ime</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Pomoć</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Jezik</value>
   </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Prezime</value>
+  </data>
+  <data name="MembershipCardNumber" xml:space="preserve">
+    <value>Broj Članske Karte</value>
+  </data>
   <data name="NewEntity" xml:space="preserve">
     <value>Novi entitet</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Naredna</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Prethodna</value>
   </data>
   <data name="Publishers" xml:space="preserve">
     <value>Izdavači</value>
@@ -164,6 +185,12 @@
   </data>
   <data name="Serbian" xml:space="preserve">
     <value>Srpski</value>
+  </data>
+  <data name="ShowAuthors" xml:space="preserve">
+    <value>Prikaži autore</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="ViewEntities" xml:space="preserve">
     <value>Prikaz entiteta</value>
