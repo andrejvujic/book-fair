@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Core.DAO;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 using WPFClient.Localization;
@@ -23,8 +24,10 @@ namespace WPFClient
         private VisitorController VisitorController { get; }
         private BookController BookController { get; }
         private AuthorController AuthorController { get; }
+        private PublisherController PublisherController { get; }
+        private PurchaseController PurchaseController { get; }
 
-        private string rawSearchQuery = string.Empty;
+		private string rawSearchQuery = string.Empty;
         public string RawSearchQuery
         {
             get => rawSearchQuery;
@@ -236,6 +239,7 @@ namespace WPFClient
                         );
                         return;
                     }
+
                     MessageBoxResult bookResult = MessageBox.Show(
                         "Da li ste sigurni da želite da obrišete knjigu?",
                         "Brisanje knjige",
@@ -246,9 +250,8 @@ namespace WPFClient
                     switch (bookResult)
                     {
                         case MessageBoxResult.Yes:
-                            targetBook.IsDeleted = true;
-							BookController.Update(targetBook.ToModel());
-                            break;
+							BookController.Delete(targetBook);
+							break;
                         case MessageBoxResult.No:
                             break;
                         default:
@@ -269,6 +272,30 @@ namespace WPFClient
 						return;
 					}
 
+					bool hasActiveBook = BookController.GetWhere(b => !b.IsDeleted && b.Authors.Any(a => a.Id == targetAuthor.Id)).Count>0;
+
+					if (hasActiveBook)
+					{
+						MessageBox.Show(
+							"Brisanje odabranog autora nije moguće zato što u sistemu postoje knjige koje je napisao. Potrebno je prvo obrisati knjige ovog autora.",
+							"Brisanje nije moguće",
+							MessageBoxButton.OK,
+							MessageBoxImage.Warning
+						);
+						return;
+					}
+
+                    bool isBoss = PublisherController.GetWhere(p => !p.IsDeleted && p.Boss != null && p.Boss.Id == targetAuthor.Id).Count > 0;
+                    if (isBoss) {
+                        MessageBox.Show(
+                            "Brisanje odabranog autora nije moguće zato što je on direktor izdavačke kuće. Potrebno je prvo promijeniti direktora izdavačke kuće.",
+                            "Brisanje nije moguće",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning
+                        );
+                        return;
+					}
+
 					MessageBoxResult authorResult = MessageBox.Show(
 						"Da li ste sigurni da želite da obrišete autora?",
 						"Brisanje autora",
@@ -279,8 +306,7 @@ namespace WPFClient
 					switch (authorResult)
 					{
 						case MessageBoxResult.Yes:
-							targetAuthor.IsDeleted = true;
-							AuthorController.Update(targetAuthor.ToModel());
+							AuthorController.Delete(targetAuthor);
 							break;
 						case MessageBoxResult.No:
 							break;

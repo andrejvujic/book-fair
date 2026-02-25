@@ -21,8 +21,7 @@ namespace WPFClient.Views.Publisher
 
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             Publisher = publisher;
-
-            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
             Authors = GetAvailableAuthors();
 
             DataContext = this;
@@ -33,7 +32,7 @@ namespace WPFClient.Views.Publisher
             // Dobavlja sve autore koji ce u korisnickom interfejsu
             // predstavljati kandidate za sefa izdavaca.
             return AuthorController
-                .GetWhere(a => a.Id != Publisher.BossId)
+                .GetWhere(a => a.Id != Publisher.BossId && !a.IsDeleted)
                 .Select(a => new AuthorDTO(a))
                 .ToList();
         }

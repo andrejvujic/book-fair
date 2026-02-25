@@ -5,13 +5,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPFClient.DTO;
+using WPFClient.Views.Publisher;
 
 namespace WPFClient.Controllers
 {
     public class BookController : QueryController<Book>
     {
-        public BookController(BookDAO bookDAO) : base(bookDAO) { }
+        private readonly BookDAO _bookDAO;
+        private readonly AuthorDAO _authorDAO;
+        private readonly VisitorDAO _visitorDAO;
+        private readonly PurchaseDAO _purchaseDAO;  
+		public BookController(BookDAO bookDAO, VisitorDAO visitorDAO, AuthorDAO authorDAO, PurchaseDAO purchaseDAO) : base(bookDAO) {
+            _authorDAO = authorDAO;
+            _visitorDAO = visitorDAO;
+            _purchaseDAO = purchaseDAO;
+		}
 
         public override int SearchQueryLength => 1;
+
+        public void Delete(BookDTO book)
+        {
+            List<Purchase> purchases = _purchaseDAO.GetWhere(p => p.BookId == book.Id);
+            foreach (int id in purchases.Select(p => p.Id))
+                _purchaseDAO.Remove(id);
+
+            foreach(Visitor visitor in book.Wishlisters)
+            {
+                visitor.WishlistedBooks.RemoveAll(v => v.Id == book.Id);
+                _visitorDAO.Update(visitor);
+            }
+
+            foreach(Visitor visitor in book.Buyers)
+            {
+                visitor.PurchasedBooks.RemoveAll(v => v.Id == book.Id);
+                _visitorDAO.Update(visitor);
+            }
+
+            foreach(Author author in book.Authors)
+            {
+                author.Books.RemoveAll(v => v.Id == book.Id);
+                _authorDAO.Update(author);
+            }
+
+            book.IsDeleted = true;
+            base.Update(book.ToModel());
+		}
     }
 }

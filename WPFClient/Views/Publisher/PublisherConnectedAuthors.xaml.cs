@@ -32,7 +32,7 @@ namespace WPFClient.Views.Publisher
 
             Publisher = publisher;
 			PublisherBookIds = new HashSet<int>(Publisher.Books.Select((b) => b.Id));
-			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
 			DataContext = this;
 			Update();
 		}
@@ -43,7 +43,7 @@ namespace WPFClient.Views.Publisher
 				AuthorController
 				.PerformSerach(
 					RawSearchQuery,
-					(e) => e.Books.Any((b) => PublisherBookIds.Contains(b.Id))
+					(e) => e.Books.Any((b) => PublisherBookIds.Contains(b.Id) && !b.IsDeleted)
 				)
 				.PerformSorting()
 				.GetAllWithoutPagination()

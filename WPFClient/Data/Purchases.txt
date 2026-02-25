@@ -1,121 +1,105 @@
-0|0|12|1/5/2025|5|Excellent.
-1|0|24|1/18/2025|4|Pretty good.
-2|1|3|1/22/2025|4|Enjoyed it.
-3|1|7|2/2/2025|5|Loved it.
-4|1|15|2/10/2025|3|It was okay.
-5|2|1|2/14/2025|5|Amazing.
-6|2|27|2/20/2025|4|Very good.
-7|2|41|3/1/2025|4|Solid read.
-8|3|0|3/3/2025|5|Classic.
-9|3|9|3/7/2025|4|Nice atmosphere.
-10|3|36|3/10/2025|3|Not bad.
-11|4|13|3/12/2025|4|Enjoyed it.
-12|4|17|3/14/2025|5|Masterpiece.
-13|4|22|3/16/2025|4|Good.
-14|5|2|3/18/2025|4|Creepy and fun.
-15|5|38|3/20/2025|3|Okay.
-16|6|23|3/22/2025|5|Great message.
-17|6|24|3/25/2025|4|Strong.
-18|6|25|3/28/2025|4|Interesting.
-19|7|26|3/30/2025|5|Loved it.
-21|8|43|4/5/2025|4|Cool ideas.
-22|8|44|4/8/2025|3|Weird but fine.
-23|8|41|4/10/2025|5|So good.
-24|9|11|4/12/2025|4|Beautiful.
-25|9|10|4/15/2025|4|Epic.
-26|9|4|4/18/2025|3|Old but good.
-27|10|20|4/20/2025|5|Charming.
-28|10|21|4/22/2025|4|Motivating.
-29|10|12|4/25/2025|4|Sweet.
-30|11|45|4/27/2025|5|Fantastic.
-31|11|46|4/30/2025|4|Great world.
-32|11|47|5/2/2025|5|Epic story.
-33|12|29|5/5/2025|4|Fun.
-34|12|30|5/7/2025|4|Good sequel.
-35|12|31|5/10/2025|5|Best so far.
-36|12|32|5/12/2025|4|Very good.
-37|13|33|5/15/2025|4|Long but good.
-38|13|34|5/17/2025|4|Enjoyed.
-39|13|35|5/19/2025|5|Great finale.
-40|14|6|5/22/2025|5|Intense.
-41|14|16|5/24/2025|4|Powerful.
-42|14|19|5/27/2025|4|Funny and deep.
-43|15|8|5/30/2025|3|A bit slow.
-44|15|18|6/2/2025|5|Awesome adventure.
-45|15|28|6/5/2025|4|Interesting lore.
-46|16|5|6/7/2025|4|Huge but worth it.
-47|16|7|6/10/2025|5|Brilliant.
-48|16|17|6/12/2025|4|Great.
-49|17|14|6/15/2025|3|Not my style.
-50|17|12|6/18/2025|4|Good romance.
-51|17|13|6/20/2025|4|Nice.
-52|18|37|6/22/2025|5|Terrifying.
-53|18|39|6/25/2025|4|Very long but good.
-54|18|36|6/28/2025|4|Creepy.
-55|19|40|7/1/2025|4|Bleak but great.
-56|19|49|7/4/2025|5|Loved the vibe.
-57|19|42|7/6/2025|4|Classic sci-fi.
-58|20|1|7/8/2025|4|Great.
-59|20|43|7/10/2025|3|Okay.
-60|20|41|7/13/2025|5|Excellent.
-61|21|27|7/15/2025|5|Legendary.
-62|21|28|7/18/2025|4|Good.
-63|21|45|7/20/2025|5|Amazing.
-64|22|46|7/22/2025|4|Very good.
-65|22|47|7/25/2025|5|Top tier.
-66|22|48|7/27/2025|4|Fun.
-67|23|2|7/30/2025|4|Spooky.
-68|23|9|8/2/2025|3|Fine.
-69|23|38|8/4/2025|4|Good.
-70|24|0|8/6/2025|5|Loved it.
-71|24|24|8/8/2025|4|Great.
-72|24|25|8/10/2025|4|Interesting.
-73|24|26|8/12/2025|5|Amazing.
-74|0|27|8/15/2025|5|Incredible.
-75|0|28|8/18/2025|4|Nice.
-76|1|42|8/20/2025|4|Good.
-77|1|43|8/22/2025|3|Okay.
-78|2|44|8/25/2025|4|Liked it.
-79|2|49|8/28/2025|5|Loved it.
-80|3|41|9/1/2025|4|Great.
-82|4|45|9/6/2025|5|Excellent.
-83|4|46|9/8/2025|4|Very good.
-84|5|47|9/10/2025|5|Amazing.
-85|5|48|9/12/2025|4|Good.
-86|6|29|9/15/2025|4|Fun.
-87|7|30|9/18/2025|4|Good.
-88|8|31|9/20/2025|5|Great.
-90|10|33|9/25/2025|4|Good.
-91|11|34|9/28/2025|4|Enjoyed.
-92|12|35|10/1/2025|5|Fantastic.
-93|13|36|10/4/2025|3|Okay.
-94|14|37|10/7/2025|4|Scary.
-95|15|38|10/10/2025|4|Good.
-96|16|39|10/12/2025|5|Loved it.
-97|17|40|10/15/2025|4|Strong.
-98|18|41|10/18/2025|4|Great.
-99|19|42|10/20/2025|5|Excellent.
-100|0|0|10/25/2025|4|Good.
-101|1|0|10/26/2025|4|Nice read.
-102|1|24|10/27/2025|5|Excellent.
-103|2|0|10/28/2025|4|Enjoyed it.
-104|2|24|10/29/2025|4|Pretty good.
-106|4|0|11/1/2025|5|Loved it.
-107|4|24|11/2/2025|4|Very good.
-108|5|0|11/3/2025|4|Good.
-109|5|24|11/4/2025|3|It was okay.
-113|8|0|11/8/2025|4|Enjoyed.
-116|9|24|11/11/2025|4|Nice.
-117|10|0|11/12/2025|4|Good.
-118|11|24|11/13/2025|5|Excellent.
-119|12|24|11/14/2025|4|Very good.
-120|13|0|11/15/2025|4|Good.
-121|13|24|11/16/2025|4|Enjoyed.
-122|14|24|11/17/2025|3|Okay.
-123|15|0|11/18/2025|4|Nice.
-124|16|24|11/19/2025|4|Good.
-125|17|24|11/20/2025|5|Excellent.
-126|18|0|11/21/2025|4|Good.
-127|19|0|11/22/2025|4|Nice.
-128|20|24|11/23/2025|4|Pretty good.
-129|21|0|11/24/2025|5|Loved it.
+0|0|12|1/5/2025|5|Excellent.|False
+1|0|24|1/18/2025|4|Pretty good.|False
+2|1|3|1/22/2025|4|Enjoyed it.|False
+3|1|7|2/2/2025|5|Loved it.|False
+4|1|15|2/10/2025|3|It was okay.|False
+5|2|1|2/14/2025|5|Amazing.|False
+6|2|27|2/20/2025|4|Very good.|False
+7|2|41|3/1/2025|4|Solid read.|False
+9|3|9|3/7/2025|4|Nice atmosphere.|False
+10|3|36|3/10/2025|3|Not bad.|False
+11|4|13|3/12/2025|4|Enjoyed it.|False
+12|4|17|3/14/2025|5|Masterpiece.|False
+13|4|22|3/16/2025|4|Good.|False
+14|5|2|3/18/2025|4|Creepy and fun.|False
+15|5|38|3/20/2025|3|Okay.|False
+16|6|23|3/22/2025|5|Great message.|False
+17|6|24|3/25/2025|4|Strong.|False
+18|6|25|3/28/2025|4|Interesting.|False
+19|7|26|3/30/2025|5|Loved it.|False
+21|8|43|4/5/2025|4|Cool ideas.|False
+22|8|44|4/8/2025|3|Weird but fine.|False
+23|8|41|4/10/2025|5|So good.|False
+24|9|11|4/12/2025|4|Beautiful.|False
+25|9|10|4/15/2025|4|Epic.|False
+26|9|4|4/18/2025|3|Old but good.|False
+27|10|20|4/20/2025|5|Charming.|False
+28|10|21|4/22/2025|4|Motivating.|False
+29|10|12|4/25/2025|4|Sweet.|False
+30|11|45|4/27/2025|5|Fantastic.|False
+31|11|46|4/30/2025|4|Great world.|False
+32|11|47|5/2/2025|5|Epic story.|False
+33|12|29|5/5/2025|4|Fun.|False
+34|12|30|5/7/2025|4|Good sequel.|False
+35|12|31|5/10/2025|5|Best so far.|False
+36|12|32|5/12/2025|4|Very good.|False
+37|13|33|5/15/2025|4|Long but good.|False
+38|13|34|5/17/2025|4|Enjoyed.|False
+39|13|35|5/19/2025|5|Great finale.|False
+40|14|6|5/22/2025|5|Intense.|False
+41|14|16|5/24/2025|4|Powerful.|False
+42|14|19|5/27/2025|4|Funny and deep.|False
+43|15|8|5/30/2025|3|A bit slow.|False
+44|15|18|6/2/2025|5|Awesome adventure.|False
+45|15|28|6/5/2025|4|Interesting lore.|False
+46|16|5|6/7/2025|4|Huge but worth it.|False
+47|16|7|6/10/2025|5|Brilliant.|False
+48|16|17|6/12/2025|4|Great.|False
+49|17|14|6/15/2025|3|Not my style.|False
+50|17|12|6/18/2025|4|Good romance.|False
+51|17|13|6/20/2025|4|Nice.|False
+52|18|37|6/22/2025|5|Terrifying.|False
+53|18|39|6/25/2025|4|Very long but good.|False
+54|18|36|6/28/2025|4|Creepy.|False
+55|19|40|7/1/2025|4|Bleak but great.|False
+57|19|42|7/6/2025|4|Classic sci-fi.|False
+58|20|1|7/8/2025|4|Great.|False
+59|20|43|7/10/2025|3|Okay.|False
+60|20|41|7/13/2025|5|Excellent.|False
+61|21|27|7/15/2025|5|Legendary.|False
+62|21|28|7/18/2025|4|Good.|False
+63|21|45|7/20/2025|5|Amazing.|False
+64|22|46|7/22/2025|4|Very good.|False
+65|22|47|7/25/2025|5|Top tier.|False
+66|22|48|7/27/2025|4|Fun.|False
+67|23|2|7/30/2025|4|Spooky.|False
+68|23|9|8/2/2025|3|Fine.|False
+69|23|38|8/4/2025|4|Good.|False
+71|24|24|8/8/2025|4|Great.|False
+72|24|25|8/10/2025|4|Interesting.|False
+73|24|26|8/12/2025|5|Amazing.|False
+74|0|27|8/15/2025|5|Incredible.|False
+75|0|28|8/18/2025|4|Nice.|False
+76|1|42|8/20/2025|4|Good.|False
+77|1|43|8/22/2025|3|Okay.|False
+78|2|44|8/25/2025|4|Liked it.|False
+80|3|41|9/1/2025|4|Great.|False
+82|4|45|9/6/2025|5|Excellent.|False
+83|4|46|9/8/2025|4|Very good.|False
+84|5|47|9/10/2025|5|Amazing.|False
+85|5|48|9/12/2025|4|Good.|False
+86|6|29|9/15/2025|4|Fun.|False
+87|7|30|9/18/2025|4|Good.|False
+88|8|31|9/20/2025|5|Great.|False
+90|10|33|9/25/2025|4|Good.|False
+91|11|34|9/28/2025|4|Enjoyed.|False
+92|12|35|10/1/2025|5|Fantastic.|False
+93|13|36|10/4/2025|3|Okay.|False
+94|14|37|10/7/2025|4|Scary.|False
+95|15|38|10/10/2025|4|Good.|False
+96|16|39|10/12/2025|5|Loved it.|False
+97|17|40|10/15/2025|4|Strong.|False
+98|18|41|10/18/2025|4|Great.|False
+99|19|42|10/20/2025|5|Excellent.|False
+102|1|24|10/27/2025|5|Excellent.|False
+104|2|24|10/29/2025|4|Pretty good.|False
+107|4|24|11/2/2025|4|Very good.|False
+109|5|24|11/4/2025|3|It was okay.|False
+116|9|24|11/11/2025|4|Nice.|False
+118|11|24|11/13/2025|5|Excellent.|False
+119|12|24|11/14/2025|4|Very good.|False
+121|13|24|11/16/2025|4|Enjoyed.|False
+122|14|24|11/17/2025|3|Okay.|False
+124|16|24|11/19/2025|4|Good.|False
+125|17|24|11/20/2025|5|Excellent.|False
+128|20|24|11/23/2025|4|Pretty good.|False

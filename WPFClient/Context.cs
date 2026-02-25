@@ -19,7 +19,7 @@ namespace WPFClient
             }
         }
 
-        public ManyToManyRelation<Visitor, Book> VisitorWhislistedBooks { get; }
+        public ManyToManyRelation<Visitor, Book> VisitorWishlistedBooks { get; }
         public ManyToManyRelation<Author, Book> AuthorWrittenBooks { get; }
 
         public RelationManager RelationManager { get; }
@@ -34,13 +34,13 @@ namespace WPFClient
         private Context(
         )
         {
-            VisitorWhislistedBooks = new ManyToManyRelation<Visitor, Book>("VisitorWishlistedBooks.txt");
+            VisitorWishlistedBooks = new ManyToManyRelation<Visitor, Book>("VisitorWishlistedBooks.txt");
             AuthorWrittenBooks = new ManyToManyRelation<Author, Book>("AuthorWrittenBooks.txt");
 
             AddressDAO = new AddressDAO();
             AuthorDAO = new AuthorDAO(AuthorWrittenBooks);
-            BookDAO = new BookDAO(AuthorWrittenBooks, VisitorWhislistedBooks);
-            VisitorDAO = new VisitorDAO(VisitorWhislistedBooks);
+            BookDAO = new BookDAO(AuthorWrittenBooks, VisitorWishlistedBooks);
+            VisitorDAO = new VisitorDAO(VisitorWishlistedBooks);
             PurchaseDAO = new PurchaseDAO();
             PublisherDAO = new PublisherDAO();
 
@@ -52,7 +52,7 @@ namespace WPFClient
             VisitorDAO.ForEach(visitor =>
             {
                 visitor.WishlistedBooks = new List<Book>();
-                VisitorWhislistedBooks.Connect(visitor, BookDAO.GetAll(), visitor.WishlistedBooks.Add);
+                VisitorWishlistedBooks.Connect(visitor, BookDAO.GetAll(), visitor.WishlistedBooks.Add);
             });
 
             AuthorDAO.ForEach(author =>
@@ -70,7 +70,7 @@ namespace WPFClient
             BookDAO.ForEach(book =>
             {
                 book.Wishlisters = new List<Visitor>();
-                VisitorWhislistedBooks.Connect(book, VisitorDAO.GetAll(), book.Wishlisters.Add);
+                VisitorWishlistedBooks.Connect(book, VisitorDAO.GetAll(), book.Wishlisters.Add);
             });
 
             RelationManager.ConnectAll();
