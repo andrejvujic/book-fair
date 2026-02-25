@@ -1,9 +1,13 @@
 ﻿using Core.DAO;
+using Core.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 
@@ -12,10 +16,13 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
     public partial class VisitorWishlistedBooksAdd : Window
     {
         private VisitorDTO Visitor { get; }
+
+        public string RawSearchQuery { get; set; } = string.Empty;
+
         private HashSet<int> VisitorWishlistedBookIds { get; }
         private HashSet<int> VisitorPurchasedBookIds { get; }
 
-        public List<BookDTO> AllowedBooks { get; set; }
+        public ObservableCollection<BookDTO> AllowedBooks { get; set; } = new ObservableCollection<BookDTO>();
         private BookController BookController { get; }
         private VisitorController VisitorController { get; }
 
@@ -34,21 +41,63 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
                 App.Context.PurchaseDAO
             );
 
-            AllowedBooks = GetAllowedBooks();
-
             DataContext = this;
+
+            Update();
         }
 
-        private List<BookDTO> GetAllowedBooks()
+        void Update()
         {
             // Knjigu je moguce dodati na listu zelja iskljucivo ako nije prethodno
             // dodana na listu zelja i ako nije medju kupljenim knjigama.
-            return BookController
-                .GetWhere(
-                    (b) => !VisitorWishlistedBookIds.Contains(b.Id) && !VisitorPurchasedBookIds.Contains(b.Id)
-                )
-                .Select((b) => new BookDTO(b))
-                .ToList();
+            Render(
+                BookController
+                    .PerformSerach(
+                        RawSearchQuery,
+                        b => !VisitorWishlistedBookIds.Contains(b.Id) && !VisitorPurchasedBookIds.Contains(b.Id)
+                    )
+                    .PerformSorting()
+                    .GetWithPagination()
+            );
+        }
+
+        private void Render(List<Core.Models.Book> books)
+        {
+            AllowedBooks.Clear();
+            foreach (Core.Models.Book b in books)
+                AllowedBooks.Add(new BookDTO(b));
+        }
+
+        private void UpdateSearchQuery()
+        {
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            Update();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e) =>
+            UpdateSearchQuery();
+
+        private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            RawSearchQuery = string.Empty;
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+            Update();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox target = (TextBox)sender;
+            if (!string.IsNullOrWhiteSpace(target.Text)) return;
+            UpdateSearchQuery();
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateSearchQuery();
+                return;
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
