@@ -43,7 +43,7 @@ namespace WPFClient.Views.Publisher
 				AuthorController
 				.PerformSerach(
 					RawSearchQuery,
-					(e) => e.Books.Any((b) => PublisherBookIds.Contains(b.Id))
+					(e) => e.Books.Any((b) => PublisherBookIds.Contains(b.Id) && !b.IsDeleted)
 				)
 				.PerformSorting()
 				.GetAllWithoutPagination()
