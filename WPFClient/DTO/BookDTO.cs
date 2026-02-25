@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WPFClient.Localization;
 
 namespace WPFClient.DTO
 {
@@ -137,31 +138,22 @@ namespace WPFClient.DTO
         {
             get
             {
-                switch (Genre)
+                string key = Genre switch
                 {
-                    case BookGenre.FANTASY:
-                        return "Fantazija";
-                    case BookGenre.SCIENCE_FICTION:
-                        return "Naučna fantastika";
-                    case BookGenre.MYSTERY:
-                        return "Misterija";
-                    case BookGenre.THRILLER:
-                        return "Triler";
-                    case BookGenre.ROMANCE:
-                        return "Romansa";
-                    case BookGenre.HORROR:
-                        return "Horor";
-                    case BookGenre.COMEDY:
-                        return "Komedija";
-                    case BookGenre.NOVEL:
-                        return "Roman";
-                    case BookGenre.POETRY:
-                        return "Poezija";
-                    case BookGenre.DRAMA:
-                        return "Drama";
-                    default:
-                        return "Nepoznat";
-                }
+                    BookGenre.FANTASY => "Genre_Fantasy",
+                    BookGenre.SCIENCE_FICTION => "Genre_ScienceFiction",
+                    BookGenre.MYSTERY => "Genre_Mystery",
+                    BookGenre.THRILLER => "Genre_Thriller",
+                    BookGenre.ROMANCE => "Genre_Romance",
+                    BookGenre.HORROR => "Genre_Horror",
+                    BookGenre.COMEDY => "Genre_Comedy",
+                    BookGenre.NOVEL => "Genre_Novel",
+                    BookGenre.POETRY => "Genre_Poetry",
+                    BookGenre.DRAMA => "Genre_Drama",
+                    _ => "Genre_Unknown"
+                };
+
+                return TranslationSource.Instance[key];
             }
         }
 
