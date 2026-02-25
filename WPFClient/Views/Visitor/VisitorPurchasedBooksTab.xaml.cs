@@ -82,8 +82,8 @@ namespace WPFClient.Views.Visitor
             if (Visitor == null) return;
 
             Purchases.Clear();
-            List<Purchase> purchases = PurchaseController.GetByVisitorId(Visitor.Id);
-            foreach(Purchase purchase in purchases)
+            List<Core.Models.Purchase> purchases = PurchaseController.GetByVisitorId(Visitor.Id);
+            foreach(Core.Models.Purchase purchase in purchases)
                 Purchases.Add(
                     new PurchaseDTO(purchase)
                 );
@@ -119,14 +119,15 @@ namespace WPFClient.Views.Visitor
 			{
 				case MessageBoxResult.Yes:
 					PurchaseController.Delete(targetPurchase.Id);
-					Update();
 
 					Visitor.PurchasedBooks.Remove(targetPurchase.Book);
 					Visitor.WishlistedBooks.Add(targetPurchase.Book);
 					// Potrebno je knjigu koja je obrisana iz liste
 					// kupljenih knjiga prebaciti u listu želja.
 					VisitorController.Update(Visitor.ToModel());
-					break;
+
+                    Update();
+                    break;
 				case MessageBoxResult.No:
 					break;
 				default:

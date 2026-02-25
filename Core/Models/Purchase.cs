@@ -7,20 +7,20 @@ public class Purchase : IIdentifiable, ISerializable, IDeletable
     public int Id { get; set; }
 
     public int VisitorId { get; set;  }
-    public Visitor Visitor { get; set; }
+    public Visitor Visitor { get; set; } = new Visitor();
 
     public int BookId { get; set; }
-    public Book Book { get; set; }
+    public Book Book { get; set; } = new Book();
 
-    public DateOnly Date { get; set; }
+    public DateTime? Date { get; set; }
     public int Rating { get; set; } // TODO: Rating mora biti [1, 5]
-    public string Comment { get; set; }
+    public string Comment { get; set; } = string.Empty;
 
     public bool IsDeleted { get; set; }
 
     public Purchase() { }
 
-    public Purchase(Visitor visitor, Book book, DateOnly date, int rating, string comment)
+    public Purchase(Visitor visitor, Book book, DateTime date, int rating, string comment)
     {
         Visitor = visitor;
         VisitorId = visitor.Id;
@@ -49,7 +49,7 @@ public class Purchase : IIdentifiable, ISerializable, IDeletable
             Id.ToString(),
             VisitorId.ToString(),
             BookId.ToString(),
-            Date.ToString(),
+            (Date ?? DateTime.Now).ToString(),
             Rating.ToString(),
             Comment,
             IsDeleted.ToString(),
@@ -62,7 +62,7 @@ public class Purchase : IIdentifiable, ISerializable, IDeletable
         Id = int.Parse(values[0]);
         VisitorId = int.Parse(values[1]);
         BookId = int.Parse(values[2]);
-        Date = DateOnly.Parse(values[3]);
+        Date = DateTime.Parse(values[3]);
         Rating = int.Parse(values[4]);
         Comment = values[5];
         IsDeleted = values.Length > 6 ? bool.Parse(values[6]) : false;

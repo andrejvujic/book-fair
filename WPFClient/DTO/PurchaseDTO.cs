@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace WPFClient.DTO
 {
-    public class PurchaseDTO : DTO<Purchase>
+    public class PurchaseDTO : DTO<Purchase>, IValidatable
     {
         public PurchaseDTO() : base(new Purchase()) { }
 
@@ -18,7 +18,7 @@ namespace WPFClient.DTO
             BookId = purchase.BookId;
             Book = purchase.Book;
             Date = purchase.Date;
-            Rating = purchase.Rating;
+            RatingText = purchase.Rating > 0 ? purchase.Rating.ToString() : string.Empty;
             Comment = purchase.Comment;
         }
 
@@ -30,7 +30,7 @@ namespace WPFClient.DTO
                 VisitorId = VisitorId,
                 Book = Book ?? new Book(),
                 BookId = BookId,
-                Date = Date,
+                Date = Date ?? DateTime.Now,
                 Rating = Rating,
                 Comment = Comment,
                 Id = Id
@@ -47,7 +47,7 @@ namespace WPFClient.DTO
                 BookId = BookId,
                 Book = Book,
                 Date = Date,
-                Rating = Rating,
+                RatingText = RatingText,
                 Comment = Comment
             };
         }
@@ -112,8 +112,8 @@ namespace WPFClient.DTO
             }
         }
 
-        private DateOnly date = DateOnly.FromDateTime(DateTime.Now);
-        public DateOnly Date
+        private DateTime? date;
+        public DateTime? Date
         {
             get => date;
             set
@@ -121,20 +121,25 @@ namespace WPFClient.DTO
                 if (date == value) return;
                 date = value;
                 OnPropertyChanged(nameof(Date));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        private int rating;
-        public int Rating
+        private string ratingText = string.Empty;
+        public string RatingText
         {
-            get => rating;
+            get => ratingText;
             set
             {
-                if (rating == value) return;
-                rating = value;
+                if (ratingText == value) return;
+                ratingText = value;
+                OnPropertyChanged(nameof(RatingText));
                 OnPropertyChanged(nameof(Rating));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
+
+        public int Rating { get => int.TryParse(ratingText, out int rating) ? rating : 0; }
 
         private string comment = string.Empty;
         public string Comment
@@ -145,6 +150,17 @@ namespace WPFClient.DTO
                 if (comment == value) return;
                 comment = value;
                 OnPropertyChanged(nameof(Comment));
+                OnPropertyChanged(nameof(AllFieldsValid));
+            }
+        }
+
+        public bool AllFieldsValid
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(RatingText) &&
+                        int.TryParse(RatingText, out var r) && r >= 1 && r <= 5 &&
+                        Date != null && Date <= DateTime.Now;
             }
         }
     }

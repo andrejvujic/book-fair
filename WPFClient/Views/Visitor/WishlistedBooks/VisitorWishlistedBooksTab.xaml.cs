@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Purchase;
 using WPFClient.Views.Visitor.WishlistedBooks;
 
 namespace WPFClient.Views.Visitor
@@ -57,8 +58,10 @@ namespace WPFClient.Views.Visitor
 
         private void MakePurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            BookDTO? targetBook = WishlistedBooksDataGrid.SelectedItem as BookDTO;
-            if (targetBook == null)
+            if (Visitor == null) return;
+
+            BookDTO? book = WishlistedBooksDataGrid.SelectedItem as BookDTO;
+            if (book == null)
             {
                 MessageBox.Show(
                       "Nije odabrana knjiga za kupovinu. Potrebno je odabrati knjigu iz liste, a zatim odabrati opciju 'Kupovina'.",
@@ -68,6 +71,14 @@ namespace WPFClient.Views.Visitor
                   );
                 return;
             }
+
+            MakePurchase window = new MakePurchase(Visitor.ToModel(), book.ToModel());
+            window.Owner = Window.GetWindow(this);
+            if (!(window.ShowDialog() ?? false)) return;
+
+            Visitor.WishlistedBooks.RemoveAll(b => b.Id == book.Id);
+            Visitor.PurchasedBooks.Add(book.ToModel());
+            VisitorController.Update(Visitor.ToModel());
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
