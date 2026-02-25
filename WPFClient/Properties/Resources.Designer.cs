@@ -61,15 +61,6 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O aplikaciji.
-        /// </summary>
-        internal static string About {
-            get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Adresa.
         /// </summary>
         internal static string Address {
@@ -115,6 +106,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datum rođenja.
+        /// </summary>
+        internal static string DateOfBirth {
+            get {
+                return ResourceManager.GetString("DateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brisanje entiteta.
         /// </summary>
         internal static string DeleteEntity {
@@ -138,6 +138,15 @@ namespace WPFClient.Properties {
         internal static string EditEntity {
             get {
                 return ResourceManager.GetString("EditEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -183,6 +192,24 @@ namespace WPFClient.Properties {
         internal static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        internal static string ID {
+            get {
+                return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj lične karte.
+        /// </summary>
+        internal static string IDCardNumber {
+            get {
+                return ResourceManager.GetString("IDCardNumber", resourceCulture);
             }
         }
         
@@ -250,6 +277,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O aplikaciji.
+        /// </summary>
+        internal static string S {
+            get {
+                return ResourceManager.GetString("S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sačuvaj.
         /// </summary>
         internal static string Save {
@@ -273,6 +309,15 @@ namespace WPFClient.Properties {
         internal static string ShowAuthors {
             get {
                 return ResourceManager.GetString("ShowAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prikaži posjetioce.
+        /// </summary>
+        internal static string ShowVisitors {
+            get {
+                return ResourceManager.GetString("ShowVisitors", resourceCulture);
             }
         }
         

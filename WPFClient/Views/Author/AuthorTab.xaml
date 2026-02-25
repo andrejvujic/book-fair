@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		     xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <TextBlock x:Key="CurrentPageLabelText" Text="{l:Localization CurrentPage}" />
+        <l:LocalizedDateTimeConverter x:Key="LocalizedDateTimeConverter" />
+    </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -28,12 +33,19 @@
                   SelectionMode="Single">
 
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
-				<DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="150" SortMemberPath="FirstName"/>
-				<DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="150" SortMemberPath="LastName"/>
-				<DataGridTextColumn Header="Broj lične karte" Binding="{Binding IdCardNumber}" Width="150" CanUserSort="False"/>
-				<DataGridTextColumn Header="Datum rođenja" Binding="{Binding DateOfBirth, StringFormat=d}" Width="130" CanUserSort="False"/>
-				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" SortMemberPath="Email"/>
+                <DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
+                <DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*" SortMemberPath="FirstName"/>
+                <DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*" SortMemberPath="LastName"/>
+                <DataGridTextColumn Header="{l:Localization IDCardNumber}" Binding="{Binding IdCardNumber}" Width="Auto" CanUserSort="False"/>
+                <DataGridTextColumn Header="{l:Localization DateOfBirth}" Width="Auto" CanUserSort="False">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource LocalizedDateTimeConverter}">
+                            <Binding Path="DateOfBirth" />
+                            <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{l:Localization Email}" Binding="{Binding Email}" Width="*" SortMemberPath="Email"/>
 			</DataGrid.Columns>
 		</DataGrid>
 
@@ -48,17 +60,23 @@
 			<Button Grid.Column="0"
 					Width="128"
 					Height="32"
-					Content="Prethodna"
+					Content="{l:Localization PreviousPage}"
 					Click="PreviousPageButton_Click"
 					IsEnabled="{Binding AuthorController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-
-			<TextBlock x:Name="CurrentPageIndicator" Grid.Column="1" Text="{Binding AuthorController.CurrentPageText, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
+			<TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} — {1}">
+                        <Binding Source="{StaticResource CurrentPageLabelText}" Path="Text" />
+                        <Binding Path="AuthorController.CurrentPageText" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
 
 			<Button Grid.Column="2"
 					Width="128"
 					Height="32"
-					Content="Naredna"
+					Content="{l:Localization NextPage}"
 					Click="NextPageButton_Click"
 					IsEnabled="{Binding AuthorController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 		</Grid>
@@ -73,7 +91,7 @@
 			<Button Grid.Column="0"
 					Width="128"
 					Height="32"
-					Content="Prikaži posjetioce"
+					Content="{l:Localization ShowVisitors}"
 					Click="OpenVisitorsWindowButton_Click"/>
 		</Grid>
 
