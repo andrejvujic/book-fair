@@ -32,7 +32,7 @@ namespace WPFClient.Views.Publisher
             // Dobavlja sve autore koji ce u korisnickom interfejsu
             // predstavljati kandidate za sefa izdavaca.
             return AuthorController
-                .GetWhere(a => a.Id != Publisher.BossId)
+                .GetWhere(a => a.Id != Publisher.BossId && !a.IsDeleted)
                 .Select(a => new AuthorDTO(a))
                 .ToList();
         }
