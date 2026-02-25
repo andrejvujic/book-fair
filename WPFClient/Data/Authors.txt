@@ -83,7 +83,7 @@
 82|Tijana|Tijanić|3/15/1994 12:00:00 AM|32|065/1000-083|tijana.tijanic@gmail.com|LK10082|4|False
 83|Klara|Klarić|8/7/1990 12:00:00 AM|33|065/1000-084|klara.klaric@gmail.com|LK10083|7|False
 84|Ljubica|Ljubić|12/9/1985 12:00:00 AM|34|065/1000-085|ljubica.ljubic@gmail.com|LK10084|10|False
-85|Anja|Anjić|5/4/1998 12:00:00 AM|35|065/1000-086|anja.anjic@gmail.com|LK10085|2|False
+85|Anja|Anjić|5/4/1998 12:00:00 AM|35|065/1000-086|anja.anjic@gmail.com|LK10085|2|True
 86|Helena|Helenic|10/20/1989 12:00:00 AM|36|065/1000-087|helena.helenic@gmail.com|LK10086|8|False
 87|Iskra|Iskrić|6/11/1993 12:00:00 AM|37|065/1000-088|iskra.iskric@gmail.com|LK10087|5|False
 88|Marta|Martić|2/17/1986 12:00:00 AM|38|065/1000-089|marta.martic@gmail.com|LK10088|9|False
@@ -92,9 +92,9 @@
 91|Milena|Milenković|4/24/1984 12:00:00 AM|41|065/1000-092|milena.milenkovic@gmail.com|LK10091|10|True
 92|Ivona|Ivonić|7/30/1996 12:00:00 AM|42|065/1000-093|ivona.ivonic@gmail.com|LK10092|3|False
 93|Nela|Nelić|11/26/1992 12:00:00 AM|43|065/1000-094|nela.nelic@gmail.com|LK10093|5|False
-94|Jovana|Jović|2/12/1979 12:00:00 AM|44|065/1000-095|jovana.jovic@gmail.com|LK10094|14|False
+94|Jovana|Jović|2/12/1979 12:00:00 AM|44|065/1000-095|jovana.jovic@gmail.com|LK10094|14|True
 95|Lara|Laric|6/1/2000 12:00:00 AM|45|065/1000-096|lara.laric@gmail.com|LK10095|6|False
-96|Una|Urošević|8/18/1983 12:00:00 AM|46|065/1000-097|una.urosevic@gmail.com|LK10096|11|False
+96|Una|Urošević|8/18/1983 12:00:00 AM|46|065/1000-097|una.urosevic@gmail.com|LK10096|11|True
 97|Mina|Milenović|10/5/1988 12:00:00 AM|47|065/1000-098|mina.milenovic@gmail.com|LK10097|8|True
 98|Sara|Stojanović|12/22/1990 12:00:00 AM|48|065/1000-099|sara.stojanovic@gmail.com|LK10098|7|False
 99|Ena|Enić|3/17/1995 12:00:00 AM|49|065/1000-100|ena.enic@gmail.com|LK10099|4|False

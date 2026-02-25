@@ -11,7 +11,7 @@ namespace WPFClient.Views.Author.WrittenBooks
         public List<BookDTO> AllowedBooks { get; set; } = new List<BookDTO>();
         private AuthorDTO Author { get; }
 
-        private AuthorController AuthorController { get; } = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+        private AuthorController AuthorController { get; } = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
         private BookController BookController { get; } = new BookController(App.Context.BookDAO);
 
 

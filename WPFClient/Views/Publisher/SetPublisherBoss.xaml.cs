@@ -21,8 +21,7 @@ namespace WPFClient.Views.Publisher
 
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             Publisher = publisher;
-
-            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
             Authors = GetAvailableAuthors();
 
             DataContext = this;

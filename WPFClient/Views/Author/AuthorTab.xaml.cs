@@ -43,7 +43,7 @@ namespace WPFClient.Views.Author
 		public AuthorTab()
 		{
 			InitializeComponent();
-			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
 			AuthorController.Subscribe(this);
 			Update();
 		}
