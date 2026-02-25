@@ -57,7 +57,7 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
                         b => !VisitorWishlistedBookIds.Contains(b.Id) && !VisitorPurchasedBookIds.Contains(b.Id)
                     )
                     .PerformSorting()
-                    .GetWithPagination()
+                    .GetAllWithoutPagination()
             );
         }
 

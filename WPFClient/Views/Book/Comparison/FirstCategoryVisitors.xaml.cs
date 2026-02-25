@@ -87,7 +87,7 @@ namespace WPFClient.Views.Book.Comparison
                     (e) => e.WishlistedBooks.Any((b) => b.Id == FirstBookId) && e.WishlistedBooks.Any((b) => b.Id == SecondBookId)
                 )
                 .PerformSorting()
-                .GetWithPagination()
+                .GetAllWithoutPagination()
             );
         }
 
