@@ -76,8 +76,23 @@ namespace WPFClient
                 App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
-            BookController = new BookController(App.Context.BookDAO);
-            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
+            BookController = new BookController(
+                App.Context.BookDAO,
+                App.Context.VisitorDAO,
+                App.Context.AuthorDAO,
+                App.Context.PurchaseDAO
+            );
+
+            AuthorController = new AuthorController(
+                App.Context.AuthorDAO,
+                App.Context.AddressDAO,
+                App.Context.BookDAO
+            );
+
+            PublisherController = new PublisherController(App.Context.PublisherDAO);
+
+            PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
+
 
             // Tajmer koji se pokreće svake sekunde i osvježava
             // prikaz trenutnog datuma i vremena na statusnoj traci.
