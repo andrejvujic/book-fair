@@ -97,6 +97,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Poređenje knjiga.
+        /// </summary>
+        internal static string CompareBooks {
+            get {
+                return ResourceManager.GetString("CompareBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trenutna stranica.
         /// </summary>
         internal static string CurrentPage {
@@ -174,6 +183,15 @@ namespace WPFClient.Properties {
         internal static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prva knjiga — nije odabrana.
+        /// </summary>
+        internal static string FirstBookNotSelected {
+            get {
+                return ResourceManager.GetString("FirstBookNotSelected", resourceCulture);
             }
         }
         
@@ -435,6 +453,15 @@ namespace WPFClient.Properties {
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Druga knjiga — nije odabrana.
+        /// </summary>
+        internal static string SecondBookNotSelected {
+            get {
+                return ResourceManager.GetString("SecondBookNotSelected", resourceCulture);
             }
         }
         

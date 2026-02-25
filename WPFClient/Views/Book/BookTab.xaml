@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <TextBlock x:Key="CurrentPageLabelText" Text="{l:Localization CurrentPage}" />
         <l:LocalizedBookGenreConverter x:Key="LocalizedBookGenreConverter"/>
+        <l:LocalizedBookSelectionTextConverter x:Key="LocalizedBookSelectionTextConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -99,10 +100,26 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" MinWidth="192" Text="{Binding FirstBookSelectionText, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" MinWidth="192" Text="{Binding SecondBookSelectionText, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center"/>
 
-			<Button Grid.Row="0" Grid.Column="2"
+            <TextBlock Grid.Row="0" Grid.Column="0" MinWidth="192" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LocalizedBookSelectionTextConverter}" ConverterParameter="FirstBookNotSelected">
+                        <Binding Path="FirstBook" RelativeSource="{RelativeSource AncestorType=UserControl}" />
+                        <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" MinWidth="192" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LocalizedBookSelectionTextConverter}" ConverterParameter="SecondBookNotSelected">
+                        <Binding Path="SecondBook" RelativeSource="{RelativeSource AncestorType=UserControl}" />
+                        <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <Button Grid.Row="0" Grid.Column="2"
                 Width="24"
                 Height="24"
                 IsEnabled="{Binding IsSelectFirstBookButtonEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -153,7 +170,7 @@
 			<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                 Width="128"
                 Height="32"
-                Content="Poređenje knjiga"
+                Content="{l:Localization CompareBooks}"
                 Click="CompareButton_Click"/>
 		</Grid>
 	</Grid>

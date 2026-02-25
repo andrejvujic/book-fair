@@ -264,4 +264,13 @@
   <data name="Genre_Unknown" xml:space="preserve">
     <value>Nepoznato</value>
   </data>
+  <data name="FirstBookNotSelected" xml:space="preserve">
+    <value>First book — not selected</value>
+  </data>
+  <data name="SecondBookNotSelected" xml:space="preserve">
+    <value>Second book — not selected</value>
+  </data>
+  <data name="CompareBooks" xml:space="preserve">
+    <value>Compare books</value>
+  </data>
 </root>

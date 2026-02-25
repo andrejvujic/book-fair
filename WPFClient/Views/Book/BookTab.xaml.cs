@@ -25,8 +25,8 @@ namespace WPFClient.Views.Book
 
         public BookDTO? SelectedBook => BooksDataGrid.SelectedItem as BookDTO;
 
-		private BookDTO? FirstBook { get; set; }
-		private BookDTO? SecondBook { get; set; }
+		public BookDTO? FirstBook { get; set; }
+		public BookDTO? SecondBook { get; set; }
 
 		public static readonly DependencyProperty RawSearchQueryProperty =
            DependencyProperty.Register(
@@ -116,18 +116,15 @@ namespace WPFClient.Views.Book
             window.ShowDialog();
 
             FirstBook = null;
-            OnPropertyChanged(nameof(FirstBookSelectionText));
+            OnPropertyChanged(nameof(FirstBook));
             OnPropertyChanged(nameof(IsSelectFirstBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectFirstBookButtonEnabled));
 
             SecondBook = null;
-            OnPropertyChanged(nameof(SecondBookSelectionText));
+            OnPropertyChanged(nameof(SecondBook));
             OnPropertyChanged(nameof(IsSelectSecondBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
-
-        public string FirstBookSelectionText { get => FirstBook == null ? "Prva knjiga — nije odabrana" : FirstBook!.Title; }
-        public string SecondBookSelectionText { get => SecondBook == null ? "Druga knjiga — nije odabrana" : SecondBook!.Title; }
 
         public bool IsSelectFirstBookButtonEnabled => FirstBook == null;
         public bool IsSelectSecondBookButtonEnabled => SecondBook == null;
@@ -155,7 +152,7 @@ namespace WPFClient.Views.Book
             }
 
             FirstBook = book;
-            OnPropertyChanged(nameof(FirstBookSelectionText));
+            OnPropertyChanged(nameof(FirstBook));
             OnPropertyChanged(nameof(IsSelectFirstBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectFirstBookButtonEnabled));
         }
@@ -176,7 +173,7 @@ namespace WPFClient.Views.Book
             }
 
             SecondBook = book;
-            OnPropertyChanged(nameof(SecondBookSelectionText));
+            OnPropertyChanged(nameof(SecondBook));
             OnPropertyChanged(nameof(IsSelectSecondBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
@@ -184,7 +181,7 @@ namespace WPFClient.Views.Book
         private void DeselectFirstBookButton_Click(object sender, RoutedEventArgs e)
         {
             FirstBook = null;
-            OnPropertyChanged(nameof(FirstBookSelectionText));
+            OnPropertyChanged(nameof(FirstBook));
             OnPropertyChanged(nameof(IsSelectFirstBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectFirstBookButtonEnabled));
         }
@@ -192,7 +189,7 @@ namespace WPFClient.Views.Book
         private void DeselectSecondBookButton_Click(object sender, RoutedEventArgs e)
         {
             SecondBook = null;
-            OnPropertyChanged(nameof(SecondBookSelectionText));
+            OnPropertyChanged(nameof(SecondBook));
             OnPropertyChanged(nameof(IsSelectSecondBookButtonEnabled));
             OnPropertyChanged(nameof(IsDeselectSecondBookButtonEnabled));
         }
