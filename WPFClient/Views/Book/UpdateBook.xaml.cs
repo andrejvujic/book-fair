@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Views.Author;
 using WPFClient.Views.Publisher;
 
 namespace WPFClient.Views.Book
@@ -38,5 +41,39 @@ namespace WPFClient.Views.Book
             BookController.Update(Book.ToModel());
             Close();
         }
-    }
+
+        private void SelectAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+			var window = new SelectAuthor { Owner = this };
+			if (window.ShowDialog() != true) return;
+
+			var selected = window.SelectedAuthor!.ToModel();
+
+			if (Book.Authors == null) Book.Authors = new List<Core.Models.Author>();
+
+			Book.Authors.Add(selected);
+			Book.Authors = Book.Authors.ToList();
+		}
+
+		private void DeselectAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+			MessageBoxResult result = MessageBox.Show(
+	            "Da li ste sigurni da želite da uklonite autora?",
+	            "Ukloni autora",
+	            MessageBoxButton.YesNo,
+	            MessageBoxImage.Question
+            );
+
+			switch (result)
+			{
+				case MessageBoxResult.Yes:
+					Book.Authors = new List<Core.Models.Author>();
+					break;
+				case MessageBoxResult.No:
+					break;
+				default:
+					break;
+			}
+		}
+	}
 }

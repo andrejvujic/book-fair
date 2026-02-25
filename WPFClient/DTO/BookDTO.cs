@@ -246,8 +246,11 @@ namespace WPFClient.DTO
                 if (authors == value) return;
                 authors = value;
                 OnPropertyChanged(nameof(Authors));
-                OnPropertyChanged(nameof(FirstAndLastNamesOfAllAuthors));
-                OnPropertyChanged(nameof(AllFieldsValid));
+                OnPropertyChanged(nameof(HasGotAuthors));
+                OnPropertyChanged(nameof(HasntGotAuthors));
+                OnPropertyChanged(nameof(FirstAuthor));
+                OnPropertyChanged(nameof(FirstAuthorFullName));
+				OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
@@ -262,7 +265,21 @@ namespace WPFClient.DTO
             }
         }
 
-        public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
+        public Author? FirstAuthor => Authors?.FirstOrDefault();
+
+		public string FirstAuthorFullName
+		{
+			get
+			{
+				var a = Authors?.FirstOrDefault(x => x != null && !x.IsDeleted);
+				return a != null ? $"{a.FirstName} {a.LastName}" : string.Empty;
+			}
+		}
+
+		public bool HasGotAuthors { get => Authors != null && Authors.Count > 0; }
+        public bool HasntGotAuthors { get => Authors == null || Authors.Count == 0; }
+
+		public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
 
         private Publisher? publisher;
         public Publisher? Publisher
@@ -314,7 +331,8 @@ namespace WPFClient.DTO
             IsReleaseYearValid &&
             IsPriceValid &&
             IsNumberOfPagesValid &&
-            HasGotPublisher;
+            HasGotPublisher &&
+            HasGotAuthors;
         private bool IsIsbnValid
         {
             get
