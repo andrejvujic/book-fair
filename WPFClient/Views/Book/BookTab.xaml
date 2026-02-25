@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WPFClient.Views.Book"
+             xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <TextBlock x:Key="CurrentPageLabelText" Text="{l:Localization CurrentPage}" />
+        <l:LocalizedBookGenreConverter x:Key="LocalizedBookGenreConverter"/>
+        <l:LocalizedBookSelectionTextConverter x:Key="LocalizedBookSelectionTextConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,12 +34,19 @@
                   SelectionUnit="FullRow"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" Width="Auto" SortMemberPath="Isbn"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="*" SortMemberPath="Title"/>
-                <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto" SortMemberPath="ReleaseYear"/>
-                <DataGridTextColumn Header="Cijena" Binding="{Binding Price}" Width="Auto" SortMemberPath="Price"/>
-                <DataGridTextColumn Header="Žanr" Binding="{Binding GenreText}" Width="*" SortMemberPath="Genre"/>
+                <DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto" SortMemberPath="Id"/>
+                <DataGridTextColumn Header="{l:Localization ISBN}" Binding="{Binding Isbn}" Width="Auto" SortMemberPath="Isbn"/>
+                <DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Title}" Width="*" SortMemberPath="Title"/>
+                <DataGridTextColumn Header="{l:Localization ReleaseYear}" Binding="{Binding ReleaseYear}" Width="Auto" SortMemberPath="ReleaseYear"/>
+                <DataGridTextColumn Header="{l:Localization Price}" Binding="{Binding Price}" Width="Auto" SortMemberPath="Price"/>
+                <DataGridTextColumn Header="{l:Localization Genre}" Width="*" SortMemberPath="Genre">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource LocalizedBookGenreConverter}">
+                            <Binding Path="Genre" />
+                            <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -44,22 +57,28 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 
-			<Button Grid.Column="0"
-			Width="128"
-			Height="32"
-			Content="Prethodna"
-			Click="PreviousPageButton_Click"
-			IsEnabled="{Binding BookController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Button Grid.Column="0"
+                Width="128"
+                Height="32"
+                Content="{l:Localization PreviousPage}"
+                Click="PreviousPageButton_Click"
+                IsEnabled="{Binding BookController.PreviousPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-			<TextBlock x:Name="CurrentPageIndicator" Grid.Column="1" Text="{Binding BookController.CurrentPageText, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} — {1}">
+                        <Binding Source="{StaticResource CurrentPageLabelText}" Path="Text" />
+                        <Binding Path="BookController.CurrentPageText" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
 
-			<Button Grid.Column="2"
-			Width="128"
-			Height="32"
-			Content="Naredna"
-			Click="NextPageButton_Click"
-			IsEnabled="{Binding BookController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Button Grid.Column="2"
+                Width="128"
+                Height="32"
+                Content="{l:Localization NextPage}"
+                Click="NextPageButton_Click"
+                IsEnabled="{Binding BookController.NextPageExists, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 		</Grid>
 
 		<Separator Grid.Row="2" Margin="16,0" Height="32"/>
@@ -81,10 +100,26 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" MinWidth="192" Text="{Binding FirstBookSelectionText, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" MinWidth="192" Text="{Binding SecondBookSelectionText, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center"/>
 
-			<Button Grid.Row="0" Grid.Column="2"
+            <TextBlock Grid.Row="0" Grid.Column="0" MinWidth="192" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LocalizedBookSelectionTextConverter}" ConverterParameter="FirstBookNotSelected">
+                        <Binding Path="FirstBook" RelativeSource="{RelativeSource AncestorType=UserControl}" />
+                        <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" MinWidth="192" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LocalizedBookSelectionTextConverter}" ConverterParameter="SecondBookNotSelected">
+                        <Binding Path="SecondBook" RelativeSource="{RelativeSource AncestorType=UserControl}" />
+                        <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <Button Grid.Row="0" Grid.Column="2"
                 Width="24"
                 Height="24"
                 IsEnabled="{Binding IsSelectFirstBookButtonEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -135,7 +170,7 @@
 			<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left"
                 Width="128"
                 Height="32"
-                Content="Poređenje knjiga"
+                Content="{l:Localization CompareBooks}"
                 Click="CompareButton_Click"/>
 		</Grid>
 	</Grid>

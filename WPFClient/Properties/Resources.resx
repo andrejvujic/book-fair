@@ -213,4 +213,64 @@
   <data name="ID" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="Title" xml:space="preserve">
+    <value>Naziv</value>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN</value>
+  </data>
+  <data name="ReleaseYear" xml:space="preserve">
+    <value>Godina izdanja</value>
+  </data>
+  <data name="NumberOfPages" xml:space="preserve">
+    <value>Broj stranica</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Cijena</value>
+  </data>
+  <data name="Genre" xml:space="preserve">
+    <value>Žanr</value>
+  </data>
+  <data name="Genre_Fantasy" xml:space="preserve">
+    <value>Fantazija</value>
+  </data>
+  <data name="Genre_ScienceFiction" xml:space="preserve">
+    <value>Naučna fantastika</value>
+  </data>
+  <data name="Genre_Mystery" xml:space="preserve">
+    <value>Misterija</value>
+  </data>
+  <data name="Genre_Thriller" xml:space="preserve">
+    <value>Triler</value>
+  </data>
+  <data name="Genre_Romance" xml:space="preserve">
+    <value>Romantika</value>
+  </data>
+  <data name="Genre_Horror" xml:space="preserve">
+    <value>Horor</value>
+  </data>
+  <data name="Genre_Comedy" xml:space="preserve">
+    <value>Komedija</value>
+  </data>
+  <data name="Genre_Novel" xml:space="preserve">
+    <value>Roman</value>
+  </data>
+  <data name="Genre_Poetry" xml:space="preserve">
+    <value>Poezija</value>
+  </data>
+  <data name="Genre_Drama" xml:space="preserve">
+    <value>Drama</value>
+  </data>
+  <data name="Genre_Unknown" xml:space="preserve">
+    <value>Nepoznato</value>
+  </data>
+  <data name="FirstBookNotSelected" xml:space="preserve">
+    <value>Prva knjiga — nije odabrana</value>
+  </data>
+  <data name="SecondBookNotSelected" xml:space="preserve">
+    <value>Druga knjiga — nije odabrana</value>
+  </data>
+  <data name="CompareBooks" xml:space="preserve">
+    <value>Poređenje knjiga</value>
+  </data>
 </root>

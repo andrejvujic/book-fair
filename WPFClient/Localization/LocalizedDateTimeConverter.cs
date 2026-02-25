@@ -13,11 +13,11 @@ namespace WPFClient.Localization
 
             if (values[0] is DateTime dt)
             {
-                var ci = (values.Length > 1 && values[1] is CultureInfo c && c != null)
+                var cultureInfo = (values.Length > 1 && values[1] is CultureInfo c && c != null)
                     ? c
                     : CultureInfo.CurrentCulture;
 
-                return dt.ToString("d", ci);
+                return dt.ToString("d", cultureInfo);
             }
 
             return string.Empty;
