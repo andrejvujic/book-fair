@@ -187,6 +187,114 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Žanr.
+        /// </summary>
+        internal static string Genre {
+            get {
+                return ResourceManager.GetString("Genre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Komedija.
+        /// </summary>
+        internal static string Genre_Comedy {
+            get {
+                return ResourceManager.GetString("Genre_Comedy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drama.
+        /// </summary>
+        internal static string Genre_Drama {
+            get {
+                return ResourceManager.GetString("Genre_Drama", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fantazija.
+        /// </summary>
+        internal static string Genre_Fantasy {
+            get {
+                return ResourceManager.GetString("Genre_Fantasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horor.
+        /// </summary>
+        internal static string Genre_Horror {
+            get {
+                return ResourceManager.GetString("Genre_Horror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Misterija.
+        /// </summary>
+        internal static string Genre_Mystery {
+            get {
+                return ResourceManager.GetString("Genre_Mystery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roman.
+        /// </summary>
+        internal static string Genre_Novel {
+            get {
+                return ResourceManager.GetString("Genre_Novel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poezija.
+        /// </summary>
+        internal static string Genre_Poetry {
+            get {
+                return ResourceManager.GetString("Genre_Poetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Romantika.
+        /// </summary>
+        internal static string Genre_Romance {
+            get {
+                return ResourceManager.GetString("Genre_Romance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naučna fantastika.
+        /// </summary>
+        internal static string Genre_ScienceFiction {
+            get {
+                return ResourceManager.GetString("Genre_ScienceFiction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Triler.
+        /// </summary>
+        internal static string Genre_Thriller {
+            get {
+                return ResourceManager.GetString("Genre_Thriller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nepoznato.
+        /// </summary>
+        internal static string Genre_Unknown {
+            get {
+                return ResourceManager.GetString("Genre_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pomoć.
         /// </summary>
         internal static string Help {
@@ -210,6 +318,15 @@ namespace WPFClient.Properties {
         internal static string IDCardNumber {
             get {
                 return ResourceManager.GetString("IDCardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISBN.
+        /// </summary>
+        internal static string ISBN {
+            get {
+                return ResourceManager.GetString("ISBN", resourceCulture);
             }
         }
         
@@ -259,6 +376,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj stranica.
+        /// </summary>
+        internal static string NumberOfPages {
+            get {
+                return ResourceManager.GetString("NumberOfPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prethodna.
         /// </summary>
         internal static string PreviousPage {
@@ -268,11 +394,29 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cijena.
+        /// </summary>
+        internal static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izdavači.
         /// </summary>
         internal static string Publishers {
             get {
                 return ResourceManager.GetString("Publishers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Godina izdanja.
+        /// </summary>
+        internal static string ReleaseYear {
+            get {
+                return ResourceManager.GetString("ReleaseYear", resourceCulture);
             }
         }
         
@@ -327,6 +471,15 @@ namespace WPFClient.Properties {
         internal static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
