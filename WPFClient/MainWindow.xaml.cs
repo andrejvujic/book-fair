@@ -41,7 +41,7 @@ namespace WPFClient
         public string AuthorsTabSearchQuery { get => SelectedTabIndex == AUTHORS_TAB_INDEX ? RawSearchQuery : string.Empty; }
 
         private int SelectedTabIndex { get; set; }
-        private string CurrentTabIdentifier
+        public string CurrentTabIdentifier
         {
             get
             {
@@ -49,17 +49,18 @@ namespace WPFClient
                 switch (SelectedIndex)
                 {
                     case VISITORS_TAB_INDEX:
-                        return "Posjetioci";
+                        return TranslationSource.Instance["Visitors"];
                     case AUTHORS_TAB_INDEX:
-                        return "Autori";
+                        return TranslationSource.Instance["Authors"];
                     case BOOKS_TAB_INDEX:
-                        return "Knjige";
+                        return TranslationSource.Instance["Books"];
                     default:
                         return string.Empty;
                 }
             }
         }
 
+        public string CurrentDateTimeText { get => DateTime.Now.ToString("f", TranslationSource.Instance.CurrentCulture); }
         public MainWindow()
         {
             SetWindowSize();
@@ -75,18 +76,14 @@ namespace WPFClient
             BookController = new BookController(App.Context.BookDAO);
             AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
 
-            RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
-
-
             // Tajmer koji se pokreće svake sekunde i osvježava
             // prikaz trenutnog datuma i vremena na statusnoj traci.
             _timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(1)
             };
-            _timer.Tick += (s, e) => RefreshCurrentDateAndTime();
+            _timer.Tick += (s, e) => OnPropertyChanged(nameof(CurrentDateTimeText));
             _timer.Start();
-            RefreshCurrentDateAndTime(); // Inicijalno postavljanje trenutnog datuma i vremena prilikom pokretanja aplikacije.
         }
 
         private void SetWindowSize()
@@ -316,8 +313,7 @@ namespace WPFClient
 
             SelectedTabIndex = EntityTabs.SelectedIndex > -1 ? EntityTabs.SelectedIndex : 0;
             OnPropertyChanged(nameof(SelectedTabIndex));
-
-            RefreshCurrentTabIndicator();
+            OnPropertyChanged(nameof(CurrentTabIdentifier));
         }
 
         // Opcije menija za otvaranje tabova:
@@ -342,10 +338,18 @@ namespace WPFClient
         }
 
         private void SerbianMenuItem_Click(object sender, RoutedEventArgs e)
-            => (App.Current as App)?.ChangeLanguage(LanguageConfiguration.Serbian);
+        {
+            (App.Current as App)?.ChangeLanguage(LanguageConfiguration.Serbian);
+            OnPropertyChanged(nameof(CurrentDateTimeText));
+            OnPropertyChanged(nameof(CurrentTabIdentifier));
+        }
 
         private void EnglishMenuItem_Click(object sender, RoutedEventArgs e)
-           => (App.Current as App)?.ChangeLanguage(LanguageConfiguration.English);
+        {
+            (App.Current as App)?.ChangeLanguage(LanguageConfiguration.English);
+            OnPropertyChanged(nameof(CurrentDateTimeText));
+            OnPropertyChanged(nameof(CurrentTabIdentifier));
+        }
 
         private void UpdateSearchQuery()
         {
@@ -447,12 +451,6 @@ namespace WPFClient
         const int VISITORS_TAB_INDEX = 0;
         const int AUTHORS_TAB_INDEX = 1;
         const int BOOKS_TAB_INDEX = 2;
-
-        private void RefreshCurrentTabIndicator() =>
-            CurrentTabIndicator.Text = $"Sajam Knjiga — {CurrentTabIdentifier}";
-
-        private void RefreshCurrentDateAndTime() =>
-            CurrentDateAndTime.Text = DateTime.Now.ToString("HH:mm — d. M. yyyy.");
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
