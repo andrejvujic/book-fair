@@ -10,7 +10,7 @@
 9|Uroš|Urošević|7/7/1990 12:00:00 AM|9|065/1000-010|uros.urosevic@gmail.com|LK10009|6|False
 10|Filip|Filipović|2/25/1984 12:00:00 AM|10|065/1000-011|filip.filipovic@gmail.com|LK10010|10|False
 11|Bogdan|Bogdanović|11/30/1977 12:00:00 AM|11|065/1000-012|bogdan.bogdanovic@gmail.com|LK10011|16|False
-12|Nenad|Nenadović|6/2/1981 12:00:00 AM|12|065/1000-013|nenad.nenadovic@gmail.com|LK10012|12|False
+12|Nenad|Nenadović|6/2/1981 12:00:00 AM|12|065/1000-013|nenad.nenadovic@gmail.com|LK10012|12|True
 13|Ognjen|Ognjenović|9/18/1992 12:00:00 AM|13|065/1000-014|ognjen.ognjenovic@gmail.com|LK10013|4|False
 14|Ivan|Ivanović|1/6/1979 12:00:00 AM|14|065/1000-015|ivan.ivanovic@gmail.com|LK10014|15|True
 15|Andrej|Andrić|4/12/1993 12:00:00 AM|15|065/1000-016|andrej.andric@gmail.com|LK10015|4|True
