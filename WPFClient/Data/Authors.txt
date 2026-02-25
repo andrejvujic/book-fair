@@ -84,7 +84,7 @@
 83|Klara|Klarić|8/7/1990 12:00:00 AM|33|065/1000-084|klara.klaric@gmail.com|LK10083|7|False
 84|Ljubica|Ljubić|12/9/1985 12:00:00 AM|34|065/1000-085|ljubica.ljubic@gmail.com|LK10084|10|False
 85|Anja|Anjić|5/4/1998 12:00:00 AM|35|065/1000-086|anja.anjic@gmail.com|LK10085|2|True
-86|Helena|Helenic|10/20/1989 12:00:00 AM|36|065/1000-087|helena.helenic@gmail.com|LK10086|8|False
+86|Helena|Helenic|10/20/1989 12:00:00 AM|36|065/1000-087|helena.helenic@gmail.com|LK10086|8|True
 87|Iskra|Iskrić|6/11/1993 12:00:00 AM|37|065/1000-088|iskra.iskric@gmail.com|LK10087|5|False
 88|Marta|Martić|2/17/1986 12:00:00 AM|38|065/1000-089|marta.martic@gmail.com|LK10088|9|False
 89|Nevena|Nevenić|9/9/1991 12:00:00 AM|39|065/1000-090|nevena.nevenic@gmail.com|LK10089|6|False

@@ -23,7 +23,7 @@ namespace WPFClient.Controllers
 
         public void Delete(AuthorDTO author)
         {
-            foreach(Book book in _bookDAO.GetWhere(b => b.Authors.Any(a=>a.Id == author.Id)))
+            foreach(Book book in author.Books)
             {
                 book.Authors.RemoveAll(a => a.Id == author.Id);
                 _bookDAO.Update(book);

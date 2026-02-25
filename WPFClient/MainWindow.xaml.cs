@@ -25,6 +25,7 @@ namespace WPFClient
         private BookController BookController { get; }
         private AuthorController AuthorController { get; }
         private PublisherController PublisherController { get; }
+        private PurchaseController PurchaseController { get; }
 
 		private string rawSearchQuery = string.Empty;
         public string RawSearchQuery
@@ -74,9 +75,10 @@ namespace WPFClient
                 App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
-            BookController = new BookController(App.Context.BookDAO);
+            BookController = new BookController(App.Context.BookDAO,App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
             AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
             PublisherController = new PublisherController(App.Context.PublisherDAO);
+            PurchaseController = new PurchaseController(App.Context.PurchaseDAO);
 
 			RefreshCurrentTabIndicator(); // Postavlja tekst indikatora trenutnog taba za statusnu traku.
 
@@ -242,6 +244,7 @@ namespace WPFClient
                         );
                         return;
                     }
+
                     MessageBoxResult bookResult = MessageBox.Show(
                         "Da li ste sigurni da želite da obrišete knjigu?",
                         "Brisanje knjige",
@@ -252,9 +255,8 @@ namespace WPFClient
                     switch (bookResult)
                     {
                         case MessageBoxResult.Yes:
-                            targetBook.IsDeleted = true;
-							BookController.Update(targetBook.ToModel());
-                            break;
+							BookController.Delete(targetBook);
+							break;
                         case MessageBoxResult.No:
                             break;
                         default:

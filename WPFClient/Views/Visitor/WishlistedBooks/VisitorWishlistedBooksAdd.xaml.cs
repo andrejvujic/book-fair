@@ -26,7 +26,7 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
             VisitorWishlistedBookIds = new HashSet<int>(Visitor.WishlistedBooks.Select((b) => b.Id));
             VisitorPurchasedBookIds = new HashSet<int>(Visitor.PurchasedBooks.Select((b) => b.Id));
 
-            BookController = new BookController(App.Context.BookDAO);
+            BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
             VisitorController = new VisitorController(
                 App.Context.VisitorDAO,
                 App.Context.AddressDAO,

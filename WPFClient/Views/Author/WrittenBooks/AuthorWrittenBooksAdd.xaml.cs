@@ -12,7 +12,7 @@ namespace WPFClient.Views.Author.WrittenBooks
         private AuthorDTO Author { get; }
 
         private AuthorController AuthorController { get; } = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
-        private BookController BookController { get; } = new BookController(App.Context.BookDAO);
+        private BookController BookController { get; } = new BookController(App.Context.BookDAO,App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
 
 
         public AuthorWrittenBooksAdd(AuthorDTO author)
