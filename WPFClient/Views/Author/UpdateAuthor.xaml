@@ -4,17 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Author"
+		xmlns:l="clr-namespace:WPFClient.Localization"
 		xmlns:dto="clr-namespace:WPFClient.DTO"
 		d:DataContext="{d:DesignInstance Type=dto:AuthorDTO}"
         xmlns:awb="clr-namespace:WPFClient.Views.Author.WrittenBooks"
         mc:Ignorable="d"
-        Title="Izmjena autora"
+        Title="{l:Localization EditAuthor}"
         Height="512"
         Width="640"
         WindowStartupLocation="CenterOwner">
     <Grid>
         <TabControl Margin="16">
-            <TabItem Header="Informacije">
+			<TabItem Header="{l:Localization Informations}">
 				<Grid Margin="16">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*"/>
@@ -43,37 +44,37 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 
-						<Label Grid.Row="0" Grid.Column="0" Content="Ime*" VerticalAlignment="Center"/>
+						<Label Grid.Row="0" Grid.Column="0" Content="{l:Localization FirstNameRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="0" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="1" Grid.Column="0" Content="Prezime*" VerticalAlignment="Center"/>
+						<Label Grid.Row="1" Grid.Column="0" Content="{l:Localization LastNameRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="1" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.LastName, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="2" Grid.Column="0" Content="Datum rođenja*" VerticalAlignment="Center"/>
+						<Label Grid.Row="2" Grid.Column="0" Content="{l:Localization DateOfBirthRequired}" VerticalAlignment="Center"/>
 						<DatePicker Grid.Row="2" Grid.Column="1"
                     Margin="0,4"
                     SelectedDate="{Binding Path=Author.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="3" Grid.Column="0" Content="Broj telefona*" VerticalAlignment="Center"/>
+						<Label Grid.Row="3" Grid.Column="0" Content="{l:Localization PhoneNumberRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="3" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="4" Grid.Column="0" Content="Email adresa*" VerticalAlignment="Center"/>
+						<Label Grid.Row="4" Grid.Column="0" Content="{l:Localization EmailRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="4" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.Email, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="5" Grid.Column="0" Content="Broj lične karte*" VerticalAlignment="Center"/>
+						<Label Grid.Row="5" Grid.Column="0" Content="{l:Localization IDCardNumberRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="5" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.IdCardNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
-						<Label Grid.Row="6" Grid.Column="0" Content="Godine iskustva*" VerticalAlignment="Center"/>
+						<Label Grid.Row="6" Grid.Column="0" Content="{l:Localization YearsOfExperienceRequired}" VerticalAlignment="Center"/>
 						<TextBox Grid.Row="6" Grid.Column="1"
                  Margin="0,4"
                  Text="{Binding Path=Author.YearsOfExperience, UpdateSourceTrigger=PropertyChanged}"/>
@@ -81,7 +82,7 @@
 						<Separator Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
                    Margin="0,8,0,8"/>
 
-						<Label Grid.Row="8" Grid.Column="0" Content="Država, grad*" VerticalAlignment="Center"/>
+						<Label Grid.Row="8" Grid.Column="0" Content="{l:Localization CountryCityRequired}" VerticalAlignment="Center"/>
 						<Grid Grid.Row="8" Grid.Column="1">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition/>
@@ -98,7 +99,7 @@
                      Text="{Binding Path=Author.AddressCity, UpdateSourceTrigger=PropertyChanged}"/>
 						</Grid>
 
-						<Label Grid.Row="9" Grid.Column="0" Content="Ulica, broj*" VerticalAlignment="Center"/>
+						<Label Grid.Row="9" Grid.Column="0" Content="{l:Localization StreetNumberRequired}" VerticalAlignment="Center"/>
 						<Grid Grid.Row="9" Grid.Column="1">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*"/>
@@ -127,13 +128,13 @@
 						<Button Grid.Column="1"
                 Width="128"
                 Height="32"
-                Content="Otkaži"
+                Content="{l:Localization Cancel}"
                 IsCancel="True"/>
 
 						<Button Grid.Column="3"
                 Width="128"
                 Height="32"
-                Content="Sačuvaj"
+                Content="{l:Localization Save}"
                 IsDefault="True"
                 Click="SaveButton_Click"
                 IsEnabled="{Binding Author.AllFieldsValid}"/>
@@ -141,7 +142,7 @@
 				</Grid>
 			</TabItem>
 
-            <TabItem Header="Knjige">
+			<TabItem Header="{l:Localization Books}">
                 <awb:AuthorWrittenBooksTab Author="{Binding Author}"/>
             </TabItem>
         </TabControl>

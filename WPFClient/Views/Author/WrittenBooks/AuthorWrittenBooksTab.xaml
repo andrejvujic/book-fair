@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFClient.Views.Author.WrittenBooks"
+             xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -21,13 +22,13 @@
             <Button Grid.Column="0"
                  Width="128"
                  Height="32"
-                 Content="Dodaj"
+                 Content="{l:Localization Add}"
                  Click="AddButton_Click"/>
 
             <Button Grid.Column="2"
                  Width="128"
                  Height="32"
-                 Content="Obriši"
+                 Content="{l:Localization Cancel}"
                  Click="DeleteButton_Click"/>
 
         </Grid>
@@ -45,10 +46,10 @@
                SelectionUnit="FullRow"
                SelectionMode="Extended">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ISBN" Width="Auto" Binding="{Binding Isbn}"/>
-                    <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Title}"/>
-                    <DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
-                    <DataGridTextColumn Header="Žanr" Binding="{Binding GenreText}" Width="*"/>
+					<DataGridTextColumn Header="{l:Localization ISBN}" Width="Auto" Binding="{Binding Isbn}"/>
+					<DataGridTextColumn Header="{l:Localization Title}" Width="*" Binding="{Binding Title}"/>
+					<DataGridTextColumn Header="{l:Localization ReleaseYear}" Binding="{Binding ReleaseYear}" Width="Auto"/>
+					<DataGridTextColumn Header="{l:Localization Genre}" Binding="{Binding GenreText}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

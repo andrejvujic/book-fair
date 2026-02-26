@@ -11,6 +11,7 @@ using Core.Models;
 using Core.Observer;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Visitor;
 
 namespace WPFClient.Views.Author
@@ -110,8 +111,8 @@ namespace WPFClient.Views.Author
             if (targetAuthor == null)
             {
                 MessageBox.Show(
-                    "Nije odabran autor za prikaz posjetilaca. Potrebno je odabrati autora iz liste.",
-                    "Nije odabran autor",
+					TranslationSource.Instance["NoAuthorSelectedText"],
+					TranslationSource.Instance["NoAuthorSelectedCaption"],
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );

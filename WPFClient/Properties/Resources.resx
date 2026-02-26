@@ -273,4 +273,68 @@
   <data name="CompareBooks" xml:space="preserve">
     <value>Poređenje knjiga</value>
   </data>
+  <data name="AddAuthor" xml:space="preserve">
+    <value>Dodavanje autora</value>
+  </data>
+  <data name="FirstNameRequired" xml:space="preserve">
+    <value>Ime*</value>
+  </data>
+  <data name="LastNameRequired" xml:space="preserve">
+    <value>Prezime*</value>
+  </data>
+  <data name="DateOfBirthRequired" xml:space="preserve">
+    <value>Datum rođenja*</value>
+  </data>
+  <data name="PhoneNumberRequired" xml:space="preserve">
+    <value>Broj telefona*</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Email adresa*</value>
+  </data>
+  <data name="IDCardNumberRequired" xml:space="preserve">
+    <value>Broj lične karte*</value>
+  </data>
+  <data name="YearsOfExperienceRequired" xml:space="preserve">
+    <value>Godine iskustva*</value>
+  </data>
+  <data name="CountryCityRequired" xml:space="preserve">
+    <value>Država, grad*</value>
+  </data>
+  <data name="StreetNumberRequired" xml:space="preserve">
+    <value>Ulica, broj*</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Otkaži</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>* — polje je obavezno</value>
+  </data>
+  <data name="EditAuthor" xml:space="preserve">
+    <value>Izmjena autora</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informacije</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Obriši</value>
+  </data>
+  <data name="AddBook" xml:space="preserve">
+    <value>Dodavanje knjige</value>
+  </data>
+  <data name="NoAuthorSelectedText" xml:space="preserve">
+    <value>Nije odabran autor za prikaz posjetilaca. Potrebno je odabrati autora iz liste.</value>
+  </data>
+  <data name="NoAuthorSelectedCaption" xml:space="preserve">
+    <value>Nije odabran autor</value>
+  </data>
+  <data name="EditAuthorText" xml:space="preserve">
+    <value>Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.
+</value>
+  </data>
+  <data name="EditAuthorCaption" xml:space="preserve">
+    <value>Nije odabran autor</value>
+  </data>
 </root>

@@ -191,8 +191,8 @@ namespace WPFClient
 					if (targetAuthor == null)
 					{
 						MessageBox.Show(
-							"Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.",
-							"Nije odabran autor",
+					        TranslationSource.Instance["EditAuthorText"],
+                            TranslationSource.Instance["EditAuthorCaption"],
 							MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
