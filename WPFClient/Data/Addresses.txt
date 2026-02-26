@@ -1,4 +1,4 @@
-0|Tone Hadžića|25|Novi Sad|Serbia|False
+0|Heroja Pinkija|38|Novi Sad|Serbia|True
 1|Dr Sime Miloševića|5|Novi Sad|Serbia|False
 2|Koste Racina|27|Novi Sad|Serbia|False
 3|Janka Čmelika|10|Novi Sad|Serbia|False

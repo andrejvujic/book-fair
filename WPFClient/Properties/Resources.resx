@@ -331,10 +331,60 @@
     <value>Nije odabran autor</value>
   </data>
   <data name="EditAuthorText" xml:space="preserve">
-    <value>Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.
-</value>
+    <value>Nije odabran autor za izmjenu. Potrebno je odabrati autora iz liste.</value>
   </data>
   <data name="EditAuthorCaption" xml:space="preserve">
     <value>Nije odabran autor</value>
+  </data>
+  <data name="EditBookText" xml:space="preserve">
+    <value>Nije odabrana knjiga za izmjenu. Potrebno je odabrati knjigu iz liste.</value>
+  </data>
+  <data name="EditBookCaption" xml:space="preserve">
+    <value>Nije odabrana knjiga</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Ukloni</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.</value>
+  </data>
+  <data name="AddBookCaption" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga</value>
+  </data>
+  <data name="DeleteBookQ" xml:space="preserve">
+    <value>Da li ste sigurni da želite da uklonite odabrane knjige sa autora?</value>
+  </data>
+  <data name="DeleteBookQCaption" xml:space="preserve">
+    <value>Uklanjanje knjiga</value>
+  </data>
+  <data name="NoBookSelectedDelete" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga za brisanje. Potrebno je odabrati barem jednu knjigu iz liste, a zatim odabrati opciju 'Ukloni'.</value>
+  </data>
+  <data name="NoBookSelectedDeleteCaption" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga</value>
+  </data>
+  <data name="NoSelectedAuthorText" xml:space="preserve">
+    <value>Nije odabran autor za brisanje. Potrebno je odabrati autora iz liste.</value>
+  </data>
+  <data name="NoSelectedAuthorCaption" xml:space="preserve">
+    <value>Nije odabran autor</value>
+  </data>
+  <data name="DeleteAuthorNotPossibleBookText" xml:space="preserve">
+    <value>Brisanje odabranog autora nije moguće zato što u sistemu postoje knjige koje je napisao. Potrebno je prvo obrisati knjige ovog autora.</value>
+  </data>
+  <data name="DeleteAuthorNotPossibleBookCaption" xml:space="preserve">
+    <value>Brisanje nije moguće</value>
+  </data>
+  <data name="DeleteAuthorNotPossiblePublisherText" xml:space="preserve">
+    <value>Brisanje odabranog autora nije moguće zato što je on direktor izdavačke kuće. Potrebno je prvo promijeniti direktora izdavačke kuće.</value>
+  </data>
+  <data name="DeleteAuthorQ" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete autora?</value>
+  </data>
+  <data name="DeleteAuthorQCaption" xml:space="preserve">
+    <value>Brisanje autora</value>
+  </data>
+  <data name="VisitorDisplay" xml:space="preserve">
+    <value>Prikaz posjetilaca</value>
   </data>
 </root>

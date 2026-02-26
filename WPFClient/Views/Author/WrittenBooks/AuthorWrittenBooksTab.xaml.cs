@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Author.WrittenBooks
 {
@@ -73,9 +74,9 @@ namespace WPFClient.Views.Author.WrittenBooks
             if (books.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(
-                    "Da li ste sigurni da želite da uklonite odabrane knjige sa autora?",
-                    "Uklanjanje knjiga",
-                    MessageBoxButton.YesNo,
+                    TranslationSource.Instance["DeleteBookQ"],
+                    TranslationSource.Instance["DeleteBookQCaption"],
+					MessageBoxButton.YesNo,
                     MessageBoxImage.Question
                 );
 
@@ -101,9 +102,9 @@ namespace WPFClient.Views.Author.WrittenBooks
             }
 
             MessageBox.Show(
-                  "Nije odabrana nijedna knjiga za brisanje. Potrebno je odabrati barem jednu knjigu iz liste, a zatim odabrati opciju 'Obriši'.",
-                  "Nije odabrana nijedna knjiga",
-                  MessageBoxButton.OK,
+				  TranslationSource.Instance["NoBookSelectedDelete"],
+				  TranslationSource.Instance["NoBookSelectedDeleteCaption"],
+				  MessageBoxButton.OK,
                   MessageBoxImage.Warning
              );
         }
