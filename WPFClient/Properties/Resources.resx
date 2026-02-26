@@ -462,7 +462,6 @@
   <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
     <value>Prikaz posjetilaca</value>
   </data>
-<<<<<<< HEAD
   <data name="GenreRequired" xml:space="preserve">
     <value>Žanr</value>
   </data>
@@ -563,5 +562,4 @@
   <data name="CompareBooksErrorTitle2" xml:space="preserve">
     <value>Neispravna selekcija knjiga</value>
   </data>
->>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
 </root>
