@@ -427,4 +427,7 @@
   <data name="CommentRequired" xml:space="preserve">
     <value>Komentar*</value>
   </data>
+  <data name="WishlistedBooksAddWindowTitle" xml:space="preserve">
+    <value>Dodavanje knjige</value>
+  </data>
 </root>

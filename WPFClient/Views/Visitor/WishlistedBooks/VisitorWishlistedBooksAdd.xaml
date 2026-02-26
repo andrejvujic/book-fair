@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Visitor.WishlistedBooks"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Dodavanje knjige"
+        Title="{l:Localization WishlistedBooksAddWindowTitle}"
         Height="480"
         Width="480"
         WindowStartupLocation="CenterOwner">
@@ -63,8 +64,8 @@
                   SelectionUnit="FullRow"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Width="*" Binding="{Binding Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="{l:Localization ISBN}" Width="*" Binding="{Binding Isbn}"/>
+                <DataGridTextColumn Header="{l:Localization Title}" Width="*" Binding="{Binding Title}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -79,13 +80,13 @@
             <Button Grid.Column="1"
                     Width="128"
                     Height="32"
-                    Content="Odustani"
+                    Content="{l:Localization Cancel}"
                     IsCancel="True"/>
 
             <Button Grid.Column="3"
                     Width="128"
                     Height="32"
-                    Content="Dodaj"
+                    Content="{l:Localization Add}"
                     Click="AddButton_Click"/>
         </Grid>
     </Grid>

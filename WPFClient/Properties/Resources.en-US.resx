@@ -426,4 +426,7 @@
   <data name="CommentRequired" xml:space="preserve">
     <value>Comment*</value>
   </data>
+  <data name="WishlistedBooksAddWindowTitle" xml:space="preserve">
+    <value>Add book</value>
+  </data>
 </root>
