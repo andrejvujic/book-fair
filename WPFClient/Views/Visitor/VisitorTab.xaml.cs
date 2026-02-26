@@ -7,6 +7,7 @@ using Core.Helpers.Sorting;
 using Core.Observer;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Author;
 
 namespace WPFClient.Views.Visitor
@@ -115,9 +116,9 @@ namespace WPFClient.Views.Visitor
 			if (targetVisitor == null)
 			{
 				MessageBox.Show(
-					"Nije odabran posetilac za prikaz autora. Potrebno je odabrati posetioca iz liste.",
-					"Nije odabran posetilac",
-					MessageBoxButton.OK,
+					TranslationSource.Instance["VisitorNotSelectedBody"],
+                    TranslationSource.Instance["VisitorNotSelectedTitle"],
+                    MessageBoxButton.OK,
 					MessageBoxImage.Warning
 				);
 				return;
