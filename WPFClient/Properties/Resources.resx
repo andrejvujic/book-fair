@@ -357,9 +357,6 @@
   <data name="StreetAndStreetNumberRequired" xml:space="preserve">
     <value>Ulica, Broj*</value>
   </data>
-  <data name="CountryAndCityRequired" xml:space="preserve">
-    <value>Država, Grad*</value>
-  </data>
   <data name="VisitorInformation" xml:space="preserve">
     <value>Informacije</value>
   </data>
@@ -503,5 +500,20 @@
   </data>
   <data name="AuthorConnectedVisitors" xml:space="preserve">
     <value>Posjetioci koji na listi želja imaju knjige koje je napisao</value>
+  </data>
+  <data name="CompareBooksErrorTitle1" xml:space="preserve">
+    <value>Neispravna selekcija knjiga</value>
+  </data>
+  <data name="CompareBooksErrorBody2" xml:space="preserve">
+    <value>Nije moguće selektovati istu knjigu dva puta. Potrebno je selektovati dvije različite knjige.</value>
+  </data>
+  <data name="CountryAndCityRequired" xml:space="preserve">
+    <value>Država, Grad*</value>
+  </data>
+  <data name="CompareBooksErrorBody1" xml:space="preserve">
+    <value>Potrebno je selektovati dvije knjige iz liste kako bi se izvršilo upoređivanje knjiga.</value>
+  </data>
+  <data name="CompareBooksErrorTitle2" xml:space="preserve">
+    <value>Neispravna selekcija knjiga</value>
   </data>
 </root>
