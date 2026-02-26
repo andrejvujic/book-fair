@@ -102,13 +102,8 @@ namespace WPFClient.Controllers
             return this;
         }
 
-        private List<T> Paginate(int pageNumber)
-        {
-            return FilteredEntities
-                .Paginate(pageNumber, PageSize);
-        }
-
-        public List<T> GetWithPagination() => Paginate(PageNumber);
+        public List<T> GetWithPagination() => FilteredEntities
+                .Paginate(PageNumber, PageSize);
 
         public List<T> GetAllWithoutPagination() => FilteredEntities;
 
