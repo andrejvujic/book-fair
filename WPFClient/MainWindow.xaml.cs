@@ -138,12 +138,6 @@ namespace WPFClient
                     addAuthorDialog.ShowDialog();
                     break;
                 default:
-                    MessageBox.Show(
-                        "Dodavanje novih entiteta nije implementirano za ovaj tab.",
-                        "Funkcionalnost nije implementirana",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information
-                    );
                     break;
             }
         }
@@ -158,8 +152,8 @@ namespace WPFClient
                     if (targetVisitor == null)
                     {
                         MessageBox.Show(
-                            "Nije odabran posjetilac za izmjenu. Potrebno je odabrati pojsetioca iz liste.",
-                            "Nije odabran posjetilac",
+                            TranslationSource.Instance["VisitorNotSelectedBody"],
+                            TranslationSource.Instance["VisitorNotSelectedTitle"],
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
@@ -175,9 +169,9 @@ namespace WPFClient
                     if (targetBook == null)
                     {
                         MessageBox.Show(
-						    TranslationSource.Instance["EditBookText"],
-							TranslationSource.Instance["EditBookCaption"],
-							MessageBoxButton.OK,
+                            TranslationSource.Instance["BookNotSelectedBody"],
+                            TranslationSource.Instance["BookNotSelectedTitle"],
+                            MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
                         return;
@@ -191,9 +185,9 @@ namespace WPFClient
 					if (targetAuthor == null)
 					{
 						MessageBox.Show(
-					        TranslationSource.Instance["EditAuthorText"],
-                            TranslationSource.Instance["EditAuthorCaption"],
-							MessageBoxButton.OK,
+                            TranslationSource.Instance["AuthorNotSelectedBody"],
+                            TranslationSource.Instance["AuthorNotSelectedTitle"],
+                            MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
 						return;
@@ -215,8 +209,8 @@ namespace WPFClient
                     if (targetVisitor == null)
                     {
                         MessageBox.Show(
-                            "Nije odabran posjetilac za brisanje. Potrebno je odabrati posjetioca iz liste.",
-                            "Nije odabran posjetilac",
+                            TranslationSource.Instance["VisitorNotSelectedBody"],
+                            TranslationSource.Instance["VisitorNotSelectedTitle"],
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
@@ -224,8 +218,8 @@ namespace WPFClient
                     }
 
                     MessageBoxResult result = MessageBox.Show(
-                        "Da li ste sigurni da želite da obrišete posjetioca?",
-                        "Brisanje posjetioca",
+                        TranslationSource.Instance["DeleteVisitorConfirmationBody"],
+                        TranslationSource.Instance["Warning"],
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question
                     );
@@ -247,8 +241,8 @@ namespace WPFClient
                     if (targetBook == null)
                     {
                         MessageBox.Show(
-                            "Nije odabrana knjiga za brisanje. Potrebno je odabrati knjigu iz liste.",
-                            "Nije odabrana knjiga",
+                            TranslationSource.Instance["BookNotSelectedBody"],
+                            TranslationSource.Instance["BookNotSelectedTitle"],
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
@@ -256,8 +250,8 @@ namespace WPFClient
                     }
 
                     MessageBoxResult bookResult = MessageBox.Show(
-                        "Da li ste sigurni da želite da obrišete knjigu?",
-                        "Brisanje knjige",
+                        TranslationSource.Instance["DeleteBookConfirmationBody"],
+                        TranslationSource.Instance["Warning"],
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question
                     );
@@ -279,8 +273,8 @@ namespace WPFClient
 					if (targetAuthor == null)
 					{
 						MessageBox.Show(
-                            TranslationSource.Instance["NoSelectedAuthorText"],
-							TranslationSource.Instance["NoSelectedAuthorCaption"],
+                            TranslationSource.Instance["AuthorNotSelectedBody"],
+							TranslationSource.Instance["AuthorNotSelectedTitle"],
 							MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
@@ -291,8 +285,8 @@ namespace WPFClient
 					if (hasActiveBook)
 					{
 						MessageBox.Show(
-							TranslationSource.Instance["DeleteAuthorNotPossibleBookText"],
-							TranslationSource.Instance["DeleteAuthorNotPossibleBookCaption"],
+							TranslationSource.Instance["DeleteAuthorNotPossibleBookBody"],
+							TranslationSource.Instance["DeleteAuthorNotPossibleTitle"],
 							MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
@@ -302,8 +296,8 @@ namespace WPFClient
                     bool isBoss = PublisherController.GetWhere(p => !p.IsDeleted && p.Boss != null && p.Boss.Id == targetAuthor.Id).Count > 0;
                     if (isBoss) {
                         MessageBox.Show(
-							TranslationSource.Instance["DeleteAuthorNotPossiblePublisherText"],
-							TranslationSource.Instance["DeleteAuthorNotPossibleBookCaption"],
+							TranslationSource.Instance["DeleteAuthorNotPossiblePublisherBody"],
+							TranslationSource.Instance["DeleteAuthorNotPossibleTitle"],
 							MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
@@ -311,8 +305,8 @@ namespace WPFClient
 					}
 
 					MessageBoxResult authorResult = MessageBox.Show(
-						TranslationSource.Instance["DeleteAuthorQ"],
-						TranslationSource.Instance["DeleteAuthorQCaption"],
+						TranslationSource.Instance["DeleteAuthorConfirmationBody"],
+						TranslationSource.Instance["Warning"],
 						MessageBoxButton.YesNo,
 						MessageBoxImage.Question
 					);
