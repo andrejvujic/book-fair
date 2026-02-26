@@ -507,7 +507,6 @@
   <data name="NoAuthorText" xml:space="preserve">
     <value>Nije odabran autor. Potrebno je odabrati autora iz liste.</value>
   </data>
-=======
   <data name="VisitorNotSelectedTitle" xml:space="preserve">
     <value>Nije odabran posjetilac</value>
   </data>
