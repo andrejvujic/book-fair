@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:WPFClient.Views.Book.Comparison"
              xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <TextBlock x:Key="NumberOfVisitorsLabelText" Text="{l:Localization NumberOfVisitors}" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -57,16 +60,20 @@
                 SelectionUnit="FullRow"
                 SelectionMode="Single">
             <DataGrid.Columns>
-				<DataGridTextColumn Header="{l:Localization MembershipCardNumber }" Binding="{Binding MembershipCardNumber}" Width="*"/>
-				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
-				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
-				<DataGridTextColumn Header="{l:Localization Status}" Binding="{Binding StatusText}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization MembershipCardNumber }" Binding="{Binding MembershipCardNumber}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization Status}" Binding="{Binding StatusText}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Grid.Row="2" Margin="0,16,0,16"
-                   Text="{Binding Visitors.Count, RelativeSource={RelativeSource AncestorType=UserControl},
-                          StringFormat=Broj posjetilaca — {0}}"
-        />
+        <TextBlock Grid.Row="2" Margin="0,16,0,16">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} — {1}">
+                    <Binding Path="Text" Source="{StaticResource NumberOfVisitorsLabelText}" />
+                    <Binding Path="Visitors.Count" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
     </Grid>
 </UserControl>

@@ -498,11 +498,11 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="VisitorFirstSecond" xml:space="preserve">
-    <value>Visitors who have both the first and second book on their wish list</value>
+  <data name="VisitorsSecondCategory" xml:space="preserve">
+    <value>Visitors who wishlisted both the first and the second book</value>
   </data>
-  <data name="VisitorFirst" xml:space="preserve">
-    <value>Visitors who bought the first book but did not buy the second book</value>
+  <data name="VisitorsFirstCategory" xml:space="preserve">
+    <value>Visitors who bought the first book but not the second</value>
   </data>
   <data name="NoAuthorText" xml:space="preserve">
     <value>No author selected. It is necessary to select an author from the list.</value>
@@ -563,5 +563,8 @@
   </data>
   <data name="DeleteAuthor" xml:space="preserve">
     <value>Deletion of the author</value>
+  </data>
+  <data name="ComparingBooks" xml:space="preserve">
+    <value>Comparing books</value>
   </data>
 </root>
