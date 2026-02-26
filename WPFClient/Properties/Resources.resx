@@ -564,4 +564,20 @@
   <data name="DeleteAuthor" xml:space="preserve">
     <value>Brisanje Autora</value>
   </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>            Sajam Knjiga je predmetni projekat na predmetu Osnovi informacionih sistema i softverskog inženjerstva.
+            Aplikacija je razvijena od strane studenata:</value>
+  </data>
+  <data name="AndrejBiography" xml:space="preserve">
+    <value>Rođen u Doboju 17. februara 2004. godine.
+Autor nagrađivanih softverskih rješenja.
+Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u
+Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
+  </data>
+  <data name="RadovanBiography" xml:space="preserve">
+    <value>Rođen u Kikindi 31. maja 2004. godine. Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u Novom Sadu. Tokom obrazovanja učesnik mnogobrojnih takmičenja i vannastavnih aktivnosti.</value>
+  </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>Sajam Knjiga v1.0.0 — mart 2026</value>
+  </data>
 </root>

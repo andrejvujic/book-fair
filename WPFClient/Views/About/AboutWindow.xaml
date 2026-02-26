@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.About"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="O Aplikaciji" Height="512" Width="640" WindowStartupLocation="CenterOwner">
+        Title="{l:Localization About}" Height="512" Width="640" WindowStartupLocation="CenterOwner">
 
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -15,10 +16,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,16">
-            Sajam Knjiga je predmetni projekat na predmetu Osnovi informacionih sistema i softverskog inženjerstva.
-            Aplikacija je razvijena od strane studenata:
-        </TextBlock>
+		<TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,16" Text="{l:Localization Introduction}">
+		</TextBlock>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,12 +37,8 @@
 
                 <TextBlock Grid.Row="0" Text="Andrej Vujić" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
 
-                <TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
-                    Rođen u Doboju 17. februara 2004. godine.
-                    Autor nagrađivanih softverskih rješenja.
-                    Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u
-                    Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.
-                </TextBlock>
+				<TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap" Text="{l:Localization AndrejBiography}"/>
+                
 
                 <TextBlock Grid.Row="4" TextAlignment="Center">
                     <Hyperlink NavigateUri="mailto:vujic.ra130.2023@uns.ac.rs">
@@ -63,10 +58,8 @@
 
                 <TextBlock Grid.Row="0" Text="Radovan Vitomirov" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
 
-                <TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap">
-                    Rođen u Kikindi 31. maja 2004. godine. Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u Novom Sadu. Tokom obrazovanja
-                    učesnik mnogobrojnih takmičenja i vannastavnih aktivnosti.
-                </TextBlock>
+				<TextBlock Grid.Row="2" Margin="8,0" TextAlignment="Center" TextWrapping="Wrap" Text="{l:Localization RadovanBiography}"/>
+                
 
                 <TextBlock Grid.Row="4" TextAlignment="Center">
                     <Hyperlink NavigateUri="mailto:vujic.ra130.2023@uns.ac.rs">
@@ -78,6 +71,6 @@
 
         <Separator Grid.Row="2"  Height="16" />
 
-        <TextBlock Grid.Row="3" Text="Sajam Knjiga v1.0.0 — mart 2026" HorizontalAlignment="Center"/>
+		<TextBlock Grid.Row="3" Text="{l:Localization AppVersion}" HorizontalAlignment="Center"/>
     </Grid>
 </Window>
