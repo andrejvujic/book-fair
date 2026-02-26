@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFClient.Views.Book.Comparison"
+             xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -56,10 +57,10 @@
                 SelectionUnit="FullRow"
                 SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}" Width="*"/>
-                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-                <DataGridTextColumn Header="Kategorija" Binding="{Binding StatusText}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization MembershipCardNumber}" Binding="{Binding MembershipCardNumber}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization Status}" Binding="{Binding StatusText}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 

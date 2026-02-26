@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Author;
 using WPFClient.Views.Book.Comparison;
 
@@ -106,7 +107,7 @@ namespace WPFClient.Views.Book
             // Potrebno je selektovati dvije knjige da bi se otvorio prozor za uporedjivanje.
             if (FirstBook == null || SecondBook == null)
             {
-                MessageBox.Show("Potrebno je selektovati dvije knjige iz liste kako bi se izvršilo upoređivanje knjiga.", "Neispravna selekcija knjiga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["NoSelectedBookCompareText"], TranslationSource.Instance["NoSelectedBookCompareCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -141,13 +142,13 @@ namespace WPFClient.Views.Book
             BookDTO? book = (BookDTO?)BooksDataGrid.SelectedItem;
             if (book == null)
             {
-                MessageBox.Show("Potrebno je odabrati knjigu iz liste.", "Knjiga nije odabrana", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["NoSelectedBookText"], TranslationSource.Instance["NoSelectedBookCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (SecondBook != null && SecondBook.Id == book.Id)
             {
-                MessageBox.Show("Nije moguće odabrati dva puta istu knjigu. Potrebno je odabrati dvije različite knjige.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["SameBookImpossible"], TranslationSource.Instance["Error"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -162,13 +163,13 @@ namespace WPFClient.Views.Book
             BookDTO? book = (BookDTO?)BooksDataGrid.SelectedItem;
             if (book == null)
             {
-                MessageBox.Show("Potrebno je odabrati knjigu iz liste.", "Knjiga nije odabrana", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["NoSelectedBookText"], TranslationSource.Instance["NoSelectedBookCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (FirstBook != null && FirstBook.Id == book.Id)
             {
-                MessageBox.Show("Nije moguće odabrati dva puta istu knjigu. Potrebno je odabrati dvije različite knjige iz liste kako bi se izvršilo poređenje.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["SameBookImpossible"], TranslationSource.Instance["Error"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

@@ -480,4 +480,49 @@
   <data name="VisitorDisplay" xml:space="preserve">
     <value>Prikaz posjetilaca</value>
   </data>
+  <data name="GenreRequired" xml:space="preserve">
+    <value>Žanr</value>
+  </data>
+  <data name="PublisherRequired" xml:space="preserve">
+    <value>Izdavač*</value>
+  </data>
+  <data name="ReleaseYearRequired" xml:space="preserve">
+    <value>Godina izdanja*</value>
+  </data>
+  <data name="NumberOfPagesRequired" xml:space="preserve">
+    <value>Broj stranica*</value>
+  </data>
+  <data name="EditBook" xml:space="preserve">
+    <value>Izmena knjige</value>
+  </data>
+  <data name="AuthorRequired" xml:space="preserve">
+    <value>Autor*</value>
+  </data>
+  <data name="NoSelectedBookCompareText" xml:space="preserve">
+    <value>Potrebno je selektovati dvije knjige iz liste kako bi se izvršilo upoređivanje knjiga.</value>
+  </data>
+  <data name="NoSelectedBookCompareCaption" xml:space="preserve">
+    <value>Neispravna selekcija knjiga</value>
+  </data>
+  <data name="NoSelectedBookText" xml:space="preserve">
+    <value>Potrebno je odabrati knjigu iz liste.</value>
+  </data>
+  <data name="NoSelectedBookCaption" xml:space="preserve">
+    <value>Knjiga nije odabrana</value>
+  </data>
+  <data name="SameBookImpossible" xml:space="preserve">
+    <value>Nije moguće odabrati dva puta istu knjigu. Potrebno je odabrati dvije različite knjige.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Greška</value>
+  </data>
+  <data name="VisitorFirstSecond" xml:space="preserve">
+    <value>Posjetioci koju na listi želja imaju i prvu i drugu knjigu</value>
+  </data>
+  <data name="VisitorFirst" xml:space="preserve">
+    <value>Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu</value>
+  </data>
+  <data name="NoAuthorText" xml:space="preserve">
+    <value>Nije odabran autor. Potrebno je odabrati autora iz liste.</value>
+  </data>
 </root>

@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Book"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         xmlns:gm="clr-namespace:WPFClient.Views.Book.GenreMapping"
         mc:Ignorable="d"
-        Title="Dodavanje Knjige"
+        Title="{l:Localization AddBook}"
         Height="640"
         Width="480"
         WindowStartupLocation="CenterOwner">
@@ -30,17 +31,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="ISBN*" VerticalAlignment="Center"/>
+			<Label Grid.Row="0" Grid.Column="0" Content="{l:Localization ISBNRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1"
                      Margin="0,4"
                      Text="{Binding Path=Book.Isbn, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Naziv*" VerticalAlignment="Center"/>
+			<Label Grid.Row="1" Grid.Column="0" Content="{l:Localization TitleRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1"
                      Margin="0,4"
                      Text="{Binding Path=Book.Title, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Žanr*" VerticalAlignment="Center"/>
+			<Label Grid.Row="2" Grid.Column="0" Content="{l:Localization GenreRequired}" VerticalAlignment="Center"/>
             <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,4" 
                 DisplayMemberPath="Label"
                 SelectedValuePath="Value"
@@ -48,7 +49,7 @@
                 SelectedValue="{Binding Path=Book.Genre, UpdateSourceTrigger=PropertyChanged}"
             />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Izdavač*" VerticalAlignment="Center"/>
+			<Label Grid.Row="3" Grid.Column="0" Content="{l:Localization PublisherRequired}" VerticalAlignment="Center"/>
             <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -88,17 +89,17 @@
                 </Button>
             </Grid>
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Godina izdanja*" VerticalAlignment="Center"/>
+			<Label Grid.Row="4" Grid.Column="0" Content="{l:Localization ReleaseYearRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="4" Grid.Column="1"
                      Margin="0,4"
                      Text="{Binding Path=Book.ReleaseYear, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="5" Grid.Column="0" Content="Cijena (RSD)*" VerticalAlignment="Center"/>
+			<Label Grid.Row="5" Grid.Column="0" Content="{l:Localization PriceRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="5" Grid.Column="1"
                      Margin="0,4"
                      Text="{Binding Path=Book.Price, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Broj stranica*" VerticalAlignment="Center"/>
+			<Label Grid.Row="6" Grid.Column="0" Content="{l:Localization NumberOfPagesRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="6" Grid.Column="1"
                      Margin="0,4"
                      Text="{Binding Path=Book.NumberOfPages, UpdateSourceTrigger=PropertyChanged}"/>
@@ -119,7 +120,7 @@
                     <Button Grid.Column="0"
                             Width="128"
                             Height="32"
-                            Content="Otkaži"
+                            Content="{l:Localization Cancel}"
                             IsCancel="True"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"/>
@@ -127,7 +128,7 @@
                     <Button Grid.Column="2"
                             Width="128"
                             Height="32"
-                            Content="Dodaj"
+                            Content="{l:Localization Add}"
                             IsDefault="True"
                             Click="AddButton_Click"
                             IsEnabled="{Binding Book.AllFieldsValid}"/>
@@ -140,7 +141,7 @@
                    Height="32"
                    Background="LightGray">
             <StatusBarItem>
-                <TextBlock Text="* — polje je obavezno" VerticalAlignment="Center"/>
+				<TextBlock Text="{l:Localization FieldRequired}" VerticalAlignment="Center"/>
             </StatusBarItem>
         </StatusBar>
 

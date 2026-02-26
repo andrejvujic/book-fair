@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Author;
 using WPFClient.Views.Publisher;
 
@@ -58,8 +59,8 @@ namespace WPFClient.Views.Book
 		private void DeselectAuthorButton_Click(object sender, RoutedEventArgs e)
         {
 			MessageBoxResult result = MessageBox.Show(
-	            "Da li ste sigurni da želite da uklonite autora?",
-	            "Ukloni autora",
+	            TranslationSource.Instance["DeleteAuthorQ"],
+                TranslationSource.Instance["DeleteAuthorQCaption"] ,
 	            MessageBoxButton.YesNo,
 	            MessageBoxImage.Question
             );

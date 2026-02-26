@@ -480,4 +480,49 @@
   <data name="VisitorDisplay" xml:space="preserve">
     <value>Visitor display</value>
   </data>
+  <data name="GenreRequired" xml:space="preserve">
+    <value>Genre*</value>
+  </data>
+  <data name="PublisherRequired" xml:space="preserve">
+    <value>Publisher*</value>
+  </data>
+  <data name="ReleaseYearRequired" xml:space="preserve">
+    <value>Release year*</value>
+  </data>
+  <data name="NumberOfPagesRequired" xml:space="preserve">
+    <value>Number of pages*</value>
+  </data>
+  <data name="EditBook" xml:space="preserve">
+    <value>Edit book</value>
+  </data>
+  <data name="AuthorRequired" xml:space="preserve">
+    <value>Author*</value>
+  </data>
+  <data name="NoSelectedBookCompareText" xml:space="preserve">
+    <value>It is necessary to select two books from the list in order to compare the books.</value>
+  </data>
+  <data name="NoSelectedBookCompareCaption" xml:space="preserve">
+    <value>Incorrect book selection</value>
+  </data>
+  <data name="NoSelectedBookText" xml:space="preserve">
+    <value>You need to select a book from the list.</value>
+  </data>
+  <data name="NoSelectedBookCaption" xml:space="preserve">
+    <value>The book is not selected</value>
+  </data>
+  <data name="SameBookImpossible" xml:space="preserve">
+    <value>It is not possible to select the same book twice. It is necessary to choose two different books.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="VisitorFirstSecond" xml:space="preserve">
+    <value>Visitors who have both the first and second book on their wish list</value>
+  </data>
+  <data name="VisitorFirst" xml:space="preserve">
+    <value>Visitors who bought the first book but did not buy the second book</value>
+  </data>
+  <data name="NoAuthorText" xml:space="preserve">
+    <value>No author selected. It is necessary to select an author from the list.</value>
+  </data>
 </root>
