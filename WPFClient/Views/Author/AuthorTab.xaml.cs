@@ -111,8 +111,8 @@ namespace WPFClient.Views.Author
             if (targetAuthor == null)
             {
                 MessageBox.Show(
-					TranslationSource.Instance["NoAuthorSelectedText"],
-					TranslationSource.Instance["NoAuthorSelectedCaption"],
+					TranslationSource.Instance["AuthorNotSelectedBody"],
+					TranslationSource.Instance["AuthorNotSelectedTitle"],
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );

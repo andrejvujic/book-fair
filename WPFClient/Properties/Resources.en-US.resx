@@ -357,9 +357,6 @@
   <data name="StreetAndStreetNumberRequired" xml:space="preserve">
     <value>Street, Number*</value>
   </data>
-  <data name="CountryAndCityRequired" xml:space="preserve">
-    <value>Country, City*</value>
-  </data>
   <data name="VisitorInformation" xml:space="preserve">
     <value>Information</value>
   </data>
@@ -438,17 +435,8 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="AddBookText" xml:space="preserve">
-    <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
-  </data>
-  <data name="AddBookCaption" xml:space="preserve">
+  <data name="AddBookTitle" xml:space="preserve">
     <value>No books selected</value>
-  </data>
-  <data name="DeleteBookQ" xml:space="preserve">
-    <value>Are you sure you want to remove the selected books from the author?</value>
-  </data>
-  <data name="DeleteBookQCaption" xml:space="preserve">
-    <value>Removal of books</value>
   </data>
   <data name="NoBookSelectedDelete" xml:space="preserve">
     <value>No books have been selected for deletion. You need to select at least one book from the list and then select the 'Remove' option.</value>
@@ -462,23 +450,71 @@
   <data name="NoSelectedAuthorCaption" xml:space="preserve">
     <value>No author selected</value>
   </data>
-  <data name="DeleteAuthorNotPossibleBookText" xml:space="preserve">
-    <value>Deleting the selected author is not possible because there are books written by him in the system. It is necessary to delete the books of this author first.</value>
+  <data name="DeleteAuthorNotPossibleBookBody" xml:space="preserve">
+    <value>Action not allowed. It is not possible to delete the selected author. The selected authors has written books which are still registered in the system.</value>
   </data>
-  <data name="DeleteAuthorNotPossibleBookCaption" xml:space="preserve">
-    <value>Deletion is not possible</value>
+  <data name="DeleteAuthorNotPossibleTitle" xml:space="preserve">
+    <value>Author can not be deleted</value>
   </data>
-  <data name="DeleteAuthorNotPossiblePublisherText" xml:space="preserve">
-    <value>Deleting the selected author is not possible because he is the director of the publishing house. It is necessary to change the director of the publishing house first.</value>
+  <data name="DeleteAuthorNotPossiblePublisherBody" xml:space="preserve">
+    <value>Action not allowed. It is not possible to delete the selected author. The selected author is the boss of a publisher registered in the system.</value>
   </data>
-  <data name="DeleteAuthorQ" xml:space="preserve">
-    <value>Are you sure you want to delete the author?</value>
+  <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
+    <value>Visitors</value>
   </data>
-  <data name="DeleteAuthorQCaption" xml:space="preserve">
-    <value>Delete author</value>
+  <data name="VisitorNotSelectedTitle" xml:space="preserve">
+    <value>Visitor not selected</value>
   </data>
-  <data name="VisitorDisplay" xml:space="preserve">
-    <value>Visitor display</value>
+  <data name="VisitorNotSelectedBody" xml:space="preserve">
+    <value>Visitor not selected. You must select a visitor from the list.</value>
+  </data>
+  <data name="DeleteVisitorConfirmationBody" xml:space="preserve">
+    <value>Are you sure that you would like to delete the selected visitor?</value>
+  </data>
+  <data name="DeleteBookConfirmationBody" xml:space="preserve">
+    <value>Are you sure that you would like to delete the selected book?</value>
+  </data>
+  <data name="AuthorNotSelectedTitle" xml:space="preserve">
+    <value>Author not selected</value>
+  </data>
+  <data name="AuthorNotSelectedBody" xml:space="preserve">
+    <value>Author not selected. You must select an author from the list.</value>
+  </data>
+  <data name="DeleteAuthorConfirmationBody" xml:space="preserve">
+    <value>Are you sure that you would like to delete the selected author?</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
+  </data>
+  <data name="VisitorConnectedAuthors" xml:space="preserve">
+    <value>Authors whose books were wishlisted by</value>
+  </data>
+  <data name="VisitorConnectedAuthorsWindowTitle" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="NumberOfAuthors" xml:space="preserve">
+    <value>Number of authors</value>
+  </data>
+  <data name="NumberOfVisitors" xml:space="preserve">
+    <value>Number of visitors</value>
+  </data>
+  <data name="AuthorConnectedVisitors" xml:space="preserve">
+    <value>Visitors which have wishlisted books written by</value>
+  </data>
+  <data name="CompareBooksErrorTitle1" xml:space="preserve">
+    <value>Invalid book selection</value>
+  </data>
+  <data name="CompareBooksErrorBody2" xml:space="preserve">
+    <value>You can not select the same book twice. You must select two different books.</value>
+  </data>
+  <data name="CountryAndCityRequired" xml:space="preserve">
+    <value>Country, City*</value>
+  </data>
+  <data name="CompareBooksErrorBody1" xml:space="preserve">
+    <value>You need to select two books from the list in order to compare them.</value>
+  </data>
+  <data name="CompareBooksErrorTitle2" xml:space="preserve">
+    <value>Invalid book selection</value>
   </data>
   <data name="GenreRequired" xml:space="preserve">
     <value>Genre*</value>

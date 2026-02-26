@@ -357,9 +357,6 @@
   <data name="StreetAndStreetNumberRequired" xml:space="preserve">
     <value>Ulica, Broj*</value>
   </data>
-  <data name="CountryAndCityRequired" xml:space="preserve">
-    <value>Država, Grad*</value>
-  </data>
   <data name="VisitorInformation" xml:space="preserve">
     <value>Informacije</value>
   </data>
@@ -403,10 +400,10 @@
     <value>Upozorenje</value>
   </data>
   <data name="RemoveBookFromWishlistConfirmationBody" xml:space="preserve">
-    <value>Da li ste sigurni da želite da obrišete označenu knjigu sa liste želja?</value>
+    <value>Da li ste sigurni da želite da obrišete odabranu knjigu sa liste želja?</value>
   </data>
   <data name="DeletePurchaseConfirmationBody" xml:space="preserve">
-    <value>Da li ste sigurni da želite da obrišete označenu kupovinu? </value>
+    <value>Da li ste sigurni da želite da obrišete odabranu kupovinu? </value>
   </data>
   <data name="MakePurchaseWindowTitle" xml:space="preserve">
     <value>Kupovina knjige</value>
@@ -438,17 +435,8 @@
   <data name="Remove" xml:space="preserve">
     <value>Ukloni</value>
   </data>
-  <data name="AddBookText" xml:space="preserve">
-    <value>Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.</value>
-  </data>
-  <data name="AddBookCaption" xml:space="preserve">
+  <data name="AddBookTitle" xml:space="preserve">
     <value>Nije odabrana nijedna knjiga</value>
-  </data>
-  <data name="DeleteBookQ" xml:space="preserve">
-    <value>Da li ste sigurni da želite da uklonite odabrane knjige sa autora?</value>
-  </data>
-  <data name="DeleteBookQCaption" xml:space="preserve">
-    <value>Uklanjanje knjiga</value>
   </data>
   <data name="NoBookSelectedDelete" xml:space="preserve">
     <value>Nije odabrana nijedna knjiga za brisanje. Potrebno je odabrati barem jednu knjigu iz liste, a zatim odabrati opciju 'Ukloni'.</value>
@@ -462,24 +450,19 @@
   <data name="NoSelectedAuthorCaption" xml:space="preserve">
     <value>Nije odabran autor</value>
   </data>
-  <data name="DeleteAuthorNotPossibleBookText" xml:space="preserve">
+  <data name="DeleteAuthorNotPossibleBookBody" xml:space="preserve">
     <value>Brisanje odabranog autora nije moguće zato što u sistemu postoje knjige koje je napisao. Potrebno je prvo obrisati knjige ovog autora.</value>
   </data>
-  <data name="DeleteAuthorNotPossibleBookCaption" xml:space="preserve">
-    <value>Brisanje nije moguće</value>
+  <data name="DeleteAuthorNotPossibleTitle" xml:space="preserve">
+    <value>Brisanje autora nije moguće</value>
   </data>
-  <data name="DeleteAuthorNotPossiblePublisherText" xml:space="preserve">
+  <data name="DeleteAuthorNotPossiblePublisherBody" xml:space="preserve">
     <value>Brisanje odabranog autora nije moguće zato što je on direktor izdavačke kuće. Potrebno je prvo promijeniti direktora izdavačke kuće.</value>
   </data>
-  <data name="DeleteAuthorQ" xml:space="preserve">
-    <value>Da li ste sigurni da želite da obrišete autora?</value>
-  </data>
-  <data name="DeleteAuthorQCaption" xml:space="preserve">
-    <value>Brisanje autora</value>
-  </data>
-  <data name="VisitorDisplay" xml:space="preserve">
+  <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
     <value>Prikaz posjetilaca</value>
   </data>
+<<<<<<< HEAD
   <data name="GenreRequired" xml:space="preserve">
     <value>Žanr</value>
   </data>
@@ -525,4 +508,60 @@
   <data name="NoAuthorText" xml:space="preserve">
     <value>Nije odabran autor. Potrebno je odabrati autora iz liste.</value>
   </data>
+=======
+  <data name="VisitorNotSelectedTitle" xml:space="preserve">
+    <value>Nije odabran posjetilac</value>
+  </data>
+  <data name="VisitorNotSelectedBody" xml:space="preserve">
+    <value>Nije odabran posjetilac. Potrebno je odbrati posjetioca iz liste.</value>
+  </data>
+  <data name="DeleteVisitorConfirmationBody" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete odabranog posjetioca?</value>
+  </data>
+  <data name="DeleteBookConfirmationBody" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete odabranu knjigu?</value>
+  </data>
+  <data name="AuthorNotSelectedTitle" xml:space="preserve">
+    <value>Autor nije odabran</value>
+  </data>
+  <data name="AuthorNotSelectedBody" xml:space="preserve">
+    <value>Nije odabran autor. Potrebno je odabrati autora iz liste.</value>
+  </data>
+  <data name="DeleteAuthorConfirmationBody" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete odabranog autora?</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.</value>
+  </data>
+  <data name="VisitorConnectedAuthors" xml:space="preserve">
+    <value>Autori čije knjige su na listi želja posjetioca</value>
+  </data>
+  <data name="VisitorConnectedAuthorsWindowTitle" xml:space="preserve">
+    <value>Prikaz autora</value>
+  </data>
+  <data name="NumberOfAuthors" xml:space="preserve">
+    <value>Broj autora</value>
+  </data>
+  <data name="NumberOfVisitors" xml:space="preserve">
+    <value>Broj posjetilaca</value>
+  </data>
+  <data name="AuthorConnectedVisitors" xml:space="preserve">
+    <value>Posjetioci koji na listi želja imaju knjige koje je napisao</value>
+  </data>
+  <data name="CompareBooksErrorTitle1" xml:space="preserve">
+    <value>Neispravna selekcija knjiga</value>
+  </data>
+  <data name="CompareBooksErrorBody2" xml:space="preserve">
+    <value>Nije moguće selektovati istu knjigu dva puta. Potrebno je selektovati dvije različite knjige.</value>
+  </data>
+  <data name="CountryAndCityRequired" xml:space="preserve">
+    <value>Država, Grad*</value>
+  </data>
+  <data name="CompareBooksErrorBody1" xml:space="preserve">
+    <value>Potrebno je selektovati dvije knjige iz liste kako bi se izvršilo upoređivanje knjiga.</value>
+  </data>
+  <data name="CompareBooksErrorTitle2" xml:space="preserve">
+    <value>Neispravna selekcija knjiga</value>
+  </data>
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
 </root>

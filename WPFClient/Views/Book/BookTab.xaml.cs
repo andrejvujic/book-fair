@@ -107,7 +107,16 @@ namespace WPFClient.Views.Book
             // Potrebno je selektovati dvije knjige da bi se otvorio prozor za uporedjivanje.
             if (FirstBook == null || SecondBook == null)
             {
+<<<<<<< HEAD
                 MessageBox.Show(TranslationSource.Instance["NoSelectedBookCompareText"], TranslationSource.Instance["NoSelectedBookCompareCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
+=======
+                MessageBox.Show(
+                    TranslationSource.Instance["CompareBooksErrorBody1"],
+                    TranslationSource.Instance["CompareBooksErrorTitle1"],
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
                 return;
             }
 
@@ -142,13 +151,31 @@ namespace WPFClient.Views.Book
             BookDTO? book = (BookDTO?)BooksDataGrid.SelectedItem;
             if (book == null)
             {
+<<<<<<< HEAD
                 MessageBox.Show(TranslationSource.Instance["NoSelectedBookText"], TranslationSource.Instance["NoSelectedBookCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
+=======
+                MessageBox.Show(
+                    TranslationSource.Instance["BookNotSelectedBody"],
+                    TranslationSource.Instance["BookNotSelectedTitle"],
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
                 return;
             }
 
             if (SecondBook != null && SecondBook.Id == book.Id)
             {
+<<<<<<< HEAD
                 MessageBox.Show(TranslationSource.Instance["SameBookImpossible"], TranslationSource.Instance["Error"], MessageBoxButton.OK, MessageBoxImage.Warning);
+=======
+                MessageBox.Show(
+                    TranslationSource.Instance["CompareBooksErrorBody2"],
+                    TranslationSource.Instance["CompareBooksErrorTitle2"],
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
                 return;
             }
 
@@ -163,13 +190,31 @@ namespace WPFClient.Views.Book
             BookDTO? book = (BookDTO?)BooksDataGrid.SelectedItem;
             if (book == null)
             {
+<<<<<<< HEAD
                 MessageBox.Show(TranslationSource.Instance["NoSelectedBookText"], TranslationSource.Instance["NoSelectedBookCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
+=======
+                MessageBox.Show(
+                    TranslationSource.Instance["BookNotSelectedBody"],
+                    TranslationSource.Instance["BookNotSelectedTitle"],
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
                 return;
             }
 
             if (FirstBook != null && FirstBook.Id == book.Id)
             {
+<<<<<<< HEAD
                 MessageBox.Show(TranslationSource.Instance["SameBookImpossible"], TranslationSource.Instance["Error"], MessageBoxButton.OK, MessageBoxImage.Warning);
+=======
+                MessageBox.Show(
+                    TranslationSource.Instance["CompareBooksErrorBody2"],
+                    TranslationSource.Instance["CompareBooksErrorTitle2"],
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+>>>>>>> 798ef598d4e40333bf9755cba79437ee4ad310da
                 return;
             }
 
