@@ -438,9 +438,6 @@
   <data name="Remove" xml:space="preserve">
     <value>Ukloni</value>
   </data>
-  <data name="AddBookText" xml:space="preserve">
-    <value>Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.</value>
-  </data>
   <data name="AddBookTitle" xml:space="preserve">
     <value>Nije odabrana nijedna knjiga</value>
   </data>
@@ -488,5 +485,17 @@
   </data>
   <data name="DeleteAuthorConfirmationBody" xml:space="preserve">
     <value>Da li ste sigurni da želite da obrišete odabranog autora?</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.</value>
+  </data>
+  <data name="VisitorConnectedAuthors" xml:space="preserve">
+    <value>Autori čije knjige su na listi želja posjetioca</value>
+  </data>
+  <data name="VisitorConnectedAuthorsWindowTitle" xml:space="preserve">
+    <value>Prikaz autora</value>
+  </data>
+  <data name="NumberOfAuthors" xml:space="preserve">
+    <value>Broj autora</value>
   </data>
 </root>

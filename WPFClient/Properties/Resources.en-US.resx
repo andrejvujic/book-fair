@@ -438,9 +438,6 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="AddBookText" xml:space="preserve">
-    <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
-  </data>
   <data name="AddBookTitle" xml:space="preserve">
     <value>No books selected</value>
   </data>
@@ -488,5 +485,17 @@
   </data>
   <data name="DeleteAuthorConfirmationBody" xml:space="preserve">
     <value>Are you sure that you would like to delete the selected author?</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
+  </data>
+  <data name="VisitorConnectedAuthors" xml:space="preserve">
+    <value>Authors whose books are wishlisted by</value>
+  </data>
+  <data name="VisitorConnectedAuthorsWindowTitle" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="NumberOfAuthors" xml:space="preserve">
+    <value>Number of authors</value>
   </data>
 </root>
