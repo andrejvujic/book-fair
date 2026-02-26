@@ -14,9 +14,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Auto-generated files
-Resources.Designer.cs
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
