@@ -408,4 +408,22 @@
   <data name="DeletePurchaseConfirmationBody" xml:space="preserve">
     <value>Are you sure that you would like to delete the selected purchase?</value>
   </data>
+  <data name="MakePurchaseWindowTitle" xml:space="preserve">
+    <value>Purchase book</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Title*</value>
+  </data>
+  <data name="ISBNRequired" xml:space="preserve">
+    <value>ISBN*</value>
+  </data>
+  <data name="DateRequired" xml:space="preserve">
+    <value>Date*</value>
+  </data>
+  <data name="PriceRequired" xml:space="preserve">
+    <value>Price*</value>
+  </data>
+  <data name="CommentRequired" xml:space="preserve">
+    <value>Comment*</value>
+  </data>
 </root>

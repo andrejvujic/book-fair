@@ -409,4 +409,22 @@
   <data name="DeletePurchaseConfirmationBody" xml:space="preserve">
     <value>Da li ste sigurni da želite da obrišete označenu kupovinu? </value>
   </data>
+  <data name="MakePurchaseWindowTitle" xml:space="preserve">
+    <value>Kupovina knjige</value>
+  </data>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Naziv*</value>
+  </data>
+  <data name="ISBNRequired" xml:space="preserve">
+    <value>ISBN*</value>
+  </data>
+  <data name="DateRequired" xml:space="preserve">
+    <value>Datum*</value>
+  </data>
+  <data name="PriceRequired" xml:space="preserve">
+    <value>Cijena*</value>
+  </data>
+  <data name="CommentRequired" xml:space="preserve">
+    <value>Komentar*</value>
+  </data>
 </root>
