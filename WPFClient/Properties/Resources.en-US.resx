@@ -498,11 +498,11 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="VisitorFirstSecond" xml:space="preserve">
-    <value>Visitors who have both the first and second book on their wish list</value>
+  <data name="VisitorsSecondCategory" xml:space="preserve">
+    <value>Visitors who wishlisted both the first and the second book</value>
   </data>
-  <data name="VisitorFirst" xml:space="preserve">
-    <value>Visitors who bought the first book but did not buy the second book</value>
+  <data name="VisitorsFirstCategory" xml:space="preserve">
+    <value>Visitors who bought the first book but not the second</value>
   </data>
   <data name="NoAuthorText" xml:space="preserve">
     <value>No author selected. It is necessary to select an author from the list.</value>
@@ -577,7 +577,10 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   <data name="RadovanBiography" xml:space="preserve">
     <value>Born in Kikinda on May 31, 2004. He is currently studying Computer Science and Automation at the Faculty of Technical Sciences in Novi Sad. During education participant in numerous competitions and extracurricular activities.</value>
   </data>
-  <data name="AppVersion" xml:space="preserve">
+  <data name="AppVersionText" xml:space="preserve">
     <value>Book Fair v1.0.0 — March 2026</value>
+  </data>
+  <data name="ComparingBooks" xml:space="preserve">
+    <value>Comparing books</value>
   </data>
 </root>

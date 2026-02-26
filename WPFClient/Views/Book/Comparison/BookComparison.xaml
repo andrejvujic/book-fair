@@ -7,6 +7,9 @@
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
         Title="{l:Localization CompareBooks}" Height="640" Width="1280" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <TextBlock x:Key="ComparingBooksLabelText" Text="{l:Localization ComparingBooks}" />
+    </Window.Resources>
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +19,8 @@
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Left">
             <TextBlock.Text>
-                <MultiBinding StringFormat="Upoređivanje knjiga {0} i {1}.">
+                <MultiBinding StringFormat="{}{0} — {1} &amp; {2}.">
+                    <Binding Path="Text" Source="{StaticResource ComparingBooksLabelText}"/>
                     <Binding Path="FirstBook.Title"/>
                     <Binding Path="SecondBook.Title"/>
                 </MultiBinding>
@@ -37,8 +41,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-			<TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,8" Text="{l:Localization VisitorFirstSecond}" HorizontalAlignment="Left"/>
-			<TextBlock Grid.Row="0" Grid.Column="2" Margin="0,0,0,8" Text="{l:Localization VisitorFirst}" HorizontalAlignment="Left"/>
+			<TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,0,8" Text="{l:Localization VisitorsFirstCategory}" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Margin="0,0,0,8" Text="{l:Localization VisitorsSecondCategory}" HorizontalAlignment="Left"/>
 
             <local:FirstCategoryVisitors FirstBookId="{Binding FirstBook.Id}" SecondBookId="{Binding SecondBook.Id}" Grid.Row="1" Grid.Column="0"/>
             <local:SecondCategoryVisitors FirstBookId="{Binding FirstBook.Id}" SecondBookId="{Binding SecondBook.Id}" Grid.Row="1" Grid.Column="2"/>
