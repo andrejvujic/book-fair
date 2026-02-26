@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:WPFClient.Views.Visitor"
         xmlns:dto="clr-namespace:WPFClient.DTO"
         xmlns:msm="clr-namespace:WPFClient.Views.Visitor.MemberStatusMapping"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         d:DataContext="{d:DesignInstance Type=dto:VisitorDTO}"
         mc:Ignorable="d"
-        Title="Izmjena posjetioca"
+        Title="{l:Localization UpdateVisitor}"
         Height="512"
         Width="640"
         WindowStartupLocation="CenterOwner">
 
     <Grid>
         <TabControl Margin="16">
-            <TabItem Header="Informacije">
+            <TabItem Header="{l:Localization VisitorInformation}">
                 <Grid Margin="16">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -44,42 +45,42 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Ime*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content="{l:Localization FirstNameRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="0" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="1" Grid.Column="0" Content="Prezime*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="{l:Localization LastNameRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.LastName, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="2" Grid.Column="0" Content="Datum rođenja*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="{l:Localization DateOfBirthRequired}" VerticalAlignment="Center"/>
                         <DatePicker Grid.Row="2" Grid.Column="1"
                                     Margin="0,4"
                                     SelectedDate="{Binding Path=Visitor.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="3" Grid.Column="0" Content="Broj telefona*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="{l:Localization PhoneNumberRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="3" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="4" Grid.Column="0" Content="Email adresa*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="{l:Localization EmailRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="4" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.EmailAddress, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="5" Grid.Column="0" Content="Broj članske karte*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="5" Grid.Column="0" Content="{l:Localization MembershipCardIDRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="5" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.MembershipCardNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="6" Grid.Column="0" Content="Godina članarine*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="6" Grid.Column="0" Content="{l:Localization MembershipYearRequired}" VerticalAlignment="Center"/>
                         <TextBox Grid.Row="6" Grid.Column="1"
                                  Margin="0,4"
                                  Text="{Binding Path=Visitor.MembershipYear, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Row="7" Grid.Column="0" Content="Status*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="7" Grid.Column="0" Content="{l:Localization StatusRequired}" VerticalAlignment="Center"/>
                         <ComboBox Grid.Row="7" Grid.Column="1" Margin="0,4" 
                             DisplayMemberPath="Label"
                             SelectedValuePath="Value"
@@ -90,7 +91,7 @@
                         <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
                                    Margin="0,8,0,8"/>
 
-                        <Label Grid.Row="9" Grid.Column="0" Content="Država, grad*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="9" Grid.Column="0" Content="{l:Localization CountryAndCityRequired}" VerticalAlignment="Center"/>
                         <Grid Grid.Row="9" Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -107,7 +108,7 @@
                                      Text="{Binding Path=Visitor.AddressCity, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
 
-                        <Label Grid.Row="10" Grid.Column="0" Content="Ulica, broj*" VerticalAlignment="Center"/>
+                        <Label Grid.Row="10" Grid.Column="0" Content="{l:Localization StreetAndStreetNumberRequired}" VerticalAlignment="Center"/>
                         <Grid Grid.Row="10" Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -136,13 +137,13 @@
                         <Button Grid.Column="1"
                                 Width="128"
                                 Height="32"
-                                Content="Otkaži"
+                                Content="{l:Localization Cancel}"
                                 IsCancel="True"/>
 
                         <Button Grid.Column="3"
                                 Width="128"
                                 Height="32"
-                                Content="Sačuvaj"
+                                Content="{l:Localization Save}"
                                 IsDefault="True"
                                 Click="SaveButton_Click"
                                 IsEnabled="{Binding Visitor.AllFieldsValid}"/>
@@ -150,12 +151,12 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Kupovine">
+            <TabItem Header="{l:Localization VisitorPurchasedBooks}">
                 <local:VisitorPurchasedBooksTab Visitor="{Binding Visitor}"/>
             </TabItem>
 
 
-            <TabItem Header="Lista želja">
+            <TabItem Header="{l:Localization VisitorWishlistedBooks}">
                 <local:VisitorWishlistedBooksTab Visitor="{Binding Visitor}"/>
             </TabItem>
         </TabControl>

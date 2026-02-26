@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Purchase;
 using WPFClient.Views.Visitor.WishlistedBooks;
 
@@ -64,8 +65,8 @@ namespace WPFClient.Views.Visitor
             if (book == null)
             {
                 MessageBox.Show(
-                      "Nije odabrana knjiga za kupovinu. Potrebno je odabrati knjigu iz liste, a zatim odabrati opciju 'Kupovina'.",
-                      "Nije odabrana knjiga za kupovinu",
+                      TranslationSource.Instance["BookNotSelectedBody"],
+                      TranslationSource.Instance["BookNotSelectedTitle"],
                       MessageBoxButton.OK,
                       MessageBoxImage.Warning
                   );
@@ -88,8 +89,8 @@ namespace WPFClient.Views.Visitor
             if (targetBook == null)
             {
                 MessageBox.Show(
-                      "Nije odabrana knjiga za brisanje. Potrebno je odabrati knjigu iz liste, a zatim odabrati opciju 'Obriši'.",
-                      "Nije odabrana knjiga za brisanje",
+                      TranslationSource.Instance["BookNotSelectedBody"],
+                      TranslationSource.Instance["BookNotSelectedTitle"],
                       MessageBoxButton.OK,
                       MessageBoxImage.Warning
                   );
@@ -97,8 +98,8 @@ namespace WPFClient.Views.Visitor
             }
 
             MessageBoxResult result = MessageBox.Show(
-                "Da li ste sigurni da želite da obrišete knjigu iz liste želja?",
-                "Brisanje knjige",
+                TranslationSource.Instance["RemoveBookFromWishlistConfirmationBody"],
+                TranslationSource.Instance["Warning"],
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
             );

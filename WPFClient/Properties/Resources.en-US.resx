@@ -360,4 +360,52 @@
   <data name="CountryAndCityRequired" xml:space="preserve">
     <value>Country, City*</value>
   </data>
+  <data name="VisitorInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="UpdateVisitor" xml:space="preserve">
+    <value>Edit visitor</value>
+  </data>
+  <data name="VisitorWishlistedBooks" xml:space="preserve">
+    <value>Wishlisted books</value>
+  </data>
+  <data name="VisitorPurchasedBooks" xml:space="preserve">
+    <value>Purchased books</value>
+  </data>
+  <data name="CancelPurchase" xml:space="preserve">
+    <value>Cancel purchase</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>Total spent</value>
+  </data>
+  <data name="AverageReviewRating" xml:space="preserve">
+    <value>Average rating</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="MakePurchase" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="BookNotSelectedTitle" xml:space="preserve">
+    <value>Book not selected</value>
+  </data>
+  <data name="BookNotSelectedBody" xml:space="preserve">
+    <value>Book not selected. You must select a book from the list.</value>
+  </data>
+  <data name="PurchaseNotSelectedTitle" xml:space="preserve">
+    <value>Purchase not selected</value>
+  </data>
+  <data name="PurchaseNotSelectedBody" xml:space="preserve">
+    <value>Purchase not selected. You must select a purchase from the list.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="RemoveBookFromWishlistConfirmationBody" xml:space="preserve">
+    <value>Are you sure that you would like to delete the selected book from the list of wishlisted books?</value>
+  </data>
+  <data name="DeletePurchaseConfirmationBody" xml:space="preserve">
+    <value>Are you sure that you would like to delete the selected purchase?</value>
+  </data>
 </root>

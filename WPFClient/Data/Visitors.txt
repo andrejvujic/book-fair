@@ -1,6 +1,6 @@
-0|Marko|Marković|1/12/1985 12:00:00 AM|065/1000-001|marko.markovic@gmail.com|0|CK-1-2021|2021|R|4.5|False
+0|Marko|Marković|1/12/1985 12:00:00 AM|065/1000-001|marko.markovic@gmail.com|0|CK-1-2021|2021|R|4.67|False
 1|Ivan|Ivanović|3/5/1990 12:00:00 AM|065/1000-002|ivan.ivanovic@gmail.com|1|CK-2-2022|2022|V|4|False
-2|Petar|Petrović|7/18/1978 12:00:00 AM|065/1000-003|petar.petrovic@gmail.com|2|CK-3-2020|2020|R|4.33|False
+2|Petar|Petrović|7/18/1978 12:00:00 AM|065/1000-003|petar.petrovic@gmail.com|2|CK-3-2020|2020|R|4.2|False
 3|Nikola|Nikolić|9/2/1995 12:00:00 AM|065/1000-004|nikola.nikolic@gmail.com|3|CK-4-2023|2023|V|3.67|False
 4|Luka|Lukić|11/21/1988 12:00:00 AM|065/1000-005|luka.lukic@gmail.com|4|CK-5-2021|2021|R|4.33|False
 5|Stefan|Stefanović|2/14/1992 12:00:00 AM|065/1000-006|stefan.stefanovic@gmail.com|5|CK-6-2024|2024|V|3.8|True
@@ -17,7 +17,7 @@
 16|Saša|Sašić|9/9/1986 12:00:00 AM|065/1000-017|sasa.sasic@gmail.com|16|CK-17-2019|2019|R|4.4|False
 17|Dejan|Dejanović|10/10/1994 12:00:00 AM|065/1000-018|dejan.dejanovic@gmail.com|17|CK-18-2022|2022|V|4|False
 18|Bojan|Bojanović|11/11/1977 12:00:00 AM|065/1000-019|bojan.bojanovic@gmail.com|18|CK-19-2017|2017|V|4.25|False
-19|Dragan|Draganović|12/12/1982 12:00:00 AM|065/1000-020|dragan.draganovic@gmail.com|19|CK-20-2020|2020|V|4.5|False
+19|Dragan|Draganović|12/12/1982 12:00:00 AM|065/1000-020|dragan.draganovic@gmail.com|19|CK-20-2020|2020|V|4.33|False
 20|Rade|Radić|1/13/1996 12:00:00 AM|065/1000-021|rade.radic@gmail.com|20|CK-21-2023|2023|V|4|False
 21|Slobodan|Slobodanović|2/22/1989 12:00:00 AM|065/1000-022|slobodan.slobodanovic@gmail.com|21|CK-22-2021|2021|V|4.67|False
 22|Željko|Željković|3/3/1976 12:00:00 AM|065/1000-023|zeljko.zeljkovic@gmail.com|22|CK-23-2018|2018|R|4.33|False

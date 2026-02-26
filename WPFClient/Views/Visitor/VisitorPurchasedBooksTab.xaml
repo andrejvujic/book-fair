@@ -4,7 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFClient.Views.Visitor"
+             xmlns:l="clr-namespace:WPFClient.Localization"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <TextBlock x:Key="AverageReviewRatingLabelText" Text="{l:Localization AverageReviewRating}" />
+        <TextBlock x:Key="TotalSpentLabelText" Text="{l:Localization TotalSpent}" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +21,7 @@
                 Width="128"
                 Height="32"
                 Margin="16,16,0,0"
-                Content="Poništi kupovinu"
+                Content="{l:Localization CancelPurchase}"
                 HorizontalAlignment="Left"
                 Click="DeletePurchaseButton_Click"
         />
@@ -52,9 +57,9 @@
             </DataGrid.CellStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Width="Auto" Binding="{Binding Book.Isbn}"/>
-                <DataGridTextColumn Header="Naziv" Width="*" Binding="{Binding Book.Title}"/>
-                <DataGridTemplateColumn Header="Autori" Width="*">
+                <DataGridTextColumn Header="{l:Localization ISBN}" Width="Auto" Binding="{Binding Book.Isbn}"/>
+                <DataGridTextColumn Header="{l:Localization Title}" Width="*" Binding="{Binding Book.Title}"/>
+                <DataGridTemplateColumn Header="{l:Localization Authors}" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding Book.FirstAndLastNamesOfAllAuthors}">
@@ -67,8 +72,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Izdavač" Width="*" Binding="{Binding Book.Publisher.Name}"/>
-                <DataGridTextColumn Header="Cijena" Width="Auto" Binding="{Binding Book.Price}"/>
+                <DataGridTextColumn Header="{l:Localization Publisher}" Width="*" Binding="{Binding Book.Publisher.Name}"/>
+                <DataGridTextColumn Header="{l:Localization Price}" Width="Auto" Binding="{Binding Book.Price}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -78,18 +83,23 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                Text="{Binding AverageRating,
-                       RelativeSource={RelativeSource AncestorType=local:VisitorPurchasedBooksTab},
-                       StringFormat=Prosječna ocjena — {0:0.00}}"
-            />
+            <TextBlock Margin="0,0,0,16" Grid.Row="0">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} — {1:0.00} RSD">
+                        <Binding Path="Text" Source="{StaticResource AverageReviewRatingLabelText}"/>
+                        <Binding Path="AverageRating" RelativeSource="{RelativeSource AncestorType=local:VisitorPurchasedBooksTab}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
 
-
-            <TextBlock Margin="0,0,0,16" Grid.Row="1"
-                Text="{Binding TotalSpent,
-                       RelativeSource={RelativeSource AncestorType=local:VisitorPurchasedBooksTab},
-                       StringFormat=Ukupno potrošeno — {0} RSD}"
-            />
+            <TextBlock Margin="0,0,0,16" Grid.Row="1">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} — {1:0.00} RSD">
+                        <Binding Path="Text" Source="{StaticResource TotalSpentLabelText}"/>
+                        <Binding Path="TotalSpent" RelativeSource="{RelativeSource AncestorType=local:VisitorPurchasedBooksTab}"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </Grid>
 
     </Grid>

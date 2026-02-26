@@ -361,4 +361,52 @@
   <data name="CountryAndCityRequired" xml:space="preserve">
     <value>Država, Grad*</value>
   </data>
+  <data name="VisitorInformation" xml:space="preserve">
+    <value>Informacije</value>
+  </data>
+  <data name="UpdateVisitor" xml:space="preserve">
+    <value>Izmjena posjetioca</value>
+  </data>
+  <data name="VisitorWishlistedBooks" xml:space="preserve">
+    <value>Lista želja</value>
+  </data>
+  <data name="VisitorPurchasedBooks" xml:space="preserve">
+    <value>Kupovine</value>
+  </data>
+  <data name="CancelPurchase" xml:space="preserve">
+    <value>Poništi kupovinu</value>
+  </data>
+  <data name="TotalSpent" xml:space="preserve">
+    <value>Ukupno potrošeno</value>
+  </data>
+  <data name="AverageReviewRating" xml:space="preserve">
+    <value>Prosječna ocjena</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Izdavač</value>
+  </data>
+  <data name="MakePurchase" xml:space="preserve">
+    <value>Kupovina</value>
+  </data>
+  <data name="BookNotSelectedTitle" xml:space="preserve">
+    <value>Nije odabrana knjiga</value>
+  </data>
+  <data name="BookNotSelectedBody" xml:space="preserve">
+    <value>Nije odbrana knjige. Potrebno je odabrati knjigu iz liste.</value>
+  </data>
+  <data name="PurchaseNotSelectedTitle" xml:space="preserve">
+    <value>Kupovina nije odbrana</value>
+  </data>
+  <data name="PurchaseNotSelectedBody" xml:space="preserve">
+    <value>Kupovina nije odbrana. Potrebno je odabrati kupovinu iz liste.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Upozorenje</value>
+  </data>
+  <data name="RemoveBookFromWishlistConfirmationBody" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete označenu knjigu sa liste želja?</value>
+  </data>
+  <data name="DeletePurchaseConfirmationBody" xml:space="preserve">
+    <value>Da li ste sigurni da želite da obrišete označenu kupovinu? </value>
+  </data>
 </root>

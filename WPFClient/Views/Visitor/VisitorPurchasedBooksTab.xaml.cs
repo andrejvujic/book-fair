@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Visitor
 {
@@ -100,8 +101,8 @@ namespace WPFClient.Views.Visitor
             if (targetPurchase == null)
             {
                 MessageBox.Show(
-                      "Nije odabrana kupovina za brisanje. Potrebno je odabrati kupovinu iz liste.",
-                      "Nije odabrana kupovina",
+                      TranslationSource.Instance["PurchaseNotSelectedBody"],
+                      TranslationSource.Instance["PurchaseNotSelectedTitle"],
                       MessageBoxButton.OK,
                       MessageBoxImage.Warning
                   );
@@ -109,8 +110,8 @@ namespace WPFClient.Views.Visitor
             }
 
 			MessageBoxResult result = MessageBox.Show(
-	            "Da li ste sigurni da želite da poništite kupovinu?",
-	            "Poništi kupovinu",
+                TranslationSource.Instance["DeletePurchaseConfirmationBody"],
+                TranslationSource.Instance["Warning"],
 	            MessageBoxButton.YesNo,
 	            MessageBoxImage.Question
             );
