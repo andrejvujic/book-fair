@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="S" xml:space="preserve">
+  <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="Address" xml:space="preserve">
@@ -298,10 +298,10 @@
     <value>Years of experience*</value>
   </data>
   <data name="CountryCityRequired" xml:space="preserve">
-    <value>Country, city*</value>
+    <value>Country, City*</value>
   </data>
   <data name="StreetNumberRequired" xml:space="preserve">
-    <value>Street, street number*</value>
+    <value>Street, Number*</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
@@ -335,5 +335,29 @@
   </data>
   <data name="EditAuthorCaption" xml:space="preserve">
     <value>No author selected</value>
+  </data>
+  <data name="MembershipCardIDRequired" xml:space="preserve">
+    <value>Membership card ID*</value>
+  </data>
+  <data name="MembershipYearRequired" xml:space="preserve">
+    <value>Membership year*</value>
+  </data>
+  <data name="StatusRequired" xml:space="preserve">
+    <value>Status*</value>
+  </data>
+  <data name="AddVisitor" xml:space="preserve">
+    <value>Add visitor</value>
+  </data>
+  <data name="Status_VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Status_Regular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="StreetAndStreetNumberRequired" xml:space="preserve">
+    <value>Street, Number*</value>
+  </data>
+  <data name="CountryAndCityRequired" xml:space="preserve">
+    <value>Country, City*</value>
   </data>
 </root>

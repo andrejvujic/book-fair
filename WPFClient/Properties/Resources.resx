@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="S" xml:space="preserve">
+  <data name="About" xml:space="preserve">
     <value>O aplikaciji</value>
   </data>
   <data name="Address" xml:space="preserve">
@@ -298,10 +298,10 @@
     <value>Godine iskustva*</value>
   </data>
   <data name="CountryCityRequired" xml:space="preserve">
-    <value>Država, grad*</value>
+    <value>Država, Grad*</value>
   </data>
   <data name="StreetNumberRequired" xml:space="preserve">
-    <value>Ulica, broj*</value>
+    <value>Ulica, Broj*</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Dodaj</value>
@@ -336,5 +336,29 @@
   </data>
   <data name="EditAuthorCaption" xml:space="preserve">
     <value>Nije odabran autor</value>
+  </data>
+  <data name="MembershipCardIDRequired" xml:space="preserve">
+    <value>Broj članske karte*</value>
+  </data>
+  <data name="MembershipYearRequired" xml:space="preserve">
+    <value>Godina članstva*</value>
+  </data>
+  <data name="StatusRequired" xml:space="preserve">
+    <value>Status*</value>
+  </data>
+  <data name="AddVisitor" xml:space="preserve">
+    <value>Dodavanje posjetioca</value>
+  </data>
+  <data name="Status_VIP" xml:space="preserve">
+    <value>VIP</value>
+  </data>
+  <data name="Status_Regular" xml:space="preserve">
+    <value>Redovan</value>
+  </data>
+  <data name="StreetAndStreetNumberRequired" xml:space="preserve">
+    <value>Ulica, Broj*</value>
+  </data>
+  <data name="CountryAndCityRequired" xml:space="preserve">
+    <value>Država, Grad*</value>
   </data>
 </root>
