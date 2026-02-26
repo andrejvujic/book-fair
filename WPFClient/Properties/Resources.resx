@@ -561,4 +561,7 @@
   <data name="CompareBooksErrorTitle2" xml:space="preserve">
     <value>Neispravna selekcija knjiga</value>
   </data>
+  <data name="DeleteAuthor" xml:space="preserve">
+    <value>Brisanje Autora</value>
+  </data>
 </root>

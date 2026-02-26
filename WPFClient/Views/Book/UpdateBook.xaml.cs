@@ -59,8 +59,8 @@ namespace WPFClient.Views.Book
 		private void DeselectAuthorButton_Click(object sender, RoutedEventArgs e)
         {
 			MessageBoxResult result = MessageBox.Show(
-	            TranslationSource.Instance["DeleteAuthorQ"],
-                TranslationSource.Instance["DeleteAuthorQCaption"] ,
+	            TranslationSource.Instance["DeleteAuthorConfirmationBody"],
+                TranslationSource.Instance["DeleteAuthor"],
 	            MessageBoxButton.YesNo,
 	            MessageBoxImage.Question
             );
