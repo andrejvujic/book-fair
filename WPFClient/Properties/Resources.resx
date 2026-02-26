@@ -462,7 +462,7 @@
   <data name="DeleteAuthorNotPossiblePublisherBody" xml:space="preserve">
     <value>Brisanje odabranog autora nije moguće zato što je on direktor izdavačke kuće. Potrebno je prvo promijeniti direktora izdavačke kuće.</value>
   </data>
-  <data name="VisitorDisplay" xml:space="preserve">
+  <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
     <value>Prikaz posjetilaca</value>
   </data>
   <data name="VisitorNotSelectedTitle" xml:space="preserve">
@@ -497,5 +497,11 @@
   </data>
   <data name="NumberOfAuthors" xml:space="preserve">
     <value>Broj autora</value>
+  </data>
+  <data name="NumberOfVisitors" xml:space="preserve">
+    <value>Broj posjetilaca</value>
+  </data>
+  <data name="AuthorConnectedVisitors" xml:space="preserve">
+    <value>Posjetioci koji na listi želja imaju knjige koje je napisao</value>
   </data>
 </root>

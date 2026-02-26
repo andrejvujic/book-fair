@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:WPFClient.Views.Author"
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="{l:Localization VisitorDisplay}" Height="450" Width="900"
+        Title="{l:Localization VisitorConnectedAuthorsWindowTitle}" Height="450" Width="900"
         WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <TextBlock x:Key="AuthorConnectedVisitorsLabelText" Text="{l:Localization AuthorConnectedVisitors}" />
+        <TextBlock x:Key="NumberOfVisitorsLabelText" Text="{l:Localization NumberOfVisitors}" />
+    </Window.Resources>
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,9 +20,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Margin="0,0,0,16"
-               Text="{Binding Author.FullName, StringFormat=Posjetioci koji na listi želja imaju knjige autora {0}}"
-        />
+        <TextBlock Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1}">
+                    <Binding Path="Text" Source="{StaticResource AuthorConnectedVisitorsLabelText}" />
+                    <Binding Path="Author.FullName"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
 
         <Grid Grid.Row="1" Margin="0,0,0,16">
             <Grid.ColumnDefinitions>
@@ -72,8 +81,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Grid.Row="3" Margin="0,16,0,0"
-               Text="{Binding Visitors.Count, StringFormat=Broj posjetilaca — {0}}"
-        />
+        <TextBlock Grid.Row="3" Margin="0,16,0,0">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} — {1}">
+                    <Binding Path="Text" Source="{StaticResource NumberOfVisitorsLabelText}" />
+                    <Binding Path="Visitors.Count"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
     </Grid>
 </Window>

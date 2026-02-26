@@ -462,8 +462,8 @@
   <data name="DeleteAuthorNotPossiblePublisherBody" xml:space="preserve">
     <value>Action not allowed. It is not possible to delete the selected author. The selected author is the boss of a publisher registered in the system.</value>
   </data>
-  <data name="VisitorDisplay" xml:space="preserve">
-    <value>Visitor display</value>
+  <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
+    <value>Visitors</value>
   </data>
   <data name="VisitorNotSelectedTitle" xml:space="preserve">
     <value>Visitor not selected</value>
@@ -490,12 +490,18 @@
     <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
   </data>
   <data name="VisitorConnectedAuthors" xml:space="preserve">
-    <value>Authors whose books are wishlisted by</value>
+    <value>Authors whose books were wishlisted by</value>
   </data>
   <data name="VisitorConnectedAuthorsWindowTitle" xml:space="preserve">
     <value>Authors</value>
   </data>
   <data name="NumberOfAuthors" xml:space="preserve">
     <value>Number of authors</value>
+  </data>
+  <data name="NumberOfVisitors" xml:space="preserve">
+    <value>Number of visitors</value>
+  </data>
+  <data name="AuthorConnectedVisitors" xml:space="preserve">
+    <value>Visitors which have wishlisted books written by</value>
   </data>
 </root>
