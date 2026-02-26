@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Author.WrittenBooks
 {
@@ -52,8 +53,8 @@ namespace WPFClient.Views.Author.WrittenBooks
             }
 
             MessageBox.Show(
-                  "Nije odabrana nijedna knjiga za dodavanje. Potrebno je odabrati barem jednu knjigu iz liste.",
-                  "Nije odabrana nijedna knjiga",
+                  TranslationSource.Instance["AddBookText"],
+                  TranslationSource.Instance["AddBookCaption"],
                   MessageBoxButton.OK,
                   MessageBoxImage.Warning
             );

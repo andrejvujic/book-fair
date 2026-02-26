@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Author"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Prikaz posjetilaca" Height="450" Width="900"
+        Title="{l:Localization VisitorDisplay}" Height="450" Width="900"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -63,11 +64,11 @@
             SelectionUnit="FullRow"
             SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Broj Članske Karte" Binding="{Binding MembershipCardNumber}" Width="*"/>
-                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-                <DataGridTextColumn Header="Kategorija" Binding="{Binding StatusText}" Width="Auto"/>
-                <DataGridTextColumn Header="Adresa" Binding="{Binding AddressText}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization MembershipCardNumber}" Binding="{Binding MembershipCardNumber}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization Status}" Binding="{Binding StatusText}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Address}" Binding="{Binding AddressText}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
 

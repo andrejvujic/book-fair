@@ -28,7 +28,7 @@
             <Button Grid.Column="2"
                  Width="128"
                  Height="32"
-                 Content="{l:Localization Cancel}"
+                 Content="{l:Localization Remove}"
                  Click="DeleteButton_Click"/>
 
         </Grid>

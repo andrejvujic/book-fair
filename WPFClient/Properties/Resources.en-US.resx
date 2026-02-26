@@ -429,4 +429,55 @@
   <data name="WishlistedBooksAddWindowTitle" xml:space="preserve">
     <value>Add book</value>
   </data>
+  <data name="EditBookText" xml:space="preserve">
+    <value>No book has been selected to modify. You need to select a book from the list.</value>
+  </data>
+  <data name="EditBookCaption" xml:space="preserve">
+    <value>No book selected</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="AddBookText" xml:space="preserve">
+    <value>No books have been selected to add. It is necessary to select at least one book from the list.</value>
+  </data>
+  <data name="AddBookCaption" xml:space="preserve">
+    <value>No books selected</value>
+  </data>
+  <data name="DeleteBookQ" xml:space="preserve">
+    <value>Are you sure you want to remove the selected books from the author?</value>
+  </data>
+  <data name="DeleteBookQCaption" xml:space="preserve">
+    <value>Removal of books</value>
+  </data>
+  <data name="NoBookSelectedDelete" xml:space="preserve">
+    <value>No books have been selected for deletion. You need to select at least one book from the list and then select the 'Remove' option.</value>
+  </data>
+  <data name="NoBookSelectedDeleteCaption" xml:space="preserve">
+    <value>No books selected</value>
+  </data>
+  <data name="NoSelectedAuthorText" xml:space="preserve">
+    <value>No author selected for deletion. It is necessary to select an author from the list.</value>
+  </data>
+  <data name="NoSelectedAuthorCaption" xml:space="preserve">
+    <value>No author selected</value>
+  </data>
+  <data name="DeleteAuthorNotPossibleBookText" xml:space="preserve">
+    <value>Deleting the selected author is not possible because there are books written by him in the system. It is necessary to delete the books of this author first.</value>
+  </data>
+  <data name="DeleteAuthorNotPossibleBookCaption" xml:space="preserve">
+    <value>Deletion is not possible</value>
+  </data>
+  <data name="DeleteAuthorNotPossiblePublisherText" xml:space="preserve">
+    <value>Deleting the selected author is not possible because he is the director of the publishing house. It is necessary to change the director of the publishing house first.</value>
+  </data>
+  <data name="DeleteAuthorQ" xml:space="preserve">
+    <value>Are you sure you want to delete the author?</value>
+  </data>
+  <data name="DeleteAuthorQCaption" xml:space="preserve">
+    <value>Delete author</value>
+  </data>
+  <data name="VisitorDisplay" xml:space="preserve">
+    <value>Visitor display</value>
+  </data>
 </root>

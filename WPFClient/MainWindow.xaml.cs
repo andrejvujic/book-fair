@@ -175,9 +175,9 @@ namespace WPFClient
                     if (targetBook == null)
                     {
                         MessageBox.Show(
-                            "Nije odabrana knjiga za izmjenu. Potrebno je odabrati knjigu iz liste.",
-                            "Nije odabrana knjiga",
-                            MessageBoxButton.OK,
+						    TranslationSource.Instance["EditBookText"],
+							TranslationSource.Instance["EditBookCaption"],
+							MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
                         return;
@@ -279,8 +279,8 @@ namespace WPFClient
 					if (targetAuthor == null)
 					{
 						MessageBox.Show(
-							"Nije odabran autor za brisanje. Potrebno je odabrati autora iz liste.",
-							"Nije odabran autor",
+                            TranslationSource.Instance["NoSelectedAuthorText"],
+							TranslationSource.Instance["NoSelectedAuthorCaption"],
 							MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
@@ -291,8 +291,8 @@ namespace WPFClient
 					if (hasActiveBook)
 					{
 						MessageBox.Show(
-							"Brisanje odabranog autora nije moguće zato što u sistemu postoje knjige koje je napisao. Potrebno je prvo obrisati knjige ovog autora.",
-							"Brisanje nije moguće",
+							TranslationSource.Instance["DeleteAuthorNotPossibleBookText"],
+							TranslationSource.Instance["DeleteAuthorNotPossibleBookCaption"],
 							MessageBoxButton.OK,
 							MessageBoxImage.Warning
 						);
@@ -302,17 +302,17 @@ namespace WPFClient
                     bool isBoss = PublisherController.GetWhere(p => !p.IsDeleted && p.Boss != null && p.Boss.Id == targetAuthor.Id).Count > 0;
                     if (isBoss) {
                         MessageBox.Show(
-                            "Brisanje odabranog autora nije moguće zato što je on direktor izdavačke kuće. Potrebno je prvo promijeniti direktora izdavačke kuće.",
-                            "Brisanje nije moguće",
-                            MessageBoxButton.OK,
+							TranslationSource.Instance["DeleteAuthorNotPossiblePublisherText"],
+							TranslationSource.Instance["DeleteAuthorNotPossibleBookCaption"],
+							MessageBoxButton.OK,
                             MessageBoxImage.Warning
                         );
                         return;
 					}
 
 					MessageBoxResult authorResult = MessageBox.Show(
-						"Da li ste sigurni da želite da obrišete autora?",
-						"Brisanje autora",
+						TranslationSource.Instance["DeleteAuthorQ"],
+						TranslationSource.Instance["DeleteAuthorQCaption"],
 						MessageBoxButton.YesNo,
 						MessageBoxImage.Question
 					);
