@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Visitor.WishlistedBooks
 {
@@ -106,8 +107,8 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
             if (targetBook == null)
             {
                 MessageBox.Show(
-                      "Nije odabrana knjiga za dodavanje. Potrebno je odabrati knjigu iz liste.",
-                      "Nije odabrana knjiga",
+					  TranslationSource.Instance["NoSelectedBookText"],
+					  TranslationSource.Instance["NoSelectedBookCaption"],
                       MessageBoxButton.OK,
                       MessageBoxImage.Warning
                 );

@@ -47,7 +47,7 @@
             />
 
             <Label Grid.Row="3" Grid.Column="0"
-               Content="{l:Localization PriceRequired}"
+               Content="{l:Localization RatingRequired}"
                VerticalAlignment="Center"/>
 
             <TextBox Grid.Row="3" Grid.Column="1"

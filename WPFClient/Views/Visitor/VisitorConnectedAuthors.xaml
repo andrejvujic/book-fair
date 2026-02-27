@@ -73,9 +73,9 @@
             SelectionUnit="FullRow"
             SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization Email}" Binding="{Binding Email}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
 

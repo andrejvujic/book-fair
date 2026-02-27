@@ -79,9 +79,9 @@
 78|Lea|Leić|4/5/1996 12:00:00 AM|28|065/1000-079|lea.leic@gmail.com|LK10078|3|False
 79|Vesna|Vesnić|6/23/1980 12:00:00 AM|29|065/1000-080|vesna.vesnic@gmail.com|LK10079|13|False
 80|Sanja|Sanjić|9/12/1987 12:00:00 AM|30|065/1000-081|sanja.sanjic@gmail.com|LK10080|9|False
-81|Jovana|Janković|1/28/1975 12:00:00 AM|31|065/1000-082|jovana.jankovic@gmail.com|LK10081|19|False
+81|Jovana|Janković|1/28/1975 12:00:00 AM|31|065/1000-082|jovana.jankovic@gmail.com|LK10081|19|True
 82|Tijana|Tijanić|3/15/1994 12:00:00 AM|32|065/1000-083|tijana.tijanic@gmail.com|LK10082|4|False
-83|Klara|Klarić|8/7/1990 12:00:00 AM|33|065/1000-084|klara.klaric@gmail.com|LK10083|7|False
+83|Klara|Klarić|8/7/1990 12:00:00 AM|33|065/1000-084|klara.klaric@gmail.com|LK10083|7|True
 84|Ljubica|Ljubić|12/9/1985 12:00:00 AM|34|065/1000-085|ljubica.ljubic@gmail.com|LK10084|10|False
 85|Anja|Anjić|5/4/1998 12:00:00 AM|35|065/1000-086|anja.anjic@gmail.com|LK10085|2|True
 86|Helena|Helenic|10/20/1989 12:00:00 AM|36|065/1000-087|helena.helenic@gmail.com|LK10086|8|True

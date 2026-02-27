@@ -74,8 +74,8 @@ namespace WPFClient.Views.Author.WrittenBooks
             if (books.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(
-                    TranslationSource.Instance["DeleteBookQ"],
-                    TranslationSource.Instance["DeleteBookQCaption"],
+                    TranslationSource.Instance["DeleteBookConfirmationBody"],
+                    TranslationSource.Instance["DeleteBookCaption"],
 					MessageBoxButton.YesNo,
                     MessageBoxImage.Question
                 );
