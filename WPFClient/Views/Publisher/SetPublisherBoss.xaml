@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Publisher"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Postavljanje šefa izdavača" Height="640" Width="480" WindowStartupLocation="CenterOwner">
+        Title="{l:Localization SetBossPublisher}" Height="640" Width="480" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +17,7 @@
            Margin="16"
            Height="32" Width="128"
            HorizontalAlignment="Left"
-           Content="Postavi za šefa"
+           Content="{l:Localization SetBoss}"
            Click="SetAsBossButton_Click"/>
 
         <DataGrid
@@ -32,10 +33,10 @@
             SelectionMode="Single"
         >   
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                <DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-                <DataGridTextColumn Header="Godine iskustva" Binding="{Binding YearsOfExperience}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization YearsOfExperience}" Binding="{Binding YearsOfExperience}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

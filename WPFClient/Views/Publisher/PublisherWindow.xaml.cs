@@ -3,6 +3,7 @@ using System.Windows;
 using Core.Observer;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 using WPFClient.Views.Author;
 
 namespace WPFClient.Views.Publisher
@@ -40,8 +41,8 @@ namespace WPFClient.Views.Publisher
             if (targetPublisher == null)
             {
                 MessageBox.Show(
-                    "Nije odabran izdavač za kojeg se postavlja šef. Potrebno je odabrati izdavača iz liste.",
-                    "Nije odabran izdavač",
+					TranslationSource.Instance["NoSelectedPublisherBoss"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
@@ -66,9 +67,9 @@ namespace WPFClient.Views.Publisher
             if (targetPublisher == null)
             {
                 MessageBox.Show(
-                    "Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste.",
-                    "Nije odabran izdavač",
-                    MessageBoxButton.OK,
+					TranslationSource.Instance["NoSelectedPublisherDelete"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
+					MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
                 return;
@@ -85,9 +86,9 @@ namespace WPFClient.Views.Publisher
             if (targetPublisher == null)
             {
                 MessageBox.Show(
-                    "Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste.",
-                    "Nije odabran izdavač",
-                    MessageBoxButton.OK,
+					TranslationSource.Instance["NoSelectedPublisherDelete"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
+					MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
                 return;
@@ -101,18 +102,18 @@ namespace WPFClient.Views.Publisher
             )
             {
                 MessageBox.Show(
-                    "Brisanje odabranog izdavača nije moguće zato što u sistemu postoje knjige koje je izdao. Potrebno je prvo obrisati knjige ovog izdavača.",
-                    "Brisanje nije moguće",
-                    MessageBoxButton.OK,
+					TranslationSource.Instance["DeletePublisherNotPossibleText"],
+					TranslationSource.Instance["DeletePublisherNotPossible"],
+					MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
                 return;
             }
 
             MessageBoxResult result = MessageBox.Show(
-                "Da li ste sigurni da želite da obrišete izdavača?",
-                "Brisanje izdavača",
-                MessageBoxButton.YesNo,
+				TranslationSource.Instance["DeletePublisherText"],
+				TranslationSource.Instance["DeletePublisherPossible"],
+				MessageBoxButton.YesNo,
                 MessageBoxImage.Question
             );
 
@@ -135,8 +136,8 @@ namespace WPFClient.Views.Publisher
 			if (targetPublisher == null)
 			{
 				MessageBox.Show(
-					"Nije odabran izdavač za prikaz autora. Potrebno je odabrati izdavača iz liste.",
-					"Nije odabran izdavač",
+					TranslationSource.Instance["NoSelectedPublisherAuthor"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
 					MessageBoxButton.OK,
 					MessageBoxImage.Warning
 				);
@@ -154,8 +155,8 @@ namespace WPFClient.Views.Publisher
 			if (targetPublisher == null)
 			{
 				MessageBox.Show(
-					"Nije odabran izdavač za prikaz knjiga. Potrebno je odabrati izdavača iz liste.",
-					"Nije odabran izdavač",
+					TranslationSource.Instance["NoSelectedPublisherBook"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
 					MessageBoxButton.OK,
 					MessageBoxImage.Warning
 				);

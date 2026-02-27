@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Publisher
 {
@@ -44,7 +45,7 @@ namespace WPFClient.Views.Publisher
 
             if (selectedAuthor == null)
             {
-                MessageBox.Show("Nije odabran autor koji se postavlja za šefa odabranog izdavača. Potrebno je odabrati autora iz liste.", "Nije odabran autor", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["AuthorBossText"], TranslationSource.Instance["EditAuthorCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -52,7 +53,7 @@ namespace WPFClient.Views.Publisher
 
             if (boss.YearsOfExperience < 5)
             {
-                MessageBox.Show("Autor mora imati najmanje 5 godina iskustva da bi bio postavljen za šefa izdavača.", "Autor nema dovoljno iskustva", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(TranslationSource.Instance["AuthorNoExperience"], TranslationSource.Instance["AuthorNoExperienceCaption"], MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

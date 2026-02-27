@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Publisher"
+        xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Izdavači" Height="640" Width="480" WindowStartupLocation="CenterOwner">
+        Title="{l:Localization Publishers}" Height="640" Width="480" WindowStartupLocation="CenterOwner">
     <Grid Margin="16,16,16,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -25,10 +26,10 @@
             SelectionMode="Single"
         >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
-                <DataGridTextColumn Header="Šifra" Binding="{Binding Code}" Width="Auto"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Šef" Binding="{Binding FullNameOfBoss}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Password}" Binding="{Binding Code}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Name}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization Boss}" Binding="{Binding FullNameOfBoss}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -43,7 +44,7 @@
             <Button Grid.Column="1"
                 Width="128"
                 Height="32"
-                Content="Otkaži"
+                Content="{l:Localization Cancel}"
                 IsCancel="True"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
@@ -51,7 +52,7 @@
             <Button Grid.Column="3"
                 Width="128"
                 Height="32"
-                Content="Odaberi"
+                Content="{l:Localization Select}"
                 IsDefault="True"
                 Click="SelectButton_Click"/>
         </Grid>

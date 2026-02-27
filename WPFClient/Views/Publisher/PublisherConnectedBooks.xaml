@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Publisher"
+		xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Prikaz knjiga" Height="450" Width="900"
+        Title="{l:Localization ViewBooks }" Height="450" Width="900"
 		WindowStartupLocation="CenterOwner"
 		>
+	<Window.Resources>
+		<l:LocalizedBookGenreConverter x:Key="LocalizedBookGenreConverter"/>
+		<TextBlock x:Key="PublisherConnectedBooksLabelText" Text="{l:Localization PublisherConnectedBooks}" />
+		<TextBlock x:Key="NumberOfBooksLabelText" Text="{l:Localization NumberOfBooks}" />
+	</Window.Resources>
 
 	<Grid Margin="16">
 		<Grid.RowDefinitions>
@@ -17,9 +23,14 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Margin="0,0,0,16"
-               Text="{Binding Publisher.Name, StringFormat=Knjige koje su izdate od strane izdavača {0}}"
-        />
+		<TextBlock Grid.Row="0" Margin="0,0,0,16">
+			<TextBlock.Text>
+				<MultiBinding StringFormat="{}{0} {1}">
+					<Binding Path="Text" Source="{StaticResource PublisherConnectedBooksLabelText}" />
+					<Binding Path="Publisher.Name"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
 
 		<Grid Grid.Row="1" Margin="0,0,0,16">
 			<Grid.ColumnDefinitions>
@@ -65,17 +76,29 @@
             SelectionUnit="FullRow"
             SelectionMode="Single">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Isbn" Binding="{Binding Isbn}" Width="Auto"/>
-				<DataGridTextColumn Header="Naziv" Binding="{Binding Title}" Width="Auto"/>
-				<DataGridTextColumn Header="Godina izdanja" Binding="{Binding ReleaseYear}" Width="Auto"/>
-				<DataGridTextColumn Header="Cena" Binding="{Binding Price}" Width="Auto"/>
-				<DataGridTextColumn Header="Žanr" Binding="{Binding Genre}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization ISBN}" Binding="{Binding Isbn}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Title}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization ReleaseYear}" Binding="{Binding ReleaseYear}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Price}" Binding="{Binding Price}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Genre}" Width="*">
+				<DataGridTextColumn.Binding>
+					<MultiBinding Converter="{StaticResource LocalizedBookGenreConverter}">
+						<Binding Path="Genre" />
+						<Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+					</MultiBinding>
+				</DataGridTextColumn.Binding>
+				</DataGridTextColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<TextBlock Grid.Row="3" Margin="0,16,0,0"
-               Text="{Binding Books.Count, StringFormat=Broj knjiga — {0}}"
-        />
+		<TextBlock Grid.Row="3" Margin="0,16,0,0">
+			<TextBlock.Text>
+				<MultiBinding StringFormat="{}{0} — {1}">
+					<Binding Path="Text" Source="{StaticResource NumberOfBooksLabelText}" />
+					<Binding Path="Books.Count"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
 
 	</Grid>
 </Window>

@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClient.Views.Publisher"
+		xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="Prikaz autora" Height="450" Width="900"
+        Title="{l:Localization VisitorConnectedAuthorsWindowTitle}" Height="450" Width="900"
 		WindowStartupLocation="CenterOwner"
 		>
+	<Window.Resources>
+		<TextBlock x:Key="PublisherConnectedAuthorsLabelText" Text="{l:Localization PublisherConnectedAuthors}" />
+		<TextBlock x:Key="NumberOfAuthorsLabelText" Text="{l:Localization NumberOfAuthors}" />
+	</Window.Resources>
 
 	<Grid Margin="16">
 		<Grid.RowDefinitions>
@@ -17,9 +22,14 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Margin="0,0,0,16"
-               Text="{Binding Publisher.Name, StringFormat=Autori čije su knjige izdate od strane {0}}"
-        />
+		<TextBlock Grid.Row="0" Margin="0,0,0,16">
+			<TextBlock.Text>
+				<MultiBinding StringFormat="{}{0} {1}">
+					<Binding Path="Text" Source="{StaticResource PublisherConnectedAuthorsLabelText}" />
+					<Binding Path="Publisher.Name"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
 
 		<Grid Grid.Row="1" Margin="0,0,0,16">
 			<Grid.ColumnDefinitions>
@@ -65,18 +75,23 @@
             SelectionUnit="FullRow"
             SelectionMode="Single">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="Auto"/>
-				<DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="Auto"/>
-				<DataGridTextColumn Header="Datum rođenja" Binding="{Binding DateOfBirth}" Width="Auto"/>
-				<DataGridTextColumn Header="Adresa" Binding="{Binding AddressText}" Width="Auto"/>
-				<DataGridTextColumn Header="Telefon" Binding="{Binding PhoneNumber}" Width="Auto"/>
-				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization DateOfBirth}" Binding="{Binding DateOfBirth}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Address}" Binding="{Binding AddressText}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization PhoneNumber}" Binding="{Binding PhoneNumber}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Email}" Binding="{Binding Email}" Width="*"/>
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<TextBlock Grid.Row="3" Margin="0,16,0,0"
-               Text="{Binding Authors.Count, StringFormat=Broj autora — {0}}"
-        />
+		<TextBlock Grid.Row="3" Margin="0,16,0,0">
+			<TextBlock.Text>
+				<MultiBinding StringFormat="{}{0} — {1}">
+					<Binding Path="Text" Source="{StaticResource NumberOfAuthorsLabelText}" />
+					<Binding Path="Authors.Count"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
 
 	</Grid>
 </Window>

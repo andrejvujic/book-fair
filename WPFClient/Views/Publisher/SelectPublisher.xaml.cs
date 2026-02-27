@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
 
 namespace WPFClient.Views.Publisher
 {
@@ -38,9 +39,9 @@ namespace WPFClient.Views.Publisher
             if (publisher == null)
             {
                 MessageBox.Show(
-                    "Nije odabran izdavač. Potrebno je odabrati izdavača iz liste.",
-                    "Nije odabran izdavač",
-                    MessageBoxButton.OK,
+                    TranslationSource.Instance["NoSelectedPublisherText"],
+					TranslationSource.Instance["NoSelectedPublisherCaption"],
+					MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
                 return;
