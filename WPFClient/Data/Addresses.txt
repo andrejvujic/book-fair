@@ -1,70 +1,70 @@
-0|Zmaj Ognjena Vuka|22|Novi Sad|Serbia|True
-1|Dr Sime Miloševića|5|Novi Sad|Serbia|False
-2|Koste Racina|27|Novi Sad|Serbia|False
-3|Janka Čmelika|10|Novi Sad|Serbia|False
-4|Bulevar Slobodana Jovanovića|17|Novi Sad|Serbia|False
-5|Hadži Ruvimova|3|Novi Sad|Serbia|False
-6|Narodnog Fronta|12|Novi Sad|Serbia|False
-7|Branka Bajića|44|Novi Sad|Serbia|False
-8|Cara Dušana|8|Novi Sad|Serbia|False
-9|Laze Telečkog|15|Novi Sad|Serbia|False
-10|Stražilovska|6|Novi Sad|Serbia|False
-11|Maksima Gorkog|21|Novi Sad|Serbia|False
-12|Bulevar Oslobođenja|102|Novi Sad|Serbia|False
-13|Žarka Zrenjanina|9|Novi Sad|Serbia|False
-14|Ilije Ognjanovića|14|Novi Sad|Serbia|False
-15|Danila Kiša|18|Novi Sad|Serbia|False
-16|Vladike Ćirića|7|Novi Sad|Serbia|False
-17|Tone Hadžića|25|Novi Sad|Serbia|False
-18|Mite Ružića|11|Novi Sad|Serbia|False
-19|Futoška|89|Novi Sad|Serbia|False
-20|Bulevar Cara Lazara|33|Novi Sad|Serbia|False
-21|Đorđa Magaraševića|4|Novi Sad|Serbia|False
-22|Lasla Gala|16|Novi Sad|Serbia|False
-23|Jovana Hranilovića|29|Novi Sad|Serbia|False
-24|Miše Dimitrijevića|73|Novi Sad|Serbia|False
-25|Kisačka|58|Novi Sad|Serbia|False
-26|Rumenačka|120|Novi Sad|Serbia|False
-27|Bate Brkića|19|Novi Sad|Serbia|False
-28|Aranj Janoša|2|Novi Sad|Serbia|False
-29|Petefi Šandora|30|Novi Sad|Serbia|False
-30|Kralja Petra I|41|Novi Sad|Serbia|False
-31|Temerinska|66|Novi Sad|Serbia|False
-32|Gundulićeva|13|Novi Sad|Serbia|False
-33|Zmaj Ognjena Vuka|22|Novi Sad|Serbia|False
-34|Patrijarha Pavla|55|Novi Sad|Serbia|False
-35|Bulevar Evrope|9|Novi Sad|Serbia|False
-36|Cankareva|17|Novi Sad|Serbia|False
-37|Heroja Pinkija|38|Novi Sad|Serbia|False
-38|Jirečekova|6|Novi Sad|Serbia|False
-39|Vojvođanska|27|Novi Sad|Serbia|False
-40|Subotička|14|Novi Sad|Serbia|False
-41|Mornarska|3|Novi Sad|Serbia|False
-42|Kolo Srpskih Sestara|8|Novi Sad|Serbia|False
-43|Preradovićeva|45|Novi Sad|Serbia|False
-44|Milana Glumca|12|Novi Sad|Serbia|False
-45|Milenka Grčića|7|Novi Sad|Serbia|False
-46|Maksima Gorkog|19|Novi Sad|Serbia|False
-47|Fruškogorska|5|Novi Sad|Serbia|False
-48|Bulevar Patrijarha Pavla|101|Novi Sad|Serbia|False
-49|Sutjeska|24|Novi Sad|Serbia|False
-50|Šafarikova|11|Novi Sad|Serbia|False
-51|Kosovska|34|Novi Sad|Serbia|False
-52|Albanske Spomenice|16|Novi Sad|Serbia|False
-53|Kraljevića Marka|21|Novi Sad|Serbia|False
-54|Veselina Masleše|9|Novi Sad|Serbia|False
-55|Save Kovačevića|44|Novi Sad|Serbia|False
-56|Jevrejska|18|Novi Sad|Serbia|False
-57|Ignjata Pavlasa|2|Novi Sad|Serbia|False
-58|Bulevar Mihajla Pupina|25|Novi Sad|Serbia|False
-59|Trg Slobode|1|Novi Sad|Serbia|False
-60|Zlatne Grede|6|Novi Sad|Serbia|False
-61|Beogradski Kej|88|Novi Sad|Serbia|False
-62|Keja Žrtava Racije|13|Novi Sad|Serbia|False
-63|Sentandrejski Put|72|Novi Sad|Serbia|False
-64|Partizanska|55|Novi Sad|Serbia|False
-65|Industrijska|14|Novi Sad|Serbia|False
-66|Rumenačka|3|Novi Sad|Serbia|False
-67|Rumenački put|22|Novi Sad|Serbia|False
-68|Partizanska|10|Novi Sad|Serbia|False
-69|Bulevar Cara Lazara|7|Novi Sad|Serbia|False
+0|Temerinska|88|Novi Sad|Serbia
+1|Dr Sime Miloševića|5|Novi Sad|Serbia
+2|Koste Racina|27|Novi Sad|Serbia
+3|Janka Čmelika|10|Novi Sad|Serbia
+4|Bulevar Slobodana Jovanovića|17|Novi Sad|Serbia
+5|Hadži Ruvimova|3|Novi Sad|Serbia
+6|Narodnog Fronta|12|Novi Sad|Serbia
+7|Branka Bajića|44|Novi Sad|Serbia
+8|Cara Dušana|8|Novi Sad|Serbia
+9|Laze Telečkog|15|Novi Sad|Serbia
+10|Stražilovska|6|Novi Sad|Serbia
+11|Maksima Gorkog|21|Novi Sad|Serbia
+12|Bulevar Oslobođenja|102|Novi Sad|Serbia
+13|Žarka Zrenjanina|9|Novi Sad|Serbia
+14|Ilije Ognjanovića|14|Novi Sad|Serbia
+15|Danila Kiša|18|Novi Sad|Serbia
+16|Vladike Ćirića|7|Novi Sad|Serbia
+17|Tone Hadžića|25|Novi Sad|Serbia
+18|Mite Ružića|11|Novi Sad|Serbia
+19|Futoška|89|Novi Sad|Serbia
+20|Bulevar Cara Lazara|33|Novi Sad|Serbia
+21|Đorđa Magaraševića|4|Novi Sad|Serbia
+22|Lasla Gala|16|Novi Sad|Serbia
+23|Jovana Hranilovića|29|Novi Sad|Serbia
+24|Miše Dimitrijevića|73|Novi Sad|Serbia
+25|Kisačka|58|Novi Sad|Serbia
+26|Rumenačka|120|Novi Sad|Serbia
+27|Bate Brkića|19|Novi Sad|Serbia
+28|Aranj Janoša|2|Novi Sad|Serbia
+29|Petefi Šandora|30|Novi Sad|Serbia
+30|Kralja Petra I|41|Novi Sad|Serbia
+31|Temerinska|66|Novi Sad|Serbia
+32|Gundulićeva|13|Novi Sad|Serbia
+33|Zmaj Ognjena Vuka|22|Novi Sad|Serbia
+34|Patrijarha Pavla|55|Novi Sad|Serbia
+35|Bulevar Evrope|9|Novi Sad|Serbia
+36|Cankareva|17|Novi Sad|Serbia
+37|Heroja Pinkija|38|Novi Sad|Serbia
+38|Jirečekova|6|Novi Sad|Serbia
+39|Vojvođanska|27|Novi Sad|Serbia
+40|Subotička|14|Novi Sad|Serbia
+41|Mornarska|3|Novi Sad|Serbia
+42|Kolo Srpskih Sestara|8|Novi Sad|Serbia
+43|Preradovićeva|45|Novi Sad|Serbia
+44|Milana Glumca|12|Novi Sad|Serbia
+45|Milenka Grčića|7|Novi Sad|Serbia
+46|Maksima Gorkog|19|Novi Sad|Serbia
+47|Fruškogorska|5|Novi Sad|Serbia
+48|Bulevar Patrijarha Pavla|101|Novi Sad|Serbia
+49|Sutjeska|24|Novi Sad|Serbia
+50|Šafarikova|11|Novi Sad|Serbia
+51|Kosovska|34|Novi Sad|Serbia
+52|Albanske Spomenice|16|Novi Sad|Serbia
+53|Kraljevića Marka|21|Novi Sad|Serbia
+54|Veselina Masleše|9|Novi Sad|Serbia
+55|Save Kovačevića|44|Novi Sad|Serbia
+56|Jevrejska|18|Novi Sad|Serbia
+57|Ignjata Pavlasa|2|Novi Sad|Serbia
+58|Bulevar Mihajla Pupina|25|Novi Sad|Serbia
+59|Trg Slobode|1|Novi Sad|Serbia
+60|Zlatne Grede|6|Novi Sad|Serbia
+61|Beogradski Kej|88|Novi Sad|Serbia
+62|Keja Žrtava Racije|13|Novi Sad|Serbia
+63|Sentandrejski Put|72|Novi Sad|Serbia
+64|Partizanska|55|Novi Sad|Serbia
+65|Industrijska|14|Novi Sad|Serbia
+66|Rumenačka|3|Novi Sad|Serbia
+67|Rumenački put|22|Novi Sad|Serbia
+68|Partizanska|10|Novi Sad|Serbia
+69|Bulevar Cara Lazara|7|Novi Sad|Serbia

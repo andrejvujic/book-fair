@@ -1,3 +1,2 @@
-0|Klett|0|50145|False
-1|Finesa|27|81492|False
-2|Sova|-1|42156|True
+0|Klett|0|51253
+1|Finesa|0|95816
