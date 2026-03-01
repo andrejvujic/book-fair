@@ -1685,7 +1685,7 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu.
+        ///   Looks up a localized string similar to Posjetioci koju na listi želja imaju i prvu i drugu knjigu.
         /// </summary>
         internal static string VisitorsFirstCategory {
             get {
@@ -1694,7 +1694,7 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Posjetioci koju na listi želja imaju i prvu i drugu knjigu.
+        ///   Looks up a localized string similar to Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu.
         /// </summary>
         internal static string VisitorsSecondCategory {
             get {

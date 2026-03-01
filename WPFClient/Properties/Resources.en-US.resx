@@ -499,10 +499,10 @@
     <value>Error</value>
   </data>
   <data name="VisitorsSecondCategory" xml:space="preserve">
-    <value>Visitors who wishlisted both the first and the second book</value>
+    <value>Visitors who bought the first book but not the second</value>
   </data>
   <data name="VisitorsFirstCategory" xml:space="preserve">
-    <value>Visitors who bought the first book but not the second</value>
+    <value>Visitors who wishlisted both the first and the second book</value>
   </data>
   <data name="NoAuthorText" xml:space="preserve">
     <value>No author selected. It is necessary to select an author from the list.</value>

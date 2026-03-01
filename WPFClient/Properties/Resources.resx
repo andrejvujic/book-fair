@@ -499,10 +499,10 @@
     <value>Greška</value>
   </data>
   <data name="VisitorsSecondCategory" xml:space="preserve">
-    <value>Posjetioci koju na listi želja imaju i prvu i drugu knjigu</value>
+    <value>Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu</value>
   </data>
   <data name="VisitorsFirstCategory" xml:space="preserve">
-    <value>Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu</value>
+    <value>Posjetioci koju na listi želja imaju i prvu i drugu knjigu</value>
   </data>
   <data name="NoAuthorText" xml:space="preserve">
     <value>Nije odabran autor. Potrebno je odabrati autora iz liste.</value>
