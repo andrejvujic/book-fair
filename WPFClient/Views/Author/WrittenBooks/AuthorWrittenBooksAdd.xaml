@@ -7,7 +7,7 @@
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
         Title="{l:Localization AddBook}"
-        Height="320"
+        Height="384"
         Width="480"
         WindowStartupLocation="CenterOwner">
     <Window.Resources>
@@ -16,7 +16,7 @@
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="8"/>
+            <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="16"/>
             <RowDefinition Height="Auto"/>
