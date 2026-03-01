@@ -7,15 +7,50 @@
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
         Title="{l:Localization Authors}" Height="640" Width="480" WindowStartupLocation="CenterOwner">
-	<Grid Margin="16,16,16,16">
+	<Grid Margin="16">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
 			<RowDefinition Height="16"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<DataGrid
-            Grid.Row="0"
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" KeyDown="SearchTextBox_KeyDown" VerticalContentAlignment="Center" Grid.Column="0" Text="{Binding Path=RawSearchQuery, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+            <Button Grid.Column="2"
+                     Width="24"
+                     Height="24"
+                     Click="SearchButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                            Text="&#xE721;"
+                            FontSize="14"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+            </Button>
+
+            <Button Grid.Column="4"
+                 Width="24"
+                 Height="24"
+                 Click="ResetSearchButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                     Text="&#xE711;"
+                     FontSize="14"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+
+        <DataGrid
+            Grid.Row="2"
             AutoGenerateColumns="False"
             x:Name="AuthorsDataGrid"
             ItemsSource="{Binding Authors}"
@@ -27,12 +62,12 @@
         >
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
 			</DataGrid.Columns>
 		</DataGrid>
 
-		<Grid Grid.Row="2">
+		<Grid Grid.Row="4">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="Auto"/>
@@ -52,7 +87,6 @@
                 Width="128"
                 Height="32"
                 Content="{l:Localization Select}"
-                IsDefault="True"
                 Click="SelectButton_Click"/>
 		</Grid>
 	</Grid>
