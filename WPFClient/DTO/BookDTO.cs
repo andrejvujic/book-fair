@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Linq;
 using WPFClient.Localization;
 
@@ -25,7 +24,7 @@ namespace WPFClient.DTO
                 Title = Title,
                 Genre = Genre,
                 ReleaseYear = ReleaseYear,
-                Price = Price,
+                PriceText = PriceText,
                 NumberOfPages = NumberOfPages,
 
                 Authors = new ObservableCollection<Author>(Authors),
@@ -46,7 +45,7 @@ namespace WPFClient.DTO
             Title = book.Title;
             Genre = book.Genre;
             ReleaseYear = book.ReleaseYear > 0 ? book.ReleaseYear.ToString() : string.Empty;
-            Price = book.Price > 0 ? book.Price.ToString() : string.Empty;
+            PriceText = book.Price > 0 ? book.Price.ToString() : string.Empty;
             NumberOfPages = book.NumberOfPages > 0 ? book.NumberOfPages.ToString() : string.Empty;
 
             Authors = new ObservableCollection<Author>(book.Authors ?? new List<Author>());
@@ -68,7 +67,7 @@ namespace WPFClient.DTO
                 Title = Title,
                 Genre = Genre,
                 ReleaseYear = int.Parse(ReleaseYear),
-                Price = double.Parse(Price),
+                Price = double.Parse(PriceText),
                 NumberOfPages = int.Parse(NumberOfPages),
 
                 Authors = Authors == null ? new List<Author>() : new List<Author>(Authors),
@@ -184,26 +183,29 @@ namespace WPFClient.DTO
             }
         }
 
-        private string price = string.Empty;
-        public string Price
+        private string priceText = string.Empty;
+        public string PriceText
         {
-            get => price;
+            get => priceText;
             set
             {
-                if (price == value) return;
-                price = value;
+                if (priceText == value) return;
+                priceText = value;
+                OnPropertyChanged(nameof(PriceText));
                 OnPropertyChanged(nameof(Price));
                 OnPropertyChanged(nameof(IsPriceValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
+        public double Price { get => double.TryParse(PriceText, out double value) ? value : 0; }
+
         private bool IsPriceValid
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Price)) return false;
-                if (!double.TryParse(Price, out double value)) return false;
+                if (string.IsNullOrWhiteSpace(PriceText)) return false;
+                if (!double.TryParse(PriceText, out double value)) return false;
                 return value > 0;
             }
         }
