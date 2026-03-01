@@ -50,13 +50,29 @@ public class Visitor : ISerializable, IIdentifiable, IDeletable, ISearchable, IS
 
         return false;
     }
+
+    public int SortableMembershipCardNumber
+    {
+        get
+        {
+            string[] parts = MembershipCardNumber.Split('-');
+            if (parts.Length != 3) return 0;
+            if (!int.TryParse(parts[1], out int number)) return 0;
+            if (!int.TryParse(parts[2], out int year)) return 0;
+            
+            const int factor = 1000;
+
+            return year * factor + number;
+        }
+    }
+
     public Dictionary<string, dynamic> SortFields {
         get => new Dictionary<string, dynamic>
         {
             { nameof(Id), Id },
             { nameof(FirstName), FirstName },
             { nameof(LastName), LastName },
-            { nameof(MembershipCardNumber), MembershipCardNumber  },
+            { nameof(MembershipCardNumber), SortableMembershipCardNumber  },
             { nameof(MembershipYear), MembershipYear },
             { nameof(Status), Status },
             { nameof(AverageReviewRating), AverageReviewRating },
