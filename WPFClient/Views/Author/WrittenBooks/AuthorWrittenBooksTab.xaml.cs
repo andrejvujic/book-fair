@@ -91,16 +91,17 @@ namespace WPFClient.Views.Author.WrittenBooks
                             // i metoda Remove je ne bi uklonio jer bi referenca bila
                             // razlicita.
                             HashSet<int> ids = new HashSet<int>(books.Select(b => b.Id));
-
+                            
                             Author.Books.RemoveAll((b) => ids.Contains(b.Id));
                             AuthorController.Update(Author.ToModel());
 
-                            foreach (var b in books)
+                            foreach (var id in books.Select(b => b.Id))
                             {
-                                var author = b.Authors.FirstOrDefault(a => a.Id == Author.Id);
-                                if (author == null) continue;
-                                b.Authors.Remove(author);
-                                BookController.Update(b.ToModel());
+                                var book = BookController.GetById(id);
+                                if (book == null) continue;
+
+                                book.Authors.RemoveAll(a => a.Id == Author.Id);
+                                BookController.Update(book);
                             }
                             break;
                     case MessageBoxResult.No:
