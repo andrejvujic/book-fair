@@ -7,22 +7,50 @@
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
         Title="{l:Localization SetBossPublisher}" Height="640" Width="480" WindowStartupLocation="CenterOwner">
-    <Grid>
+    <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0"
-           Margin="16"
-           Height="32" Width="128"
-           HorizontalAlignment="Left"
-           Content="{l:Localization SetBoss}"
-           Click="SetAsBossButton_Click"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" KeyDown="SearchTextBox_KeyDown" VerticalContentAlignment="Center" Grid.Column="0" Text="{Binding Path=RawSearchQuery, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+            <Button Grid.Column="2"
+                Width="24"
+                Height="24"
+                Click="SearchButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                    Text="&#xE721;"
+                    FontSize="14"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Button>
+
+            <Button Grid.Column="4"
+                Width="24"
+                Height="24"
+                Click="ResetSearchButton_Click">
+                <TextBlock FontFamily="Segoe MDL2 Assets"
+                Text="&#xE711;"
+                FontSize="14"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
 
         <DataGrid
-            Grid.Row="1"
-            Margin="16,0,16,16"
+            Grid.Row="2"
             AutoGenerateColumns="False"
             x:Name="AuthorsDataGrid"
             ItemsSource="{Binding Authors}"
@@ -31,13 +59,19 @@
             HeadersVisibility="Column"
             SelectionUnit="FullRow"
             SelectionMode="Single"
-        >   
+        >
             <DataGrid.Columns>
-				<DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
-				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
-				<DataGridTextColumn Header="{l:Localization YearsOfExperience}" Binding="{Binding YearsOfExperience}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization YearsOfExperience}" Binding="{Binding YearsOfExperience}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Grid.Row="4"
+           Height="32" Width="128"
+           HorizontalAlignment="Right"
+           Content="{l:Localization SetBoss}"
+           Click="SetAsBossButton_Click"/>
     </Grid>
 </Window>

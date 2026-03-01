@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using WPFClient.Controllers;
 using WPFClient.DTO;
 using WPFClient.Localization;
@@ -9,11 +12,13 @@ namespace WPFClient.Views.Publisher
 {
     public partial class SetPublisherBoss : Window
     {
+        public string RawSearchQuery { get; set; } = string.Empty;
+
         private PublisherController PublisherController { get; }
         private PublisherDTO Publisher { get; }
 
         private AuthorController AuthorController { get; }
-        public List<AuthorDTO> Authors { get; }
+        public ObservableCollection<AuthorDTO> Authors { get; } = new ObservableCollection<AuthorDTO>();
 
 
         public SetPublisherBoss(PublisherDTO publisher)
@@ -23,21 +28,59 @@ namespace WPFClient.Views.Publisher
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             Publisher = publisher;
             AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
-            Authors = GetAvailableAuthors();
 
             DataContext = this;
+
+            Update();
         }
 
-        List<AuthorDTO> GetAvailableAuthors()
+        public void Update()
         {
-            // Dobavlja sve autore koji ce u korisnickom interfejsu
-            // predstavljati kandidate za sefa izdavaca.
-            return AuthorController
-                .GetWhere(a => a.Id != Publisher.BossId && !a.IsDeleted)
-                .Select(a => new AuthorDTO(a))
-                .ToList();
+            Render(
+                AuthorController
+                .PerformSerach(
+                    RawSearchQuery,
+                    (a) => a.Id != Publisher.BossId
+                )
+                .PerformSorting()
+                .GetAllWithoutPagination()
+            );
         }
 
+        private void Render(List<Core.Models.Author> authors)
+        {
+            Authors.Clear();
+            foreach (Core.Models.Author a in authors)
+                Authors.Add(new AuthorDTO(a));
+        }
+        private void UpdateSearchQuery()
+        {
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            Update();
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e) =>
+           UpdateSearchQuery();
+
+        private void ResetSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            RawSearchQuery = string.Empty;
+            SearchTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+            Update();
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox target = (TextBox)sender;
+            if (!string.IsNullOrWhiteSpace(target.Text)) return;
+            UpdateSearchQuery();
+        }
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateSearchQuery();
+                return;
+            }
+        }
 
         private void SetAsBossButton_Click(object sender, RoutedEventArgs e)
         {
