@@ -31,11 +31,12 @@ public class BookDAO: DAO<Book>
         BookWishlisters = bookWishlisters;
 	}
 
-    public override void Add(Book book)
+    public override int Add(Book book)
     {
-		base.Add(book);
+		int id = base.Add(book);
 		BookAuthors.AddAll(book, book.Authors);
         BookWishlisters.AddAll(book, book.Wishlisters);
+		return id;
     }
 
     public override Book? Remove(int id)

@@ -27,9 +27,10 @@ public class VisitorDAO : DAO<Visitor>
         VisitorWishlistedBooks = visitorWishlistedBooks;
     }
 
-    public override void Add(Visitor visitor) {
-        base.Add(visitor);
+    public override int Add(Visitor visitor) {
+        int id = base.Add(visitor);
         VisitorWishlistedBooks.AddAll(visitor, visitor.WishlistedBooks);
+        return id;
     }
 
     public override Visitor? Remove(int id)
