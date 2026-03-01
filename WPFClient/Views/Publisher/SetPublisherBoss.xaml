@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFClient.Views.Publisher"
         xmlns:l="clr-namespace:WPFClient.Localization"
         mc:Ignorable="d"
-        Title="{l:Localization SetBossPublisher}" Height="640" Width="480" WindowStartupLocation="CenterOwner">
+        Title="{l:Localization SetBossPublisher}" Height="480" Width="640" WindowStartupLocation="CenterOwner">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
