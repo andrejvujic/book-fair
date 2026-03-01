@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Linq;
 using WPFClient.Localization;
 
@@ -10,9 +11,7 @@ namespace WPFClient.DTO
 {
     public class BookDTO : DTO<Book>, IValidatable
     {
-
         public BookDTO() : base(new Book()) { }
-
         public BookDTO(Book book) : base(book) { }
 
         public override BookDTO Copy()
@@ -23,9 +22,10 @@ namespace WPFClient.DTO
                 Isbn = Isbn,
                 Title = Title,
                 Genre = Genre,
-                ReleaseYear = ReleaseYear,
+
+                ReleaseYearText = ReleaseYearText,
                 PriceText = PriceText,
-                NumberOfPages = NumberOfPages,
+                NumberOfPagesText = NumberOfPagesText,
 
                 Authors = new ObservableCollection<Author>(Authors),
 
@@ -44,9 +44,10 @@ namespace WPFClient.DTO
             Isbn = book.Isbn;
             Title = book.Title;
             Genre = book.Genre;
-            ReleaseYear = book.ReleaseYear > 0 ? book.ReleaseYear.ToString() : string.Empty;
-            PriceText = book.Price > 0 ? book.Price.ToString() : string.Empty;
-            NumberOfPages = book.NumberOfPages > 0 ? book.NumberOfPages.ToString() : string.Empty;
+
+            ReleaseYearText = book.ReleaseYear > 0 ? book.ReleaseYear.ToString() : string.Empty;
+            PriceText = book.Price > 0 ? book.Price.ToString(CultureInfo.InvariantCulture) : string.Empty;
+            NumberOfPagesText = book.NumberOfPages > 0 ? book.NumberOfPages.ToString() : string.Empty;
 
             Authors = new ObservableCollection<Author>(book.Authors ?? new List<Author>());
 
@@ -66,9 +67,10 @@ namespace WPFClient.DTO
                 Isbn = Isbn,
                 Title = Title,
                 Genre = Genre,
-                ReleaseYear = int.Parse(ReleaseYear),
-                Price = double.Parse(PriceText),
-                NumberOfPages = int.Parse(NumberOfPages),
+
+                ReleaseYear = ReleaseYear,
+                Price = Price,
+                NumberOfPages = NumberOfPages,
 
                 Authors = Authors == null ? new List<Author>() : new List<Author>(Authors),
 
@@ -81,10 +83,10 @@ namespace WPFClient.DTO
                 IsDeleted = IsDeleted,
             };
         }
+
         public int Id { get; set; }
 
         private bool isDeleted = false;
-
         public bool IsDeleted
         {
             get => isDeleted;
@@ -159,29 +161,28 @@ namespace WPFClient.DTO
             }
         }
 
-        private string releaseYear = string.Empty;
-        public string ReleaseYear
+        private string releaseYearText = string.Empty;
+        public string ReleaseYearText
         {
-            get => releaseYear;
+            get => releaseYearText;
             set
             {
-                if (releaseYear == value) return;
-                releaseYear = value;
+                if (releaseYearText == value) return;
+                releaseYearText = value;
+                OnPropertyChanged(nameof(ReleaseYearText));
                 OnPropertyChanged(nameof(ReleaseYear));
                 OnPropertyChanged(nameof(IsReleaseYearValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        private bool IsReleaseYearValid
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(ReleaseYear)) return false;
-                if (!int.TryParse(ReleaseYear, out int value)) return false;
-                return value > 0 && value <= DateTime.Now.Year;
-            }
-        }
+        public int ReleaseYear =>
+            int.TryParse(ReleaseYearText, out int value) ? value : 0;
+
+        private bool IsReleaseYearValid =>
+            int.TryParse(ReleaseYearText, out int value)
+            && value > 0
+            && value <= DateTime.Now.Year;
 
         private string priceText = string.Empty;
         public string PriceText
@@ -198,41 +199,33 @@ namespace WPFClient.DTO
             }
         }
 
-        public double Price { get => double.TryParse(PriceText, out double value) ? value : 0; }
+        public double Price =>
+            double.TryParse(PriceText, out double value) ? value : 0;
 
-        private bool IsPriceValid
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(PriceText)) return false;
-                if (!double.TryParse(PriceText, out double value)) return false;
-                return value > 0;
-            }
-        }
+        private bool IsPriceValid =>
+            double.TryParse(PriceText, out double value) && value > 0;
 
-        private string numberOfPages = string.Empty;
-        public string NumberOfPages
+        private string numberOfPagesText = string.Empty;
+        public string NumberOfPagesText
         {
-            get => numberOfPages;
+            get => numberOfPagesText;
             set
             {
-                if (numberOfPages == value) return;
-                numberOfPages = value;
+                if (numberOfPagesText == value) return;
+                numberOfPagesText = value;
+                OnPropertyChanged(nameof(NumberOfPagesText));
                 OnPropertyChanged(nameof(NumberOfPages));
                 OnPropertyChanged(nameof(IsNumberOfPagesValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
         }
 
-        private bool IsNumberOfPagesValid
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(NumberOfPages)) return false;
-                if (!int.TryParse(NumberOfPages, out int value)) return false;
-                return value > 0;
-            }
-        }
+        public int NumberOfPages =>
+            int.TryParse(NumberOfPagesText, out int value) ? value : 0;
+
+        private bool IsNumberOfPagesValid =>
+            int.TryParse(NumberOfPagesText, out int value) && value > 0;
+
         private ObservableCollection<Author> authors = new();
         public ObservableCollection<Author> Authors
         {
@@ -240,10 +233,10 @@ namespace WPFClient.DTO
             set
             {
                 if (authors == value) return;
-                authors = value;
 
                 if (authors != null)
                     authors.CollectionChanged -= Authors_CollectionChanged;
+
                 authors = value ?? new ObservableCollection<Author>();
                 authors.CollectionChanged += Authors_CollectionChanged;
 
@@ -279,18 +272,18 @@ namespace WPFClient.DTO
         public Author? FirstAuthor => Authors?.FirstOrDefault(a => !a.IsDeleted);
 
         public string FirstAuthorFullName
-		{
-			get
-			{  
+        {
+            get
+            {
                 var a = Authors?.FirstOrDefault(a => !a.IsDeleted);
                 return a != null ? $"{a.FirstName} {a.LastName}" : string.Empty;
-			}
-		}
+            }
+        }
 
-		public bool HasGotAuthors { get => FirstAuthor != null; }
+        public bool HasGotAuthors { get => FirstAuthor != null; }
         public bool HasntGotAuthors { get => FirstAuthor == null; }
 
-		public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
+        public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
 
         private Publisher? publisher;
         public Publisher? Publisher
@@ -310,7 +303,6 @@ namespace WPFClient.DTO
 
         public bool HasGotPublisher { get => Publisher != null; }
         public bool HasntGotPublisher { get => Publisher == null; }
-
 
         private List<Visitor> buyers = new List<Visitor>();
         public List<Visitor> Buyers
@@ -344,6 +336,7 @@ namespace WPFClient.DTO
             IsNumberOfPagesValid &&
             HasGotPublisher &&
             HasGotAuthors;
+
         private bool IsIsbnValid
         {
             get

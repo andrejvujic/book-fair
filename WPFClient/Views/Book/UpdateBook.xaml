@@ -99,7 +99,7 @@
 			<Label Grid.Row="4" Grid.Column="0" Content="{l:Localization ReleaseYearRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="4" Grid.Column="1"
                      Margin="0,4"
-                     Text="{Binding Path=Book.ReleaseYear, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Path=Book.ReleaseYearText, UpdateSourceTrigger=PropertyChanged}"/>
 
 			<Label Grid.Row="5" Grid.Column="0" Content="{l:Localization PriceRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="5" Grid.Column="1"
@@ -109,7 +109,7 @@
 			<Label Grid.Row="6" Grid.Column="0" Content="{l:Localization NumberOfPagesRequired}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="6" Grid.Column="1"
                      Margin="0,4"
-                     Text="{Binding Path=Book.NumberOfPages, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Path=Book.NumberOfPagesText, UpdateSourceTrigger=PropertyChanged}"/>
 
 			<Label Grid.Row="7" Grid.Column="0" Content="{l:Localization AuthorRequired}" VerticalAlignment="Center"/>
 			<Grid Grid.Row="7" Grid.Column="1">
