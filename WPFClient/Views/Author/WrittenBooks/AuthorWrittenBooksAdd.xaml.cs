@@ -47,6 +47,13 @@ namespace WPFClient.Views.Author.WrittenBooks
             {
                 foreach (var b in books)
                     Author.Books.Add(b.ToModel());
+
+                foreach (var b in books)
+                {
+                    b.Authors.Add(Author.ToModel());
+                    BookController.Update(b.ToModel());
+                }
+
                 AuthorController.Update(Author.ToModel());
                 Close();
                 return;

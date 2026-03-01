@@ -24,6 +24,7 @@ namespace WPFClient.Views.Author.WrittenBooks
                    );
     
         private AuthorController AuthorController { get; }
+        private BookController BookController { get; }
 
         public AuthorDTO? Author
         {
@@ -56,6 +57,8 @@ namespace WPFClient.Views.Author.WrittenBooks
 
             AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
             AuthorController.Subscribe(this);
+
+            BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -88,9 +91,17 @@ namespace WPFClient.Views.Author.WrittenBooks
                             // i metoda Remove je ne bi uklonio jer bi referenca bila
                             // razlicita.
                             HashSet<int> ids = new HashSet<int>(books.Select(b => b.Id));
-                            Author.Books.RemoveAll((b) => ids.Contains(b.Id));
 
+                            Author.Books.RemoveAll((b) => ids.Contains(b.Id));
                             AuthorController.Update(Author.ToModel());
+
+                            foreach (var b in books)
+                            {
+                                var author = b.Authors.FirstOrDefault(a => a.Id == Author.Id);
+                                if (author == null) continue;
+                                b.Authors.Remove(author);
+                                BookController.Update(b.ToModel());
+                            }
                             break;
                     case MessageBoxResult.No:
                         break;
