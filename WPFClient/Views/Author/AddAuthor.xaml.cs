@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace WPFClient.Views.Author
     {
         public AuthorDTO Author { get; set; }
         private AuthorController authorController;
+        private readonly AddressDAO addressDAO = new AddressDAO();
 
         public AddAuthor(AuthorController authorController)
         {
@@ -31,6 +33,7 @@ namespace WPFClient.Views.Author
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            Author.AddressId = addressDAO.Add(Author.Address);
             authorController.Add(Author.ToModel());
             Close();
 		}
