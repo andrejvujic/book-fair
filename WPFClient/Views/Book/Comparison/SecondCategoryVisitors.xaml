@@ -60,7 +60,7 @@
                 SelectionUnit="FullRow"
                 SelectionMode="Single">
             <DataGrid.Columns>
-				<DataGridTextColumn Header="{l:Localization MembershipCardNumber}" Binding="{Binding MembershipCardNumber}" Width="*"/>
+                <DataGridTextColumn Header="{l:Localization MembershipCardNumber}" CanUserSort="False" Binding="{Binding MembershipCardNumber}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization Status}" Binding="{Binding StatusText}" Width="*"/>
