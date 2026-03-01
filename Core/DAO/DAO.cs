@@ -32,12 +32,13 @@ public abstract class DAO<T>
         int maxId = _entities.Max(e => e.Id);
         return maxId + 1; 
     }
-    public virtual void Add(T entity)
+    public virtual int Add(T entity)
     {
         entity.Id = GenerateId();
         _entities.Add(entity);
         _storage.Save(_entities);
         Subject.NotifyObservers();
+        return entity.Id;
     }
 
     public virtual T? Remove(int id)
