@@ -14,9 +14,12 @@ namespace WPFClient.Views.Book
     {
         public BookDTO Book { get; set; }
         private BookController BookController { get; }
+        private PublisherController PublisherController { get; } = new PublisherController(App.Context.PublisherDAO);
         private AuthorController AuthorController { get; } = new AuthorController(
                 App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO
             );
+
+        private int PreviousPublisherId { get; set; } = -1;
 
         public UpdateBook(BookDTO book, BookController bookController)
         {
@@ -38,11 +41,31 @@ namespace WPFClient.Views.Book
             Book.Publisher = selectedPublisher.ToModel();
         }
 
-        private void DeselectPublisherButton_Click(object sender, RoutedEventArgs e) =>
+        private void DeselectPublisherButton_Click(object sender, RoutedEventArgs e)
+        {
+            PreviousPublisherId = Book.Publisher?.Id ?? -1;
             Book.Publisher = null;
+        }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (PreviousPublisherId > 0)
+            {
+                var previousPublisher = PublisherController.GetById(PreviousPublisherId);
+                if (previousPublisher != null)
+                {
+                    previousPublisher.Books.RemoveAll(b => b.Id == Book.Id);
+                    PublisherController.Update(previousPublisher);
+                }
+            }
+
+            var currentPublisher = PublisherController.GetById(Book.Publisher?.Id ?? -1);
+            if (currentPublisher != null)
+            {
+                currentPublisher.Books.Add(Book.ToModel());
+                PublisherController.Update(currentPublisher);
+            }
+
             BookController.Update(Book.ToModel());
             foreach (var a in Book.Authors)
                 AuthorController.Update(a);
