@@ -10,14 +10,28 @@
         Height="320"
         Width="480"
         WindowStartupLocation="CenterOwner">
-    <Grid>
+    <Window.Resources>
+        <TextBlock x:Key="NumberOfBooksWihoutAuthorsLabelText" Text="{l:Localization NumberOfBooksWihoutAuthors}" />
+    </Window.Resources>
+    <Grid Margin="16">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="8"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="16"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0"
-           Margin="16"
+        <TextBlock Grid.Row="0">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} — {1}">
+                    <Binding Path="Text" Source="{StaticResource NumberOfBooksWihoutAuthorsLabelText}" />
+                    <Binding Path="AllowedBooks.Count" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <DataGrid Grid.Row="2"
            AutoGenerateColumns="False"
            x:Name="AllowedBooksDataGrid"
            ItemsSource="{Binding AllowedBooks}"
@@ -32,7 +46,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="1" Margin="16,0,16,16">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>

@@ -1244,6 +1244,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj knjiga koje nemaju autora.
+        /// </summary>
+        internal static string NumberOfBooksWihoutAuthors {
+            get {
+                return ResourceManager.GetString("NumberOfBooksWihoutAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broj stranica.
         /// </summary>
         internal static string NumberOfPages {

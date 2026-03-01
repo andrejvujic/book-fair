@@ -685,4 +685,7 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="NumberOfBooksWihoutAuthors" xml:space="preserve">
+    <value>Number of books without authors</value>
+  </data>
 </root>

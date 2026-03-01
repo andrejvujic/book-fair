@@ -685,4 +685,7 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   <data name="Comment" xml:space="preserve">
     <value>Komentar</value>
   </data>
+  <data name="NumberOfBooksWihoutAuthors" xml:space="preserve">
+    <value>Broj knjiga koje nemaju autora</value>
+  </data>
 </root>
