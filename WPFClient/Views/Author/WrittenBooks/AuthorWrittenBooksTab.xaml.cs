@@ -41,7 +41,7 @@ namespace WPFClient.Views.Author.WrittenBooks
         public void Update()
         {
             if (Author == null) return;
-            Render(Author.Books);
+            Render(Author.Books.Where(b => !b.IsDeleted).ToList());
         }
 
         public void Render(List<Core.Models.Book> books)
