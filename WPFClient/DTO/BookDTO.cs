@@ -268,7 +268,7 @@ namespace WPFClient.DTO
             get
             {
                 List<string> names = new List<string>();
-                foreach (Author author in Authors)
+                foreach (Author author in Authors.Where(a => !a.IsDeleted))
                     names.Add($"{author.FirstName} {author.LastName}");
                 return names;
             }
