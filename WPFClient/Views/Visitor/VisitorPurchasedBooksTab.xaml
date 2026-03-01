@@ -85,7 +85,7 @@
 
             <TextBlock Margin="0,0,0,16" Grid.Row="0">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} — {1:0.00} RSD">
+                    <MultiBinding StringFormat="{}{0} — {1:0.00}">
                         <Binding Path="Text" Source="{StaticResource AverageReviewRatingLabelText}"/>
                         <Binding Path="AverageRating" RelativeSource="{RelativeSource AncestorType=local:VisitorPurchasedBooksTab}"/>
                     </MultiBinding>
