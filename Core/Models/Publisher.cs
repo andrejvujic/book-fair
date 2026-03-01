@@ -1,9 +1,12 @@
 using Core.Helpers;
+using Core.Helpers.Search;
+using Core.Helpers.Sorting;
 using Core.Serialization;
+using System.Net.NetworkInformation;
 using System.Reflection.Metadata.Ecma335;
 namespace Core.Models;
 
-public class Publisher : ISerializable, IIdentifiable, IDeletable
+public class Publisher : ISerializable, IIdentifiable, IDeletable, ISearchable, ISortable
 {
     public int Id { get; set; } = 0;
 
@@ -18,6 +21,15 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
 
     public List<Author> Authors { get; set; } = new List<Author>();
     public List<Book> Books { get; set; } = new List<Book>();
+
+    public Dictionary<string, dynamic> SortFields {
+        get => new Dictionary<string, dynamic>
+        {
+            { nameof(Id), Id},
+            { nameof(Name), Name },
+            { nameof(Code), Code }
+        };
+    }
 
     public Publisher() { }
 
@@ -62,5 +74,20 @@ public class Publisher : ISerializable, IIdentifiable, IDeletable
         BossId = int.Parse(values[2]);
         Code = int.Parse(values[3]);
         IsDeleted = values.Length > 4 ? bool.Parse(values[4]) : false;
+    }
+
+    public bool IsMatch(SearchQuery query)
+    {
+        if (query.Empty) return true;
+
+        switch (query.Length)
+        {
+            case 1:
+                return query.IsMatch(new string[] { Name }) || query.IsMatch(new string[] { Code.ToString() });
+            case 2:
+                return query.IsMatch(new string[] { Name, Code.ToString() });
+        }
+
+        return false;
     }
 }

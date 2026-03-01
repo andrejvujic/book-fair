@@ -3,11 +3,13 @@ using Core.Models;
 
 namespace WPFClient.Controllers
 {
-    class PublisherController : Controller<Publisher>
+    class PublisherController : QueryController<Publisher>
     {
         public PublisherController(PublisherDAO publisherDAO) : base(publisherDAO)
         {
         }
+
+        public override int SearchQueryLength => 2;
 
         public void UpdateBoss(Publisher publisher, Author boss)
         {
