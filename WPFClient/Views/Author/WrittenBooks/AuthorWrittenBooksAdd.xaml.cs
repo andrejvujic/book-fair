@@ -33,7 +33,7 @@ namespace WPFClient.Views.Author.WrittenBooks
         {
             foreach (var b in BookController
                               .GetWhere(
-                                   (b1) => Author.Books.All((b2) => b1.Id != b2.Id)
+                                   (b1) => !b1.IsDeleted && Author.Books.All((b2) => b1.Id != b2.Id)
                               )
                     )
                 AllowedBooks.Add(new BookDTO(b));
