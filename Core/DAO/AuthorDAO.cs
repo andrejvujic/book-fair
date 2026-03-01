@@ -26,10 +26,11 @@ public class AuthorDAO: DAO<Author>
         BooksByAuthor = booksByAuthor;
     }
 
-    public override void Add(Author author)
+    public override int Add(Author author)
     {
-        base.Add(author);
+        int id = base.Add(author);
         BooksByAuthor.AddAll(author, author.Books);
+        return id;
     }
 
     public override Author? Remove(int id)
