@@ -12,6 +12,7 @@ namespace WPFClient.Views.Visitor
     {
         public VisitorDTO Visitor { get; set; }
         private VisitorController visitorController;
+        private readonly AddressDAO addressDAO = new AddressDAO();
 
         public AddVisitor(VisitorController visitorController)
         {
@@ -23,6 +24,7 @@ namespace WPFClient.Views.Visitor
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            Visitor.AddressId = addressDAO.Add(Visitor.Address);
             visitorController.Add(Visitor.ToModel());
             Close();
         }
