@@ -9,10 +9,11 @@
         Title="{l:Localization VisitorConnectedAuthorsWindowTitle}" Height="450" Width="900"
 		WindowStartupLocation="CenterOwner"
 		>
-	<Window.Resources>
+    <Window.Resources>
 		<TextBlock x:Key="PublisherConnectedAuthorsLabelText" Text="{l:Localization PublisherConnectedAuthors}" />
 		<TextBlock x:Key="NumberOfAuthorsLabelText" Text="{l:Localization NumberOfAuthors}" />
-	</Window.Resources>
+        <l:LocalizedDateTimeConverter x:Key="LocalizedDateTimeConverter" />
+    </Window.Resources>
 
 	<Grid Margin="16">
 		<Grid.RowDefinitions>
@@ -76,10 +77,17 @@
             SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="{l:Localization FirstName}" Binding="{Binding FirstName}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization DateOfBirth}" Binding="{Binding DateOfBirth}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization Address}" Binding="{Binding AddressText}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization PhoneNumber}" Binding="{Binding PhoneNumber}" Width="Auto"/>
+                <DataGridTextColumn Header="{l:Localization LastName}" Binding="{Binding LastName}" Width="Auto"/>
+                <DataGridTextColumn Header="{l:Localization Address}" Binding="{Binding AddressText}" Width="Auto"/>
+                <DataGridTextColumn Header="{l:Localization DateOfBirth}" Width="Auto" CanUserSort="False">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource LocalizedDateTimeConverter}">
+                            <Binding Path="DateOfBirth" />
+                            <Binding Source="{x:Static l:TranslationSource.Instance}" Path="CurrentCulture" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{l:Localization PhoneNumber}" Binding="{Binding PhoneNumber}" Width="Auto"/>
 				<DataGridTextColumn Header="{l:Localization Email}" Binding="{Binding Email}" Width="*"/>
 			</DataGrid.Columns>
 		</DataGrid>

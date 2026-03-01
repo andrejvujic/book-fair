@@ -77,10 +77,10 @@
             SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="{l:Localization ISBN}" Binding="{Binding Isbn}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Title}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Title}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization ReleaseYear}" Binding="{Binding ReleaseYear}" Width="Auto"/>
 				<DataGridTextColumn Header="{l:Localization Price}" Binding="{Binding Price}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization Genre}" Width="*">
+				<DataGridTextColumn Header="{l:Localization Genre}" Width="Auto">
 				<DataGridTextColumn.Binding>
 					<MultiBinding Converter="{StaticResource LocalizedBookGenreConverter}">
 						<Binding Path="Genre" />
