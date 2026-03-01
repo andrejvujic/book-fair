@@ -33,7 +33,8 @@ namespace WPFClient.Views.Author.WrittenBooks
         {
             foreach (var b in BookController
                               .GetWhere(
-                                   (b1) => !b1.IsDeleted && Author.Books.All((b2) => b1.Id != b2.Id)
+                                   // Prikazivati samo knjige koje nemaju autora?
+                                   (b1) => !b1.IsDeleted && b1.Authors.Count == 0 // && Author.Books.All((b2) => b1.Id != b2.Id)
                               )
                     )
                 AllowedBooks.Add(new BookDTO(b));
