@@ -49,11 +49,7 @@ namespace WPFClient.Views.Book
 			if (window.ShowDialog() != true) return;
 
 			var selected = window.SelectedAuthor!.ToModel();
-
-			if (Book.Authors == null) Book.Authors = new List<Core.Models.Author>();
-
 			Book.Authors.Add(selected);
-			Book.Authors = Book.Authors.ToList();
 		}
 
 		private void DeselectAuthorButton_Click(object sender, RoutedEventArgs e)
@@ -68,8 +64,9 @@ namespace WPFClient.Views.Book
 			switch (result)
 			{
 				case MessageBoxResult.Yes:
-					Book.Authors = new List<Core.Models.Author>();
-					break;
+                    if (Book.Authors.Count > 0)
+                        Book.Authors.RemoveAt(Book.Authors.Count - 1);
+                    break;
 				case MessageBoxResult.No:
 					break;
 				default:

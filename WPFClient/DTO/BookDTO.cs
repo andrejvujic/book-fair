@@ -1,6 +1,9 @@
 ﻿using Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using WPFClient.Localization;
 
@@ -25,7 +28,7 @@ namespace WPFClient.DTO
                 Price = Price,
                 NumberOfPages = NumberOfPages,
 
-                Authors = new List<Author>(Authors),
+                Authors = new ObservableCollection<Author>(Authors),
 
                 Publisher = Publisher,
 
@@ -46,7 +49,7 @@ namespace WPFClient.DTO
             Price = book.Price > 0 ? book.Price.ToString() : string.Empty;
             NumberOfPages = book.NumberOfPages > 0 ? book.NumberOfPages.ToString() : string.Empty;
 
-            Authors = book.Authors ?? new List<Author>();
+            Authors = new ObservableCollection<Author>(book.Authors ?? new List<Author>());
 
             Publisher = book.PublisherId > -1 ? book.Publisher : null;
 
@@ -68,7 +71,7 @@ namespace WPFClient.DTO
                 Price = double.Parse(Price),
                 NumberOfPages = int.Parse(NumberOfPages),
 
-                Authors = Authors ?? new List<Author>(),
+                Authors = Authors == null ? new List<Author>() : new List<Author>(Authors),
 
                 PublisherId = Publisher == null ? 0 : Publisher.Id,
                 Publisher = Publisher ?? new Publisher(),
@@ -228,22 +231,36 @@ namespace WPFClient.DTO
                 return value > 0;
             }
         }
-
-        private List<Author> authors = new List<Author>();
-        public List<Author> Authors
+        private ObservableCollection<Author> authors = new();
+        public ObservableCollection<Author> Authors
         {
             get => authors;
             set
             {
                 if (authors == value) return;
                 authors = value;
+
+                if (authors != null)
+                    authors.CollectionChanged -= Authors_CollectionChanged;
+                authors = value ?? new ObservableCollection<Author>();
+                authors.CollectionChanged += Authors_CollectionChanged;
+
                 OnPropertyChanged(nameof(Authors));
-                OnPropertyChanged(nameof(HasGotAuthors));
-                OnPropertyChanged(nameof(HasntGotAuthors));
                 OnPropertyChanged(nameof(FirstAuthor));
                 OnPropertyChanged(nameof(FirstAuthorFullName));
-				OnPropertyChanged(nameof(AllFieldsValid));
+                OnPropertyChanged(nameof(HasGotAuthors));
+                OnPropertyChanged(nameof(HasntGotAuthors));
+                OnPropertyChanged(nameof(AllFieldsValid));
             }
+        }
+
+        private void Authors_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(FirstAuthor));
+            OnPropertyChanged(nameof(FirstAuthorFullName));
+            OnPropertyChanged(nameof(HasGotAuthors));
+            OnPropertyChanged(nameof(HasntGotAuthors));
+            OnPropertyChanged(nameof(AllFieldsValid));
         }
 
         public List<string> FirstAndLastNamesOfAllAuthors
@@ -257,19 +274,19 @@ namespace WPFClient.DTO
             }
         }
 
-        public Author? FirstAuthor => Authors?.FirstOrDefault();
+        public Author? FirstAuthor => Authors?.FirstOrDefault(a => !a.IsDeleted);
 
-		public string FirstAuthorFullName
+        public string FirstAuthorFullName
 		{
 			get
-			{
-				var a = Authors?.FirstOrDefault(x => x != null && !x.IsDeleted);
-				return a != null ? $"{a.FirstName} {a.LastName}" : string.Empty;
+			{  
+                var a = Authors?.FirstOrDefault(a => !a.IsDeleted);
+                return a != null ? $"{a.FirstName} {a.LastName}" : string.Empty;
 			}
 		}
 
-		public bool HasGotAuthors { get => Authors != null && Authors.Count > 0; }
-        public bool HasntGotAuthors { get => Authors == null || Authors.Count == 0; }
+		public bool HasGotAuthors { get => FirstAuthor != null; }
+        public bool HasntGotAuthors { get => FirstAuthor == null; }
 
 		public int PublisherId { get => Publisher == null ? -1 : Publisher.Id; }
 
