@@ -65,7 +65,7 @@ namespace WPFClient.Views.Book
 			{
 				case MessageBoxResult.Yes:
                     if (Book.Authors.Count > 0)
-                        Book.Authors.RemoveAt(Book.Authors.Count - 1);
+                        Book.Authors.Clear();
                     break;
 				case MessageBoxResult.No:
 					break;
