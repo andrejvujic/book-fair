@@ -168,7 +168,7 @@ namespace WPFClient.DTO
             {
                 if (releaseYear == value) return;
                 releaseYear = value;
-                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(ReleaseYear));
                 OnPropertyChanged(nameof(IsReleaseYearValid));
                 OnPropertyChanged(nameof(AllFieldsValid));
             }
