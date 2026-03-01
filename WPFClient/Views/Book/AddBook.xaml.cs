@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using WPFClient.Controllers;
 using WPFClient.DTO;
+using WPFClient.Localization;
+using WPFClient.Views.Author;
 using WPFClient.Views.Publisher;
 
 namespace WPFClient.Views.Book
@@ -39,5 +41,37 @@ namespace WPFClient.Views.Book
 
         private void DeselectPublisherButton_Click(object sender, RoutedEventArgs e) =>
             Book.Publisher = null;
+
+
+        private void SelectAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new SelectAuthor { Owner = this };
+            if (window.ShowDialog() != true) return;
+
+            var selected = window.SelectedAuthor!.ToModel();
+            Book.Authors.Add(selected);
+        }
+
+        private void DeselectAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                TranslationSource.Instance["DeleteAuthorConfirmationBody"],
+                TranslationSource.Instance["DeleteAuthor"],
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    if (Book.Authors.Count > 0)
+                        Book.Authors.Clear();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
