@@ -499,7 +499,7 @@
     <value>Error</value>
   </data>
   <data name="VisitorsSecondCategory" xml:space="preserve">
-    <value>Visitors who bought the first book but not the second</value>
+    <value>Visitors who bought the first book but not the second book</value>
   </data>
   <data name="VisitorsFirstCategory" xml:space="preserve">
     <value>Visitors who wishlisted both the first and the second book</value>
