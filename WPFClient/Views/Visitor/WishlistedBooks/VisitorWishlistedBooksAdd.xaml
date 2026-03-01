@@ -64,7 +64,7 @@
                   SelectionUnit="FullRow"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{l:Localization ISBN}" Width="*" Binding="{Binding Isbn}"/>
+                <DataGridTextColumn Header="{l:Localization ISBN}" Width="Auto" Binding="{Binding Isbn}"/>
                 <DataGridTextColumn Header="{l:Localization Title}" Width="*" Binding="{Binding Title}"/>
             </DataGrid.Columns>
         </DataGrid>
