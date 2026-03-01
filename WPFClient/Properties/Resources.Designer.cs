@@ -334,6 +334,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Komentar.
+        /// </summary>
+        internal static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Komentar*.
         /// </summary>
         internal static string CommentRequired {

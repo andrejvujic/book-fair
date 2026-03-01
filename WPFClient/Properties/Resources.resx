@@ -682,4 +682,7 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   <data name="NameRequired" xml:space="preserve">
     <value>Naziv*</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
 </root>

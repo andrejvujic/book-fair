@@ -682,4 +682,7 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   <data name="NameRequired" xml:space="preserve">
     <value>Name*</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
 </root>
