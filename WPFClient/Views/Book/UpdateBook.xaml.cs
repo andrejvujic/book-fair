@@ -28,6 +28,8 @@ namespace WPFClient.Views.Book
             Book = book.Copy();
             BookController = bookController;
 
+            PreviousPublisherId = Book.Publisher?.Id ?? -1;
+
             DataContext = this;
         }
         private void SelectPublisherButton_Click(object sender, RoutedEventArgs e)
@@ -41,29 +43,40 @@ namespace WPFClient.Views.Book
             Book.Publisher = selectedPublisher.ToModel();
         }
 
-        private void DeselectPublisherButton_Click(object sender, RoutedEventArgs e)
-        {
-            PreviousPublisherId = Book.Publisher?.Id ?? -1;
+        private void DeselectPublisherButton_Click(object sender, RoutedEventArgs e) =>
             Book.Publisher = null;
-        }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PreviousPublisherId > 0)
+            var currentPublisherId = Book.Publisher?.Id ?? -1;  
+
+            if (PreviousPublisherId > 0 && currentPublisherId != PreviousPublisherId)
             {
                 var previousPublisher = PublisherController.GetById(PreviousPublisherId);
                 if (previousPublisher != null)
                 {
                     previousPublisher.Books.RemoveAll(b => b.Id == Book.Id);
+                    previousPublisher.Authors.Clear();
+                    foreach (var b in previousPublisher.Books)
+                        foreach (var a in previousPublisher.Authors)
+                            if (!previousPublisher.Authors.Any(author => author.Id == a.Id))
+                                previousPublisher.Authors.Add(a);
+
                     PublisherController.Update(previousPublisher);
                 }
             }
 
-            var currentPublisher = PublisherController.GetById(Book.Publisher?.Id ?? -1);
+            var currentPublisher = PublisherController.GetById(currentPublisherId);
             if (currentPublisher != null)
             {
                 currentPublisher.Books.Add(Book.ToModel());
+                foreach (var author in Book.Authors)
+                    if (!currentPublisher.Authors.Any(a => author.Id == a.Id))
+                        currentPublisher.Authors.Add(author);
+
                 PublisherController.Update(currentPublisher);
+
+
             }
 
             BookController.Update(Book.ToModel());
