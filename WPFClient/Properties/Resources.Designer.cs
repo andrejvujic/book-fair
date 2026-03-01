@@ -115,6 +115,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dodavanje izdavača.
+        /// </summary>
+        internal static string AddPublisher {
+            get {
+                return ResourceManager.GetString("AddPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresa.
         /// </summary>
         internal static string Address {
@@ -133,11 +142,41 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rođen u Doboju 17. februara 2004. godine.
+        ///Autor nagrađivanih softverskih rješenja.
+        ///Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u
+        ///Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch..
+        /// </summary>
+        internal static string AndrejBiography {
+            get {
+                return ResourceManager.GetString("AndrejBiography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sajam Knjiga.
         /// </summary>
         internal static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sajam Knjiga v1.0.0 — mart 2026.
+        /// </summary>
+        internal static string AppVersionText {
+            get {
+                return ResourceManager.GetString("AppVersionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran autor koji se postavlja za šefa odabranog izdavača. Potrebno je odabrati autora iz liste..
+        /// </summary>
+        internal static string AuthorBossText {
+            get {
+                return ResourceManager.GetString("AuthorBossText", resourceCulture);
             }
         }
         
@@ -156,6 +195,24 @@ namespace WPFClient.Properties {
         internal static string AuthorConnectedVisitorsWindowTitle {
             get {
                 return ResourceManager.GetString("AuthorConnectedVisitorsWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autor mora imati najmanje 5 godina iskustva da bi bio postavljen za šefa izdavača..
+        /// </summary>
+        internal static string AuthorNoExperience {
+            get {
+                return ResourceManager.GetString("AuthorNoExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autor nema dovoljno iskustva.
+        /// </summary>
+        internal static string AuthorNoExperienceCaption {
+            get {
+                return ResourceManager.GetString("AuthorNoExperienceCaption", resourceCulture);
             }
         }
         
@@ -232,6 +289,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Šef.
+        /// </summary>
+        internal static string Boss {
+            get {
+                return ResourceManager.GetString("Boss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Otkaži.
         /// </summary>
         internal static string Cancel {
@@ -246,6 +312,24 @@ namespace WPFClient.Properties {
         internal static string CancelPurchase {
             get {
                 return ResourceManager.GetString("CancelPurchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Šifra.
+        /// </summary>
+        internal static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Šifra*.
+        /// </summary>
+        internal static string CodeRequired {
+            get {
+                return ResourceManager.GetString("CodeRequired", resourceCulture);
             }
         }
         
@@ -300,6 +384,15 @@ namespace WPFClient.Properties {
         internal static string CompareBooksErrorTitle2 {
             get {
                 return ResourceManager.GetString("CompareBooksErrorTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upoređivanje knjiga.
+        /// </summary>
+        internal static string ComparingBooks {
+            get {
+                return ResourceManager.GetString("ComparingBooks", resourceCulture);
             }
         }
         
@@ -367,6 +460,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brisanje Autora.
+        /// </summary>
+        internal static string DeleteAuthor {
+            get {
+                return ResourceManager.GetString("DeleteAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li ste sigurni da želite da obrišete odabranog autora?.
         /// </summary>
         internal static string DeleteAuthorConfirmationBody {
@@ -403,6 +505,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brisanje knjige.
+        /// </summary>
+        internal static string DeleteBookCaption {
+            get {
+                return ResourceManager.GetString("DeleteBookCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li ste sigurni da želite da obrišete odabranu knjigu?.
         /// </summary>
         internal static string DeleteBookConfirmationBody {
@@ -417,6 +528,51 @@ namespace WPFClient.Properties {
         internal static string DeleteEntity {
             get {
                 return ResourceManager.GetString("DeleteEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obriši izdavača.
+        /// </summary>
+        internal static string DeletePublisher {
+            get {
+                return ResourceManager.GetString("DeletePublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brisanje nije moguće.
+        /// </summary>
+        internal static string DeletePublisherNotPossible {
+            get {
+                return ResourceManager.GetString("DeletePublisherNotPossible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brisanje odabranog izdavača nije moguće zato što u sistemu postoje knjige koje je izdao. Potrebno je prvo obrisati knjige ovog izdavača..
+        /// </summary>
+        internal static string DeletePublisherNotPossibleText {
+            get {
+                return ResourceManager.GetString("DeletePublisherNotPossibleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brisanje izdavača.
+        /// </summary>
+        internal static string DeletePublisherPossible {
+            get {
+                return ResourceManager.GetString("DeletePublisherPossible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li ste sigurni da želite da obrišete izdavača?.
+        /// </summary>
+        internal static string DeletePublisherText {
+            get {
+                return ResourceManager.GetString("DeletePublisherText", resourceCulture);
             }
         }
         
@@ -507,6 +663,15 @@ namespace WPFClient.Properties {
         internal static string EditEntity {
             get {
                 return ResourceManager.GetString("EditEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izmena izdavača.
+        /// </summary>
+        internal static string EditPublisher {
+            get {
+                return ResourceManager.GetString("EditPublisher", resourceCulture);
             }
         }
         
@@ -763,6 +928,16 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to             Sajam Knjiga je predmetni projekat na predmetu Osnovi informacionih sistema i softverskog inženjerstva.
+        ///            Aplikacija je razvijena od strane studenata:.
+        /// </summary>
+        internal static string Introduction {
+            get {
+                return ResourceManager.GetString("Introduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ISBN.
         /// </summary>
         internal static string ISBN {
@@ -849,6 +1024,24 @@ namespace WPFClient.Properties {
         internal static string MembershipYearRequired {
             get {
                 return ResourceManager.GetString("MembershipYearRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv*.
+        /// </summary>
+        internal static string NameRequired {
+            get {
+                return ResourceManager.GetString("NameRequired", resourceCulture);
             }
         }
         
@@ -970,11 +1163,74 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač za prikaz autora. Potrebno je odabrati izdavača iz liste..
+        /// </summary>
+        internal static string NoSelectedPublisherAuthor {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač za prikaz knjiga. Potrebno je odabrati izdavača iz liste..
+        /// </summary>
+        internal static string NoSelectedPublisherBook {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač za kojeg se postavlja šef. Potrebno je odabrati izdavača iz liste..
+        /// </summary>
+        internal static string NoSelectedPublisherBoss {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherBoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač.
+        /// </summary>
+        internal static string NoSelectedPublisherCaption {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač za brisanje. Potrebno je odabrati izdavača iz liste..
+        /// </summary>
+        internal static string NoSelectedPublisherDelete {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nije odabran izdavač. Potrebno je odabrati izdavača iz liste..
+        /// </summary>
+        internal static string NoSelectedPublisherText {
+            get {
+                return ResourceManager.GetString("NoSelectedPublisherText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broj autora.
         /// </summary>
         internal static string NumberOfAuthors {
             get {
                 return ResourceManager.GetString("NumberOfAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj knjiga.
+        /// </summary>
+        internal static string NumberOfBooks {
+            get {
+                return ResourceManager.GetString("NumberOfBooks", resourceCulture);
             }
         }
         
@@ -1002,6 +1258,15 @@ namespace WPFClient.Properties {
         internal static string NumberOfVisitors {
             get {
                 return ResourceManager.GetString("NumberOfVisitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj telefona.
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
         
@@ -1051,6 +1316,24 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autori čije su knjige izdate od strane.
+        /// </summary>
+        internal static string PublisherConnectedAuthors {
+            get {
+                return ResourceManager.GetString("PublisherConnectedAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knjige koje su izdate od strane .
+        /// </summary>
+        internal static string PublisherConnectedBooks {
+            get {
+                return ResourceManager.GetString("PublisherConnectedBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izdavač*.
         /// </summary>
         internal static string PublisherRequired {
@@ -1083,6 +1366,24 @@ namespace WPFClient.Properties {
         internal static string PurchaseNotSelectedTitle {
             get {
                 return ResourceManager.GetString("PurchaseNotSelectedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rođen u Kikindi 31. maja 2004. godine. Trenutno studira Računarstvo i automatiku na Fakultetu tehničkih nauka u Novom Sadu. Tokom obrazovanja učesnik mnogobrojnih takmičenja i vannastavnih aktivnosti..
+        /// </summary>
+        internal static string RadovanBiography {
+            get {
+                return ResourceManager.GetString("RadovanBiography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocena*.
+        /// </summary>
+        internal static string RatingRequired {
+            get {
+                return ResourceManager.GetString("RatingRequired", resourceCulture);
             }
         }
         
@@ -1150,6 +1451,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odaberi.
+        /// </summary>
+        internal static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Srpski.
         /// </summary>
         internal static string Serbian {
@@ -1159,11 +1469,38 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Postavi šefa.
+        /// </summary>
+        internal static string SetBoss {
+            get {
+                return ResourceManager.GetString("SetBoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postavljanje šefa izdavača.
+        /// </summary>
+        internal static string SetBossPublisher {
+            get {
+                return ResourceManager.GetString("SetBossPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prikaži autore.
         /// </summary>
         internal static string ShowAuthors {
             get {
                 return ResourceManager.GetString("ShowAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prikaži knjige.
+        /// </summary>
+        internal static string ShowBooks {
+            get {
+                return ResourceManager.GetString("ShowBooks", resourceCulture);
             }
         }
         
@@ -1267,6 +1604,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prikaz knjiga.
+        /// </summary>
+        internal static string ViewBooks {
+            get {
+                return ResourceManager.GetString("ViewBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prikaz entiteta.
         /// </summary>
         internal static string ViewEntities {
@@ -1290,24 +1636,6 @@ namespace WPFClient.Properties {
         internal static string VisitorConnectedAuthorsWindowTitle {
             get {
                 return ResourceManager.GetString("VisitorConnectedAuthorsWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu.
-        /// </summary>
-        internal static string VisitorFirst {
-            get {
-                return ResourceManager.GetString("VisitorFirst", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Posjetioci koju na listi želja imaju i prvu i drugu knjigu.
-        /// </summary>
-        internal static string VisitorFirstSecond {
-            get {
-                return ResourceManager.GetString("VisitorFirstSecond", resourceCulture);
             }
         }
         
@@ -1357,6 +1685,24 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Posjetioci koji su kupili prvu ali nisu kupili drugu knjigu.
+        /// </summary>
+        internal static string VisitorsFirstCategory {
+            get {
+                return ResourceManager.GetString("VisitorsFirstCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posjetioci koju na listi želja imaju i prvu i drugu knjigu.
+        /// </summary>
+        internal static string VisitorsSecondCategory {
+            get {
+                return ResourceManager.GetString("VisitorsSecondCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lista želja.
         /// </summary>
         internal static string VisitorWishlistedBooks {
@@ -1380,6 +1726,15 @@ namespace WPFClient.Properties {
         internal static string WishlistedBooksAddWindowTitle {
             get {
                 return ResourceManager.GetString("WishlistedBooksAddWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Godine iskustva.
+        /// </summary>
+        internal static string YearsOfExperience {
+            get {
+                return ResourceManager.GetString("YearsOfExperience", resourceCulture);
             }
         }
         

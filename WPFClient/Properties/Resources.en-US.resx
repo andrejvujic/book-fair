@@ -133,7 +133,7 @@
     <value>Books</value>
   </data>
   <data name="CurrentPage" xml:space="preserve">
-    <value>Page</value>
+    <value>Current page</value>
   </data>
   <data name="DeleteEntity" xml:space="preserve">
     <value>Delete entity</value>
@@ -169,7 +169,7 @@
     <value>Membership Card ID</value>
   </data>
   <data name="NewEntity" xml:space="preserve">
-    <value>New</value>
+    <value>New entity</value>
   </data>
   <data name="NextPage" xml:space="preserve">
     <value>Next</value>
@@ -262,7 +262,7 @@
     <value>Drama</value>
   </data>
   <data name="Genre_Unknown" xml:space="preserve">
-    <value>Nepoznato</value>
+    <value>Unknown</value>
   </data>
   <data name="FirstBookNotSelected" xml:space="preserve">
     <value>First book — not selected</value>
@@ -316,7 +316,7 @@
     <value>Edit author</value>
   </data>
   <data name="Informations" xml:space="preserve">
-    <value>Informations</value>
+    <value>Information</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -325,13 +325,13 @@
     <value>Add book</value>
   </data>
   <data name="NoAuthorSelectedText" xml:space="preserve">
-    <value>No visitor display author selected. It is necessary to select an author from the list.</value>
+    <value>No author selected for displaying visitors. You need to select an author from the list.</value>
   </data>
   <data name="NoAuthorSelectedCaption" xml:space="preserve">
     <value>No author selected</value>
   </data>
   <data name="EditAuthorText" xml:space="preserve">
-    <value>No author selected for modification. It is necessary to select an author from the list.</value>
+    <value>No author selected for editing. You need to select an author from the list.</value>
   </data>
   <data name="EditAuthorCaption" xml:space="preserve">
     <value>No author selected</value>
@@ -451,13 +451,13 @@
     <value>No author selected</value>
   </data>
   <data name="DeleteAuthorNotPossibleBookBody" xml:space="preserve">
-    <value>Action not allowed. It is not possible to delete the selected author. The selected authors has written books which are still registered in the system.</value>
+    <value>Action not allowed. It is not possible to delete the selected author because there are books written by them still registered in the system.</value>
   </data>
   <data name="DeleteAuthorNotPossibleTitle" xml:space="preserve">
-    <value>Author can not be deleted</value>
+    <value>Author cannot be deleted</value>
   </data>
   <data name="DeleteAuthorNotPossiblePublisherBody" xml:space="preserve">
-    <value>Action not allowed. It is not possible to delete the selected author. The selected author is the boss of a publisher registered in the system.</value>
+    <value>Action not allowed. It is not possible to delete the selected author because they are the boss of a publisher registered in the system.</value>
   </data>
   <data name="AuthorConnectedVisitorsWindowTitle" xml:space="preserve">
     <value>Visitors</value>
@@ -484,7 +484,7 @@
     <value>It is necessary to select two books from the list in order to compare the books.</value>
   </data>
   <data name="NoSelectedBookCompareCaption" xml:space="preserve">
-    <value>Incorrect book selection</value>
+    <value>Invalid book selection</value>
   </data>
   <data name="NoSelectedBookText" xml:space="preserve">
     <value>You need to select a book from the list.</value>
@@ -550,7 +550,7 @@
     <value>Invalid book selection</value>
   </data>
   <data name="CompareBooksErrorBody2" xml:space="preserve">
-    <value>You can not select the same book twice. You must select two different books.</value>
+    <value>You cannot select the same book twice. You must select two different books.</value>
   </data>
   <data name="CountryAndCityRequired" xml:space="preserve">
     <value>Country, City*</value>
@@ -562,7 +562,7 @@
     <value>Invalid book selection</value>
   </data>
   <data name="DeleteAuthor" xml:space="preserve">
-    <value>Deletion of the author</value>
+    <value>Delete author</value>
   </data>
   <data name="Introduction" xml:space="preserve">
     <value>The Book Fair is a subject project in the Basics of Information Systems and Software Engineering course.
@@ -584,7 +584,7 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
     <value>Comparing books</value>
   </data>
   <data name="DeleteBookCaption" xml:space="preserve">
-    <value>Deleting the book</value>
+    <value>Delete book</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -593,19 +593,19 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
     <value>Rating*</value>
   </data>
   <data name="AddPublisher" xml:space="preserve">
-    <value>Add Publisher</value>
+    <value>Add publisher</value>
   </data>
-  <data name="PasswordRequired" xml:space="preserve">
-    <value>Password*</value>
+  <data name="CodeRequired" xml:space="preserve">
+    <value>Code*</value>
   </data>
   <data name="EditPublisher" xml:space="preserve">
     <value>Edit publisher</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>Phone Number</value>
+    <value>Phone number</value>
   </data>
   <data name="ViewBooks" xml:space="preserve">
-    <value>Books</value>
+    <value>View books</value>
   </data>
   <data name="Boss" xml:space="preserve">
     <value>Boss</value>
@@ -617,16 +617,16 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
     <value>No publisher selected</value>
   </data>
   <data name="SetBossPublisher" xml:space="preserve">
-    <value>Appointment of the Chief Publisher</value>
+    <value>Set publisher boss</value>
   </data>
   <data name="SetBoss" xml:space="preserve">
     <value>Set boss</value>
   </data>
   <data name="YearsOfExperience" xml:space="preserve">
-    <value>Years Of Experience</value>
+    <value>Years of experience</value>
   </data>
   <data name="AuthorBossText" xml:space="preserve">
-    <value>The author who is running for the head of the selected publisher has not been selected. You need to select an author from the list.</value>
+    <value>No author selected to be set as the boss of the selected publisher. You need to select an author from the list.</value>
   </data>
   <data name="AuthorNoExperience" xml:space="preserve">
     <value>The author must have at least 5 years of experience to be appointed as the head of the publisher.</value>
@@ -640,8 +640,8 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   <data name="ShowBooks" xml:space="preserve">
     <value>Show books</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
   </data>
   <data name="NoSelectedPublisherBoss" xml:space="preserve">
     <value>The publisher for which the boss is being set has not been selected. You need to select a publisher from the list.</value>
@@ -659,13 +659,13 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
     <value>Are you sure you want to delete the publisher?</value>
   </data>
   <data name="DeletePublisherNotPossibleText" xml:space="preserve">
-    <value>Deleting the selected publisher is not possible because there are books published by him in the system. You need to delete books from this publisher first.</value>
+    <value>Deleting the selected publisher is not possible because there are books published by this publisher in the system. You need to delete this publisher's books first.</value>
   </data>
   <data name="NoSelectedPublisherAuthor" xml:space="preserve">
-    <value>No publisher selected to display author. You need to select a publisher from the list.</value>
+    <value>No publisher selected to display list of authors. You need to select a publisher from the list.</value>
   </data>
   <data name="NoSelectedPublisherBook" xml:space="preserve">
-    <value>No publisher selected to display books. You need to select a publisher from the list.</value>
+    <value>No publisher selected to display list of books. You need to select a publisher from the list.</value>
   </data>
   <data name="PublisherConnectedAuthors" xml:space="preserve">
     <value>Authors whose books are published by</value>
@@ -675,5 +675,11 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   </data>
   <data name="NumberOfBooks" xml:space="preserve">
     <value>Number of books</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Name*</value>
   </data>
 </root>

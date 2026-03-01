@@ -27,8 +27,8 @@
         >
             <DataGrid.Columns>
 				<DataGridTextColumn Header="{l:Localization ID}" Binding="{Binding Id}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization Password}" Binding="{Binding Code}" Width="Auto"/>
-				<DataGridTextColumn Header="{l:Localization Title}" Binding="{Binding Name}" Width="*"/>
+				<DataGridTextColumn Header="{l:Localization Code}" Binding="{Binding Code}" Width="Auto"/>
+				<DataGridTextColumn Header="{l:Localization Name}" Binding="{Binding Name}" Width="*"/>
 				<DataGridTextColumn Header="{l:Localization Boss}" Binding="{Binding FullNameOfBoss}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

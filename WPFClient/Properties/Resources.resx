@@ -595,7 +595,7 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   <data name="AddPublisher" xml:space="preserve">
     <value>Dodavanje izdavača</value>
   </data>
-  <data name="PasswordRequired" xml:space="preserve">
+  <data name="CodeRequired" xml:space="preserve">
     <value>Šifra*</value>
   </data>
   <data name="EditPublisher" xml:space="preserve">
@@ -620,7 +620,7 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
     <value>Postavljanje šefa izdavača</value>
   </data>
   <data name="SetBoss" xml:space="preserve">
-    <value>Postavi za šefa</value>
+    <value>Postavi šefa</value>
   </data>
   <data name="YearsOfExperience" xml:space="preserve">
     <value>Godine iskustva</value>
@@ -640,7 +640,7 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   <data name="ShowBooks" xml:space="preserve">
     <value>Prikaži knjige</value>
   </data>
-  <data name="Password" xml:space="preserve">
+  <data name="Code" xml:space="preserve">
     <value>Šifra</value>
   </data>
   <data name="NoSelectedPublisherBoss" xml:space="preserve">
@@ -675,5 +675,11 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   </data>
   <data name="NumberOfBooks" xml:space="preserve">
     <value>Broj knjiga</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naziv</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Naziv*</value>
   </data>
 </root>
