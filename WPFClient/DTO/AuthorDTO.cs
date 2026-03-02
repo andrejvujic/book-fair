@@ -196,7 +196,15 @@ namespace WPFClient.DTO
 			}
 		}
 
-		public Address Address => new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
+		public Address Address {
+			get
+			{
+                Address address = new Address(AddressStreet, AddressStreetNumber, AddressCity, AddressCountry);
+				address.Id = AddressId;
+				return address;
+            }
+
+		}
 		public string AddressText => $"{AddressStreet} {AddressStreetNumber}, {AddressCity}, {AddressCountry}";
 
 		private string phoneNumber = string.Empty;
