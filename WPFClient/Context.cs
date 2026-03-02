@@ -74,6 +74,12 @@ namespace WPFClient
             });
 
             RelationManager.ConnectAll();
+            AddressDAO.NotifyObservers();
+            AuthorDAO.NotifyObservers();
+            BookDAO.NotifyObservers();
+            PublisherDAO.NotifyObservers();
+            VisitorDAO.NotifyObservers();
+            PublisherDAO.NotifyObservers();
         }
     }
 }
