@@ -12,6 +12,7 @@ public abstract class DAO<T>
         where T : class, ISerializable, IIdentifiable, new()
 {
     public Subject Subject { get; }
+    public void NotifyObservers() => Subject.NotifyObservers();
 
     public abstract string Identifier { get; }
     public abstract string[] EntityProperties { get; }
