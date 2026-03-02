@@ -13,28 +13,19 @@ namespace WPFClient.Controllers
     public class AuthorController: QueryController<Author>
     {
 		private readonly AddressDAO _addressDAO;
-        private readonly BookDAO _bookDAO;
-		public AuthorController(AuthorDAO authorDAO, AddressDAO addressDAO, BookDAO bookDAO): base(authorDAO) {
+
+		public AuthorController(AuthorDAO authorDAO, AddressDAO addressDAO): base(authorDAO) {
             _addressDAO = addressDAO;
-            _bookDAO = bookDAO;
         }
 
         public override int SearchQueryLength => 2;
 
         public void Delete(AuthorDTO author)
         {
-            foreach(Book book in author.Books)
-            {
-                book.Authors.RemoveAll(a => a.Id == author.Id);
-                _bookDAO.Update(book);
-            }
-
             Address address = author.Address;
-            address.IsDeleted = true;
-            _addressDAO.Update(address);
-
-            author.IsDeleted = true;
-            base.Update(author.ToModel());
+            _addressDAO.Remove(address.Id);
+            _dao.Remove(author.Id);
+            App.Context.RestoreRelations();
 
 		}
     }

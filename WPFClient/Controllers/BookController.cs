@@ -12,13 +12,8 @@ namespace WPFClient.Controllers
 {
     public class BookController : QueryController<Book>
     {
-        private readonly BookDAO _bookDAO;
-        private readonly AuthorDAO _authorDAO;
-        private readonly VisitorDAO _visitorDAO;
         private readonly PurchaseDAO _purchaseDAO;  
-		public BookController(BookDAO bookDAO, VisitorDAO visitorDAO, AuthorDAO authorDAO, PurchaseDAO purchaseDAO) : base(bookDAO) {
-            _authorDAO = authorDAO;
-            _visitorDAO = visitorDAO;
+		public BookController(BookDAO bookDAO, PurchaseDAO purchaseDAO) : base(bookDAO) {
             _purchaseDAO = purchaseDAO;
 		}
 
@@ -29,27 +24,8 @@ namespace WPFClient.Controllers
             List<Purchase> purchases = _purchaseDAO.GetWhere(p => p.BookId == book.Id);
             foreach (int id in purchases.Select(p => p.Id))
                 _purchaseDAO.Remove(id);
-
-            foreach(Visitor visitor in book.Wishlisters)
-            {
-                visitor.WishlistedBooks.RemoveAll(v => v.Id == book.Id);
-                _visitorDAO.Update(visitor);
-            }
-
-            foreach(Visitor visitor in book.Buyers)
-            {
-                visitor.PurchasedBooks.RemoveAll(v => v.Id == book.Id);
-                _visitorDAO.Update(visitor);
-            }
-
-            foreach(Author author in book.Authors)
-            {
-                author.Books.RemoveAll(v => v.Id == book.Id);
-                _authorDAO.Update(author);
-            }
-
-            book.IsDeleted = true;
-            base.Update(book.ToModel());
-		}
+            _dao.Remove(book.Id);
+            App.Context.RestoreRelations();
+        }
     }
 }

@@ -11,14 +11,12 @@ namespace WPFClient.Controllers
     {
         private readonly AddressDAO _addressDAO;
         private readonly PurchaseDAO _purchaseDAO;
-        private readonly BookDAO _bookDAO;
 
-        public VisitorController(VisitorDAO visitorDAO, AddressDAO addressDAO, BookDAO bookDAO, PurchaseDAO purchaseDAO)
+        public VisitorController(VisitorDAO visitorDAO, AddressDAO addressDAO, PurchaseDAO purchaseDAO)
             : base(visitorDAO)
         {
             _addressDAO = addressDAO;
             _purchaseDAO = purchaseDAO;
-            _bookDAO = bookDAO;
         }
 
         // Pretraga za posjetioce moze imati maksimalno 3 tokena.
@@ -35,26 +33,12 @@ namespace WPFClient.Controllers
             foreach (int id in purchases.Select(p => p.Id))
                 _purchaseDAO.Remove(id);
 
-
-            foreach (Book book in visitor.WishlistedBooks)
-            {
-                book.Wishlisters.RemoveAll(v => v.Id == visitor.Id);
-                _bookDAO.Update(book);
-            }
-
-
-            foreach (Book book in visitor.PurchasedBooks)
-            {
-                book.Buyers.RemoveAll(v => v.Id == visitor.Id);
-                _bookDAO.Update(book);
-            }
-
             Address address = visitor.Address;
-            address.IsDeleted = true;
-            _addressDAO.Update(address);
+            _addressDAO.Remove(address.Id);
 
-            visitor.IsDeleted = true;
-            base.Update(visitor.ToModel());
+            _dao.Remove(visitor.Id);
+
+            App.Context.RestoreRelations();
         }
     }
 }
