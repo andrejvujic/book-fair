@@ -117,6 +117,15 @@ namespace WPFClient.Views.Visitor.WishlistedBooks
 
             Visitor.WishlistedBooks.Add(targetBook.ToModel());
             VisitorController.Update(Visitor.ToModel());
+
+            var book = BookController.GetById(targetBook.Id);
+            if (book != null)
+            {
+                if (book.Wishlisters.All(v => v.Id != Visitor.Id))
+                    book.Wishlisters.Add(Visitor.ToModel());
+                BookController.Update(book);
+            }
+
             Close();
         }
     }
