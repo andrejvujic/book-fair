@@ -30,7 +30,6 @@ namespace WPFClient.Views.Author
             VisitorController = new VisitorController(
                 App.Context.VisitorDAO,
                 App.Context.AddressDAO,
-                App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
 

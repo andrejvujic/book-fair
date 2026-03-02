@@ -34,7 +34,7 @@ namespace WPFClient.Views.Visitor
 			Visitor = visitor;
 			VisitorBookIds = new HashSet<int>(Visitor.WishlistedBooks.Select((b) => b.Id));
 
-			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
+			AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
 
 			DataContext = this;
 			Update();

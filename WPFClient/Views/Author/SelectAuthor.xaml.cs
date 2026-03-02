@@ -21,7 +21,7 @@ namespace WPFClient.Views.Author
         {
             InitializeComponent();
 
-            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
             AuthorController.Subscribe(this);
             DataContext = this;
             Update();

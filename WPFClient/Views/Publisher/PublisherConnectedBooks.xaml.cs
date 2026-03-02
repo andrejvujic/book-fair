@@ -37,7 +37,7 @@ namespace WPFClient.Views.Publisher
 
 			Publisher = publisher;
 			PublisherBookIds = new HashSet<int>(Publisher.Books.Select((b) => b.Id));
-			BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
+			BookController = new BookController(App.Context.BookDAO, App.Context.PurchaseDAO);
 			DataContext = this;
 			Update();
 		}

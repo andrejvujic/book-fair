@@ -96,7 +96,6 @@ namespace WPFClient.Views.Book.Comparison
             VisitorController = new VisitorController(
                 App.Context.VisitorDAO,
                 App.Context.AddressDAO,
-                App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
 

@@ -42,7 +42,6 @@ namespace WPFClient.Views.Visitor
             VisitorController = new VisitorController(
                 App.Context.VisitorDAO,
                 App.Context.AddressDAO,
-                App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
             VisitorController.Subscribe(this);

@@ -51,7 +51,7 @@ namespace WPFClient.Views.Book
 		public BookTab()
         {
             InitializeComponent();
-            BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
+            BookController = new BookController(App.Context.BookDAO, App.Context.PurchaseDAO);
             BookController.Subscribe(this);
             Update();
         }

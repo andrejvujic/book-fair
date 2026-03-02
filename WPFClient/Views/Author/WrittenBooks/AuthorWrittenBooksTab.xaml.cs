@@ -55,10 +55,10 @@ namespace WPFClient.Views.Author.WrittenBooks
         {
             InitializeComponent();
 
-            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO);
+            AuthorController = new AuthorController(App.Context.AuthorDAO, App.Context.AddressDAO);
             AuthorController.Subscribe(this);
 
-            BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
+            BookController = new BookController(App.Context.BookDAO, App.Context.PurchaseDAO);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

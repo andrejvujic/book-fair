@@ -18,7 +18,7 @@ namespace WPFClient.Views.Publisher
         {
             InitializeComponent();
 
-            BookController = new BookController(App.Context.BookDAO, App.Context.VisitorDAO, App.Context.AuthorDAO, App.Context.PurchaseDAO);
+            BookController = new BookController(App.Context.BookDAO, App.Context.PurchaseDAO);
             PublisherController = new PublisherController(App.Context.PublisherDAO);
             PublisherController.Subscribe(this);
 
