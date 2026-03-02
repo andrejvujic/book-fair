@@ -73,20 +73,17 @@ namespace WPFClient
             VisitorController = new VisitorController(
                 App.Context.VisitorDAO,
                 App.Context.AddressDAO,
-                App.Context.BookDAO,
                 App.Context.PurchaseDAO
             );
+
             BookController = new BookController(
                 App.Context.BookDAO,
-                App.Context.VisitorDAO,
-                App.Context.AuthorDAO,
                 App.Context.PurchaseDAO
             );
 
             AuthorController = new AuthorController(
                 App.Context.AuthorDAO,
-                App.Context.AddressDAO,
-                App.Context.BookDAO
+                App.Context.AddressDAO
             );
 
             PublisherController = new PublisherController(App.Context.PublisherDAO);
