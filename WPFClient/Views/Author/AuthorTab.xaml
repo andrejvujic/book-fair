@@ -13,14 +13,13 @@
     </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<DataGrid Grid.Row="0"
-				  VerticalAlignment="Top"
                   Margin="16"
 				  AutoGenerateColumns="False"
                   x:Name="AuthorsDataGrid"
