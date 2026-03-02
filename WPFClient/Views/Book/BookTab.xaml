@@ -25,6 +25,8 @@
                   Margin="16"
                   AutoGenerateColumns="False"
                   x:Name="BooksDataGrid"
+                  ScrollViewer.CanContentScroll="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ItemsSource="{Binding Books, RelativeSource={RelativeSource AncestorType=UserControl}}"
                   Sorting="BooksDataGrid_Sorting"
                   CanUserAddRows="False"

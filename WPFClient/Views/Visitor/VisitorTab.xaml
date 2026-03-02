@@ -22,6 +22,8 @@
             Margin="16"
             AutoGenerateColumns="False"
             x:Name="VisitorsDataGrid"
+            ScrollViewer.CanContentScroll="False"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
             ItemsSource="{Binding Visitors, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Sorting="VisitorsDataGrid_Sorting"
             CanUserAddRows="False"

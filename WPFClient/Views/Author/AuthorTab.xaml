@@ -21,6 +21,8 @@
 
 		<DataGrid Grid.Row="0"
                   Margin="16"
+                  ScrollViewer.CanContentScroll="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
 				  AutoGenerateColumns="False"
                   x:Name="AuthorsDataGrid"
                   ItemsSource="{Binding Authors, RelativeSource={RelativeSource AncestorType=UserControl}}"
