@@ -11,9 +11,6 @@ namespace WPFClient.Views.Book
     {
         public BookDTO Book { get; set; }
         private BookController BookController { get; }
-        private AuthorController AuthorController { get; } = new AuthorController(
-                App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO
-            );
 
         public AddBook(BookController bookController)
         {
@@ -28,8 +25,7 @@ namespace WPFClient.Views.Book
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             BookController.Add(Book.ToModel());
-            foreach (var a in Book.Authors)
-                AuthorController.Update(a);
+            App.Context.RestoreRelations();
             Close();
         }
 

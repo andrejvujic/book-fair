@@ -14,21 +14,12 @@ namespace WPFClient.Views.Book
     {
         public BookDTO Book { get; set; }
         private BookController BookController { get; }
-        private PublisherController PublisherController { get; } = new PublisherController(App.Context.PublisherDAO);
-        private AuthorController AuthorController { get; } = new AuthorController(
-                App.Context.AuthorDAO, App.Context.AddressDAO, App.Context.BookDAO
-            );
-
-        private int PreviousPublisherId { get; set; } = -1;
-
         public UpdateBook(BookDTO book, BookController bookController)
         {
             InitializeComponent();
 
             Book = book.Copy();
             BookController = bookController;
-
-            PreviousPublisherId = Book.Publisher?.Id ?? -1;
 
             DataContext = this;
         }
@@ -48,41 +39,8 @@ namespace WPFClient.Views.Book
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var currentPublisherId = Book.Publisher?.Id ?? -1;  
-
-            if (PreviousPublisherId > 0 && currentPublisherId != PreviousPublisherId)
-            {
-                var previousPublisher = PublisherController.GetById(PreviousPublisherId);
-                if (previousPublisher != null)
-                {
-                    previousPublisher.Books.RemoveAll(b => b.Id == Book.Id);
-                    previousPublisher.Authors.Clear();
-                    foreach (var b in previousPublisher.Books)
-                        foreach (var a in previousPublisher.Authors)
-                            if (!previousPublisher.Authors.Any(author => author.Id == a.Id))
-                                previousPublisher.Authors.Add(a);
-
-                    PublisherController.Update(previousPublisher);
-                }
-            }
-
-            var currentPublisher = PublisherController.GetById(currentPublisherId);
-            if (currentPublisher != null)
-            {
-                currentPublisher.Books.Add(Book.ToModel());
-                foreach (var author in Book.Authors)
-                    if (!currentPublisher.Authors.Any(a => author.Id == a.Id))
-                        currentPublisher.Authors.Add(author);
-
-                PublisherController.Update(currentPublisher);
-
-
-            }
-
             BookController.Update(Book.ToModel());
-            foreach (var a in Book.Authors)
-                AuthorController.Update(a);
-
+            App.Context.RestoreRelations();
             Close();
         }
 
