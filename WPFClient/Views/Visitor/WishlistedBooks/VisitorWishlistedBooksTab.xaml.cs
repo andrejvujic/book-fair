@@ -77,9 +77,9 @@ namespace WPFClient.Views.Visitor
             window.Owner = Window.GetWindow(this);
             if (!(window.ShowDialog() ?? false)) return;
 
-            Visitor.WishlistedBooks.RemoveAll(b => b.Id == book.Id);
-            Visitor.PurchasedBooks.Add(book.ToModel());
+            Visitor.WishlistedBooks.RemoveAll((b) => b.Id == book.Id);
             VisitorController.Update(Visitor.ToModel());
+            App.Context.RestoreRelations();
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -109,6 +109,7 @@ namespace WPFClient.Views.Visitor
                     case MessageBoxResult.Yes:
                         Visitor.WishlistedBooks.RemoveAll((book) => book.Id == targetBook.Id);
                         VisitorController.Update(Visitor.ToModel());
+                        App.Context.RestoreRelations();
                     break;
                     case MessageBoxResult.No:
                         break;

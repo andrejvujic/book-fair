@@ -120,12 +120,9 @@ namespace WPFClient.Views.Visitor
 			{
 				case MessageBoxResult.Yes:
 					PurchaseController.Delete(targetPurchase.Id);
-
-					Visitor.PurchasedBooks.Remove(targetPurchase.Book);
 					Visitor.WishlistedBooks.Add(targetPurchase.Book);
-					// Potrebno je knjigu koja je obrisana iz liste
-					// kupljenih knjiga prebaciti u listu želja.
 					VisitorController.Update(Visitor.ToModel());
+                    App.Context.RestoreRelations();
 
                     Update();
                     break;
