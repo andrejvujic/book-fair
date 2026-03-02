@@ -94,15 +94,7 @@ namespace WPFClient.Views.Author.WrittenBooks
                             
                             Author.Books.RemoveAll((b) => ids.Contains(b.Id));
                             AuthorController.Update(Author.ToModel());
-
-                            foreach (var id in books.Select(b => b.Id))
-                            {
-                                var book = BookController.GetById(id);
-                                if (book == null) continue;
-
-                                book.Authors.RemoveAll(a => a.Id == Author.Id);
-                                BookController.Update(book);
-                            }
+                            App.Context.RestoreRelations();
                             break;
                     case MessageBoxResult.No:
                         break;
