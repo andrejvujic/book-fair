@@ -179,7 +179,7 @@
 
 					<Button Grid.Column="0"
                         Width="24"
-                        Height="24"  Click="NewMenuItem_Click">
+                        Height="24"  Click="NewMenuItem_Click" ToolTip="{l:Localization NewEntity}">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xECC8;"
                                    FontSize="14"
@@ -189,7 +189,7 @@
 
 					<Button Grid.Column="2"
                         Width="24"
-                        Height="24" Click="EditMenuItem_Click">
+                        Height="24" Click="EditMenuItem_Click" ToolTip="{l:Localization EditEntity}">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE70F;"
                                    FontSize="14"
@@ -199,7 +199,7 @@
 
 					<Button Grid.Column="4"
                         Width="24"
-                        Height="24" Click="DeleteMenuItem_Click">
+                        Height="24" Click="DeleteMenuItem_Click" ToolTip="{l:Localization DeleteEntity}">
 						<TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE74D;"
                                    FontSize="14"
@@ -212,7 +212,7 @@
                     <Button Grid.Column="8"
                         Width="24"
                         Height="24"
-                        Click="SearchButton_Click">
+                        Click="SearchButton_Click" ToolTip="{l:Localization StartSearch}">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE721;"
                                    FontSize="14"
@@ -223,7 +223,7 @@
                     <Button Grid.Column="10"
                         Width="24"
                         Height="24"
-                        Click="ResetSearchButton_Click">
+                        Click="ResetSearchButton_Click" ToolTip="{l:Localization ResetSearch}">
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE711;"
                                    FontSize="14"

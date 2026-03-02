@@ -688,4 +688,10 @@ Novom Sadu i radi na razvoju i održavanju aplikacije Alien Watch.</value>
   <data name="NumberOfBooksWihoutAuthors" xml:space="preserve">
     <value>Broj knjiga koje nemaju autora</value>
   </data>
+  <data name="StartSearch" xml:space="preserve">
+    <value>Pretraga</value>
+  </data>
+  <data name="ResetSearch" xml:space="preserve">
+    <value>Resetovanje pretrage</value>
+  </data>
 </root>

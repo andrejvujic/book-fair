@@ -1442,6 +1442,15 @@ namespace WPFClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resetovanje pretrage.
+        /// </summary>
+        internal static string ResetSearch {
+            get {
+                return ResourceManager.GetString("ResetSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nije moguće odabrati dva puta istu knjigu. Potrebno je odabrati dvije različite knjige..
         /// </summary>
         internal static string SameBookImpossible {
@@ -1528,6 +1537,15 @@ namespace WPFClient.Properties {
         internal static string ShowVisitors {
             get {
                 return ResourceManager.GetString("ShowVisitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pretraga.
+        /// </summary>
+        internal static string StartSearch {
+            get {
+                return ResourceManager.GetString("StartSearch", resourceCulture);
             }
         }
         

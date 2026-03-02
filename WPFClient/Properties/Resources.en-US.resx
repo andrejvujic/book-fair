@@ -688,4 +688,10 @@ Novi Sad and works on the development and maintenance of the Alien Watch applica
   <data name="NumberOfBooksWihoutAuthors" xml:space="preserve">
     <value>Number of books without authors</value>
   </data>
+  <data name="StartSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ResetSearch" xml:space="preserve">
+    <value>Reset search</value>
+  </data>
 </root>
