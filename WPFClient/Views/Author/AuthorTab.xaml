@@ -13,15 +13,16 @@
     </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="360"/>
 			<RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<DataGrid Grid.Row="0"
-				  VerticalAlignment="Top"
                   Margin="16"
+                  ScrollViewer.CanContentScroll="False"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
 				  AutoGenerateColumns="False"
                   x:Name="AuthorsDataGrid"
                   ItemsSource="{Binding Authors, RelativeSource={RelativeSource AncestorType=UserControl}}"
